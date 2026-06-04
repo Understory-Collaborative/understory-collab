@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Understory — Mixed Palette Preview</title>
+<style>
+  :root {
+    --canopy: #204E4A;
+    --forest: #2D5A3D;
+    --sage:   #82A3A1;
+    --sand:   #E8A87C;
+    --ember:  #BC6C25;
+    --cream:  #FEFAE0;
+    --ink:    #182A22;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--ink);
+    background: #f4f1e8;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+  header.page > p { color: #4a5a50; max-width: 60ch; }
+  h1 { font-size: 2.2rem; margin: 0 0 .5rem; color: var(--canopy); }
+  h2 { font-size: 1.35rem; margin: 3.5rem 0 1rem; color: var(--canopy); border-bottom: 2px solid rgba(32,78,74,.15); padding-bottom: .4rem; }
+  h3 { margin: 0 0 .35rem; }
+  .muted { color: #5b6a60; font-size: .9rem; }
+
+  /* Swatches */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 1rem; }
+  .swatch { border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.08); background: #fff; }
+  .chip { height: 110px; display: flex; align-items: flex-end; padding: .6rem .75rem; font-weight: 700; font-size: .8rem; }
+  .swatch .meta { padding: .65rem .75rem .85rem; }
+  .swatch .meta .name { font-weight: 700; }
+  .swatch .meta .hex { font-family: ui-monospace, Menlo, monospace; font-size: .82rem; color: #5b6a60; }
+  .swatch .meta .role { font-size: .8rem; color: #5b6a60; margin-top: .25rem; }
+
+  /* Contrast table */
+  table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+  th, td { text-align: left; padding: .55rem .7rem; border-bottom: 1px solid #e2dccb; }
+  th { color: #4a5a50; font-weight: 600; }
+  .badge { display: inline-block; padding: .12rem .5rem; border-radius: 999px; font-size: .72rem; font-weight: 700; }
+  .aaa { background: #1f7a3f; color: #fff; }
+  .aa  { background: #2D5A3D; color: #fff; }
+  .aalg{ background: #dda15e; color: #2a1a08; }
+  .fail{ background: #c0392b; color: #fff; }
+  .sample { font-weight: 700; padding: .15rem .55rem; border-radius: 6px; }
+
+  /* Mockups */
+  .mocks { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 760px){ .mocks { grid-template-columns: 1fr; } }
+  .mock { border-radius: 16px; overflow: hidden; box-shadow: 0 6px 24px rgba(0,0,0,.12); }
+  .mock .nav { padding: .8rem 1.1rem; font-weight: 700; color: #fff; display:flex; justify-content: space-between; align-items:center; font-size:.85rem;}
+  .mock .nav span.links { font-weight: 500; opacity: .85; font-size:.78rem;}
+  .mock .hero { padding: 2.2rem 1.4rem 2.4rem; }
+  .mock .hero .tag { font-size: .8rem; letter-spacing: .04em; text-transform: uppercase; opacity:.8; margin:0 0 .5rem;}
+  .mock .hero h3 { font-size: 1.5rem; line-height: 1.15; margin: 0 0 .6rem; }
+  .mock .hero p { margin: 0 0 1.3rem; font-size: .92rem; }
+  .btn { display:inline-block; padding:.6rem 1.1rem; border-radius: 8px; font-weight:700; font-size:.85rem; text-decoration:none; border:2px solid transparent; }
+  .lean-label { font-weight:700; margin-bottom:.5rem; }
+
+  /* Enterprise lean */
+  .ent .nav { background: var(--forest); }
+  .ent .hero { background: var(--cream); color: var(--ink); }
+  .ent .hero .tag { color: var(--forest); opacity:1; }
+  .ent .btn-primary { background: var(--forest); color:#fff; }
+  .ent .btn-secondary { border-color: var(--canopy); color: var(--canopy); margin-left:.5rem; }
+
+  /* Founder lean */
+  .fnd .nav { background: var(--canopy); }
+  .fnd .hero { background: var(--canopy); color: var(--cream); }
+  .fnd .hero .tag { color: var(--sand); opacity:1; }
+  .fnd .btn-primary { background: var(--ember); color:#fff; }
+  .fnd .btn-secondary { border-color: var(--sand); color: var(--sand); margin-left:.5rem; }
+
+  /* fire strip */
+  .fire { margin-top:1.2rem; display:flex; gap:.5rem; flex-wrap:wrap; }
+  .fire span { padding:.3rem .7rem; border-radius:6px; font-size:.78rem; font-weight:700; }
+  footer { margin-top:4rem; color:#5b6a60; font-size:.85rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="page">
+    <h1>Understory — Mixed Palette</h1>
+    <p>A blend of all three reference palettes, extended from the existing brand
+       (<code>#2D5A3D</code> forest + <code>#E8A87C</code> sand). Greens &amp; teal carry
+       <strong>trust</strong>; sand &amp; ember carry <strong>warmth</strong> and the wildfire
+       theme. Shift the proportion to lean enterprise or founder.</p>
+  </header>
+
+  <h2>The six colors</h2>
+  <div class="swatches">
+    <div class="swatch">
+      <div class="chip" style="background:#204E4A;color:#FEFAE0">Aa</div>
+      <div class="meta"><div class="name">Canopy Teal</div><div class="hex">#204E4A</div>
+        <div class="role">Deep base / shade. Dark sections, footer, founder-lean hero.</div></div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#2D5A3D;color:#fff">Aa</div>
+      <div class="meta"><div class="name">Forest <span class="muted">(existing)</span></div><div class="hex">#2D5A3D</div>
+        <div class="role">Primary brand. Nav, primary buttons, links (light mode).</div></div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#82A3A1;color:#182A22">Aa</div>
+      <div class="meta"><div class="name">Sage Mist</div><div class="hex">#82A3A1</div>
+        <div class="role">Cool support. Borders, dividers, subtle fills.</div></div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#E8A87C;color:#2a1a08">Aa</div>
+      <div class="meta"><div class="name">Sand <span class="muted">(existing)</span></div><div class="hex">#E8A87C</div>
+        <div class="role">Warm accent. CTAs &amp; links on dark, decorative warmth.</div></div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#BC6C25;color:#fff">Aa</div>
+      <div class="meta"><div class="name">Ember</div><div class="hex">#BC6C25</div>
+        <div class="role">Heat accent. Wildfire content (quiz, white papers). Sparingly.</div></div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#FEFAE0;color:#204E4A">Aa</div>
+      <div class="meta"><div class="name">Cream</div><div class="hex">#FEFAE0</div>
+        <div class="role">Warm light canvas. Replaces flat white in light mode.</div></div>
+    </div>
+  </div>
+
+  <h2>In context — same system, two leans</h2>
+  <div class="mocks">
+    <div>
+      <div class="lean-label">Enterprise lean — green &amp; cream forward</div>
+      <div class="mock ent">
+        <div class="nav">Understory Collaborative <span class="links">Advisory · Implementation · Contact</span></div>
+        <div class="hero">
+          <p class="tag">Advisory &amp; Implementation</p>
+          <h3>We create the conditions for organizations to flourish.</h3>
+          <p>Accessible, ethical technology and collaborative practice — from seasoned technologists.</p>
+          <a class="btn btn-primary" href="#">Get in Touch</a>
+          <a class="btn btn-secondary" href="#">Our Services</a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="lean-label">Founder lean — teal &amp; ember forward</div>
+      <div class="mock fnd">
+        <div class="nav">Understory Collaborative <span class="links">Advisory · Implementation · Contact</span></div>
+        <div class="hero">
+          <p class="tag">We meet you where you are</p>
+          <h3>What's on fire?</h3>
+          <p>A 2-minute technical health check. Six honest questions. No vendor pitch.</p>
+          <a class="btn btn-primary" href="#">Take the Quiz</a>
+          <a class="btn btn-secondary" href="#">Read the Papers</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>The two metaphors get separate territory</h2>
+  <p class="muted">Greens = grow (Root → Rise → Flourish). Ember/sand = burn (the wildfire white papers).</p>
+  <div class="fire">
+    <span style="background:#FEFAE0;color:#204E4A;border:1px solid #e2dccb">Smolder</span>
+    <span style="background:#E8A87C;color:#2a1a08">Brush Fire</span>
+    <span style="background:#BC6C25;color:#fff">Crown Fire</span>
+    <span style="background:#7a2e12;color:#fff">Firestorm</span>
+  </div>
+
+  <h2>Contrast — measured (WCAG ratios)</h2>
+  <table>
+    <thead><tr><th>Foreground</th><th>Background</th><th>Ratio</th><th>Verdict</th><th>Sample</th></tr></thead>
+    <tbody>
+      <tr><td>Canopy Teal</td><td>Cream</td><td>8.9:1</td><td><span class="badge aaa">AAA</span></td><td><span class="sample" style="background:#FEFAE0;color:#204E4A">Body text ✓</span></td></tr>
+      <tr><td>Forest</td><td>Cream</td><td>7.6:1</td><td><span class="badge aaa">AAA</span></td><td><span class="sample" style="background:#FEFAE0;color:#2D5A3D">Body text ✓</span></td></tr>
+      <tr><td>White</td><td>Forest</td><td>8.0:1</td><td><span class="badge aaa">AAA</span></td><td><span class="sample" style="background:#2D5A3D;color:#fff">Button ✓</span></td></tr>
+      <tr><td>White</td><td>Canopy Teal</td><td>9.3:1</td><td><span class="badge aaa">AAA</span></td><td><span class="sample" style="background:#204E4A;color:#fff">Button ✓</span></td></tr>
+      <tr><td>Sand</td><td>Canopy Teal</td><td>4.6:1</td><td><span class="badge aa">AA</span></td><td><span class="sample" style="background:#204E4A;color:#E8A87C">Link text ✓</span></td></tr>
+      <tr><td>Ink</td><td>Sand</td><td>10.3:1</td><td><span class="badge aaa">AAA</span></td><td><span class="sample" style="background:#E8A87C;color:#182A22">Button ✓</span></td></tr>
+      <tr><td>White</td><td>Ember</td><td>4.0:1</td><td><span class="badge aalg">AA large only</span></td><td><span class="sample" style="background:#BC6C25;color:#fff">Big CTA only</span></td></tr>
+      <tr><td>Ember</td><td>Cream</td><td>3.8:1</td><td><span class="badge aalg">AA large only</span></td><td><span class="sample" style="background:#FEFAE0;color:#BC6C25">Headings/icons</span></td></tr>
+      <tr><td>Sand</td><td>Cream</td><td>1.9:1</td><td><span class="badge fail">Decorative only</span></td><td><span class="sample" style="background:#FEFAE0;color:#E8A87C">not for text</span></td></tr>
+      <tr><td>Sage Mist</td><td>Cream</td><td>2.6:1</td><td><span class="badge fail">Decorative only</span></td><td><span class="sample" style="background:#FEFAE0;color:#82A3A1">borders/fills</span></td></tr>
+    </tbody>
+  </table>
+  <p class="muted" style="margin-top:.8rem">
+    Takeaway: greens/teal do all the heavy lifting for text (AAA). Sand works as text only on dark.
+    Ember and Sage stay to large headings, icons, button fills, borders — never small body copy.
+  </p>
+
+  <footer>
+    Mixed from: P1 <code>#82A3A1</code> · P2 <code>#FEFAE0</code> <code>#BC6C25</code> ·
+    P3 <code>#204E4A</code> · existing brand <code>#2D5A3D</code> <code>#E8A87C</code>.
+    Open this file in a browser to view. Nothing in the live app is changed yet.
+  </footer>
+</div>
+</body>
+</html>
