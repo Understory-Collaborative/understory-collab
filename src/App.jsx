@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeContext'
 import Layout from './components/Layout'
 import Home from './pages/Home'
+import About from './pages/About'
 import Advisory from './pages/Advisory'
 import Implementation from './pages/Implementation'
 import Portfolios from './pages/Portfolios'
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
             <Route path="advisory" element={<Advisory />} />
             <Route path="implementation" element={<Implementation />} />
             <Route path="portfolios" element={<Portfolios />} />

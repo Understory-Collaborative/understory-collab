@@ -1,0 +1,153 @@
+.about-page {
+  width: 100%;
+}
+
+/* Quick-facts strip */
+.about-facts {
+  padding: 2rem 0;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin: 0;
+}
+
+.fact {
+  text-align: center;
+}
+
+.fact dt {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.fact dd {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Story + experience prose */
+.about-story,
+.about-experience {
+  padding: 3.5rem 0;
+}
+
+.about-experience {
+  background-color: var(--bg-secondary);
+}
+
+.about-story h2,
+.about-experience h2,
+.about-team h2 {
+  font-size: 1.875rem;
+  color: var(--text-primary);
+  margin: 0 0 1.25rem;
+}
+
+.about-story p,
+.about-experience p {
+  color: var(--text-secondary);
+  font-size: 1.0625rem;
+  max-width: 70ch;
+  margin: 0 0 1rem;
+}
+
+.experience-list {
+  color: var(--text-secondary);
+  margin: 1rem 0;
+  padding-left: 1.25rem;
+}
+
+.experience-list li {
+  margin-bottom: 0.4rem;
+}
+
+.experience-note {
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* Team */
+.about-team {
+  padding: 3.5rem 0;
+}
+
+.about-team-intro {
+  color: var(--text-secondary);
+  font-size: 1.0625rem;
+  max-width: 70ch;
+  margin: 0 0 2rem;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.team-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.75rem;
+}
+
+.team-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--accent-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.team-photo-placeholder {
+  font-size: 0.8rem;
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.team-name {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem;
+}
+
+.team-role {
+  color: var(--accent-color);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin: 0 0 0.75rem;
+}
+
+.team-bio {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+}
+
+.team-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .about-story,
+  .about-experience,
+  .about-team {
+    padding: 2.5rem 0;
+  }
+}

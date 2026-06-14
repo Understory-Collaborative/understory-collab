@@ -15,6 +15,11 @@ function Navigation() {
 
         <ul className="nav-links" role="list">
           <li>
+            <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+              About
+            </NavLink>
+          </li>
+          <li>
             <NavLink to="/advisory" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
               Advisory
             </NavLink>
