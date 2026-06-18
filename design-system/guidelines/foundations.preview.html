@@ -8,32 +8,30 @@
 /* ===== tokens/fonts.css ===== */
 /* Font loading — Understory Collaborative.
 
-   The pairing is chosen to fit the brand, not as a placeholder:
+   One family throughout: Hanken Grotesk. A humanist grotesque — warm and approachable
+   without the rounded, playful terminals that read as cartoonish, and grounded enough for
+   a consultancy talking to a skeptical CTO. It matches the redesign brief's cue
+   ("purposeful, minimal, slightly sophisticated — think Stripe or Linear") while keeping
+   the brand's human warmth. Using it for both display and body gives the UI a single,
+   confident voice and avoids a thin, mismatched feel.
 
-   - Body/UI: Atkinson Hyperlegible. Designed by the Braille Institute specifically for low-
-     vision readers — distinct letterforms, unambiguous shapes. For a consultancy that ships
-     an Accessibility page and treats WCAG + COGA as build-time floors, the body face IS the
-     accessibility commitment made literal. Warm and humane, not clinical.
-   - Display/headings: Nunito. A rounded-terminal sans whose soft, friendly shapes echo the
-     logo's lettering while staying grounded enough for a consultancy. Carries the brand's
-     "organic growth" warmth without tipping into playful.
+   Hanken Grotesk ships a full weight range; we load the ones we use (400 body, 500/600 for
+   medium UI emphasis, 700/800 for headings) so headings read with real weight rather than
+   a thin default. Italics at 400/600 cover emphasis.
 
-   Both are open-licensed (OFL). They load here from Google Fonts so that every consumer of
-   the design system — the React site and the standalone specimens alike — gets them from a
-   single source. Production hardening (a proposal): self-host the woff2 files under
-   ../fonts and swap the @import for @font-face blocks, to drop the third-party request and
-   pin the exact weights. The brand's display lettering in the logo was set in a tool and
-   never shipped as a webfont; Nunito is the closest licensed stand-in for it. */
+   Open-licensed (OFL). Loaded from Google Fonts so the React site and the standalone
+   specimens share one source. Production hardening (a proposal): self-host the woff2 files
+   under ../fonts and swap the @import for @font-face, to drop the third-party request. */
 
-@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:wght@500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap");
 
 :root {
   --family-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, sans-serif;
 
-  /* Brand faces, with the system stack as the fallback while the webfont loads. */
-  --family-display: "Nunito", var(--family-system);
-  --family-body: "Atkinson Hyperlegible", var(--family-system);
+  /* Brand face, with the system stack as the fallback while the webfont loads. */
+  --family-display: "Hanken Grotesk", var(--family-system);
+  --family-body: "Hanken Grotesk", var(--family-system);
 }
 
 /* ===== tokens/colors.css ===== */
@@ -48,71 +46,94 @@
    The system is dark by default (the deployed site's default) with a light theme under
    [data-theme="light"]. Both themes are defined here; components never branch on theme.
 
-   Source honesty: every value below is traceable to the running site (src/index.css and
-   src/pages/Quiz.css) or to the logo, except where a comment marks it (proposal). Those
-   are considered fills for ramp steps the site never used, open to your direction. */
+   Source honesty: values traceable to the running site (src/index.css, src/pages/Quiz.css)
+   or the logo are unmarked. Ramp steps the site never used, and the warning/info status
+   colors and brand tints (no live UI uses them yet), are marked (proposal) — considered
+   fills, open to your direction. */
 
 :root {
   /* ---- Raw ramps -------------------------------------------------------- */
 
-  /* Forest green. The brand's spine. 700 and 600 are the real site values; the
-     darker/lighter steps are proposals to round out the ramp. The logo's brighter grass
-     green is kept as --forest-logo so it is available without becoming the UI primary
-     (it is too light to carry white body text at AA). */
-  --forest-900: #16301f; /* proposal — ink-green, darkest */
-  --forest-800: #1f3f2a; /* proposal */
-  --forest-700: #2d5a3d; /* primary; nav surface; light-theme accent */
+  /* Forest green. The brand's spine. 700 and 600 are the real site values; the rest fill
+     the ramp so there are tints for backgrounds/selected states (light end) and depth
+     (dark end). The logo's brighter grass green is kept separate as --forest-logo so it is
+     available without becoming the UI primary (too light for white body text at AA). */
+  --forest-50: #eef4ef;  /* proposal — faint tint, brand-wash backgrounds */
+  --forest-100: #d7e6dc; /* proposal — selected/hover wash on light */
+  --forest-200: #b1ccba; /* proposal */
+  --forest-300: #84ad92; /* proposal */
+  --forest-400: #5e8d6e; /* proposal — muted green for borders/dividers */
+  --forest-500: #43785a; /* proposal */
   --forest-600: #3d6b4d; /* primary hover/pressed */
-  --forest-400: #5e8d6e; /* proposal — muted green for borders on dark */
+  --forest-700: #2d5a3d; /* primary; nav surface; light-theme accent */
+  --forest-800: #1f3f2a; /* proposal — deep */
+  --forest-900: #16301f; /* proposal — ink-green, darkest */
   --forest-logo: #5ba534; /* proposal — the logo's grass green, decorative only */
 
   /* Warm earth. The accent, used sparingly. 400 is the real accent; 500 its hover. */
-  --earth-300: #f0c4a3; /* proposal — tint */
+  --earth-100: #fbeadf; /* proposal — tint, callout backgrounds on light */
+  --earth-300: #f0c4a3; /* proposal */
   --earth-400: #e8a87c; /* accent */
   --earth-500: #d4956a; /* accent hover */
+  --earth-600: #b9774a; /* proposal — earth text that meets AA on light */
 
   /* Severity ramp — a real brand asset. Drives the "What's On Fire?" crisis types, warm
-     (healthy) to hot (crisis). Note the endpoints rhyme with the rest of the system:
-     brush == --earth-400 (accent), firestorm == --danger-700 (error). That overlap is
-     intentional — calm reads as the brand accent, crisis reads as an alarm. */
+     (healthy) to hot (crisis). The endpoints rhyme with the rest of the system on purpose:
+     brush == --earth-400 (accent), firestorm == --danger-700 (error). Calm reads as the
+     brand accent; crisis reads as an alarm. */
   --severity-brush: #e8a87c;     /* Brush Fire — mostly healthy */
   --severity-smolder: #e07b4c;   /* Smolder — fragile */
   --severity-crown: #d94f30;     /* Crown Fire — visible crisis */
   --severity-firestorm: #c62828; /* Firestorm — compounding crisis */
 
-  /* Neutral ramp. The site's neutrals are untinted grey; codified as-is. Tinting them
-     toward --forest-900 is a reasonable future move but would change the running site, so
-     it is left as a proposal rather than applied here. */
+  /* Neutral ramp. Real site values are 0/50/100/600/700/900 (untinted grey); the in-between
+     steps are proposals so borders, dividers, and disabled states have grades to use.
+     Tinting the whole ramp toward --forest-900 is a reasonable future move but would shift
+     the running site, so it is left for later. */
   --neutral-0: #ffffff;
   --neutral-50: #f5f5f5;
   --neutral-100: #e8e8e8;
-  --neutral-600: #6a6a6a;
-  --neutral-700: #4a4a4a;
-  --neutral-900: #1a1a1a;
+  --neutral-200: #d9d9d9; /* proposal — subtle border on light */
+  --neutral-300: #c4c4c4; /* proposal — default border on light */
+  --neutral-400: #9a9a9a; /* proposal — disabled text/icon */
+  --neutral-500: #7d7d7d; /* proposal */
+  --neutral-600: #6a6a6a; /* muted text on light */
+  --neutral-700: #4a4a4a; /* secondary text on light */
+  --neutral-800: #2e2e2e; /* proposal — raised surface on dark */
+  --neutral-900: #1a1a1a; /* primary text on light */
 
   /* Dark surfaces (the default theme's canvas, lifted, and hover steps). */
   --ink-900: #1a1a1a;
   --ink-800: #242424;
   --ink-700: #2f2f2f;
 
-  /* Text-on-dark whites, expressed once so the alpha steps are named, not magic. */
+  /* Text-on-dark whites, named so the alpha steps are not magic. Borders are bumped from
+     the old 0.10 to 0.14/0.22 so panels read with structure rather than thin. */
   --white-95: rgba(255, 255, 255, 0.95);
   --white-75: rgba(255, 255, 255, 0.75);
   --white-50: rgba(255, 255, 255, 0.5);
+  --white-22: rgba(255, 255, 255, 0.22);
   --white-15: rgba(255, 255, 255, 0.15);
-  --white-10: rgba(255, 255, 255, 0.1);
+  --white-14: rgba(255, 255, 255, 0.14);
 
-  /* Status. Success and danger ship a light-surface and a dark-surface tone each. */
+  /* Status ramps. Success and danger are real; warning and info are proposals. Each ships a
+     light-surface tone (700) and a dark-surface tone (400). Info is the brand forest, so
+     informational UI stays on-brand rather than introducing a stray blue. */
   --success-700: #2e7d32; /* on light */
   --success-400: #81c784; /* on dark */
+  --warning-700: #b3691b; /* proposal — on light, AA-safe amber */
+  --warning-400: #e0a458; /* proposal — on dark */
   --danger-700: #c62828;  /* on light */
   --danger-400: #e57373;  /* on dark */
+  --info-700: var(--forest-700);
+  --info-400: #6fa982;    /* proposal — lifted forest for dark surfaces */
 
   /* ---- Semantic aliases (portable) — DARK theme is the default ----------- */
   --brand-primary: var(--earth-400);        /* the accent leads on dark surfaces */
   --brand-primary-hover: var(--earth-500);
   --brand-forest: var(--forest-700);         /* the green, for surfaces like the nav */
   --brand-ink: var(--forest-900);
+  --brand-tint: rgba(232, 168, 124, 0.12);   /* soft accent wash (selected, callout) */
 
   --surface-canvas: var(--ink-900);
   --surface-card: var(--ink-800);
@@ -123,18 +144,26 @@
   --text-primary: var(--white-95);
   --text-secondary: var(--white-75);
   --text-muted: var(--white-50);             /* labels and metadata only, not body */
+  --text-disabled: var(--neutral-500);
   --text-on-brand: #ffffff;                  /* on --surface-brand / --brand-primary */
 
-  --border-subtle: var(--white-10);
-  --border-strong: var(--white-15);
+  --border-subtle: var(--white-14);
+  --border-default: var(--white-22);
+  --border-strong: var(--white-22);
   --ring-brand: rgba(232, 168, 124, 0.3);
 
   --status-success-text: var(--success-400);
   --status-success-bg: rgba(129, 199, 132, 0.1);
   --status-success-border: rgba(129, 199, 132, 0.3);
+  --status-warning-text: var(--warning-400);
+  --status-warning-bg: rgba(224, 164, 88, 0.1);
+  --status-warning-border: rgba(224, 164, 88, 0.3);
   --status-danger-text: var(--danger-400);
   --status-danger-bg: rgba(229, 115, 115, 0.1);
   --status-danger-border: rgba(229, 115, 115, 0.3);
+  --status-info-text: var(--info-400);
+  --status-info-bg: rgba(111, 169, 130, 0.12);
+  --status-info-border: rgba(111, 169, 130, 0.3);
 
   /* ---- Site aliases — what the current components consume ----------------- */
   --bg-primary: var(--surface-canvas);
@@ -146,7 +175,7 @@
 
   --accent-color: var(--brand-primary);
   --accent-hover: var(--brand-primary-hover);
-  --accent-bg: rgba(232, 168, 124, 0.1);
+  --accent-bg: var(--brand-tint);
 
   --focus-color: var(--brand-primary);
   --focus-ring: var(--ring-brand);
@@ -169,6 +198,7 @@
   --brand-primary: var(--forest-700);
   --brand-primary-hover: var(--forest-600);
   --brand-ink: var(--forest-900);
+  --brand-tint: var(--forest-50);
 
   --surface-canvas: var(--neutral-0);
   --surface-card: var(--neutral-50);
@@ -179,17 +209,25 @@
   --text-primary: var(--neutral-900);
   --text-secondary: var(--neutral-700);
   --text-muted: var(--neutral-600);
+  --text-disabled: var(--neutral-400);
 
-  --border-subtle: rgba(0, 0, 0, 0.1);
-  --border-strong: rgba(0, 0, 0, 0.15);
+  --border-subtle: var(--neutral-200);
+  --border-default: var(--neutral-300);
+  --border-strong: var(--neutral-400);
   --ring-brand: rgba(45, 90, 61, 0.3);
 
   --status-success-text: var(--success-700);
   --status-success-bg: rgba(46, 125, 50, 0.1);
   --status-success-border: rgba(46, 125, 50, 0.3);
+  --status-warning-text: var(--warning-700);
+  --status-warning-bg: rgba(179, 105, 27, 0.1);
+  --status-warning-border: rgba(179, 105, 27, 0.3);
   --status-danger-text: var(--danger-700);
   --status-danger-bg: rgba(198, 40, 40, 0.1);
   --status-danger-border: rgba(198, 40, 40, 0.3);
+  --status-info-text: var(--info-700);
+  --status-info-bg: rgba(45, 90, 61, 0.1);
+  --status-info-border: rgba(45, 90, 61, 0.3);
 
   /* Site aliases that need light-specific raw values */
   --accent-bg: rgba(45, 90, 61, 0.1);
@@ -226,13 +264,14 @@
   --leading-snug: 1.3;
   --leading-body: 1.6;   /* body copy */
 
-  /* Weights. Nunito (display) ships 500–800; Atkinson Hyperlegible (body) ships 400/700,
-     so body text set to medium/semibold resolves to the nearest real weight (regular or
-     bold) rather than a synthesized one. Reserve 500/600 for headings. */
+  /* Weights. Hanken Grotesk ships the full range; these all render as real weights, not
+     synthesized. Headings lead with bold/extrabold so the page reads with presence rather
+     than thin. Body is regular; medium/semibold carry UI emphasis (buttons, labels, nav). */
   --weight-regular: 400;
   --weight-medium: 500;
   --weight-semibold: 600;
   --weight-bold: 700;
+  --weight-extrabold: 800; /* large display headlines */
 
   /* Tracking */
   --tracking-display: -0.01em;
@@ -355,8 +394,12 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-display);
-  font-weight: var(--weight-semibold);
+  font-weight: var(--weight-bold);
   /* Sentence case unless you deliberately choose title case — see typography.css. */
+}
+
+h1 {
+  font-weight: var(--weight-extrabold); /* largest headline carries the most weight */
 }
 
 p {
@@ -552,10 +595,21 @@ svg {
   background-color: var(--status-success-bg);
   border: 1px solid var(--status-success-border);
 }
-.uc-status--error {
+.uc-status--warning {
+  color: var(--status-warning-text);
+  background-color: var(--status-warning-bg);
+  border: 1px solid var(--status-warning-border);
+}
+.uc-status--error,
+.uc-status--danger {
   color: var(--status-danger-text);
   background-color: var(--status-danger-bg);
   border: 1px solid var(--status-danger-border);
+}
+.uc-status--info {
+  color: var(--status-info-text);
+  background-color: var(--status-info-bg);
+  border: 1px solid var(--status-info-border);
 }
 
 /* ===== components/nav.css ===== */
@@ -707,6 +761,38 @@ svg {
       <span class="uc-severity uc-severity--smolder">Smolder</span>
       <span class="uc-severity uc-severity--crown">Crown Fire</span>
       <span class="uc-severity uc-severity--firestorm">Firestorm</span>
+    </div>
+
+    <h2>Brand tints &amp; neutrals</h2>
+    <div class="ramp" style="margin-bottom: var(--space-3)">
+      <div style="background: var(--forest-100); color: var(--neutral-900)">forest-100</div>
+      <div style="background: var(--forest-300); color: var(--neutral-900)">300</div>
+      <div style="background: var(--forest-500); color: #fff">500</div>
+      <div style="background: var(--forest-700); color: #fff">700</div>
+      <div style="background: var(--forest-900); color: #fff">900</div>
+      <div style="background: var(--earth-100); color: var(--neutral-900)">earth-100</div>
+      <div style="background: var(--earth-400); color: var(--neutral-900)">400</div>
+      <div style="background: var(--earth-600); color: #fff">600</div>
+    </div>
+    <div class="ramp">
+      <div style="background: var(--neutral-50); color: #1a1a1a">50</div>
+      <div style="background: var(--neutral-100); color: #1a1a1a">100</div>
+      <div style="background: var(--neutral-200); color: #1a1a1a">200</div>
+      <div style="background: var(--neutral-300); color: #1a1a1a">300</div>
+      <div style="background: var(--neutral-400); color: #1a1a1a">400</div>
+      <div style="background: var(--neutral-500); color: #fff">500</div>
+      <div style="background: var(--neutral-600); color: #fff">600</div>
+      <div style="background: var(--neutral-700); color: #fff">700</div>
+      <div style="background: var(--neutral-800); color: #fff">800</div>
+      <div style="background: var(--neutral-900); color: #fff">900</div>
+    </div>
+
+    <h2>Status — success, warning, danger, info</h2>
+    <div class="row" style="flex-direction: column; align-items: stretch; gap: var(--space-3); max-width: 520px;">
+      <p class="uc-status uc-status--success">Saved. The guide is on its way to your inbox.</p>
+      <p class="uc-status uc-status--warning">Heads up — this assessment is a yardstick, not a contract.</p>
+      <p class="uc-status uc-status--danger">That email didn't go through. Check the address and try again.</p>
+      <p class="uc-status uc-status--info">Your results are saved on this device only. Nothing is shared.</p>
     </div>
 
     <h2>Type scale</h2>

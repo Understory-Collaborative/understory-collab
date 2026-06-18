@@ -1,29 +1,27 @@
 /* Font loading — Understory Collaborative.
 
-   The pairing is chosen to fit the brand, not as a placeholder:
+   One family throughout: Hanken Grotesk. A humanist grotesque — warm and approachable
+   without the rounded, playful terminals that read as cartoonish, and grounded enough for
+   a consultancy talking to a skeptical CTO. It matches the redesign brief's cue
+   ("purposeful, minimal, slightly sophisticated — think Stripe or Linear") while keeping
+   the brand's human warmth. Using it for both display and body gives the UI a single,
+   confident voice and avoids a thin, mismatched feel.
 
-   - Body/UI: Atkinson Hyperlegible. Designed by the Braille Institute specifically for low-
-     vision readers — distinct letterforms, unambiguous shapes. For a consultancy that ships
-     an Accessibility page and treats WCAG + COGA as build-time floors, the body face IS the
-     accessibility commitment made literal. Warm and humane, not clinical.
-   - Display/headings: Nunito. A rounded-terminal sans whose soft, friendly shapes echo the
-     logo's lettering while staying grounded enough for a consultancy. Carries the brand's
-     "organic growth" warmth without tipping into playful.
+   Hanken Grotesk ships a full weight range; we load the ones we use (400 body, 500/600 for
+   medium UI emphasis, 700/800 for headings) so headings read with real weight rather than
+   a thin default. Italics at 400/600 cover emphasis.
 
-   Both are open-licensed (OFL). They load here from Google Fonts so that every consumer of
-   the design system — the React site and the standalone specimens alike — gets them from a
-   single source. Production hardening (a proposal): self-host the woff2 files under
-   ../fonts and swap the @import for @font-face blocks, to drop the third-party request and
-   pin the exact weights. The brand's display lettering in the logo was set in a tool and
-   never shipped as a webfont; Nunito is the closest licensed stand-in for it. */
+   Open-licensed (OFL). Loaded from Google Fonts so the React site and the standalone
+   specimens share one source. Production hardening (a proposal): self-host the woff2 files
+   under ../fonts and swap the @import for @font-face, to drop the third-party request. */
 
-@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:wght@500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap");
 
 :root {
   --family-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, sans-serif;
 
-  /* Brand faces, with the system stack as the fallback while the webfont loads. */
-  --family-display: "Nunito", var(--family-system);
-  --family-body: "Atkinson Hyperlegible", var(--family-system);
+  /* Brand face, with the system stack as the fallback while the webfont loads. */
+  --family-display: "Hanken Grotesk", var(--family-system);
+  --family-body: "Hanken Grotesk", var(--family-system);
 }

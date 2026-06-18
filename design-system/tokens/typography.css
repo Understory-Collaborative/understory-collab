@@ -26,13 +26,14 @@
   --leading-snug: 1.3;
   --leading-body: 1.6;   /* body copy */
 
-  /* Weights. Nunito (display) ships 500–800; Atkinson Hyperlegible (body) ships 400/700,
-     so body text set to medium/semibold resolves to the nearest real weight (regular or
-     bold) rather than a synthesized one. Reserve 500/600 for headings. */
+  /* Weights. Hanken Grotesk ships the full range; these all render as real weights, not
+     synthesized. Headings lead with bold/extrabold so the page reads with presence rather
+     than thin. Body is regular; medium/semibold carry UI emphasis (buttons, labels, nav). */
   --weight-regular: 400;
   --weight-medium: 500;
   --weight-semibold: 600;
   --weight-bold: 700;
+  --weight-extrabold: 800; /* large display headlines */
 
   /* Tracking */
   --tracking-display: -0.01em;

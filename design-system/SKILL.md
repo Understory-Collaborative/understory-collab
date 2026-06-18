@@ -27,9 +27,10 @@ few questions, and act as an expert designer who outputs HTML artifacts or produ
   that protects the systems a business grows from. Voice: a seasoned CTO talking to a peer.
 - **Palette:** forest green `#2d5a3d` (primary / nav), warm earth `#e8a87c` (accent, used
   sparingly, leads on dark). Severity ramp — brush `#e8a87c` → smolder `#e07b4c` → crown
-  `#d94f30` → firestorm `#c62828`. Dark canvas `#1a1a1a` default, light theme available.
-- **Type:** system UI stack (stand-in — no brand face supplied yet). Sentence-case
-  headings, 1rem base, 1.6 body line height.
+  `#d94f30` → firestorm `#c62828`. Full neutral ramp (0–900), status (success / warning /
+  danger / info), forest + earth tints. Dark canvas `#1a1a1a` default, light theme.
+- **Type:** Hanken Grotesk (display + body), loaded from Google Fonts. Headings
+  bold/extrabold, sentence case, 1rem base, 1.6 body line height.
 - **Icons:** none in use yet; pick one light-stroke set if needed (proposal).
 - **Feel:** soft forest-tinted shadows (reserved for hover; site is mostly flat), 8px
   control radius, calm eased motion, no spring.

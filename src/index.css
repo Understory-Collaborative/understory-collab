@@ -132,6 +132,7 @@ img {
 
 .page-hero h1 {
   font-size: var(--text-3xl);
+  font-weight: var(--weight-extrabold);
   color: var(--text-primary);
   margin: 0 0 var(--space-4);
 }
