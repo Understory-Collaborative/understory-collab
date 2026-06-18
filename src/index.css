@@ -1,82 +1,29 @@
-/* CSS Custom Properties for theming */
+/* The design system owns the tokens. This file imports them, keeps the site's reset and
+   shared element/utility styles, and styles only with tokens — never a raw value that
+   exists as a token. Color, type, spacing, elevation, and motion live in ../design-system;
+   the dark-default + light-theme palette and every legacy variable name the components use
+   (--bg-primary, --accent-color, …) are defined in design-system/tokens/colors.css. */
+
+@import "../design-system/tokens/fonts.css";
+@import "../design-system/tokens/colors.css";
+@import "../design-system/tokens/typography.css";
+@import "../design-system/tokens/spacing.css";
+@import "../design-system/tokens/elevation.css";
+@import "../design-system/tokens/motion.css";
+
 :root {
-  /* Base colors - Dark theme (default) */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #242424;
-  --bg-hover: #2f2f2f;
-  --nav-bg: #2D5A3D;
-
-  --text-primary: rgba(255, 255, 255, 0.95);
-  --text-secondary: rgba(255, 255, 255, 0.75);
-  --text-muted: rgba(255, 255, 255, 0.5);
-
-  --border-color: rgba(255, 255, 255, 0.1);
-
-  /* Accent colors - warm earth tones */
-  --accent-color: #E8A87C;
-  --accent-hover: #d4956a;
-  --accent-bg: rgba(232, 168, 124, 0.1);
-
-  /* Focus and interaction */
-  --focus-color: #E8A87C;
-  --focus-ring: rgba(232, 168, 124, 0.3);
-
-  /* Form states */
-  --error-color: #e57373;
-  --error-bg: rgba(229, 115, 115, 0.1);
-  --error-border: rgba(229, 115, 115, 0.3);
-  --error-text: #e57373;
-  --error-ring: rgba(229, 115, 115, 0.3);
-
-  --success-bg: rgba(129, 199, 132, 0.1);
-  --success-border: rgba(129, 199, 132, 0.3);
-  --success-text: #81c784;
-
-  /* Typography */
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  font-family: var(--font-body);
+  line-height: var(--leading-body);
+  font-weight: var(--weight-regular);
 
   color-scheme: dark light;
   color: var(--text-primary);
-  background-color: var(--bg-primary);
+  background-color: var(--surface-canvas);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Light theme */
-[data-theme="light"] {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f5f5f5;
-  --bg-hover: #e8e8e8;
-  --nav-bg: #2D5A3D;
-
-  --text-primary: #1a1a1a;
-  --text-secondary: #4a4a4a;
-  --text-muted: #6a6a6a;
-
-  --border-color: rgba(0, 0, 0, 0.1);
-
-  /* Accent colors - forest greens for light mode */
-  --accent-color: #2D5A3D;
-  --accent-hover: #3D6B4D;
-  --accent-bg: rgba(45, 90, 61, 0.1);
-
-  --focus-color: #2D5A3D;
-  --focus-ring: rgba(45, 90, 61, 0.3);
-
-  --error-color: #c62828;
-  --error-bg: rgba(198, 40, 40, 0.1);
-  --error-border: rgba(198, 40, 40, 0.3);
-  --error-text: #c62828;
-  --error-ring: rgba(198, 40, 40, 0.3);
-
-  --success-bg: rgba(46, 125, 50, 0.1);
-  --success-border: rgba(46, 125, 50, 0.3);
-  --success-text: #2e7d32;
 }
 
 /* Reset and base styles */
@@ -112,9 +59,10 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: var(--bg-primary);
+  background-color: var(--surface-canvas);
   color: var(--text-primary);
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color var(--duration-base) var(--ease-standard),
+    color var(--duration-base) var(--ease-standard);
 }
 
 #root {
@@ -123,19 +71,21 @@ body {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-  line-height: 1.2;
-  font-weight: 600;
+  font-family: var(--font-display);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  font-weight: var(--weight-bold);
 }
 
 p {
-  line-height: 1.6;
+  line-height: var(--leading-body);
 }
 
 /* Links */
 a {
   color: var(--accent-color);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color var(--duration-fast) var(--ease-standard);
 }
 
 a:hover {
@@ -143,9 +93,9 @@ a:hover {
 }
 
 a:focus-visible {
-  outline: 3px solid var(--focus-color);
-  outline-offset: 2px;
-  border-radius: 4px;
+  outline: var(--focus-ring-width) solid var(--focus-color);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-control);
 }
 
 /* Images */
@@ -170,63 +120,64 @@ img {
 
 /* Shared page hero styles */
 .page-hero {
-  padding: 4rem 2rem;
+  padding: var(--space-16) var(--space-8);
   text-align: center;
   background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
 }
 
 .page-hero-content {
-  max-width: 800px;
+  max-width: var(--layout-prose-max);
   margin: 0 auto;
 }
 
 .page-hero h1 {
-  font-size: 2.5rem;
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-extrabold);
   color: var(--text-primary);
-  margin: 0 0 1rem;
+  margin: 0 0 var(--space-4);
 }
 
 .page-hero-description {
-  font-size: 1.25rem;
+  font-size: var(--text-lg);
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: var(--leading-body);
   margin: 0;
 }
 
 /* Shared section container */
 .section-container {
-  max-width: 1200px;
+  max-width: var(--layout-content-max);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--space-8);
 }
 
 /* Shared button styles */
 .btn {
   display: inline-block;
-  padding: 0.875rem 1.75rem;
-  border-radius: 8px;
-  font-weight: 600;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-control);
+  font-weight: var(--weight-semibold);
   text-decoration: none;
-  transition: all 0.2s;
+  transition: all var(--duration-fast) var(--ease-standard);
   border: 2px solid transparent;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: var(--text-base);
   font-family: inherit;
 }
 
 .btn:focus-visible {
-  outline: 3px solid var(--focus-color);
-  outline-offset: 2px;
+  outline: var(--focus-ring-width) solid var(--focus-color);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .btn-primary {
   background-color: var(--accent-color);
-  color: white;
+  color: var(--text-on-brand);
 }
 
 .btn-primary:hover {
   background-color: var(--accent-hover);
-  color: white;
+  color: var(--text-on-brand);
 }
 
 .btn-secondary {
@@ -237,52 +188,52 @@ img {
 
 .btn-secondary:hover {
   background-color: var(--accent-color);
-  color: white;
+  color: var(--text-on-brand);
 }
 
 .btn-large {
-  padding: 1rem 2.5rem;
-  font-size: 1.125rem;
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-md);
 }
 
 /* CTA Section - shared across pages */
 .cta-section {
-  padding: 5rem 0;
+  padding: var(--space-16) 0;
   background-color: var(--bg-secondary);
   text-align: center;
 }
 
 .cta-section h2 {
-  font-size: 2rem;
+  font-size: var(--text-2xl);
   color: var(--text-primary);
-  margin: 0 0 1rem;
+  margin: 0 0 var(--space-4);
 }
 
 .cta-section p {
   color: var(--text-secondary);
-  font-size: 1.125rem;
-  margin: 0 0 2rem;
+  font-size: var(--text-md);
+  margin: 0 0 var(--space-8);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .page-hero {
-    padding: 2rem 1rem;
+    padding: var(--space-8) var(--space-4);
   }
 
   .page-hero h1 {
-    font-size: 2rem;
+    font-size: var(--text-2xl);
   }
 
   .page-hero-description {
-    font-size: 1.125rem;
+    font-size: var(--text-md);
   }
 
   .section-container {
-    padding: 0 1rem;
+    padding: 0 var(--space-4);
   }
 
   .cta-section {
-    padding: 3rem 0;
+    padding: var(--space-12) 0;
   }
 }

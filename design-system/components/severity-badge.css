@@ -1,0 +1,32 @@
+/* Severity badge + heading color — Understory Collaborative.
+   The product's signature element: the four "What's On Fire?" crisis types, each on its
+   point of the severity ramp. Use the badge for a compact label, and the --text variant to
+   tint a result heading (this is how Quiz.css colors the result type today).
+
+   Accessibility note: the severity colors are decorative reinforcement, never the only
+   signal. Always pair the color with the type's name in text — a literal reader and a
+   color-blind reader both get the same answer from the words. */
+
+.uc-severity {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-on-brand);
+}
+
+.uc-severity--brush     { background-color: var(--severity-brush); color: var(--neutral-900); }
+.uc-severity--smolder   { background-color: var(--severity-smolder); }
+.uc-severity--crown     { background-color: var(--severity-crown); }
+.uc-severity--firestorm { background-color: var(--severity-firestorm); }
+
+/* Heading-tint variant — color a result type's name without a filled pill. */
+.uc-severity-text--brush     { color: var(--severity-brush); }
+.uc-severity-text--smolder   { color: var(--severity-smolder); }
+.uc-severity-text--crown     { color: var(--severity-crown); }
+.uc-severity-text--firestorm { color: var(--severity-firestorm); }

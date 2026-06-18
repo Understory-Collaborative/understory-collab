@@ -211,19 +211,19 @@
 }
 
 .result-type--brush-fire {
-  color: #e8a87c;
+  color: var(--severity-brush);
 }
 
 .result-type--smolder {
-  color: #e07b4c;
+  color: var(--severity-smolder);
 }
 
 .result-type--crown-fire {
-  color: #d94f30;
+  color: var(--severity-crown);
 }
 
 .result-type--firestorm {
-  color: #c62828;
+  color: var(--severity-firestorm);
 }
 
 .result-description {

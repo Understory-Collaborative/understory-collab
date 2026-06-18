@@ -1,0 +1,21 @@
+/* Single entry point — Understory Collaborative design system.
+   Link this one file to get every token plus the base layer and component primitives.
+   Order matters: fonts and tokens first, then base (which uses them), then components.
+
+   The running React site does NOT import this file. It imports the token files directly
+   (see src/index.css) and keeps its own reset, so base.css here does not fight it. Use
+   styles.css for the guideline specimens, prototypes, and any new standalone surface. */
+
+@import "./tokens/fonts.css";
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
+@import "./tokens/elevation.css";
+@import "./tokens/motion.css";
+@import "./tokens/base.css";
+
+@import "./components/button.css";
+@import "./components/card.css";
+@import "./components/input.css";
+@import "./components/nav.css";
+@import "./components/severity-badge.css";

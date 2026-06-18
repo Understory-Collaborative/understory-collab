@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UI kit — "What's On Fire?" result screen</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* Screen-local layout only. Everything visual reads from the design system. */
+    body { min-height: 100vh; }
+    .kit-nav {
+      display: flex; align-items: center; gap: var(--space-3);
+      max-width: var(--layout-content-max); margin: 0 auto;
+      padding: var(--space-4) var(--space-8);
+    }
+    .kit-brand { color: var(--text-on-brand); font-weight: var(--weight-bold); }
+    .result {
+      max-width: var(--layout-prose-max); margin: 0 auto;
+      padding: var(--space-16) var(--space-8);
+      text-align: center;
+    }
+    .result__eyebrow {
+      font-size: var(--text-sm); letter-spacing: var(--tracking-eyebrow);
+      text-transform: uppercase; color: var(--text-muted); margin: 0 0 var(--space-4);
+    }
+    .result__type {
+      font-family: var(--font-display); font-size: var(--text-3xl);
+      line-height: var(--leading-tight); margin: 0 0 var(--space-6);
+    }
+    .result__desc { font-size: var(--text-md); color: var(--text-secondary); text-align: left; }
+    .result__cta {
+      margin-top: var(--space-12); padding: var(--space-8);
+      background-color: var(--surface-card); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-panel); text-align: left;
+    }
+    .result__cta h2 { font-size: var(--text-xl); margin: 0 0 var(--space-3); }
+    .result__cta p { color: var(--text-secondary); margin: 0 0 var(--space-6); }
+    .result__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+    @media (max-width: 768px) {
+      .result { padding: var(--space-12) var(--space-4); }
+      .result__actions .uc-btn { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Brand surface nav, white-on-forest in both themes -->
+  <header class="uc-nav">
+    <div class="kit-nav">
+      <span class="kit-brand">Understory Collaborative</span>
+    </div>
+  </header>
+
+  <main class="result">
+    <p class="result__eyebrow">Your result</p>
+
+    <!-- The severity color reinforces the name; the name carries the meaning on its own. -->
+    <span class="uc-severity uc-severity--smolder">Smolder</span>
+    <h1 class="result__type uc-severity-text--smolder">Something is smoldering.</h1>
+
+    <div class="result__desc">
+      <p>
+        Things are running, but your team knows it's fragile. Releases take more
+        coordination than they should. Knowledge lives in a few heads. You've been saying
+        "we'll get to that" about the same systems for a while now.
+      </p>
+      <p>
+        Smolders are deceptive. They look stable to leadership and customers, but the people
+        closest to the code know the truth. The fix is visibility and prioritization, not
+        panic.
+      </p>
+    </div>
+
+    <section class="result__cta" aria-labelledby="offer-heading">
+      <h2 id="offer-heading">We wrote a field guide for this.</h2>
+      <p>
+        "Smoke Signals" walks through how to surface the systems that are quietly burning
+        and decide which to put out first. Tell us where to send it.
+      </p>
+      <div class="result__actions">
+        <a class="uc-btn uc-btn--primary uc-btn--large" href="#">Send me the guide</a>
+        <a class="uc-btn uc-btn--secondary" href="#">Retake the quiz</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

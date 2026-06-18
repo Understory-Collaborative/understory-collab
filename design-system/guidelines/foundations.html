@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foundations — Understory Collaborative design system</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .page { max-width: var(--layout-content-max); margin: 0 auto; padding: var(--space-12) var(--space-8); }
+    .page > header { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-6); flex-wrap: wrap; }
+    h2 { font-size: var(--text-xl); margin: var(--space-12) 0 var(--space-4); }
+    .swatches { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+    .swatch { border: 1px solid var(--border-subtle); border-radius: var(--radius-card); overflow: hidden; }
+    .swatch__chip { height: 72px; }
+    .swatch__meta { padding: var(--space-3); font-size: var(--text-sm); }
+    .swatch__name { font-weight: var(--weight-semibold); }
+    .swatch__token { color: var(--text-muted); font-family: var(--font-mono); font-size: var(--text-xs); }
+    .ramp { display: flex; border-radius: var(--radius-card); overflow: hidden; }
+    .ramp > div { flex: 1; height: 64px; display: flex; align-items: flex-end; padding: var(--space-2); font-size: var(--text-xs); }
+    .type-row { display: flex; align-items: baseline; gap: var(--space-4); border-bottom: 1px solid var(--border-subtle); padding: var(--space-3) 0; }
+    .type-row .label { color: var(--text-muted); font-family: var(--font-mono); font-size: var(--text-xs); width: 7ch; flex: none; }
+    .row { display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center; }
+    .theme-switch { font-family: var(--font-mono); font-size: var(--text-sm); }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <h1>Understory Collaborative</h1>
+        <p style="color: var(--text-secondary); margin-top: var(--space-2);">Design system foundations</p>
+      </div>
+      <button class="uc-btn uc-btn--secondary theme-switch" id="theme" type="button">Toggle theme</button>
+    </header>
+
+    <h2>Brand color</h2>
+    <div class="swatches">
+      <div class="swatch"><div class="swatch__chip" style="background: var(--forest-700)"></div><div class="swatch__meta"><div class="swatch__name">Forest</div><div class="swatch__token">--forest-700</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--earth-400)"></div><div class="swatch__meta"><div class="swatch__name">Earth accent</div><div class="swatch__token">--earth-400</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--forest-logo)"></div><div class="swatch__meta"><div class="swatch__name">Logo green (decorative)</div><div class="swatch__token">--forest-logo</div></div></div>
+    </div>
+
+    <h2>Severity ramp — the "What's On Fire?" crisis types</h2>
+    <div class="ramp">
+      <div style="background: var(--severity-brush); color: var(--neutral-900)">Brush</div>
+      <div style="background: var(--severity-smolder); color: #fff">Smolder</div>
+      <div style="background: var(--severity-crown); color: #fff">Crown</div>
+      <div style="background: var(--severity-firestorm); color: #fff">Firestorm</div>
+    </div>
+    <div class="row" style="margin-top: var(--space-4)">
+      <span class="uc-severity uc-severity--brush">Brush Fire</span>
+      <span class="uc-severity uc-severity--smolder">Smolder</span>
+      <span class="uc-severity uc-severity--crown">Crown Fire</span>
+      <span class="uc-severity uc-severity--firestorm">Firestorm</span>
+    </div>
+
+    <h2>Brand tints &amp; neutrals</h2>
+    <div class="ramp" style="margin-bottom: var(--space-3)">
+      <div style="background: var(--forest-100); color: var(--neutral-900)">forest-100</div>
+      <div style="background: var(--forest-300); color: var(--neutral-900)">300</div>
+      <div style="background: var(--forest-500); color: #fff">500</div>
+      <div style="background: var(--forest-700); color: #fff">700</div>
+      <div style="background: var(--forest-900); color: #fff">900</div>
+      <div style="background: var(--earth-100); color: var(--neutral-900)">earth-100</div>
+      <div style="background: var(--earth-400); color: var(--neutral-900)">400</div>
+      <div style="background: var(--earth-600); color: #fff">600</div>
+    </div>
+    <div class="ramp">
+      <div style="background: var(--neutral-50); color: #1a1a1a">50</div>
+      <div style="background: var(--neutral-100); color: #1a1a1a">100</div>
+      <div style="background: var(--neutral-200); color: #1a1a1a">200</div>
+      <div style="background: var(--neutral-300); color: #1a1a1a">300</div>
+      <div style="background: var(--neutral-400); color: #1a1a1a">400</div>
+      <div style="background: var(--neutral-500); color: #fff">500</div>
+      <div style="background: var(--neutral-600); color: #fff">600</div>
+      <div style="background: var(--neutral-700); color: #fff">700</div>
+      <div style="background: var(--neutral-800); color: #fff">800</div>
+      <div style="background: var(--neutral-900); color: #fff">900</div>
+    </div>
+
+    <h2>Status — success, warning, danger, info</h2>
+    <div class="row" style="flex-direction: column; align-items: stretch; gap: var(--space-3); max-width: 520px;">
+      <p class="uc-status uc-status--success">Saved. The guide is on its way to your inbox.</p>
+      <p class="uc-status uc-status--warning">Heads up — this assessment is a yardstick, not a contract.</p>
+      <p class="uc-status uc-status--danger">That email didn't go through. Check the address and try again.</p>
+      <p class="uc-status uc-status--info">Your results are saved on this device only. Nothing is shared.</p>
+    </div>
+
+    <h2>Type scale</h2>
+    <div class="type-row"><span class="label">3xl</span><span style="font-size: var(--text-3xl); font-family: var(--font-display)">Quietly growing beneath the canopy</span></div>
+    <div class="type-row"><span class="label">xl</span><span style="font-size: var(--text-xl); font-family: var(--font-display)">Is your understory on fire?</span></div>
+    <div class="type-row"><span class="label">md</span><span style="font-size: var(--text-md)">Clear the brush before fire season.</span></div>
+    <div class="type-row"><span class="label">base</span><span style="font-size: var(--text-base)">Body copy reads at one rem with generous line height.</span></div>
+    <div class="type-row"><span class="label">sm</span><span style="font-size: var(--text-sm); color: var(--text-muted)">Metadata and labels.</span></div>
+
+    <h2>Components</h2>
+    <div class="row">
+      <a class="uc-btn uc-btn--primary" href="#">Primary action</a>
+      <a class="uc-btn uc-btn--secondary" href="#">Secondary</a>
+      <a class="uc-btn uc-btn--primary uc-btn--large" href="#">Large CTA</a>
+    </div>
+    <div class="row" style="margin-top: var(--space-6); align-items: stretch;">
+      <article class="uc-card" style="max-width: 320px;">
+        <h3 class="uc-card__title">Advisory</h3>
+        <p class="uc-card__body">A card on the lifted surface, bordered and tokenized.</p>
+      </article>
+      <div class="uc-field" style="min-width: 260px;">
+        <label class="uc-label" for="email">Work email</label>
+        <input class="uc-input" id="email" type="email" placeholder="you@company.com" />
+        <p class="uc-status uc-status--success">Check your inbox — the guide is on its way.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Specimen-only: flip the theme to check both palettes. The real site uses ThemeContext.
+    document.getElementById('theme').addEventListener('click', function () {
+      var root = document.documentElement;
+      root.dataset.theme = root.dataset.theme === 'light' ? 'dark' : 'light';
+    });
+  </script>
+</body>
+</html>
