@@ -1,0 +1,159 @@
+/* Color tokens — Understory Collaborative.
+
+   Three layers, read in this order:
+   1. Raw ramps. Never reference these directly in a component.
+   2. Semantic aliases (portable). New work styles with these.
+   3. Site aliases. The names the current React components already consume, mapped onto
+      the semantic layer so the running site keeps working unchanged.
+
+   The system is dark by default (the deployed site's default) with a light theme under
+   [data-theme="light"]. Both themes are defined here; components never branch on theme.
+
+   Source honesty: every value below is traceable to the running site (src/index.css and
+   src/pages/Quiz.css) or to the logo, except where a comment marks it (proposal). Those
+   are considered fills for ramp steps the site never used, open to your direction. */
+
+:root {
+  /* ---- Raw ramps -------------------------------------------------------- */
+
+  /* Forest green. The brand's spine. 700 and 600 are the real site values; the
+     darker/lighter steps are proposals to round out the ramp. The logo's brighter grass
+     green is kept as --forest-logo so it is available without becoming the UI primary
+     (it is too light to carry white body text at AA). */
+  --forest-900: #16301f; /* proposal — ink-green, darkest */
+  --forest-800: #1f3f2a; /* proposal */
+  --forest-700: #2d5a3d; /* primary; nav surface; light-theme accent */
+  --forest-600: #3d6b4d; /* primary hover/pressed */
+  --forest-400: #5e8d6e; /* proposal — muted green for borders on dark */
+  --forest-logo: #5ba534; /* proposal — the logo's grass green, decorative only */
+
+  /* Warm earth. The accent, used sparingly. 400 is the real accent; 500 its hover. */
+  --earth-300: #f0c4a3; /* proposal — tint */
+  --earth-400: #e8a87c; /* accent */
+  --earth-500: #d4956a; /* accent hover */
+
+  /* Severity ramp — a real brand asset. Drives the "What's On Fire?" crisis types, warm
+     (healthy) to hot (crisis). Note the endpoints rhyme with the rest of the system:
+     brush == --earth-400 (accent), firestorm == --danger-700 (error). That overlap is
+     intentional — calm reads as the brand accent, crisis reads as an alarm. */
+  --severity-brush: #e8a87c;     /* Brush Fire — mostly healthy */
+  --severity-smolder: #e07b4c;   /* Smolder — fragile */
+  --severity-crown: #d94f30;     /* Crown Fire — visible crisis */
+  --severity-firestorm: #c62828; /* Firestorm — compounding crisis */
+
+  /* Neutral ramp. The site's neutrals are untinted grey; codified as-is. Tinting them
+     toward --forest-900 is a reasonable future move but would change the running site, so
+     it is left as a proposal rather than applied here. */
+  --neutral-0: #ffffff;
+  --neutral-50: #f5f5f5;
+  --neutral-100: #e8e8e8;
+  --neutral-600: #6a6a6a;
+  --neutral-700: #4a4a4a;
+  --neutral-900: #1a1a1a;
+
+  /* Dark surfaces (the default theme's canvas, lifted, and hover steps). */
+  --ink-900: #1a1a1a;
+  --ink-800: #242424;
+  --ink-700: #2f2f2f;
+
+  /* Text-on-dark whites, expressed once so the alpha steps are named, not magic. */
+  --white-95: rgba(255, 255, 255, 0.95);
+  --white-75: rgba(255, 255, 255, 0.75);
+  --white-50: rgba(255, 255, 255, 0.5);
+  --white-15: rgba(255, 255, 255, 0.15);
+  --white-10: rgba(255, 255, 255, 0.1);
+
+  /* Status. Success and danger ship a light-surface and a dark-surface tone each. */
+  --success-700: #2e7d32; /* on light */
+  --success-400: #81c784; /* on dark */
+  --danger-700: #c62828;  /* on light */
+  --danger-400: #e57373;  /* on dark */
+
+  /* ---- Semantic aliases (portable) — DARK theme is the default ----------- */
+  --brand-primary: var(--earth-400);        /* the accent leads on dark surfaces */
+  --brand-primary-hover: var(--earth-500);
+  --brand-forest: var(--forest-700);         /* the green, for surfaces like the nav */
+  --brand-ink: var(--forest-900);
+
+  --surface-canvas: var(--ink-900);
+  --surface-card: var(--ink-800);
+  --surface-sunken: var(--ink-800);
+  --surface-hover: var(--ink-700);
+  --surface-brand: var(--forest-700);        /* nav and brand-filled surfaces */
+
+  --text-primary: var(--white-95);
+  --text-secondary: var(--white-75);
+  --text-muted: var(--white-50);             /* labels and metadata only, not body */
+  --text-on-brand: #ffffff;                  /* on --surface-brand / --brand-primary */
+
+  --border-subtle: var(--white-10);
+  --border-strong: var(--white-15);
+  --ring-brand: rgba(232, 168, 124, 0.3);
+
+  --status-success-text: var(--success-400);
+  --status-success-bg: rgba(129, 199, 132, 0.1);
+  --status-success-border: rgba(129, 199, 132, 0.3);
+  --status-danger-text: var(--danger-400);
+  --status-danger-bg: rgba(229, 115, 115, 0.1);
+  --status-danger-border: rgba(229, 115, 115, 0.3);
+
+  /* ---- Site aliases — what the current components consume ----------------- */
+  --bg-primary: var(--surface-canvas);
+  --bg-secondary: var(--surface-card);
+  --bg-hover: var(--surface-hover);
+  --nav-bg: var(--surface-brand);
+
+  --border-color: var(--border-subtle);
+
+  --accent-color: var(--brand-primary);
+  --accent-hover: var(--brand-primary-hover);
+  --accent-bg: rgba(232, 168, 124, 0.1);
+
+  --focus-color: var(--brand-primary);
+  --focus-ring: var(--ring-brand);
+
+  --error-color: var(--danger-400);
+  --error-bg: var(--status-danger-bg);
+  --error-border: var(--status-danger-border);
+  --error-text: var(--danger-400);
+  --error-ring: var(--status-danger-border);
+
+  --success-bg: var(--status-success-bg);
+  --success-border: var(--status-success-border);
+  --success-text: var(--success-400);
+}
+
+/* ---- Light theme --------------------------------------------------------- */
+/* On light surfaces the forest green leads (the accent is too pale to carry it), so the
+   brand-primary alias flips to green. The nav stays forest in both themes. */
+[data-theme="light"] {
+  --brand-primary: var(--forest-700);
+  --brand-primary-hover: var(--forest-600);
+  --brand-ink: var(--forest-900);
+
+  --surface-canvas: var(--neutral-0);
+  --surface-card: var(--neutral-50);
+  --surface-sunken: var(--neutral-50);
+  --surface-hover: var(--neutral-100);
+  --surface-brand: var(--forest-700);
+
+  --text-primary: var(--neutral-900);
+  --text-secondary: var(--neutral-700);
+  --text-muted: var(--neutral-600);
+
+  --border-subtle: rgba(0, 0, 0, 0.1);
+  --border-strong: rgba(0, 0, 0, 0.15);
+  --ring-brand: rgba(45, 90, 61, 0.3);
+
+  --status-success-text: var(--success-700);
+  --status-success-bg: rgba(46, 125, 50, 0.1);
+  --status-success-border: rgba(46, 125, 50, 0.3);
+  --status-danger-text: var(--danger-700);
+  --status-danger-bg: rgba(198, 40, 40, 0.1);
+  --status-danger-border: rgba(198, 40, 40, 0.3);
+
+  /* Site aliases that need light-specific raw values */
+  --accent-bg: rgba(45, 90, 61, 0.1);
+  --error-color: var(--danger-700);
+  --error-text: var(--danger-700);
+}

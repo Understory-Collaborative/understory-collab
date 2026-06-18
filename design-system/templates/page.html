@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{Page title}} — Understory Collaborative</title>
+  <!-- Repoint this to wherever the design system lives relative to your new file. -->
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .hero {
+      padding: var(--space-16) var(--space-8); text-align: center;
+      background: linear-gradient(180deg, var(--surface-card) 0%, var(--surface-canvas) 100%);
+    }
+    .hero__inner { max-width: var(--layout-prose-max); margin: 0 auto; }
+    .hero h1 { font-size: var(--text-3xl); margin: 0 0 var(--space-4); }
+    .hero p { font-size: var(--text-lg); color: var(--text-secondary); margin: 0; }
+    .section { max-width: var(--layout-content-max); margin: 0 auto; padding: var(--space-12) var(--space-8); }
+    .grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    @media (max-width: 768px) {
+      .hero { padding: var(--space-12) var(--space-4); }
+      .section { padding: var(--space-8) var(--space-4); }
+    }
+  </style>
+</head>
+<body>
+  <!-- 1. Skip link first, so keyboard users land on content. -->
+  <a class="uc-btn uc-btn--primary sr-only" href="#main">Skip to content</a>
+
+  <!-- 2. Brand nav. Swap in real links. -->
+  <header class="uc-nav">
+    <div class="uc-nav__container">
+      <a class="uc-nav__link" href="#" aria-current="page">Home</a>
+      <a class="uc-nav__link" href="#">Advisory</a>
+    </div>
+  </header>
+
+  <!-- 3. One <main> landmark, one clear primary action per screen. -->
+  <main id="main">
+    <section class="hero">
+      <div class="hero__inner">
+        <h1>{{Headline — sentence case, says the thing}}</h1>
+        <p>{{One-line description. Plain and literal.}}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid">
+        <article class="uc-card">
+          <h2 class="uc-card__title">{{Card title}}</h2>
+          <p class="uc-card__body">{{Card body.}}</p>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

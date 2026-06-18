@@ -1,0 +1,29 @@
+/* Font loading — Understory Collaborative.
+
+   The pairing is chosen to fit the brand, not as a placeholder:
+
+   - Body/UI: Atkinson Hyperlegible. Designed by the Braille Institute specifically for low-
+     vision readers — distinct letterforms, unambiguous shapes. For a consultancy that ships
+     an Accessibility page and treats WCAG + COGA as build-time floors, the body face IS the
+     accessibility commitment made literal. Warm and humane, not clinical.
+   - Display/headings: Nunito. A rounded-terminal sans whose soft, friendly shapes echo the
+     logo's lettering while staying grounded enough for a consultancy. Carries the brand's
+     "organic growth" warmth without tipping into playful.
+
+   Both are open-licensed (OFL). They load here from Google Fonts so that every consumer of
+   the design system — the React site and the standalone specimens alike — gets them from a
+   single source. Production hardening (a proposal): self-host the woff2 files under
+   ../fonts and swap the @import for @font-face blocks, to drop the third-party request and
+   pin the exact weights. The brand's display lettering in the logo was set in a tool and
+   never shipped as a webfont; Nunito is the closest licensed stand-in for it. */
+
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:wght@500;600;700;800&display=swap");
+
+:root {
+  --family-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+
+  /* Brand faces, with the system stack as the fallback while the webfont loads. */
+  --family-display: "Nunito", var(--family-system);
+  --family-body: "Atkinson Hyperlegible", var(--family-system);
+}

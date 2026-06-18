@@ -1,0 +1,58 @@
+/* Input + status messages — Understory Collaborative.
+   Refactored from the subscribe form. Forgiving inputs, plain status text, visible focus.
+   The label rule (COGA / WCAG): a control's accessible name contains its visible label;
+   never replace a visible <label> with a bare aria-label. */
+
+.uc-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.uc-label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+}
+
+.uc-input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4); /* 14px-ish, 16px */
+  font-family: inherit;
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  background-color: var(--surface-canvas);
+  border: 2px solid var(--border-color, var(--border-subtle));
+  border-radius: var(--radius-control);
+  transition: border-color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.uc-input:focus {
+  outline: none;
+  border-color: var(--focus-color);
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--focus-ring);
+}
+
+.uc-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Status messages. Plain text that says what happened and how to fix it. */
+.uc-status {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-control);
+  font-size: var(--text-sm);
+}
+.uc-status--success {
+  color: var(--status-success-text);
+  background-color: var(--status-success-bg);
+  border: 1px solid var(--status-success-border);
+}
+.uc-status--error {
+  color: var(--status-danger-text);
+  background-color: var(--status-danger-bg);
+  border: 1px solid var(--status-danger-border);
+}

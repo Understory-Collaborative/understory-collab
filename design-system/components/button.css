@@ -1,0 +1,57 @@
+/* Button — Understory Collaborative.
+   Refactored from the site's .btn classes. One primary per screen; secondary is the quiet
+   outline; large is the hero/CTA size. Every value is a token. */
+
+.uc-btn {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6); /* 12px 24px */
+  border: 2px solid transparent;
+  border-radius: var(--radius-control);
+  font-family: inherit;
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard);
+}
+
+.uc-btn:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Primary — the one clear action. */
+.uc-btn--primary {
+  background-color: var(--brand-primary);
+  color: var(--text-on-brand);
+}
+.uc-btn--primary:hover {
+  background-color: var(--brand-primary-hover);
+  color: var(--text-on-brand);
+}
+
+/* Secondary — visibly quieter; never competes with the primary. */
+.uc-btn--secondary {
+  background-color: transparent;
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}
+.uc-btn--secondary:hover {
+  background-color: var(--brand-primary);
+  color: var(--text-on-brand);
+}
+
+/* Large — hero and result-screen calls to action. */
+.uc-btn--large {
+  padding: var(--space-4) var(--space-8); /* 16px 32px */
+  font-size: var(--text-md);
+}
+
+.uc-btn:disabled,
+.uc-btn[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

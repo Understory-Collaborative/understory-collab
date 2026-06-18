@@ -1,0 +1,24 @@
+/* Motion tokens — Understory Collaborative.
+
+   The brand's motion is calm and quiet (it grows "quietly beneath the canopy"): short
+   eased fades and color transitions, no spring or bounce. Durations are read from the
+   site (0.2s on hover/color, 0.3s on theme and page-enter fades). Reduced motion collapses
+   everything to zero — the site already honors the preference, and these tokens make that
+   the default for anything new. */
+
+:root {
+  --duration-fast: 0.2s;  /* color, hover, focus */
+  --duration-base: 0.3s;  /* theme switch, page-enter fade */
+
+  --ease-standard: ease;        /* the site's default */
+  --ease-in-out: ease-in-out;   /* page-enter fade */
+
+  /* No bounce or spring overshoot. Motion supports, it does not perform. */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0.01ms;
+    --duration-base: 0.01ms;
+  }
+}
