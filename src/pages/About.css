@@ -26,14 +26,14 @@
 .about-intro h2 {
   font-size: var(--text-xl);
   color: var(--text-primary);
-  text-align: center;
+  text-align: left;
   margin: 0 0 var(--space-6);
 }
 
 .about-intro-copy {
   max-width: var(--layout-prose-max);
-  margin: 0 auto var(--space-12);
-  text-align: center;
+  margin: 0 0 var(--space-12);
+  text-align: left;
 }
 
 .about-intro-copy p {
@@ -154,6 +154,7 @@
 }
 
 .industry-card p {
+  color: var(--text-secondary);
   line-height: var(--leading-body);
   margin: 0;
 }

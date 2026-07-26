@@ -12,10 +12,26 @@ function About() {
   ]
 
   const industries = [
-    'Legal, Policy & Compliance',
-    'Consumer Products & Services',
-    'Health & Safety',
-    'Education',
+    {
+      name: 'Legal, Policy & Compliance',
+      description:
+        'Protected-data handling and compliance frameworks—SOC 2, HIPAA, FERPA, GDPR, NIST—plus high-stakes migrations and records systems that hold up under legal scrutiny.',
+    },
+    {
+      name: 'Consumer Products & Services',
+      description:
+        'Onboarding and adoption grounded in behavioral science, platform modernization, and integration strategy that turns signups into retention and lifts delivery velocity.',
+    },
+    {
+      name: 'Health & Safety',
+      description:
+        'Safety-critical reliability and HIPAA-bound delivery, with resilience built into how teams work—from healthcare DevOps to compliance-heavy operational systems.',
+    },
+    {
+      name: 'Education',
+      description:
+        'District-scale rostering and identity, standards-based integrations (LTI, OneRoster, SSO), and data consolidation for state reporting and adoption that sticks.',
+    },
   ]
 
   return (
@@ -70,8 +86,10 @@ function About() {
       <section className="about-capabilities" aria-labelledby="capabilities-heading">
         <div className="section-container">
           <h2 id="capabilities-heading">Technical Capabilities</h2>
-          {/* PLACEHOLDER — brief specifies an intro line here but supplies no copy; awaiting client */}
-          <p className="about-section-intro placeholder-copy">[Intro line coming soon]</p>
+          <p className="about-section-intro">
+            Our team covers the full stack—from infrastructure to interface—with
+            specialized expertise in modern development practices.
+          </p>
           <ul className="capability-cards" role="list">
             {capabilities.map((capability) => (
               <li className="capability-card" key={capability.name}>
@@ -86,14 +104,15 @@ function About() {
       <section className="about-industries" aria-labelledby="industries-heading">
         <div className="section-container">
           <h2 id="industries-heading">Industry Expertise</h2>
-          {/* PLACEHOLDER — brief specifies an intro line here but supplies no copy; awaiting client */}
-          <p className="about-section-intro placeholder-copy">[Intro line coming soon]</p>
+          <p className="about-section-intro">
+            We've delivered solutions across diverse industries, bringing domain
+            knowledge that accelerates delivery and reduces risk.
+          </p>
           <ul className="industry-cards" role="list">
             {industries.map((industry) => (
-              <li className="industry-card" key={industry}>
-                <h3>{industry}</h3>
-                {/* PLACEHOLDER — awaiting client blurb; full narratives live on Our Work */}
-                <p className="placeholder-copy">[Short description coming soon]</p>
+              <li className="industry-card" key={industry.name}>
+                <h3>{industry.name}</h3>
+                <p>{industry.description}</p>
               </li>
             ))}
           </ul>

@@ -29,7 +29,11 @@
 }
 
 .subscribe-form--footer {
-  text-align: center;
+  text-align: left;
+}
+
+.subscribe-form--footer .subscribe-form__row {
+  justify-content: flex-start;
 }
 
 .subscribe-form__input {
