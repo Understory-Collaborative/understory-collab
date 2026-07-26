@@ -19,6 +19,7 @@
 .nav-logo-link {
   display: flex;
   align-items: center;
+  gap: var(--space-3);
   text-decoration: none;
   border-radius: 8px;
   padding: 0.25rem;
@@ -80,6 +81,9 @@
 /* Services dropdown (accessible disclosure) */
 .nav-dropdown {
   position: relative;
+  /* Shrink the list item to the toggle's own height (instead of stretching to the full nav
+     row) so the submenu can sit flush beneath the button with no dead gap. */
+  align-self: center;
 }
 
 .nav-dropdown-toggle {
@@ -104,7 +108,7 @@
 
 .nav-submenu {
   position: absolute;
-  top: calc(100% + 0.5rem);
+  top: calc(100% + var(--space-1));
   left: 0;
   min-width: 12rem;
   margin: 0;

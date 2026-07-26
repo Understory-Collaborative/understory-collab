@@ -118,16 +118,30 @@ img {
   border: 0;
 }
 
-/* Shared page hero styles */
+/* Shared page hero styles — left-aligned within the 1200px content column, so the hero
+   text lines up with the section content below it (not centered). */
 .page-hero {
   padding: var(--space-16) var(--space-8);
-  text-align: center;
+  text-align: left;
   background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
 }
 
 .page-hero-content {
-  max-width: var(--layout-prose-max);
+  max-width: var(--layout-content-max);
   margin: 0 auto;
+}
+
+/* Warm eyebrow rule — a short earth stroke opening the hero; anchors the left edge and
+   threads the secondary accent onto every page. Decorative only (no text on it). */
+.page-hero-content::before,
+.home-hero-content::before {
+  content: "";
+  display: block;
+  width: var(--space-12);
+  height: 4px;
+  margin-bottom: var(--space-6);
+  background-color: var(--accent-warm);
+  border-radius: var(--radius-pill);
 }
 
 .page-hero h1 {
@@ -135,6 +149,7 @@ img {
   font-weight: var(--weight-extrabold);
   color: var(--text-primary);
   margin: 0 0 var(--space-4);
+  max-width: var(--layout-prose-max);
 }
 
 .page-hero-description {
@@ -142,6 +157,7 @@ img {
   color: var(--text-secondary);
   line-height: var(--leading-body);
   margin: 0;
+  max-width: var(--layout-prose-max);
 }
 
 /* Shared section container */
@@ -172,12 +188,12 @@ img {
 
 .btn-primary {
   background-color: var(--accent-color);
-  color: var(--text-on-brand);
+  color: var(--text-on-primary);
 }
 
 .btn-primary:hover {
   background-color: var(--accent-hover);
-  color: var(--text-on-brand);
+  color: var(--text-on-primary);
 }
 
 .btn-secondary {
@@ -196,10 +212,11 @@ img {
   font-size: var(--text-md);
 }
 
-/* CTA Section - shared across pages */
+/* CTA Section - shared across pages. Soft warm wash so the closing band on every page
+   reads warm rather than another flat grey, with a centered accent rule above the heading. */
 .cta-section {
   padding: var(--space-16) 0;
-  background-color: var(--bg-secondary);
+  background-color: var(--accent-warm-tint);
   text-align: center;
 }
 
@@ -207,6 +224,16 @@ img {
   font-size: var(--text-2xl);
   color: var(--text-primary);
   margin: 0 0 var(--space-4);
+}
+
+.cta-section h2::before {
+  content: "";
+  display: block;
+  width: var(--space-12);
+  height: 4px;
+  margin: 0 auto var(--space-5);
+  background-color: var(--accent-warm);
+  border-radius: var(--radius-pill);
 }
 
 .cta-section p {

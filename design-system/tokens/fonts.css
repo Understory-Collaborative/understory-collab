@@ -15,13 +15,16 @@
    specimens share one source. Production hardening (a proposal): self-host the woff2 files
    under ../fonts and swap the @import for @font-face, to drop the third-party request. */
 
-@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap");
 
 :root {
   --family-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, sans-serif;
 
-  /* Brand face, with the system stack as the fallback while the webfont loads. */
-  --family-display: "Hanken Grotesk", var(--family-system);
-  --family-body: "Hanken Grotesk", var(--family-system);
+  /* Brand face, with the system stack as the fallback while the webfont loads.
+     Overpass (OFL, Google Fonts) — a redesigned grotesque with a slightly narrower,
+     cooler cut than Hanken Grotesk. One-file revert: swap the @import above and these
+     two family values back to "Hanken Grotesk". Everything else reads through these tokens. */
+  --family-display: "Overpass", var(--family-system);
+  --family-body: "Overpass", var(--family-system);
 }

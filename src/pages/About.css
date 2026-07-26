@@ -60,6 +60,7 @@
 .about-card {
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
+  border-top: 3px solid var(--accent-warm);
   border-radius: var(--radius-card);
   padding: var(--space-6);
 }
