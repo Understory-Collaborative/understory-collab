@@ -13,7 +13,7 @@ const CATEGORIES = [
       { lead: 'Data migration without loss', body: 'Schema design and data mapping to move years of financial and case data into new systems without loss or corruption.' },
       { lead: 'System integration', body: 'Connected new financial systems with existing case-management platforms, avoiding duplicate entry and workflow breakage.' },
       { lead: 'Training through transitions', body: 'Compressed a three-day training program into three hours with no loss of outcomes—letting new attorneys bill sooner.' },
-      { lead: 'Sensitive-data handling', body: 'Protected personal information handled at scale, from paper records to modern privacy law—the same discipline behind today’s DPAs, BAAs, and defensible data handling.' },
+      { lead: 'Sensitive-data handling', body: 'Protected personal information handled at scale, from paper records to modern privacy law—the same discipline behind today\'s DPAs, BAAs, and defensible data handling.' },
       { lead: 'Unstructured document volume', body: 'Custom catalogs and indexes that turned 41,000+ case records in a single class action into instant retrieval.' },
       { lead: 'Reconciling records across parties', body: 'Reconcile records across attorneys, providers, and opposing counsel so the record set holds up.' },
       { lead: 'Claimant status tracking', body: 'Tracking systems that keep claimant status current across large caseloads.' },
@@ -110,7 +110,7 @@ function OurWork() {
       {CATEGORIES.map((category, index) => (
         <section
           key={category.id}
-          className={index % 2 === 0 ? 'work-category work-category--tint' : 'work-category'}
+          className={index % 2 === 1 ? 'work-category work-category--tint' : 'work-category'}
           aria-labelledby={`${category.id}-heading`}
         >
           <div className="section-container">

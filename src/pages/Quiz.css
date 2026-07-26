@@ -272,7 +272,7 @@
 }
 
 /* Email Form */
-.whitepaper-form {
+.fieldguide-form {
   width: 100%;
 }
 
@@ -313,17 +313,17 @@
   margin: 0.5rem 0 0;
 }
 
-.form-success {
+.fieldguide-success {
   padding: 1.25rem;
   background-color: var(--success-bg);
   border: 1px solid var(--success-border);
   border-radius: 8px;
 }
 
-.form-success-message {
+.fieldguide-success-message {
   color: var(--success-text);
   font-weight: 500;
-  margin: 0;
+  margin: 0 0 1rem;
 }
 
 /* Result Actions */

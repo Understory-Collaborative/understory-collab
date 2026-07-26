@@ -12,6 +12,16 @@
   background-color: var(--bg-primary);
 }
 
+/* Lead paragraph — clear separation before the first section heading so it matches the
+   spacing every later section already has. */
+.privacy-intro {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  max-width: var(--layout-prose-max);
+  margin: 0 0 var(--space-12);
+}
+
 .privacy-draft-notice {
   padding: var(--space-4) var(--space-6);
   border-left: 4px solid var(--border-accent);

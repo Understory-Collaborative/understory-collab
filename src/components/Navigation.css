@@ -179,13 +179,13 @@
 @media (max-width: 768px) {
   .nav-container {
     flex-wrap: wrap;
-    padding: 1rem;
+    padding: 1rem var(--layout-gutter);
   }
 
   .nav-links {
     order: 3;
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 0.25rem;
   }

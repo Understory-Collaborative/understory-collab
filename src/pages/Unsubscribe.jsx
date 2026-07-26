@@ -8,6 +8,9 @@ function Unsubscribe() {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState('idle') // idle | loading | success | error
   const [errorMessage, setErrorMessage] = useState('')
+  // Only the email-format failure marks the field itself invalid; a network/server
+  // failure is not the field's fault, so it must not set aria-invalid on a valid address.
+  const [invalidEmail, setInvalidEmail] = useState(false)
   const inputRef = useRef(null)
 
   async function handleSubmit(event) {
@@ -18,12 +21,14 @@ function Unsubscribe() {
 
     if (!EMAIL_RE.test(trimmed)) {
       setStatus('error')
+      setInvalidEmail(true)
       setErrorMessage('Please enter a valid email address.')
       inputRef.current?.focus()
       return
     }
 
     setStatus('loading')
+    setInvalidEmail(false)
     setErrorMessage('')
 
     try {
@@ -82,7 +87,7 @@ function Unsubscribe() {
                 autoComplete="email"
                 placeholder="you@example.com"
                 disabled={isLoading || status === 'success'}
-                aria-invalid={hasError}
+                aria-invalid={invalidEmail}
                 aria-describedby={hasError ? errorId : undefined}
               />
             </div>

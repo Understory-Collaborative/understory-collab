@@ -113,5 +113,8 @@
   .subscribe-form__input,
   .subscribe-form__button {
     width: 100%;
+    /* Row is now a column, so the input's flex-basis (260px) would otherwise become its
+       HEIGHT and blow the field up. Reset to auto height. */
+    flex: 0 0 auto;
   }
 }

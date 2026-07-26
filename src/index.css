@@ -123,7 +123,11 @@ img {
 .page-hero {
   padding: var(--space-16) 0;
   text-align: left;
-  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  /* Warm-tint hero band on every page — matches the home hero so all page tops read as
+     one warm brand banner, and guarantees a clear color step down to the first content
+     section (grey or white) instead of the old grey-hero-into-grey-intro blend. */
+  background-color: var(--accent-warm-tint);
+  border-bottom: 1px solid var(--border-color);
 }
 
 /* Gutter lives on the content (same as .section-container) so hero text lines up exactly

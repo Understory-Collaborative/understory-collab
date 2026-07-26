@@ -64,6 +64,8 @@ function SubscribeForm({ variant = 'default', heading, description }) {
           onChange={(event) => setEmail(event.target.value)}
           required
           autoComplete="email"
+          aria-invalid={status === 'error'}
+          aria-describedby={status === 'error' ? `${inputId}-error` : undefined}
           disabled={status === 'loading' || status === 'success'}
         />
         <button
@@ -86,7 +88,7 @@ function SubscribeForm({ variant = 'default', heading, description }) {
           </p>
         )}
         {status === 'error' && (
-          <p className="subscribe-form__error">{errorMessage}</p>
+          <p id={`${inputId}-error`} className="subscribe-form__error">{errorMessage}</p>
         )}
       </div>
     </form>

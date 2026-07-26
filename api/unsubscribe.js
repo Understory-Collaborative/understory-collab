@@ -96,7 +96,10 @@ export default async function handler(req, res) {
 
   const body = await readJsonBody(req)
   const email = typeof body?.email === 'string' ? body.email.trim() : ''
-  if (!EMAIL_RE.test(email)) {
+  // Reject quotes as well as malformed addresses: the email is interpolated into a Ghost
+  // NQL filter (email:'...'), and a real address never contains a single quote, so this
+  // closes the filter-injection vector without affecting any legitimate user.
+  if (!EMAIL_RE.test(email) || email.includes("'")) {
     return res.status(400).json({ error: 'A valid email address is required' })
   }
 

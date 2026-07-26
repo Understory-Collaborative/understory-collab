@@ -118,10 +118,12 @@
   margin: 0;
 }
 
-/* Industry Expertise — grey band */
+/* Industry Expertise — white band. Kept distinct from the grey Technical Capabilities
+   band above it so the page keeps a clean white/grey/white rhythm instead of two grey
+   bands reading as one long grey zone. */
 .about-industries {
   padding: var(--space-16) 0;
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-primary);
   border-top: 1px solid var(--border-color);
 }
 
@@ -140,8 +142,10 @@
   gap: var(--space-6);
 }
 
+/* Cards on the now-white Industry band take the secondary surface so they read as cards
+   (matching the About "Who We Are" cards on white). */
 .industry-card {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-card);
   padding: var(--space-6);
