@@ -1,0 +1,84 @@
+.values {
+  width: 100%;
+}
+
+/* Pillars — white band */
+.values-pillars {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-primary);
+}
+
+.values-intro {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  max-width: var(--layout-prose-max);
+  margin: 0 0 var(--space-12);
+}
+
+.pillar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-6);
+}
+
+.pillar {
+  padding: var(--space-6);
+  background-color: var(--bg-secondary);
+  border-left: 4px solid var(--border-accent);
+  border-radius: var(--radius-card);
+}
+
+.pillar-label {
+  display: block;
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  color: var(--brand-primary);
+  margin-bottom: var(--space-2);
+}
+
+.pillar-description {
+  display: block;
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+}
+
+/* In Practice — grey band */
+.values-practice {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-secondary);
+}
+
+.values-practice h2 {
+  font-size: var(--text-xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-6);
+}
+
+.practice-list {
+  list-style: disc;
+  padding-left: var(--space-6);
+  margin: 0;
+  max-width: var(--layout-prose-max);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.practice-item {
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+}
+
+.practice-item strong {
+  color: var(--text-primary);
+  font-weight: var(--weight-semibold);
+}
+
+@media (max-width: 768px) {
+  .values-pillars,
+  .values-practice {
+    padding: var(--space-12) 0;
+  }
+}

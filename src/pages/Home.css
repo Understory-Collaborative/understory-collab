@@ -2,191 +2,116 @@
   width: 100%;
 }
 
-.section-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-/* Hero Section */
-.hero {
-  padding: 4rem 2rem 4rem;
+/* Home hero (grey band) — larger display headline than the shared .page-hero */
+.home-hero {
+  padding: var(--space-16) var(--space-8);
   text-align: center;
   background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
 }
 
-.hero-content {
-  max-width: 800px;
+.home-hero-content {
+  max-width: var(--layout-prose-max);
   margin: 0 auto;
 }
 
-.hero h1 {
-  font-size: 2.5rem;
-  margin: 0 0 0.75rem;
+.home-hero-title {
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-extrabold);
+  line-height: var(--leading-tight);
   color: var(--text-primary);
+  margin: 0 0 var(--space-6);
 }
 
-.hero-tagline {
-  font-size: 1.5rem;
-  color: var(--accent-color);
-  font-weight: 500;
-  margin: 0 0 1.5rem;
-}
-
-.hero-description {
-  font-size: 1.125rem;
+.home-hero-description {
+  font-size: var(--text-lg);
   color: var(--text-secondary);
-  line-height: 1.7;
-  margin: 0 0 2rem;
-}
-
-.hero-cta {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-/* Buttons */
-.btn {
-  display: inline-block;
-  padding: 0.875rem 1.75rem;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s;
-  border: 2px solid transparent;
-}
-
-.btn:focus-visible {
-  outline: 3px solid var(--focus-color);
-  outline-offset: 2px;
-}
-
-.btn-primary {
-  background-color: var(--accent-color);
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: var(--accent-hover);
-  color: white;
-}
-
-.btn-secondary {
-  background-color: transparent;
-  border-color: var(--accent-color);
-  color: var(--accent-color);
-}
-
-.btn-secondary:hover {
-  background-color: var(--accent-color);
-  color: white;
-}
-
-.btn-large {
-  padding: 1rem 2.5rem;
-  font-size: 1.125rem;
-}
-
-/* About Section */
-.about {
-  padding: 5rem 0;
-}
-
-.about h2 {
-  text-align: center;
-  margin-bottom: 3rem;
-  font-size: 2rem;
-  color: var(--text-primary);
-}
-
-.about-content {
-  display: grid;
-  gap: 3rem;
-}
-
-.about-text {
-  max-width: 700px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.about-text p {
-  color: var(--text-secondary);
-  font-size: 1.125rem;
-  line-height: 1.7;
-  margin: 0 0 1.5rem;
-}
-
-.about-highlights {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.highlight {
-  text-align: center;
-  padding: 2rem;
-  background-color: var(--bg-secondary);
-  border-radius: 12px;
-}
-
-.highlight h3 {
-  color: var(--accent-color);
-  margin: 0 0 0.75rem;
-  font-size: 1.25rem;
-}
-
-.highlight p {
-  color: var(--text-secondary);
+  line-height: var(--leading-body);
   margin: 0;
-  line-height: 1.6;
 }
 
-/* Services Preview */
-.services-preview {
-  padding: 3rem 0 5rem;
+/* How Healthy Is Your Digital Forest? (white) */
+.forest-health {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-primary);
+}
+
+.forest-health-content {
+  max-width: var(--layout-prose-max);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.forest-health-content h2 {
+  font-size: var(--text-2xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-6);
+}
+
+.forest-health-content p {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  margin: 0 0 var(--space-6);
+}
+
+.forest-health-content .btn {
+  margin-top: var(--space-2);
+}
+
+/* What We Do (grey band) */
+.what-we-do {
+  padding: var(--space-16) 0;
   background-color: var(--bg-secondary);
 }
 
-.services-preview h2 {
+.what-we-do h2 {
   text-align: center;
-  margin-bottom: 3rem;
-  font-size: 2rem;
+  font-size: var(--text-2xl);
   color: var(--text-primary);
+  margin: 0 0 var(--space-4);
 }
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 900px;
+.what-we-do-intro {
+  text-align: center;
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  max-width: var(--layout-prose-max);
+  margin: 0 auto var(--space-12);
+}
+
+.service-grid {
+  list-style: none;
+  padding: 0;
   margin: 0 auto;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-8);
 }
 
 .service-card {
   background-color: var(--bg-primary);
-  padding: 2rem;
-  border-radius: 12px;
   border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
+  padding: var(--space-8);
 }
 
 .service-card h3 {
-  color: var(--text-primary);
-  margin: 0 0 1rem;
-  font-size: 1.5rem;
+  font-size: var(--text-xl);
+  color: var(--brand-primary);
+  margin: 0 0 var(--space-4);
 }
 
 .service-card p {
   color: var(--text-secondary);
-  line-height: 1.6;
-  margin: 0 0 1.5rem;
+  line-height: var(--leading-body);
+  margin: 0 0 var(--space-6);
 }
 
 .service-link {
-  color: var(--accent-color);
-  font-weight: 600;
+  color: var(--brand-primary);
+  font-weight: var(--weight-semibold);
   text-decoration: none;
 }
 
@@ -195,152 +120,76 @@
 }
 
 .service-link:focus-visible {
-  outline: 3px solid var(--focus-color);
-  outline-offset: 2px;
-  border-radius: 4px;
+  outline: var(--focus-ring-width) solid var(--focus-color);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-control);
 }
 
-/* Process Section */
-.process {
-  padding: 5rem 0;
+/* How We Work (white) — three columns */
+.how-we-work {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-primary);
 }
 
-.process h2 {
+.how-we-work h2 {
   text-align: center;
-  margin-bottom: 1rem;
-  font-size: 2rem;
+  font-size: var(--text-2xl);
   color: var(--text-primary);
+  margin: 0 0 var(--space-12);
 }
 
-.process-intro {
-  text-align: center;
-  color: var(--text-secondary);
-  font-size: 1.125rem;
-  margin: 0 auto 3rem;
-  max-width: 600px;
-}
-
-.process-steps {
+.work-grid {
   list-style: none;
   padding: 0;
   margin: 0;
-  max-width: 800px;
-  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-12);
 }
 
-.process-step {
-  display: flex;
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
+.work-step {
+  text-align: center;
 }
 
-.process-step:last-child {
-  margin-bottom: 0;
+.work-icon {
+  width: 72px;
+  height: 72px;
+  max-width: 100%;
+  margin: 0 auto var(--space-4);
+  display: block;
 }
 
-.step-number {
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  background-color: var(--accent-color);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 1.25rem;
+.work-step h3 {
+  font-size: var(--text-xl);
+  color: var(--brand-primary);
+  margin: 0 0 var(--space-3);
 }
 
-.step-content h3 {
-  color: var(--accent-color);
-  margin: 0 0 0.5rem;
-  font-size: 1.5rem;
-}
-
-.step-content p {
+.work-step p {
   color: var(--text-secondary);
+  line-height: var(--leading-body);
   margin: 0;
-  line-height: 1.7;
-}
-
-/* Quiz CTA Section */
-.quiz-cta {
-  padding: 5rem 0;
-  text-align: center;
-  background: var(--bg-primary);
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.quiz-cta-content {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.quiz-cta h2 {
-  font-size: 2rem;
-  color: var(--text-primary);
-  margin: 0 0 0.5rem;
-}
-
-.quiz-cta-subtitle {
-  font-size: 1.125rem;
-  color: var(--accent-color);
-  font-weight: 500;
-  margin: 0 0 1.5rem;
-}
-
-.quiz-cta-description {
-  font-size: 1.0625rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin: 0 0 2rem;
-}
-
-/* CTA Section */
-.cta-section {
-  padding: 5rem 0;
-  background-color: var(--bg-secondary);
-  text-align: center;
-}
-
-.cta-section h2 {
-  font-size: 2rem;
-  color: var(--text-primary);
-  margin: 0 0 1rem;
-}
-
-.cta-section p {
-  color: var(--text-secondary);
-  font-size: 1.125rem;
-  margin: 0 0 2rem;
+  max-width: 40ch;
+  margin-inline: auto;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .hero {
-    padding: 2rem 1rem 4rem;
+  .home-hero {
+    padding: var(--space-8) var(--space-4);
   }
 
-  .hero h1 {
-    font-size: 2rem;
+  .home-hero-title {
+    font-size: var(--text-3xl);
   }
 
-  .section-container {
-    padding: 0 1rem;
+  .home-hero-description {
+    font-size: var(--text-md);
   }
 
-  .process-step {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .about,
-  .services-preview,
-  .process,
-  .cta-section {
-    padding: 3rem 0;
+  .forest-health,
+  .what-we-do,
+  .how-we-work {
+    padding: var(--space-12) 0;
   }
 }

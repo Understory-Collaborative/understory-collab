@@ -1,37 +1,103 @@
-import { Link, NavLink } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
 import ucLogo from '../assets/UC_Logo.png'
 import './Navigation.css'
 
+const SERVICES = [
+  { to: '/advisory', label: 'Advisory' },
+  { to: '/implementation', label: 'Implementation' },
+  { to: '/quiz', label: 'Assessment' },
+]
+
 function Navigation() {
   const { theme, toggleTheme } = useTheme()
+  const { pathname } = useLocation()
+  const [servicesOpen, setServicesOpen] = useState(false)
+  const servicesRef = useRef(null)
+  const servicesButtonRef = useRef(null)
+
+  const servicesActive = SERVICES.some(({ to }) => pathname === to)
+
+  // A click or focus outside the Services group closes it.
+  useEffect(() => {
+    if (!servicesOpen) return
+    const onOutside = (e) => {
+      if (servicesRef.current && !servicesRef.current.contains(e.target)) {
+        setServicesOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', onOutside)
+    document.addEventListener('focusin', onOutside)
+    return () => {
+      document.removeEventListener('mousedown', onOutside)
+      document.removeEventListener('focusin', onOutside)
+    }
+  }, [servicesOpen])
+
+  const onServicesKeyDown = (e) => {
+    if (e.key === 'Escape' && servicesOpen) {
+      setServicesOpen(false)
+      servicesButtonRef.current?.focus()
+    }
+  }
 
   return (
     <header className="nav-header">
       <nav className="nav-container" aria-label="Main navigation">
         <Link to="/" className="nav-logo-link" aria-label="Understory Collaborative home">
           <img src={ucLogo} alt="" className="nav-logo" aria-hidden="true" />
+          <span className="nav-wordmark">Understory Collaborative</span>
         </Link>
 
         <ul className="nav-links" role="list">
+          <li className="nav-dropdown" ref={servicesRef} onKeyDown={onServicesKeyDown}>
+            <button
+              type="button"
+              ref={servicesButtonRef}
+              className={servicesActive ? 'nav-link nav-dropdown-toggle active' : 'nav-link nav-dropdown-toggle'}
+              aria-expanded={servicesOpen}
+              aria-controls="services-submenu"
+              aria-current={servicesActive ? 'true' : undefined}
+              onClick={() => setServicesOpen((open) => !open)}
+            >
+              Services
+              <svg
+                className={servicesOpen ? 'nav-caret open' : 'nav-caret'}
+                aria-hidden="true"
+                width="12" height="12" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <ul id="services-submenu" className="nav-submenu" role="list" hidden={!servicesOpen}>
+              {SERVICES.map(({ to, label }) => (
+                <li key={to}>
+                  <NavLink
+                    to={to}
+                    className={({ isActive }) => (isActive ? 'nav-sublink active' : 'nav-sublink')}
+                    onClick={() => setServicesOpen(false)}
+                  >
+                    {label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </li>
           <li>
-            <NavLink to="/advisory" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              Advisory
+            <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+              About Us
             </NavLink>
           </li>
           <li>
-            <NavLink to="/implementation" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              Implementation
+            <NavLink to="/our-work" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+              Our Work
             </NavLink>
           </li>
           <li>
-            <NavLink to="/portfolios" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              Portfolios
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/newsletter" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              Newsletter
+            <NavLink to="/values" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+              Values
             </NavLink>
           </li>
           <li>

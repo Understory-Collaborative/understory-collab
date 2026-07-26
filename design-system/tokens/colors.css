@@ -113,6 +113,7 @@
   --border-subtle: var(--white-14);
   --border-default: var(--white-22);
   --border-strong: var(--white-22);
+  --border-accent: var(--brand-primary);   /* green (light) / earth (dark) rules & card spines; clears 3:1 either way */
   --ring-brand: rgba(232, 168, 124, 0.3);
 
   --status-success-text: var(--success-400);

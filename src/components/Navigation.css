@@ -35,6 +35,15 @@
   border-radius: 8px;
 }
 
+.nav-wordmark {
+  color: #ffffff;
+  font-weight: var(--weight-bold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .nav-links {
   display: flex;
   gap: 0.5rem;
@@ -65,6 +74,76 @@
 
 .nav-link.active {
   color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Services dropdown (accessible disclosure) */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font: inherit;
+  font-weight: 500;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.nav-caret {
+  transition: transform var(--duration-fast, 0.15s) ease;
+}
+
+.nav-caret.open {
+  transform: rotate(180deg);
+}
+
+.nav-submenu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  min-width: 12rem;
+  margin: 0;
+  padding: 0.5rem;
+  list-style: none;
+  background-color: var(--forest-800);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+  z-index: 200;
+}
+
+.nav-submenu[hidden] {
+  display: none;
+}
+
+.nav-sublink {
+  display: block;
+  padding: 0.55rem 0.75rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.nav-sublink:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.nav-sublink:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 2px;
+}
+
+.nav-sublink.active {
+  color: #ffffff;
   background-color: rgba(255, 255, 255, 0.2);
 }
 

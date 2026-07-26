@@ -1,0 +1,95 @@
+.unsubscribe-body {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-primary);
+}
+
+.unsubscribe-form {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.unsubscribe-form__heading {
+  font-size: var(--text-xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-6);
+}
+
+.unsubscribe-form__field {
+  margin-bottom: var(--space-4);
+}
+
+.unsubscribe-form__label {
+  display: block;
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.unsubscribe-form__input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-base);
+  font-family: inherit;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-control);
+  transition: border-color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.unsubscribe-form__input:focus {
+  outline: none;
+  border-color: var(--focus-color);
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--focus-ring);
+}
+
+.unsubscribe-form__input[aria-invalid='true'] {
+  border-color: var(--error-border);
+}
+
+.unsubscribe-form__input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.unsubscribe-form__button {
+  width: 100%;
+}
+
+.unsubscribe-form__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.unsubscribe-form__status {
+  min-height: var(--space-6);
+  margin-top: var(--space-4);
+}
+
+.unsubscribe-form__success {
+  color: var(--success-text);
+  background-color: var(--success-bg);
+  border: 1px solid var(--success-border);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-control);
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.unsubscribe-form__error {
+  color: var(--error-text);
+  background-color: var(--error-bg);
+  border: 1px solid var(--error-border);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-control);
+  margin: var(--space-4) 0 0;
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 768px) {
+  .unsubscribe-body {
+    padding: var(--space-12) 0;
+  }
+}

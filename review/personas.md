@@ -130,45 +130,50 @@ These personas represent the primary buyer archetypes for Understory Collaborati
 
 ---
 
-## Persona 4: "Founder Frankie" — The Startup / Scale-up Founder
+## Persona 4: "VP of Engineering Vick" — The Midsize Engineering Leader
+
+> **Note (proposed — pending client review):** This persona replaces the former "Founder Frankie"
+> startup archetype at the client's direction, shifting the fourth buyer toward a midsize
+> engineering leader. The details below are a first draft for sign-off, not settled fact — refine
+> the specifics (industry mix, budget band, channels) with the team before treating them as final.
 
 | Attribute | Detail |
 |---|---|
-| **Title** | CEO / Founder / Co-founder |
-| **Company** | Seed to Series B startup, 10–100 employees |
-| **Industry** | EdTech, Accessibility Tech, SaaS |
-| **Age Range** | 28–45 |
-| **Reports To** | Board of Directors / Investors |
-| **Budget Authority** | $50K–$500K (often milestone-based or grant-funded) |
+| **Title** | VP of Engineering / Director of Engineering / Head of Engineering |
+| **Company** | Established midsize company, 200–1,500 employees |
+| **Industry** | Legal / Policy / Compliance, Consumer Products & Services, Health & Safety, or Education |
+| **Age Range** | 38–52 |
+| **Reports To** | CTO or CEO |
+| **Budget Authority** | $100K–$750K for external engineering partnerships |
 
 ### Goals
-- Build an MVP or v2 product with a team that moves fast
-- Get strategic guidance on technical architecture decisions before committing
-- Find a partner willing to work in phases as funding becomes available
-- Build accessibility in from the start (not bolt it on later)
+- Scale delivery without ballooning permanent headcount — add senior capacity that fits his team
+- Modernize aging systems and pay down technical debt without stalling the roadmap
+- Keep delivery predictable and transparent so he can commit to dates with confidence
+- Grow his own team's capability so the org isn't dependent on outside help forever
 
 ### Pain Points
-- Can't afford to hire a full engineering team yet
-- Previous freelancers or agencies delivered late, over budget, or abandoned the project
-- Needs someone who can challenge product assumptions, not just take orders
-- Investors are asking about scalability and technical due diligence
+- Delivery holds up only by continually adding features and people; the bench never grows
+- Modernization and migrations keep getting deferred because the team is heads-down shipping
+- Has been burned by "full-service" firms that were a mile wide and an inch deep
+- Needs compliance (HIPAA, SOC 2, accessibility) held continuously, not scrambled at audit time
 
-### How They Find Partners
-- Startup ecosystem referrals (accelerators, investors, founder communities)
-- Twitter/X and LinkedIn content
-- Google search for "startup CTO-as-a-service" or "fractional CTO consulting"
-- Portfolio and case study review
+### How He Finds Partners
+- Peer referrals from other engineering leaders
+- Technical write-ups, architecture posts, and evidence of real engineering culture
+- Engineering-leadership networks and communities
+- Reviews portfolio depth and delivery track record before booking a call
 
-### What They Need from the Website
-- Flexibility: phased engagements, not rigid enterprise contracts
-- Evidence of startup experience and speed
-- Proof of advisory capability (architecture, roadmapping) alongside build
-- Accessibility expertise as a differentiator for their product
+### What He Needs from the Website
+- Proof of delivery: how work ships, how teams integrate, how knowledge transfers back to his people
+- Honest assessment culture — pressure-tested recommendations, not agreement for its own sake
+- A clear picture of how advisory and implementation connect for a mid-sized org
+- A fast, low-friction path to a technical conversation
 
 ### Key Objections
-- "Can they work within our budget constraints?"
-- "Will they move at startup speed or slow us down with process?"
-- "Are they going to push enterprise solutions we don't need yet?"
+- "Will I get senior engineers, or juniors I have to manage?"
+- "Can they work inside our existing architecture and process without disrupting delivery?"
+- "Will they hand capability back to my team, or keep us dependent on them?"
 
 ---
 

@@ -2,190 +2,78 @@
   width: 100%;
 }
 
-/* Implementation Intro */
+/* Hero: emphasize the lead phrase, keep the remainder lighter */
+.implementation .page-hero h1 {
+  font-weight: var(--weight-regular);
+}
+
+.implementation .page-hero h1 strong {
+  font-weight: var(--weight-extrabold);
+}
+
+/* Intro (grey band) */
 .implementation-intro {
-  padding: 4rem 0;
-  background-color: var(--bg-primary);
+  padding: var(--space-16) 0;
+  background-color: var(--bg-secondary);
 }
 
 .implementation-intro h2 {
-  font-size: 1.75rem;
+  font-size: var(--text-2xl);
   color: var(--text-primary);
-  margin: 0 0 1.5rem;
+  margin: 0 0 var(--space-4);
 }
 
 .implementation-intro p {
-  font-size: 1.125rem;
+  font-size: var(--text-lg);
   color: var(--text-secondary);
-  line-height: 1.7;
-  max-width: 800px;
+  line-height: var(--leading-body);
+  max-width: var(--layout-prose-max);
   margin: 0;
 }
 
-/* Section Intro */
-.section-intro {
-  font-size: 1.125rem;
-  color: var(--text-secondary);
-  max-width: 700px;
-  margin: 0 0 2.5rem;
-  line-height: 1.6;
-}
-
-/* Expertise Section */
-.expertise-section {
-  padding: 4rem 0;
-  background-color: var(--bg-secondary);
-}
-
-.expertise-section h2 {
-  font-size: 1.75rem;
-  color: var(--text-primary);
-  margin: 0 0 1rem;
-}
-
-.expertise-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.expertise-card {
-  background-color: var(--bg-primary);
-  padding: 1.5rem;
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
-}
-
-.expertise-card h3 {
-  font-size: 1.25rem;
-  color: var(--accent-color);
-  margin: 0 0 0.75rem;
-}
-
-.expertise-card p {
-  color: var(--text-secondary);
-  margin: 0;
-  line-height: 1.5;
-  font-size: 0.95rem;
-}
-
-/* Capabilities Section */
-.capabilities-section {
-  padding: 4rem 0;
+/* Delivery principles (white band): vertical stack of green-bordered cards */
+.principles-section {
+  padding: var(--space-16) 0;
   background-color: var(--bg-primary);
 }
 
-.capabilities-section h2 {
-  font-size: 1.75rem;
-  color: var(--text-primary);
-  margin: 0 0 1rem;
-}
-
-.capabilities-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+.principles-list {
   list-style: none;
   padding: 0;
   margin: 0;
-}
-
-.capability-card {
-  background-color: var(--bg-secondary);
-  padding: 1.5rem;
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
-}
-
-.capability-card h3 {
-  font-size: 1.25rem;
-  color: var(--accent-color);
-  margin: 0 0 0.75rem;
-}
-
-.capability-card p {
-  color: var(--text-secondary);
-  margin: 0;
-  line-height: 1.5;
-  font-size: 0.95rem;
-}
-
-/* How We Deliver */
-.how-we-work {
-  padding: 4rem 0;
-  background-color: var(--bg-secondary);
-}
-
-.how-we-work h2 {
-  font-size: 1.75rem;
-  color: var(--text-primary);
-  margin: 0 0 2rem;
-}
-
-.delivery-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: start;
-}
-
-.delivery-text p {
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin: 0 0 1.5rem;
-}
-
-.delivery-text p:last-child {
-  margin-bottom: 0;
-}
-
-.delivery-features {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  max-width: var(--layout-prose-max);
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: var(--space-5);
 }
 
-.delivery-features li {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  padding: 1rem 1.25rem;
-  background-color: var(--bg-primary);
-  border-radius: 8px;
-  border-left: 4px solid var(--accent-color);
+.principle-card {
+  padding: var(--space-6) var(--space-8);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--border-accent);
+  border-radius: var(--radius-card);
 }
 
-.delivery-features strong {
-  color: var(--text-primary);
-  font-size: 1rem;
+.principle-card h3 {
+  font-size: var(--text-lg);
+  color: var(--brand-primary);
+  margin: 0 0 var(--space-2);
 }
 
-.delivery-features span {
+.principle-card p {
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  line-height: var(--leading-body);
+  margin: 0;
 }
 
 @media (max-width: 768px) {
-  .expertise-section,
-  .capabilities-section,
-  .how-we-work,
-  .implementation-intro {
-    padding: 2rem 0;
+  .implementation-intro,
+  .principles-section {
+    padding: var(--space-12) 0;
   }
 
-  .delivery-content {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .expertise-grid,
-  .capabilities-grid {
-    grid-template-columns: 1fr;
+  .principle-card {
+    padding: var(--space-5) var(--space-6);
   }
 }

@@ -11,17 +11,15 @@ function Footer() {
         <div className="footer-subscribe">
           <SubscribeForm
             variant="footer"
-            heading="Stay in the loop"
+            heading="Stay Connected"
             description="Get our newsletter in your inbox."
           />
         </div>
 
         <nav className="footer-nav" aria-label="Footer navigation">
           <ul className="footer-links" role="list">
-            <li><Link to="/advisory">Advisory</Link></li>
-            <li><Link to="/implementation">Implementation</Link></li>
-            <li><Link to="/portfolios">Portfolios</Link></li>
-            <li><Link to="/newsletter">Newsletter</Link></li>
+            <li><Link to="/about">About Us</Link></li>
+            <li><Link to="/our-work">Our Work</Link></li>
             <li><Link to="/contact">Contact Us</Link></li>
           </ul>
         </nav>
@@ -31,9 +29,17 @@ function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <Link to="/accessibility" className="footer-accessibility">
-            Accessibility Statement
-          </Link>
+          <div className="footer-bottom-links">
+            <Link to="/accessibility" className="footer-accessibility">
+              Accessibility Statement
+            </Link>
+            <Link to="/privacy" className="footer-accessibility">
+              Privacy Policy
+            </Link>
+            <Link to="/unsubscribe" className="footer-accessibility">
+              Unsubscribe
+            </Link>
+          </div>
           <p className="footer-copyright">
             &copy; {currentYear} Understory Collaborative. All rights reserved.
           </p>

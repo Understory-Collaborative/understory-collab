@@ -1,9 +1,27 @@
-import { Outlet } from 'react-router-dom'
+import { useEffect, useRef } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
 import Navigation from './Navigation'
 import Footer from './Footer'
 import './Layout.css'
 
 function Layout() {
+  const { pathname } = useLocation()
+  const mainRef = useRef(null)
+  const isFirstRender = useRef(true)
+
+  // On client-side route change, move focus to the main region so screen-reader
+  // users are told the page changed and keyboard focus doesn't get stranded up top.
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+    if (mainRef.current) {
+      mainRef.current.focus()
+      window.scrollTo(0, 0)
+    }
+  }, [pathname])
+
   return (
     <div className="layout">
       <button
@@ -19,7 +37,7 @@ function Layout() {
         Skip to main content
       </button>
       <Navigation />
-      <main id="main-content" className="main-content" tabIndex="-1">
+      <main id="main-content" className="main-content" tabIndex="-1" ref={mainRef}>
         <Outlet />
       </main>
       <Footer />
