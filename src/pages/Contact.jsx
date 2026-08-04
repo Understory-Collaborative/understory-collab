@@ -141,8 +141,8 @@ function Contact() {
             <div className="contact-intro">
               <h2 id="say-hello-heading">Say Hello!</h2>
               <p>
-                Whether you have a quick question or you're ready for a more
-                in-depth conversation, we're ready to meet you where you are.
+                Send a quick question or start a longer conversation. Either way,
+                we meet you where you are.
               </p>
             </div>
 
@@ -151,7 +151,7 @@ function Contact() {
                   announced when a network/server error occurs on submit. */}
               {status === 'error' && (
                 <div className="contact-form__alert" role="alert">
-                  Sorry — we couldn't send your message just now. Please try
+                  Sorry, we couldn't send your message just now. Please try
                   again, or email us directly at{' '}
                   <a href="mailto:contact@understorycollab.com">
                     contact@understorycollab.com
@@ -307,7 +307,7 @@ function Contact() {
               <div className="contact-status" role="status" aria-live="polite">
                 {status === 'success' && (
                   <p className="contact-success">
-                    Thanks — we'll be in touch.
+                    Thanks, we'll be in touch.
                   </p>
                 )}
               </div>

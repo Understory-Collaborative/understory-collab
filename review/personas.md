@@ -17,7 +17,7 @@ These personas represent the primary buyer archetypes for Understory Collaborati
 
 ### Goals
 - Modernize legacy systems without disrupting operations
-- Find a partner who understands her business, not just the technology
+- Find a partner who understands her business as well as the technology
 - Demonstrate measurable ROI to the C-suite within 6–12 months
 - Reduce vendor fragmentation (wants strategy + implementation from one partner)
 
@@ -37,7 +37,7 @@ These personas represent the primary buyer archetypes for Understory Collaborati
 - Proof of industry expertise (case studies with outcomes)
 - Clear articulation of how advisory and implementation connect
 - Low-friction path to a conversation (not a sales funnel)
-- Signals of credibility: team experience, methodology, real results
+- Signals of credibility: team experience, methodology, and results from delivered work
 
 ### Key Objections
 - "Are they big enough to handle our scale?"
@@ -60,7 +60,7 @@ These personas represent the primary buyer archetypes for Understory Collaborati
 ### Goals
 - Augment his team's capacity without losing architectural control
 - Find developers who write production-quality, maintainable code
-- Get honest technical assessments — not just agreement with his existing plan
+- Get technical assessments that push back on his plan when the plan is wrong
 - Ship features faster while reducing technical debt
 
 ### Pain Points
@@ -134,8 +134,8 @@ These personas represent the primary buyer archetypes for Understory Collaborati
 
 > **Note (proposed — pending client review):** This persona replaces the former "Founder Frankie"
 > startup archetype at the client's direction, shifting the fourth buyer toward a midsize
-> engineering leader. The details below are a first draft for sign-off, not settled fact — refine
-> the specifics (industry mix, budget band, channels) with the team before treating them as final.
+> engineering leader. The details below are a first draft for sign-off. Refine the specifics
+> (industry mix, budget band, channels) with the team before treating them as final.
 
 | Attribute | Detail |
 |---|---|
@@ -166,7 +166,7 @@ These personas represent the primary buyer archetypes for Understory Collaborati
 
 ### What He Needs from the Website
 - Proof of delivery: how work ships, how teams integrate, how knowledge transfers back to his people
-- Honest assessment culture — pressure-tested recommendations, not agreement for its own sake
+- Recommendations that are pressure-tested and disagree with him when the evidence does
 - A clear picture of how advisory and implementation connect for a mid-sized org
 - A fast, low-friction path to a technical conversation
 

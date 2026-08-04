@@ -26,7 +26,24 @@
   color: var(--text-primary);
   margin: 0 0 var(--space-5);
   max-width: none;
-  text-wrap: balance;
+  text-wrap: pretty;
+}
+
+/* Each sentence of the hero headline on its own line, under CSS control rather than
+   handed to the browser's balancer. Block spans keep the single <h1> semantics intact. */
+.home-hero-title .hero-line {
+  display: block;
+}
+
+/* Small role signpost above a section heading, so adjacent sections read as different
+   jobs at a glance: a free assessment versus the services menu. */
+.section-eyebrow {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+  margin: 0 0 var(--space-3);
 }
 
 .home-hero-description {
@@ -43,14 +60,20 @@
   background-color: var(--bg-primary);
 }
 
+/* The assessment sits in a contained warm panel on the white section, so it reads as a
+   distinct interactive prompt rather than a second text band like What We Do below it. */
 .forest-health-content {
   max-width: var(--layout-prose-max);
   margin: 0;
   text-align: left;
+  background-color: var(--accent-warm-tint-strong);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
+  padding: var(--space-8);
 }
 
 .forest-health-content h2 {
-  font-size: var(--text-2xl);
+  font-size: var(--text-3xl);
   color: var(--text-primary);
   margin: 0 0 var(--space-6);
 }

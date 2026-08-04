@@ -64,7 +64,7 @@ function Newsletter() {
 
           {status === 'ready' && posts.length === 0 && (
             <p className="newsletter-status">
-              No posts yet — subscribe above to get the first one.
+              No posts yet. Subscribe above to get the first one.
             </p>
           )}
 

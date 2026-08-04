@@ -17,7 +17,7 @@ function Privacy() {
           <p className="privacy-intro">
             Understory Collaborative respects your privacy. This policy explains what
             information we collect, how we use it, and the choices you have. We collect
-            only what we need to talk with you and to run our newsletter—nothing more.
+            only what we need to talk with you and to run our newsletter, nothing more.
           </p>
 
           <section className="privacy-section" aria-labelledby="collect-heading">
@@ -56,7 +56,7 @@ function Privacy() {
             <p>
               This site does not use advertising or cross-site tracking, and no third-party
               analytics or marketing scripts run on it. The site stores a single preference
-              in your browser—your light or dark theme choice—which never leaves your
+              in your browser, your light or dark theme choice, which never leaves your
               device. Our newsletter provider may set cookies that are strictly necessary to
               manage your subscription when you interact with it.
             </p>

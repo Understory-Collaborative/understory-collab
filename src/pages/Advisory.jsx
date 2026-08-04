@@ -11,8 +11,15 @@ const services = [
         <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
       </svg>
     ),
-    description:
-      "Navigate complex decisions with confidence. We help you define technology roadmaps, evaluate build-vs-buy decisions, and align technical investments with business objectives.",
+    situation:
+      'You have a roadmap to set or a build-versus-buy call to make, and a lot riding on getting it right.',
+    deliverables: [
+      'A sequenced, costed roadmap, with the first increment specified closely enough to start building the week we finish.',
+      'A build-versus-buy recommendation for each major decision, with the reasoning written down so you can defend it.',
+      'A vendor shortlist scored against your actual constraints.',
+    ],
+    proof:
+      'The same team that writes the plan can build it, so you get a roadmap you can execute.',
     features: [
       'Technology roadmap development',
       'Build vs. buy analysis',
@@ -30,8 +37,15 @@ const services = [
         <line x1="12" y1="8" x2="12.01" y2="8"></line>
       </svg>
     ),
-    description:
-      "Understand where you are to chart where you're going. Our assessments provide clear-eyed evaluation of your current technology landscape, identifying strengths, gaps, and opportunities for improvement.",
+    situation:
+      'You inherited a system you cannot fully judge from the outside, and a decision rides on it.',
+    deliverables: [
+      'A written read on your architecture, ranked by what will hurt first and what can wait.',
+      'A technical-debt list with a cost and a fix beside each item, so you can budget it.',
+      'A security and compliance gap check mapped to the standard you answer to, whether that is HIPAA, SOC 2, or FERPA.',
+    ],
+    proof:
+      'We read the running code and work inside your repository, so the assessment reflects the system you actually run.',
     features: [
       'Architecture review and analysis',
       'Security and compliance assessment',
@@ -48,8 +62,15 @@ const services = [
         <polyline points="8 6 2 12 8 18"></polyline>
       </svg>
     ),
-    description:
-      'Transform how your organization operates with technology. We guide you through the complexities of modernization, ensuring that change delivers real value while managing risk and maintaining continuity.',
+    situation:
+      'You need to modernize aging systems without stalling the roadmap or disrupting the people who depend on them.',
+    deliverables: [
+      'A modernization plan broken into increments, so delivery keeps moving while the old system is retired piece by piece.',
+      'A migration path for each legacy component, with the risks and the rollback named up front.',
+      'A change plan for the teams whose daily work shifts, so the new system gets adopted instead of resented.',
+    ],
+    proof:
+      'We can execute each increment with you, so the plan turns into shipped software.',
     features: [
       'Modernization strategy and planning',
       'Process optimization and automation',
@@ -70,7 +91,14 @@ function ServiceCard({ service }) {
         {service.icon}
       </span>
       <h3>{service.title}</h3>
-      <p>{service.description}</p>
+      <p className="service-situation">{service.situation}</p>
+      <p className="service-deliverables-label">What you walk away with</p>
+      <ul className="service-deliverables">
+        {service.deliverables.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+      <p className="service-proof">{service.proof}</p>
       <button
         type="button"
         className="service-disclosure"
@@ -78,7 +106,7 @@ function ServiceCard({ service }) {
         aria-controls={panelId}
         onClick={() => setOpen((prev) => !prev)}
       >
-        More
+        Areas we cover
       </button>
       <ul id={panelId} className="service-features" hidden={!open}>
         {service.features.map((feature) => (
@@ -95,8 +123,8 @@ function Advisory() {
       <section className="page-hero" aria-labelledby="advisory-heading">
         <div className="page-hero-content">
           <h1 id="advisory-heading">
-            <strong>Strategic Guidance</strong> from experienced technologists who
-            understand business imperatives and technical realities.
+            Some problems need a rebuild, and some need <strong>an afternoon</strong>.
+            We tell you which one you actually have before you spend a dollar.
           </h1>
         </div>
       </section>
@@ -105,10 +133,10 @@ function Advisory() {
         <div className="section-container">
           <h2 id="approach-heading">Consulting That's Collaborative</h2>
           <p>
-            We don't believe in one-size-fits-all solutions. Every organization has
-            unique challenges, constraints, and opportunities. Our advisory practice
-            is built on deep listening, thorough analysis, and actionable
-            recommendations that respect your context and capabilities.
+            If your app runs on a Google Sheet today, we will not sell you a
+            rebuild you would then pay to run, secure, and maintain. We size the
+            recommendation to the problem in front of you, and we tell you when
+            the cheaper fix is the right one.
           </p>
         </div>
       </section>
@@ -123,6 +151,20 @@ function Advisory() {
               <ServiceCard key={service.title} service={service} />
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section className="advisory-handoff" aria-labelledby="handoff-heading">
+        <div className="section-container">
+          <h2 id="handoff-heading">One team that advises and builds</h2>
+          <p>
+            Every advisory engagement can continue into implementation with the
+            same people, on your call. You keep one team that already knows your
+            plan instead of handing it to a second firm to learn it from scratch.
+          </p>
+          <Link to="/implementation" className="advisory-handoff-link">
+            See how we build<span className="sr-only"> on the implementation page</span>
+          </Link>
         </div>
       </section>
 

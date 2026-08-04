@@ -8,7 +8,7 @@ const principles = [
   },
   {
     title: 'Transparent Communication',
-    description: 'Clear updates, honest assessments, no surprises',
+    description: 'Clear updates, direct assessments, no surprises',
   },
   {
     title: 'Knowledge Transfer',
@@ -26,9 +26,8 @@ function Implementation() {
       <section className="page-hero" aria-labelledby="implementation-heading">
         <div className="page-hero-content">
           <h1 id="implementation-heading">
-            From Concept to Deployment, <strong>We Build Software</strong> That
-            Combines Technical Excellence With a Deep Commitment to User-Centered
-            Design.
+            <strong>We Build and Ship Software</strong> That Combines Technical
+            Excellence With a Deep Commitment to User-Centered Design.
           </h1>
         </div>
       </section>
@@ -37,10 +36,10 @@ function Implementation() {
         <div className="section-container">
           <h2 id="partnership-heading">Delivering in Partnership</h2>
           <p>
-            Our process is iterative and transparent—you'll always know where we are
-            and where we're headed. Whether you need a full team to build from
-            scratch, specialists to augment your existing capabilities, or technical
-            leadership to guide your roadmap, we adapt to fit your needs.
+            Our process is iterative and transparent. You'll always know where we are
+            and where we're headed. We adapt to fit your needs: a full team building
+            from scratch, specialists to augment your existing capabilities, or
+            technical leadership to guide your roadmap.
           </p>
         </div>
       </section>

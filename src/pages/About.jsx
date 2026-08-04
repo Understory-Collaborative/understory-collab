@@ -15,7 +15,7 @@ function About() {
     {
       name: 'Legal, Policy & Compliance',
       description:
-        'Protected-data handling and compliance frameworks—SOC 2, HIPAA, FERPA, GDPR, NIST—plus high-stakes migrations and records systems that hold up under legal scrutiny.',
+        'Protected-data handling and compliance frameworks (SOC 2, HIPAA, FERPA, GDPR, NIST), plus high-stakes migrations and records systems that hold up under legal scrutiny.',
     },
     {
       name: 'Consumer Products & Services',
@@ -25,7 +25,7 @@ function About() {
     {
       name: 'Health & Safety',
       description:
-        'Safety-critical reliability and HIPAA-bound delivery, with resilience built into how teams work—from healthcare DevOps to compliance-heavy operational systems.',
+        'Safety-critical reliability and HIPAA-bound delivery, with resilience built into how teams work, across healthcare DevOps and compliance-heavy operational systems.',
     },
     {
       name: 'Education',
@@ -46,7 +46,7 @@ function About() {
           </h1>
           <p className="page-hero-description">
             Like the understory, we create the conditions for people and organizations
-            to flourish—through accessible, ethical technology and collaborative practice.
+            to flourish, through accessible, ethical technology and collaborative practice.
           </p>
         </div>
       </section>
@@ -69,7 +69,7 @@ function About() {
           <ul className="about-cards" role="list">
             <li className="about-card">
               <h3>Human-Centric</h3>
-              <p>We put people first, designing solutions that work for real users with real needs.</p>
+              <p>We put people first, designing around how people actually work and what they need.</p>
             </li>
             <li className="about-card">
               <h3>Experienced</h3>
@@ -87,8 +87,8 @@ function About() {
         <div className="section-container">
           <h2 id="capabilities-heading">Technical Capabilities</h2>
           <p className="about-section-intro">
-            Our team covers the full stack—from infrastructure to interface—with
-            specialized expertise in modern development practices.
+            Our team covers the full stack, infrastructure, back end, front end, and
+            design, with specialized expertise in modern development practices.
           </p>
           <ul className="capability-cards" role="list">
             {capabilities.map((capability) => (

@@ -70,9 +70,9 @@ function Quiz() {
             <h1 id="quiz-heading">What's On Fire?</h1>
             <p className="quiz-subtitle">A technical health self-assessment</p>
             <p className="quiz-description">
-              Six honest questions about the state of your engineering organization.
-              No vendor pitch. No sales sequence. Just a clear-eyed look at where you
-              stand — and what it means.
+              Six questions about the state of your engineering organization.
+              No vendor pitch. No sales sequence. Just a plain read on where you
+              stand, and what it means.
             </p>
             <p className="quiz-meta">
               Takes about 2 minutes. Your answers stay on your device.
@@ -110,7 +110,7 @@ function Quiz() {
               <h2 id="fieldguide-heading">We wrote a field guide for this.</h2>
               <p className="whitepaper-title">{crisisType.whitePaper}</p>
               <p className="whitepaper-description">
-                Enter your email and we'll unlock the full guide right here — and
+                Enter your email and we'll give you the full guide right here, and
                 send it to your inbox once you confirm. No spam, unsubscribe anytime.
               </p>
               <FieldGuideForm fireType={crisisType.id} fireName={crisisType.name} />
@@ -254,8 +254,8 @@ function FieldGuideForm({ fireType, fireName }) {
     return (
       <div className="fieldguide-success" role="status">
         <p className="fieldguide-success-message">
-          Your guide is ready. Check your inbox to confirm your subscription —
-          we'll email it to you too.
+          Your guide is ready. Check your inbox to confirm your subscription.
+          We'll email it to you too.
         </p>
         <a className="btn btn-primary" href={pdfUrl} download>
           Download the Guide (PDF)

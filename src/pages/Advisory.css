@@ -85,6 +85,58 @@
   margin: 0;
 }
 
+/* The situation line names the reader's real position before the deliverables land. */
+.service-situation {
+  color: var(--text-primary);
+}
+
+/* Label over the concrete deliverables, surfaced by default so the proof is not hidden
+   behind the disclosure the way a slide-deck consultancy would hide it. */
+.service-deliverables-label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+  margin: 0;
+}
+
+.service-deliverables {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.service-deliverables li {
+  position: relative;
+  padding-left: var(--space-6);
+  color: var(--text-secondary);
+  line-height: var(--leading-snug);
+}
+
+.service-deliverables li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--brand-primary);
+  font-weight: var(--weight-bold);
+}
+
+/* The proof line answers "consultants just make decks", set off with a rule above it. */
+.service-proof {
+  width: 100%;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-body);
+}
+
 .service-disclosure {
   min-height: var(--layout-touch-min);
   padding: var(--space-2) var(--space-5);
@@ -144,9 +196,47 @@
   border-radius: var(--radius-pill);
 }
 
+/* Handoff band: advisory continues into implementation with the same team. */
+.advisory-handoff {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+}
+
+.advisory-handoff h2 {
+  font-size: var(--text-2xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-4);
+}
+
+.advisory-handoff p {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  max-width: var(--layout-prose-max);
+  margin: 0 0 var(--space-5);
+}
+
+.advisory-handoff-link {
+  color: var(--brand-primary);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+}
+
+.advisory-handoff-link:hover {
+  text-decoration: underline;
+}
+
+.advisory-handoff-link:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-color);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-control);
+}
+
 @media (max-width: 768px) {
   .advisory-intro,
-  .services-detail {
+  .services-detail,
+  .advisory-handoff {
     padding: var(--space-12) 0;
   }
 
