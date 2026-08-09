@@ -102,25 +102,31 @@ Each is run through Paula's five questions.
 
 ## 3. The funnel (Beau's order of operations, mapped to what UC already has)
 
-1. **Content that builds know, like, and trust.** At least one core weekly piece plus a few
-   short ones, under the understory brand. Cypher can run the engine. **[webs decides: the
-   cadence she can actually sustain.]**
+1. **Content that builds know, like, and trust.** One core piece every two weeks under the
+   understory brand, with shorts as they come. Cypher can run the engine. (Decided: biweekly
+   core.)
 2. **Signature offer at $500+.** The three doors are the signature, done-for-you or one to
-   one. **[webs decides: pricing per door.]**
+   one. The $500 is the framework floor, not a real price for done-for-you work of this size.
+   **[webs decides: pricing per door.]**
 3. **Tripwire at $20 to $200** to fund acquisition and build desire for the signature offer.
    Candidate: a paid teardown or playbook that follows the free assessment. **[webs decides:
    do we want a tripwire, and what is it?]**
-4. **A selling system.** The "What's On Fire?" quiz is the diagnostic top of funnel. Quiz to
-   result to a conversation is the path. **[webs decides: booked call, application, or reply?]**
+4. **A selling system.** The "What's On Fire?" quiz is the diagnostic top of funnel. The path
+   is quiz to fire-type result to a short application. Rather than a mechanical severity-to-door
+   map, the result screen presents the three doors as an honest qualifier: if one fits, walk
+   through it; if none does, we are likely not the right fit. (Decided: short application as the
+   conversation step; qualifier-style routing.)
 5. **An automated path** so warm leads move without hand-holding: quiz to Kit email
    nurture to offer.
 
 Existing assets this maps onto:
 
-- **"What's On Fire?" quiz** = the diagnostic lead magnet at the top.
+- **"What's On Fire?" quiz** = the diagnostic lead magnet at the top. Per-person capture is the
+  fire-type bucket, stored on a single Kit `fire_type` custom field (footer and quiz feed the
+  same form).
 - **Kit newsletter** = the nurture layer (migrated off Ghost; the footer signup and the
   quiz field-guide flow both feed one Kit form).
-- **Contact** = the conversation step.
+- **Short application** = the conversation step (form and questions still to build).
 
 ---
 
@@ -129,17 +135,25 @@ Existing assets this maps onto:
 - **Home:** mythology-led hero, then a "which one is you right now?" section with the three
   doors, so a stuck leader self-selects immediately instead of reading a capability list.
 - **Three offer pages,** one per door, each built on Paula's five questions above.
-- **Quiz** stays the top-of-funnel diagnostic and routes to the matching door.
+- **Quiz** stays the top-of-funnel diagnostic and presents the three doors as a qualifier
+  after the fire-type result (see funnel step 4).
 - **Newsletter (Kit)** is the nurture.
 - **About** carries the guide-not-hero story and the understory meaning.
+
+Door 3 note: AI is the presented outfit (specific, good for SEO, the door we sell with full
+conviction), while the practices underneath generalize to any stalled initiative. Keep AI
+fronted for now so it stays distinct from door 2.
 
 ---
 
 ## 5. What I need from you (the blanks)
 
-1. **Pricing** for each of the three doors, and whether we want a tripwire.
-2. **Real proof:** which stories and metrics we can name, and whether we can name the clients.
-3. **Content cadence:** the brand is understory; the open question is how often you can
-   sustain a core piece plus a few shorts.
-4. **The conversation step:** booked call, short application, or a reply-to-email.
-5. **Naming:** what you want to call each of the three doors in a stuck leader's own words.
+Settled so far: content cadence (biweekly core), the conversation step (short application),
+per-person quiz capture (fire-type bucket on a Kit `fire_type` custom field), and quiz routing
+(qualifier-style, not a severity map). Still open:
+
+1. **Pricing** for each of the three doors.
+2. **Tripwire:** do we want one, and if so what is it?
+3. **Real proof:** which metric or story leads each door, and whether we can name any clients
+   (even by industry).
+4. **Naming:** what you want to call each of the three doors in a stuck leader's own words.
