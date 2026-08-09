@@ -60,27 +60,31 @@
   background-color: var(--bg-primary);
 }
 
-/* The assessment sits in a contained warm panel on the white section, so it reads as a
-   distinct interactive prompt rather than a second text band like What We Do below it. */
+/* The assessment is an "act" block: same deep-green surface as the closing CTA, so the two
+   conversion moments mirror each other and green consistently means "invitation to act". */
 .forest-health-content {
   max-width: var(--layout-prose-max);
   margin: 0;
   text-align: left;
-  background-color: var(--accent-warm-tint-strong);
-  border: 1px solid var(--border-color);
+  background-color: var(--surface-act);
+  border: 1px solid var(--surface-act);
   border-radius: var(--radius-card);
   padding: var(--space-8);
 }
 
+.forest-health-content .section-eyebrow {
+  color: var(--eyebrow-on-act);
+}
+
 .forest-health-content h2 {
   font-size: var(--text-3xl);
-  color: var(--text-primary);
+  color: var(--text-on-act);
   margin: 0 0 var(--space-6);
 }
 
 .forest-health-content p {
   font-size: var(--text-md);
-  color: var(--text-secondary);
+  color: var(--text-on-act-muted);
   line-height: var(--leading-body);
   margin: 0 0 var(--space-6);
 }

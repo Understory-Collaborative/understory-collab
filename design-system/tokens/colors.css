@@ -92,22 +92,39 @@
   --info-400: #6fa982;    /* proposal — lifted forest for dark surfaces */
 
   /* ---- Semantic aliases (portable) — DARK theme is the default ----------- */
-  --brand-primary: var(--earth-400);        /* the accent leads on dark surfaces */
-  --brand-primary-hover: var(--earth-500);
+  /* A lifted forest green leads on dark (forest-700 is too dark for text here). This keeps
+     the brand reading green in BOTH themes, so lime stays the only warm/bright accent. */
+  --brand-primary: #84ad92;                  /* forest-300, clears AA on the dark canvas */
+  --brand-primary-hover: #9cc0a8;
   --brand-forest: var(--forest-700);         /* the green, for surfaces like the nav */
   --brand-ink: var(--forest-900);
-  --brand-tint: rgba(232, 168, 124, 0.12);   /* soft accent wash (selected, callout) */
+  --brand-tint: rgba(132, 173, 146, 0.14);   /* soft green wash (selected, callout) */
 
   /* Warm earth — the SECONDARY accent, DECORATIVE ONLY. Never text or button fill
      (earth fails contrast on white). Use for accent rules/eyebrows, card top-accents,
      icon-chip backgrounds, and soft warm bands. --accent-warm is the solid decorative
      stroke; the tints are washes that sit over the theme surface. */
-  --accent-warm: var(--earth-400);
-  --accent-warm-tint: rgba(232, 168, 124, 0.16);
-  --accent-warm-tint-strong: rgba(232, 168, 124, 0.24);
-  /* Opaque pale-earth chip. Solid (not a wash) so dark line-art icons read on it in BOTH
-     themes. Same value in light and dark on purpose — it is a light badge either way. */
-  --accent-warm-chip: var(--earth-100);
+  --accent-warm: #6fa982;                        /* lifted forest, decorative hero/section rule on dark */
+  --accent-warm-tint: rgba(94, 141, 110, 0.12);  /* faint green band for hero statements (neutral-leaning) */
+  --accent-warm-tint-strong: rgba(94, 141, 110, 0.20);
+  /* Opaque pale-green chip. Solid (not a wash) so dark line-art icons read on it in BOTH
+     themes. A quiet green, never the lime action color, so lime keeps its one meaning. */
+  --accent-warm-chip: #dce8df;
+
+  /* Act surface — the deep-green "invitation to act" block. Color-as-meaning: green MEANS
+     "we are inviting you to act", so it is reserved for conversion moments (the closing CTA
+     on every page, and the home assessment) and appears nowhere else. Lifted on dark so it
+     separates from the near-black canvas; deeper on light (see the light theme). */
+  --surface-act: #35674a;
+  --text-on-act: #ffffff;
+  --text-on-act-muted: #e7f1e9;
+  --eyebrow-on-act: #bfe3a8;
+
+  /* Action — the lime spark. Reserved for the PRIMARY button only; lime MEANS "click this".
+     Dark ink text on lime clears AA (about 7.8:1). */
+  --action: #8ed14f;
+  --action-hover: #7cc23f;
+  --action-text: #12300a;
 
   --surface-canvas: var(--ink-900);
   --surface-card: var(--ink-800);
@@ -128,8 +145,8 @@
   --border-subtle: var(--white-14);
   --border-default: var(--white-22);
   --border-strong: var(--white-22);
-  --border-accent: var(--brand-primary);   /* green (light) / earth (dark) rules & card spines; clears 3:1 either way */
-  --ring-brand: rgba(232, 168, 124, 0.3);
+  --border-accent: var(--brand-primary);   /* green rules & card spines in both themes; clears 3:1 either way */
+  --ring-brand: rgba(132, 173, 146, 0.3);
 
   --status-success-text: var(--success-400);
   --status-success-bg: rgba(129, 199, 132, 0.1);
@@ -181,9 +198,12 @@
 
   /* Warm earth accent — a touch deeper on light so a thin decorative rule reads on white.
      Still decorative only; never used as text or button fill. */
-  --accent-warm: var(--earth-500);
-  --accent-warm-tint: rgba(232, 168, 124, 0.18);
-  --accent-warm-tint-strong: rgba(232, 168, 124, 0.30);
+  --accent-warm: #43785a;                        /* mid forest, decorative hero/section rule on light */
+  --accent-warm-tint: rgba(46, 90, 61, 0.05);    /* barely-there neutral-green band under hero statements */
+  --accent-warm-tint-strong: rgba(46, 90, 61, 0.08);
+
+  /* Deeper act green reads better as a block on the white light canvas. */
+  --surface-act: #2d5a3d;
 
   --surface-canvas: var(--neutral-0);
   --surface-card: var(--neutral-50);

@@ -193,14 +193,15 @@ img {
   outline-offset: var(--focus-ring-offset);
 }
 
+/* Primary button is the lime action color, the one thing lime is allowed to mean. */
 .btn-primary {
-  background-color: var(--accent-color);
-  color: var(--text-on-primary);
+  background-color: var(--action);
+  color: var(--action-text);
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-hover);
-  color: var(--text-on-primary);
+  background-color: var(--action-hover);
+  color: var(--action-text);
 }
 
 .btn-secondary {
@@ -219,17 +220,18 @@ img {
   font-size: var(--text-md);
 }
 
-/* CTA Section - shared across pages. Soft warm wash so the closing band on every page
-   reads warm rather than another flat grey, with an accent rule above the heading. */
+/* CTA Section - shared across pages. This is an "act" block: green MEANS invitation to act,
+   so every page closes on the deep-green surface with white type and a lime primary button.
+   The rule above the heading is lime, tying it to the button. */
 .cta-section {
   padding: var(--space-16) 0;
-  background-color: var(--accent-warm-tint);
+  background-color: var(--surface-act);
   text-align: left;
 }
 
 .cta-section h2 {
   font-size: var(--text-2xl);
-  color: var(--text-primary);
+  color: var(--text-on-act);
   margin: 0 0 var(--space-4);
 }
 
@@ -239,12 +241,12 @@ img {
   width: var(--space-12);
   height: 4px;
   margin: 0 0 var(--space-5);
-  background-color: var(--accent-warm);
+  background-color: var(--action);
   border-radius: var(--radius-pill);
 }
 
 .cta-section p {
-  color: var(--text-secondary);
+  color: var(--text-on-act-muted);
   font-size: var(--text-md);
   margin: 0 0 var(--space-8);
 }
