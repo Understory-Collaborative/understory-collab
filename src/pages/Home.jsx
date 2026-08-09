@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import seedlingIcon from '../assets/noun-seedling-5009514.svg'
 import germinationIcon from '../assets/noun-germination-7706588.svg'
 import treeIcon from '../assets/noun-tree-with-leaves-6402273.svg'
-import DoorsSection from '../components/DoorsSection'
 import './Home.css'
 
 function Home() {
@@ -21,8 +20,6 @@ function Home() {
           </p>
         </div>
       </section>
-
-      <DoorsSection />
 
       <section className="forest-health" aria-labelledby="forest-health-heading">
         <div className="section-container">
