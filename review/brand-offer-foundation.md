@@ -112,13 +112,14 @@ Each is run through Paula's five questions.
    do we want a tripwire, and what is it?]**
 4. **A selling system.** The "What's On Fire?" quiz is the diagnostic top of funnel. Quiz to
    result to a conversation is the path. **[webs decides: booked call, application, or reply?]**
-5. **An automated path** so warm leads move without hand-holding: quiz to Ghost email
+5. **An automated path** so warm leads move without hand-holding: quiz to Kit email
    nurture to offer.
 
 Existing assets this maps onto:
 
 - **"What's On Fire?" quiz** = the diagnostic lead magnet at the top.
-- **Ghost newsletter** = the nurture layer (already migrated off HubSpot on this branch).
+- **Kit newsletter** = the nurture layer (migrated off Ghost; the footer signup and the
+  quiz field-guide flow both feed one Kit form).
 - **Contact** = the conversation step.
 
 ---
@@ -129,7 +130,7 @@ Existing assets this maps onto:
   doors, so a stuck leader self-selects immediately instead of reading a capability list.
 - **Three offer pages,** one per door, each built on Paula's five questions above.
 - **Quiz** stays the top-of-funnel diagnostic and routes to the matching door.
-- **Newsletter (Ghost)** is the nurture.
+- **Newsletter (Kit)** is the nurture.
 - **About** carries the guide-not-hero story and the understory meaning.
 
 ---
