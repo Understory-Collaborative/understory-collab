@@ -5,16 +5,14 @@
 // review/brand-offer-foundation.md.
 //
 // SCAFFOLD STATUS: the who, problem, impact, and risk copy below is webs's own
-// language from the foundation draft. Names are decided with webs (Save the team /
-// Get it shipped / AI without the chaos). Two things are still open and are marked
-// PENDING so they render as visible placeholders on the page rather than silent
-// gaps, because the house rule is to ask, never to invent:
-//   - `price`       : PENDING — no price invented.
-//   - `proofLead`   : PENDING — which real metric or story leads, and whether a
-//                     client can be named, is webs's call.
+// language from the foundation draft. Decided with webs: names (Save the team /
+// Get it shipped / AI without the chaos) and pricing (a $10,000 diagnostic across
+// all three doors, then a scoped engagement — monthly retainer by default, fixed
+// per iteration for Get it shipped). One thing is still open and is marked PENDING
+// so it renders as a visible note rather than a silent gap:
+//   - `proofLead`   : which real metric or story leads each door. No client can be
+//                     named, so proof stays generic.
 // The `selfSelect` lines are first-draft reader-voice for webs to confirm or rewrite.
-// The `proof` text itself is real material from the draft; only the lead choice
-// and any client naming are open.
 
 export const PENDING = '[webs decides]'
 
@@ -45,8 +43,11 @@ export const offers = [
     proof:
       'Two team turnarounds from stuck and spiraling to a steady, predictable delivery ' +
       'pace within a month or two.',
-    proofLead: PENDING, // which metric leads, and whether the client can be named
-    price: PENDING,
+    proofLead: PENDING, // which metric leads (no client named)
+    price: '$10,000 assessment to start.',
+    engagement:
+      'From there, an embedded monthly retainer while we turn the team around, ' +
+      'scoped from what the assessment finds.',
   },
   {
     id: 'take-the-wheel',
@@ -72,7 +73,10 @@ export const offers = [
       'timeframe could actually fit, then shipped a meaningful value increment to ' +
       'customers.',
     proofLead: PENDING, // which of the three rescues leads
-    price: PENDING,
+    price: '$10,000 assessment to start.',
+    engagement:
+      'From there, a fixed price per delivery iteration, scoped from what the ' +
+      'assessment finds.',
   },
   {
     id: 'sane-ai',
@@ -102,7 +106,10 @@ export const offers = [
       'The method is the proof: adoption that reaches the refusers and leaves the org ' +
       'able to run without us.',
     proofLead: PENDING, // whether to name the understory engagement specifically
-    price: PENDING,
+    price: '$10,000 assessment to start.',
+    engagement:
+      'From there, an embedded monthly retainer for the phased rollout, scoped ' +
+      'from what the assessment finds.',
   },
 ]
 

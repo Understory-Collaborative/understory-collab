@@ -55,7 +55,8 @@ Each is run through Paula's five questions.
 - **Proof:** two team turnarounds from stuck and spiraling to a steady 80 to 90 points per
   sprint within a month or two. We cannot name the companies, and we can tell the general
   story with the numbers. **[webs decides: confirm the metric we lead with.]**
-- **Price:** **[webs decides]**
+- **Price:** $10,000 assessment to start, then an embedded monthly retainer while we turn the
+  team around, scoped from what the assessment finds.
 
 ### Door 2 — Get it shipped
 
@@ -72,7 +73,8 @@ Each is run through Paula's five questions.
   the project ourselves. On a third, we held the hard conversation about what the timeframe
   could actually fit, then shipped a meaningful value increment to customers. **[webs decides:
   which one leads.]**
-- **Price:** **[webs decides]**
+- **Price:** $10,000 scoping sprint to start, then a fixed price per delivery iteration,
+  scoped from what the sprint finds.
 
 ### Door 3 — AI without the chaos
 
@@ -96,7 +98,8 @@ Each is run through Paula's five questions.
   by that point because people already know what to do, how to do it, and where to find
   resources. The method is the proof: adoption that reaches the refusers and leaves the org
   able to run without us.
-- **Price:** **[webs decides]**
+- **Price:** $10,000 readiness assessment to start, then an embedded monthly retainer for the
+  phased rollout, scoped from what the assessment finds.
 
 ---
 
@@ -105,9 +108,11 @@ Each is run through Paula's five questions.
 1. **Content that builds know, like, and trust.** One core piece every two weeks under the
    understory brand, with shorts as they come. Cypher can run the engine. (Decided: biweekly
    core.)
-2. **Signature offer at $500+.** The three doors are the signature, done-for-you or one to
-   one. The $500 is the framework floor, not a real price for done-for-you work of this size.
-   **[webs decides: pricing per door.]**
+2. **Signature offer.** The three doors are the signature, done-for-you. Each starts with a
+   $10,000 diagnostic (a bounded, fixed-price assessment we can quote up front), and the
+   engagement is scoped from what the diagnostic finds: an embedded monthly retainer by
+   default, or a fixed price per iteration for Get it shipped. This handles the fact that
+   scope and duration genuinely vary, instead of quoting a large number blind. (Decided.)
 3. **Tripwire: paid group office hours.** Up to 3 spots at $50 each, so a 30-minute session
    earns $50 to $150. A standalone paid micro-consult (bring one specific problem, leave with a
    concrete next step), kept distinct from the free application call so the two do not blur. The
@@ -151,12 +156,13 @@ fronted for now so it stays distinct from door 2.
 
 ## 5. What I need from you (the blanks)
 
-Settled so far: door names (Save the team, Get it shipped, AI without the chaos), content
-cadence (biweekly core), the conversation step (short application), the tripwire (general paid
-group office hours, up to 3 spots at $50 each), per-person quiz capture (fire-type bucket on a
-Kit `fire_type` custom field), and quiz routing (qualifier-style, not a severity map). Still
-open:
+Settled so far: door names (Save the team, Get it shipped, AI without the chaos), pricing (a
+$10,000 diagnostic per door, then a scoped engagement — monthly retainer by default, fixed per
+iteration for Get it shipped), content cadence (biweekly core), the conversation step (short
+application), the tripwire (general paid group office hours, up to 3 spots at $50 each),
+per-person quiz capture (fire-type bucket on a Kit `fire_type` custom field), quiz routing
+(qualifier-style, not a severity map), and client naming (none). Still open:
 
-1. **Pricing** for each of the three doors.
-2. **Real proof:** which metric or story leads each door. No client can be named, so proof
-   stays generic: the numbers and the story, no company names. (Client naming: decided, none.)
+1. **Lead proof per door:** which single metric or story leads each door. The proof text is
+   already written and stays generic (numbers and story, no company names); this is only the
+   choice of what goes first.

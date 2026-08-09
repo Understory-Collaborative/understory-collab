@@ -18,7 +18,6 @@ function OfferPage() {
     return <Navigate to="/" replace />
   }
 
-  const pricePending = offer.price === PENDING
   const proofLeadPending = offer.proofLead === PENDING
 
   return (
@@ -65,13 +64,8 @@ function OfferPage() {
 
           <div className="offer-block offer-price">
             <h2>Investment</h2>
-            {pricePending ? (
-              <p className="offer-pending" role="note">
-                Pricing — to confirm.
-              </p>
-            ) : (
-              <p className="offer-price-value">{offer.price}</p>
-            )}
+            <p className="offer-price-value">{offer.price}</p>
+            {offer.engagement && <p>{offer.engagement}</p>}
           </div>
         </div>
       </section>
