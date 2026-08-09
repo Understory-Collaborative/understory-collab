@@ -108,9 +108,11 @@ Each is run through Paula's five questions.
 2. **Signature offer at $500+.** The three doors are the signature, done-for-you or one to
    one. The $500 is the framework floor, not a real price for done-for-you work of this size.
    **[webs decides: pricing per door.]**
-3. **Tripwire at $20 to $200** to fund acquisition and build desire for the signature offer.
-   Candidate: a paid teardown or playbook that follows the free assessment. **[webs decides:
-   do we want a tripwire, and what is it?]**
+3. **Tripwire: paid group office hours.** Up to 3 spots at $50 each, so a 30-minute session
+   earns $50 to $150. A standalone paid micro-consult (bring one specific problem, leave with a
+   concrete next step), kept distinct from the free application call so the two do not blur. The
+   group format scales better than 1:1 and is on brand, since office hours are already part of
+   the adoption method. **[webs decides: general office hours, or Door 3 / AI specific?]**
 4. **A selling system.** The "What's On Fire?" quiz is the diagnostic top of funnel. The path
    is quiz to fire-type result to a short application. Rather than a mechanical severity-to-door
    map, the result screen presents the three doors as an honest qualifier: if one fits, walk
@@ -153,7 +155,8 @@ per-person quiz capture (fire-type bucket on a Kit `fire_type` custom field), an
 (qualifier-style, not a severity map). Still open:
 
 1. **Pricing** for each of the three doors.
-2. **Tripwire:** do we want one, and if so what is it?
+2. **Tripwire scope:** general office hours, or Door 3 / AI specific? (Format decided: paid
+   group office hours, up to 3 spots at $50 each.)
 3. **Real proof:** which metric or story leads each door, and whether we can name any clients
    (even by industry).
 4. **Naming:** what you want to call each of the three doors in a stuck leader's own words.
