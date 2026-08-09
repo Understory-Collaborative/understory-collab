@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { subscribe } from '../lib/ghost'
+import { subscribe } from '../lib/kit'
 import './SubscribeForm.css'
 
 function SubscribeForm({ variant = 'default', heading, description }) {
