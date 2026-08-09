@@ -12,6 +12,7 @@ import Privacy from './pages/Privacy'
 import Unsubscribe from './pages/Unsubscribe'
 import Accessibility from './pages/Accessibility'
 import Quiz from './pages/Quiz'
+import OfferPage from './pages/OfferPage'
 import './App.css'
 
 function App() {
@@ -35,6 +36,8 @@ function App() {
             <Route path="unsubscribe" element={<Unsubscribe />} />
             <Route path="accessibility" element={<Accessibility />} />
             <Route path="quiz" element={<Quiz />} />
+            {/* The three doors — one offer page per door, data-driven from offersData.js */}
+            <Route path="offers/:slug" element={<OfferPage />} />
           </Route>
         </Routes>
       </Router>
