@@ -5,16 +5,14 @@
 // review/brand-offer-foundation.md.
 //
 // SCAFFOLD STATUS: the who, problem, impact, and risk copy below is webs's own
-// language from the foundation draft. Three things are still open and are marked
+// language from the foundation draft. Names are decided with webs (Save the team /
+// Get it shipped / AI without the chaos). Two things are still open and are marked
 // PENDING so they render as visible placeholders on the page rather than silent
 // gaps, because the house rule is to ask, never to invent:
-//   - `name`        : working label from the draft; webs may rename in a stuck
-//                     leader's own words.
-//   - `selfSelect`  : first-draft reader-voice line for the homepage; webs to
-//                     confirm or rewrite in her voice.
 //   - `price`       : PENDING — no price invented.
 //   - `proofLead`   : PENDING — which real metric or story leads, and whether a
 //                     client can be named, is webs's call.
+// The `selfSelect` lines are first-draft reader-voice for webs to confirm or rewrite.
 // The `proof` text itself is real material from the draft; only the lead choice
 // and any client naming are open.
 
@@ -23,11 +21,10 @@ export const PENDING = '[webs decides]'
 export const offers = [
   {
     id: 'salvage-team',
-    slug: 'salvage-the-team',
-    // Working label from the draft. PENDING: webs may rename in reader voice.
-    name: 'Salvage the team you have',
+    slug: 'save-the-team',
+    name: 'Save the team',
     // First-draft homepage self-select line, drawn from the problem quote below.
-    // PENDING: webs to confirm or rewrite.
+    // webs to confirm or rewrite.
     selfSelect: 'My team keeps missing, and I need to know whether it can be saved.',
     whoFor:
       'A leader with an underperforming team that has already cycled through several ' +
@@ -53,8 +50,8 @@ export const offers = [
   },
   {
     id: 'take-the-wheel',
-    slug: 'take-the-wheel',
-    name: 'Take the wheel and ship',
+    slug: 'get-it-shipped',
+    name: 'Get it shipped',
     selfSelect: 'This project keeps slipping, and no one can say what actually ships.',
     whoFor:
       'A leader on a project where the date keeps sliding, the scope keeps shifting, ' +
@@ -79,8 +76,8 @@ export const offers = [
   },
   {
     id: 'sane-ai',
-    slug: 'sane-ai-adoption',
-    name: 'Sane AI adoption',
+    slug: 'ai-without-the-chaos',
+    name: 'AI without the chaos',
     selfSelect: 'AI is loose in my org, and it is more risk and noise than help.',
     whoFor:
       'A leader who wants AI to make their people sharper, and instead has finance ' +

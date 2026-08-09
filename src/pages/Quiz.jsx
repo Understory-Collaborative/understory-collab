@@ -123,9 +123,9 @@ function Quiz() {
               </h2>
               <p className="result-doors-intro">
                 We do three things well. If one of these is the specific problem in
-                front of you, walk through that door and see what it looks like. If
-                none of them fits, we are probably not your people, and knowing that
-                now saves you time.
+                front of you, open that door and read what it involves. If none of
+                them fits, we are probably not your people, and knowing that now
+                saves you time.
               </p>
               <ul className="result-doors-list" role="list">
                 {offers.map((offer) => (

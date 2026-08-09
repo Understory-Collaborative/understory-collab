@@ -14,7 +14,7 @@ function DoorsSection() {
         <h2 id="doors-heading">Which one is you?</h2>
         <p className="doors-intro">
           Most leaders who find us are stuck in one of three specific places. Pick
-          the one that sounds like your week.
+          the one that matches your week.
         </p>
         <ul className="doors-grid" role="list">
           {offers.map((offer) => (
@@ -23,7 +23,7 @@ function DoorsSection() {
               <h3 className="door-name">{offer.name}</h3>
               <p className="door-impact">{offer.impact}</p>
               <Link to={`/offers/${offer.slug}`} className="door-link">
-                See this door
+                Open this door
                 <span className="sr-only"> — {offer.name}</span>
               </Link>
             </li>

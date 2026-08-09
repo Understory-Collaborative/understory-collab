@@ -38,7 +38,7 @@ which is also why the work is stronger: a diverse understory meets the needs of 
 Three specific situations a stuck leader recognizes on sight. Same soul behind each door.
 Each is run through Paula's five questions.
 
-### Door 1 — Salvage the team you have
+### Door 1 — Save the team
 
 - **Who it is for:** a leader with an underperforming team that has already cycled through
   several leads, where moving or replacing people is expensive and slow, and they want one
@@ -57,7 +57,7 @@ Each is run through Paula's five questions.
   story with the numbers. **[webs decides: confirm the metric we lead with.]**
 - **Price:** **[webs decides]**
 
-### Door 2 — Take the wheel and ship
+### Door 2 — Get it shipped
 
 - **Who it is for:** a leader on a project where the date keeps sliding, the scope keeps
   shifting, and no one can say what the first iteration even delivers.
@@ -74,7 +74,7 @@ Each is run through Paula's five questions.
   which one leads.]**
 - **Price:** **[webs decides]**
 
-### Door 3 — Sane AI adoption
+### Door 3 — AI without the chaos
 
 - **Who it is for:** a leader who wants AI to make their people sharper, and instead has
   finance shipping to production with unknown security and PII exposure, runaway token
@@ -112,7 +112,8 @@ Each is run through Paula's five questions.
    earns $50 to $150. A standalone paid micro-consult (bring one specific problem, leave with a
    concrete next step), kept distinct from the free application call so the two do not blur. The
    group format scales better than 1:1 and is on brand, since office hours are already part of
-   the adoption method. **[webs decides: general office hours, or Door 3 / AI specific?]**
+   the adoption method. Scope is general office hours (bring whatever your fire is), so it
+   catches leads across all three doors, not only AI. (Decided.)
 4. **A selling system.** The "What's On Fire?" quiz is the diagnostic top of funnel. The path
    is quiz to fire-type result to a short application. Rather than a mechanical severity-to-door
    map, the result screen presents the three doors as an honest qualifier: if one fits, walk
@@ -150,13 +151,12 @@ fronted for now so it stays distinct from door 2.
 
 ## 5. What I need from you (the blanks)
 
-Settled so far: content cadence (biweekly core), the conversation step (short application),
-per-person quiz capture (fire-type bucket on a Kit `fire_type` custom field), and quiz routing
-(qualifier-style, not a severity map). Still open:
+Settled so far: door names (Save the team, Get it shipped, AI without the chaos), content
+cadence (biweekly core), the conversation step (short application), the tripwire (general paid
+group office hours, up to 3 spots at $50 each), per-person quiz capture (fire-type bucket on a
+Kit `fire_type` custom field), and quiz routing (qualifier-style, not a severity map). Still
+open:
 
 1. **Pricing** for each of the three doors.
-2. **Tripwire scope:** general office hours, or Door 3 / AI specific? (Format decided: paid
-   group office hours, up to 3 spots at $50 each.)
-3. **Real proof:** which metric or story leads each door, and whether we can name any clients
+2. **Real proof:** which metric or story leads each door, and whether we can name any clients
    (even by industry).
-4. **Naming:** what you want to call each of the three doors in a stuck leader's own words.
