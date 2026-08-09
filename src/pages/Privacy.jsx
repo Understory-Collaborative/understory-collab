@@ -7,7 +7,7 @@ function Privacy() {
       <section className="page-hero" aria-labelledby="privacy-heading">
         <div className="page-hero-content">
           <h1 id="privacy-heading">Privacy Policy</h1>
-          <p className="page-hero-description">Last updated: July 26, 2026</p>
+          <p className="page-hero-description">Last updated: August 9, 2026</p>
         </div>
       </section>
 
@@ -45,7 +45,7 @@ function Privacy() {
             <p>
               Contact-form submissions are recorded in a private Google Sheet hosted by
               Google LLC, accessible only to Understory Collaborative. Newsletter
-              subscriptions are managed by our newsletter provider, Ghost. These providers
+              subscriptions are managed by our newsletter provider, Kit. These providers
               process your information on our behalf and are not permitted to use it for
               their own purposes.
             </p>
@@ -77,9 +77,10 @@ function Privacy() {
             <p>
               You can ask us to access, correct, or delete the personal information you have
               shared with us, and you can unsubscribe from the newsletter at any time using
-              the <Link to="/unsubscribe">unsubscribe page</Link> or the one-click link in
-              any newsletter email. To make any other request about your data, please{' '}
-              <Link to="/contact">contact us</Link> and we will respond promptly.
+              the one-click link in any newsletter email, or the steps on our{' '}
+              <Link to="/unsubscribe">unsubscribe page</Link>. To make any other request about
+              your data, please <Link to="/contact">contact us</Link> and we will respond
+              promptly.
             </p>
           </section>
 

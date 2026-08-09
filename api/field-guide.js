@@ -1,29 +1,34 @@
 /**
- * Vercel Node serverless function: field-guide email capture (Ghost, no HubSpot).
+ * Vercel Node serverless function: field-guide email capture (Kit, formerly ConvertKit).
  *
  * Flow: a visitor finishes the "What's On Fire?" quiz and enters their email to get the
- * matching field guide. We add them to Ghost as a member (which sends Ghost's double
- * opt-in confirmation email) and, if a sender is configured, email them the guide link
- * too. The front end also reveals an instant on-page download, so delivery is immediate
- * AND arrives by email.
+ * matching field guide. We subscribe them to our Kit form (which sends Kit's double
+ * opt-in confirmation email), tagging the fire type as a custom field so the list can be
+ * segmented later, and, if a sender is configured, email them the guide link too. The
+ * front end also reveals an instant on-page download, so delivery is immediate AND
+ * arrives by email.
+ *
+ * Kit's public form endpoint takes only an email plus optional custom fields, and the form
+ * id is public (it ships in the embed on the site), so there is no API key here and nothing
+ * that requires a paid plan.
  *
  * Environment variables (set in Vercel, never committed):
- *   GHOST_ADMIN_API_URL — base URL of the Ghost site (e.g. https://the-canopy.ghost.io)
- *   GHOST_ADMIN_API_KEY — Ghost Admin API key "{id}:{hexsecret}" (custom integration)
- *   RESEND_API_KEY      — (optional) Resend API key to email the guide link. If unset,
- *                         we skip the email; Ghost's opt-in email and the instant
- *                         on-page download still work.
- *   FIELD_GUIDE_FROM    — (optional) From address for the guide email, e.g.
- *                         "Understory Collaborative <hello@understorycollab.com>"
- *   SITE_URL            — (optional) canonical site origin for absolute PDF links in the
- *                         email; falls back to the request's own host.
+ *   RESEND_API_KEY   — (optional) Resend API key to email the guide link. If unset, we skip
+ *                      the email; Kit's opt-in email and the instant download still work.
+ *   FIELD_GUIDE_FROM — (optional) From address for the guide email, e.g.
+ *                      "Understory Collaborative <hello@understorycollab.com>"
+ *   SITE_URL         — (optional) canonical site origin for absolute PDF links in the email;
+ *                      falls back to the request's own host.
  *
  * Privacy: never logs the email address; returns a generic error without echoing input.
  */
 
-import crypto from 'node:crypto'
-
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+// Kit form that newsletter and field-guide signups both feed. The id is public, so it is
+// safe to hardcode and needs no key. To capture the fire type, add a "fire_type" custom
+// field in Kit; if it is missing, Kit simply ignores the value and the signup still works.
+const KIT_FORM_ENDPOINT = 'https://app.kit.com/forms/9782548/subscriptions'
 
 // The four fire types are the only valid guides; this allowlist also prevents any
 // path trickery from reaching the /field-guides/<slug>.pdf link.
@@ -34,28 +39,7 @@ const GUIDES = {
   firestorm: 'After the Firestorm',
 }
 
-const { Buffer, process } = globalThis
-
-function base64url(input) {
-  return Buffer.from(input).toString('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_')
-}
-
-function createAdminToken(adminKey) {
-  const [id, secret] = adminKey.split(':')
-  if (!id || !secret) throw new Error('Malformed GHOST_ADMIN_API_KEY')
-  const iat = Math.floor(Date.now() / 1000)
-  const header = { alg: 'HS256', typ: 'JWT', kid: id }
-  const payload = { iat, exp: iat + 300, aud: '/admin/' }
-  const signingInput = `${base64url(JSON.stringify(header))}.${base64url(JSON.stringify(payload))}`
-  const signature = crypto
-    .createHmac('sha256', Buffer.from(secret, 'hex'))
-    .update(signingInput)
-    .digest('base64')
-    .replace(/=/g, '')
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-  return `${signingInput}.${signature}`
-}
+const { process } = globalThis
 
 async function readJsonBody(req) {
   if (req.body && typeof req.body === 'object') return req.body
@@ -75,34 +59,19 @@ function siteOrigin(req) {
   return `${proto}://${host}`
 }
 
-async function addGhostMember({ apiUrl, apiKey, email, guideName, fireType }) {
-  const token = createAdminToken(apiKey)
-  const base = `${apiUrl.replace(/\/$/, '')}/ghost/api/admin`
-  // send_email + email_type=signup triggers Ghost's double opt-in confirmation email.
-  const res = await fetch(`${base}/members/?send_email=true&email_type=signup`, {
+async function subscribeToKit({ email, fireType }) {
+  // Kit's own HTML form posts email_address form-encoded; custom fields ride along as
+  // fields[<key>]. URLSearchParams keeps this a simple, dependency-free POST.
+  const res = await fetch(KIT_FORM_ENDPOINT, {
     method: 'POST',
-    headers: {
-      Authorization: `Ghost ${token}`,
-      'Accept-Version': 'v5.0',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      members: [
-        {
-          email,
-          labels: [
-            { name: 'Field Guide', slug: 'field-guide' },
-            { name: `Field Guide: ${guideName}`, slug: `field-guide-${fireType}` },
-          ],
-          note: `Requested field guide: ${guideName}`,
-        },
-      ],
-    }),
+    headers: { Accept: 'application/json' },
+    body: new URLSearchParams({ email_address: email, 'fields[fire_type]': fireType }),
   })
-  // 201 created, or 422 "member already exists" — both are fine for our purposes.
-  if (res.ok) return true
-  if (res.status === 422) return true
-  return false
+  if (!res.ok) {
+    // Log status only — never the email address (no PII in logs).
+    console.error('Kit subscribe failed:', res.status)
+  }
+  return res.ok
 }
 
 async function emailGuide({ email, guideName, pdfHref }) {
@@ -131,12 +100,6 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const apiUrl = process.env.GHOST_ADMIN_API_URL
-  const apiKey = process.env.GHOST_ADMIN_API_KEY
-  if (!apiUrl || !apiKey) {
-    return res.status(500).json({ error: 'Field guide endpoint not configured' })
-  }
-
   const body = await readJsonBody(req)
   const email = typeof body?.email === 'string' ? body.email.trim() : ''
   const fireType = typeof body?.fireType === 'string' ? body.fireType : ''
@@ -152,7 +115,7 @@ export default async function handler(req, res) {
   const pdfPath = `/field-guides/${fireType}.pdf`
 
   try {
-    const added = await addGhostMember({ apiUrl, apiKey, email, guideName, fireType })
+    const added = await subscribeToKit({ email, fireType })
     if (!added) {
       return res.status(502).json({ error: 'Could not process your request. Please try again.' })
     }
