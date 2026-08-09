@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { quizQuestions, getCrisisType } from '../data/quizData'
+import { offers } from '../data/offersData'
 import './Quiz.css'
 
 function Quiz() {
@@ -114,6 +115,28 @@ function Quiz() {
                 send it to your inbox once you confirm. No spam, unsubscribe anytime.
               </p>
               <FieldGuideForm fireType={crisisType.id} fireName={crisisType.name} />
+            </div>
+
+            <div className="result-doors" aria-labelledby="result-doors-heading">
+              <h2 id="result-doors-heading">
+                Now you know the weather. Here is where we help.
+              </h2>
+              <p className="result-doors-intro">
+                We do three things well. If one of these is the specific problem in
+                front of you, walk through that door and see what it looks like. If
+                none of them fits, we are probably not your people, and knowing that
+                now saves you time.
+              </p>
+              <ul className="result-doors-list" role="list">
+                {offers.map((offer) => (
+                  <li key={offer.id} className="result-door">
+                    <Link to={`/offers/${offer.slug}`} className="result-door-link">
+                      <span className="result-door-select">{offer.selfSelect}</span>
+                      <span className="result-door-name">{offer.name}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <div className="result-actions">
