@@ -13,6 +13,7 @@ import Unsubscribe from './pages/Unsubscribe'
 import Accessibility from './pages/Accessibility'
 import Quiz from './pages/Quiz'
 import OfferPage from './pages/OfferPage'
+import Apply from './pages/Apply'
 import './App.css'
 
 function App() {
@@ -38,6 +39,8 @@ function App() {
             <Route path="quiz" element={<Quiz />} />
             {/* The three doors — one offer page per door, data-driven from offersData.js */}
             <Route path="offers/:slug" element={<OfferPage />} />
+            {/* Short application — the conversation step; door prefilled via ?door=<slug> */}
+            <Route path="apply" element={<Apply />} />
           </Route>
         </Routes>
       </Router>

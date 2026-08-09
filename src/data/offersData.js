@@ -1,15 +1,17 @@
-// The three doors — Understory Collaborative's signature offers.
+// The three offerings — Understory Collaborative's signature doors.
 //
-// A stuck leader self-selects one of these on the homepage, and each has its own
-// offer page built on the who / problem / impact / proof structure from
-// review/brand-offer-foundation.md.
+// Each is a service category (Product design, Development, Technology acceleration)
+// with a specific stuck-leader story attached. On the homepage a leader still
+// self-selects by the reader-voice line first, then sees the category label, so we
+// keep the "recognize yourself on sight" hook and the clean service taxonomy at
+// once. Each has its own offer page on the who / problem / impact / proof structure
+// from review/brand-offer-foundation.md.
 //
-// SCAFFOLD STATUS: the who, problem, impact, and risk copy below is webs's own
-// language from the foundation draft. Decided with webs: names (Save the team /
-// Get it shipped / AI without the chaos) and pricing (a $10,000 diagnostic across
-// all three doors, then a scoped engagement — monthly retainer by default, fixed
-// per iteration for Get it shipped). One thing is still open and is marked PENDING
-// so it renders as a visible note rather than a silent gap:
+// STATUS (decided with webs): categories and mapping (Product design = the delivery
+// story, Development = the team-turnaround story, Technology acceleration = the AI
+// story); names; pricing (a $10,000 diagnostic per door, then a scoped engagement —
+// monthly retainer by default, fixed per iteration for Product design). One field is
+// still open and renders as a visible note rather than a silent gap:
 //   - `proofLead`   : which real metric or story leads each door. No client can be
 //                     named, so proof stays generic.
 // The `selfSelect` lines are first-draft reader-voice for webs to confirm or rewrite.
@@ -18,11 +20,43 @@ export const PENDING = '[webs decides]'
 
 export const offers = [
   {
-    id: 'salvage-team',
-    slug: 'save-the-team',
-    name: 'Save the team',
+    id: 'product-design',
+    slug: 'product-design',
+    name: 'Product design',
+    // Descriptor keeps the category concrete; the selfSelect line is the hook.
+    descriptor: 'Getting the project out the door',
     // First-draft homepage self-select line, drawn from the problem quote below.
     // webs to confirm or rewrite.
+    selfSelect: 'This project keeps slipping, and no one can say what actually ships.',
+    whoFor:
+      'A leader on a project where the date keeps sliding, the scope keeps shifting, ' +
+      'and no one can say what the first iteration even delivers.',
+    problem:
+      'I need someone to take control of this and get a defined thing shipped, then ' +
+      'hand me back a project I can actually steer.',
+    impact:
+      'A defined first iteration, a delivery path the team can see, and ownership ' +
+      'returned to your team so it keeps moving after we go.',
+    risk:
+      'The date slides again, trust erodes with whoever is waiting, and the team burns ' +
+      'out on a moving target.',
+    proof:
+      'Three delivery rescues that show the range of the offer: one saved by ' +
+      'collaborating alongside the struggling team, one saved by taking over the ' +
+      'project ourselves, and one where we held the hard conversation about what the ' +
+      'timeframe could actually fit, then shipped a meaningful value increment to ' +
+      'customers.',
+    proofLead: PENDING, // which of the three rescues leads
+    price: '$10,000 assessment to start.',
+    engagement:
+      'From there, a fixed price per delivery iteration, scoped from what the ' +
+      'assessment finds.',
+  },
+  {
+    id: 'development',
+    slug: 'development',
+    name: 'Development',
+    descriptor: 'Accelerating a team',
     selfSelect: 'My team keeps missing, and I need to know whether it can be saved.',
     whoFor:
       'A leader with an underperforming team that has already cycled through several ' +
@@ -50,38 +84,10 @@ export const offers = [
       'scoped from what the assessment finds.',
   },
   {
-    id: 'take-the-wheel',
-    slug: 'get-it-shipped',
-    name: 'Get it shipped',
-    selfSelect: 'This project keeps slipping, and no one can say what actually ships.',
-    whoFor:
-      'A leader on a project where the date keeps sliding, the scope keeps shifting, ' +
-      'and no one can say what the first iteration even delivers.',
-    problem:
-      'I need someone to take control of this and get a defined thing shipped, then ' +
-      'hand me back a project I can actually steer.',
-    impact:
-      'A defined first iteration, a delivery path the team can see, and the ownership ' +
-      'handed back so it keeps moving after we go.',
-    risk:
-      'The date slides again, trust erodes with whoever is waiting, and the team burns ' +
-      'out on a moving target.',
-    proof:
-      'Three delivery rescues that show the range of the offer: one saved by ' +
-      'collaborating alongside the struggling team, one saved by taking over the ' +
-      'project ourselves, and one where we held the hard conversation about what the ' +
-      'timeframe could actually fit, then shipped a meaningful value increment to ' +
-      'customers.',
-    proofLead: PENDING, // which of the three rescues leads
-    price: '$10,000 assessment to start.',
-    engagement:
-      'From there, a fixed price per delivery iteration, scoped from what the ' +
-      'assessment finds.',
-  },
-  {
-    id: 'sane-ai',
-    slug: 'ai-without-the-chaos',
-    name: 'AI without the chaos',
+    id: 'technology-acceleration',
+    slug: 'technology-acceleration',
+    name: 'Technology acceleration',
+    descriptor: 'AI that helps, without the chaos',
     selfSelect: 'AI is loose in my org, and it is more risk and noise than help.',
     whoFor:
       'A leader who wants AI to make their people sharper, and instead has finance ' +

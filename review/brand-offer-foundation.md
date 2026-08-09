@@ -38,7 +38,13 @@ which is also why the work is stronger: a diverse understory meets the needs of 
 Three specific situations a stuck leader recognizes on sight. Same soul behind each door.
 Each is run through Paula's five questions.
 
-### Door 1 — Save the team
+Reframe (decided with webs): the offerings are now named as service categories, and each keeps
+its specific story. The reader-voice self-select line stays as the homepage hook, so a leader
+still recognizes the situation first and reads the category label second. Site order is Product
+design, Development, Technology acceleration. Mapping: Product design = the delivery story,
+Development = the team-turnaround story, Technology acceleration = the AI story.
+
+### Development — accelerating a team (story: the team turnaround)
 
 - **Who it is for:** a leader with an underperforming team that has already cycled through
   several leads, where moving or replacing people is expensive and slow, and they want one
@@ -58,14 +64,14 @@ Each is run through Paula's five questions.
 - **Price:** $10,000 assessment to start, then an embedded monthly retainer while we turn the
   team around, scoped from what the assessment finds.
 
-### Door 2 — Get it shipped
+### Product design — getting the project out the door (story: the delivery rescue)
 
 - **Who it is for:** a leader on a project where the date keeps sliding, the scope keeps
   shifting, and no one can say what the first iteration even delivers.
 - **The problem:** "I need someone to take control of this and get a defined thing shipped,
   then hand me back a project I can actually steer."
 - **The impact we deliver:** a defined first iteration, a delivery path the team can see,
-  and the ownership handed back so it keeps moving after we go.
+  and ownership returned to the team so it keeps moving after we go.
 - **Risk of doing nothing:** the date slides again, trust erodes with whoever is waiting,
   and the team burns out on a moving target.
 - **Proof:** three delivery rescues, which show the range of the offer. We saved one feature
@@ -76,7 +82,7 @@ Each is run through Paula's five questions.
 - **Price:** $10,000 scoping sprint to start, then a fixed price per delivery iteration,
   scoped from what the sprint finds.
 
-### Door 3 — AI without the chaos
+### Technology acceleration — AI (story: sane AI adoption)
 
 - **Who it is for:** a leader who wants AI to make their people sharper, and instead has
   finance shipping to production with unknown security and PII exposure, runaway token
@@ -112,7 +118,8 @@ Each is run through Paula's five questions.
    $10,000 diagnostic (a bounded, fixed-price assessment we can quote up front), and the
    engagement is scoped from what the diagnostic finds: an embedded monthly retainer by
    default, or a fixed price per iteration for Get it shipped. This handles the fact that
-   scope and duration genuinely vary, instead of quoting a large number blind. (Decided.)
+   scope and duration genuinely vary, instead of quoting a large number with nothing to go on.
+   (Decided.)
 3. **Tripwire: paid group office hours.** Up to 3 spots at $50 each, so a 30-minute session
    earns $50 to $150. A standalone paid micro-consult (bring one specific problem, leave with a
    concrete next step), kept distinct from the free application call so the two do not blur. The
@@ -134,7 +141,12 @@ Existing assets this maps onto:
   same form).
 - **Kit newsletter** = the nurture layer (migrated off Ghost; the footer signup and the
   quiz field-guide flow both feed one Kit form).
-- **Short application** = the conversation step (form and questions still to build).
+- **Short application** = the conversation step. A real form at /apply (door, name, email,
+  company, what is stuck, timeline) that emails a shared inbox through a Google Apps Script Web
+  App, the same no-dependency pattern as the contact form. No CRM, no sheet to remember, and no
+  third-party email service (no Resend, no Mailgun): Apps Script sends the mail. A honeypot
+  handles bots. Setup needed: the Apps Script Web App plus an APPLICATION_WEBHOOK_URL env var in
+  Vercel (steps are in api/apply.js).
 
 ---
 
@@ -156,12 +168,14 @@ fronted for now so it stays distinct from door 2.
 
 ## 5. What I need from you (the blanks)
 
-Settled so far: door names (Save the team, Get it shipped, AI without the chaos), pricing (a
-$10,000 diagnostic per door, then a scoped engagement — monthly retainer by default, fixed per
-iteration for Get it shipped), content cadence (biweekly core), the conversation step (short
-application), the tripwire (general paid group office hours, up to 3 spots at $50 each),
-per-person quiz capture (fire-type bucket on a Kit `fire_type` custom field), quiz routing
-(qualifier-style, not a severity map), and client naming (none). Still open:
+Settled so far: offering names as service categories (Product design, Development, Technology
+acceleration) with the reader-voice hook kept, pricing (a $10,000 diagnostic per door, then a
+scoped engagement — monthly retainer by default, fixed per iteration for Product design),
+content cadence (biweekly core), the conversation step (a short application at /apply that
+emails a shared inbox via Apps Script), the tripwire (general paid group office hours, up to 3
+spots at $50 each), per-person quiz capture (fire-type bucket on a Kit `fire_type` custom
+field), quiz routing (qualifier-style, not a severity map), and client naming (none). Still
+open:
 
 1. **Lead proof per door:** which single metric or story leads each door. The proof text is
    already written and stays generic (numbers and story, no company names); this is only the

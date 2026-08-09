@@ -77,9 +77,7 @@ function OfferPage() {
             Tell us where you are stuck in a short application. If it is a fit, we
             will set up a conversation.
           </p>
-          {/* Points at Contact for now; a dedicated short-application form is a
-              follow-up once we settle the questions it should ask. */}
-          <Link to="/contact" className="btn btn-primary btn-large">
+          <Link to={`/apply?door=${offer.slug}`} className="btn btn-primary btn-large">
             Start an application
           </Link>
         </div>
