@@ -158,5 +158,5 @@ Kit `fire_type` custom field), and quiz routing (qualifier-style, not a severity
 open:
 
 1. **Pricing** for each of the three doors.
-2. **Real proof:** which metric or story leads each door, and whether we can name any clients
-   (even by industry).
+2. **Real proof:** which metric or story leads each door. No client can be named, so proof
+   stays generic: the numbers and the story, no company names. (Client naming: decided, none.)

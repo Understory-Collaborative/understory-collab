@@ -184,7 +184,10 @@
 
   --success-bg: var(--status-success-bg);
   --success-border: var(--status-success-border);
-  --success-text: var(--success-400);
+  /* Track the status token so success text flips per theme (success-400 on dark,
+     success-700 on light). Referencing success-400 directly left light-mode text
+     as a pale green on a near-white tint, well under AA contrast. */
+  --success-text: var(--status-success-text);
 }
 
 /* ---- Light theme --------------------------------------------------------- */
