@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { subscribe } from '../lib/ghost'
+import { subscribe } from '../lib/kit'
 import './SubscribeForm.css'
 
 function SubscribeForm({ variant = 'default', heading, description }) {
@@ -23,7 +23,7 @@ function SubscribeForm({ variant = 'default', heading, description }) {
       const raw = error?.message || ''
       let friendly = 'Something went wrong. Please try again.'
       if (/already/i.test(raw)) {
-        friendly = "You're already subscribed — check your inbox."
+        friendly = "You're already subscribed. Check your inbox."
       } else if (/disabled|members/i.test(raw)) {
         friendly = 'Subscriptions are currently unavailable.'
       } else if (/email/i.test(raw)) {
@@ -64,6 +64,8 @@ function SubscribeForm({ variant = 'default', heading, description }) {
           onChange={(event) => setEmail(event.target.value)}
           required
           autoComplete="email"
+          aria-invalid={status === 'error'}
+          aria-describedby={status === 'error' ? `${inputId}-error` : undefined}
           disabled={status === 'loading' || status === 'success'}
         />
         <button
@@ -86,7 +88,7 @@ function SubscribeForm({ variant = 'default', heading, description }) {
           </p>
         )}
         {status === 'error' && (
-          <p className="subscribe-form__error">{errorMessage}</p>
+          <p id={`${inputId}-error`} className="subscribe-form__error">{errorMessage}</p>
         )}
       </div>
     </form>

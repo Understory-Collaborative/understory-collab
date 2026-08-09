@@ -9,7 +9,7 @@
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 1rem var(--layout-gutter);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,6 +19,7 @@
 .nav-logo-link {
   display: flex;
   align-items: center;
+  gap: var(--space-3);
   text-decoration: none;
   border-radius: 8px;
   padding: 0.25rem;
@@ -33,6 +34,15 @@
   width: 40px;
   height: 40px;
   border-radius: 8px;
+}
+
+.nav-wordmark {
+  color: #ffffff;
+  font-weight: var(--weight-bold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -68,6 +78,79 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+/* Services dropdown (accessible disclosure) */
+.nav-dropdown {
+  position: relative;
+  /* Shrink the list item to the toggle's own height (instead of stretching to the full nav
+     row) so the submenu can sit flush beneath the button with no dead gap. */
+  align-self: center;
+}
+
+.nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font: inherit;
+  font-weight: 500;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.nav-caret {
+  transition: transform var(--duration-fast, 0.15s) ease;
+}
+
+.nav-caret.open {
+  transform: rotate(180deg);
+}
+
+.nav-submenu {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  left: 0;
+  min-width: 12rem;
+  margin: 0;
+  padding: 0.5rem;
+  list-style: none;
+  background-color: var(--forest-800);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+  z-index: 200;
+}
+
+.nav-submenu[hidden] {
+  display: none;
+}
+
+.nav-sublink {
+  display: block;
+  padding: 0.55rem 0.75rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.nav-sublink:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.nav-sublink:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 2px;
+}
+
+.nav-sublink.active {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 .theme-toggle {
   display: flex;
   align-items: center;
@@ -96,13 +179,13 @@
 @media (max-width: 768px) {
   .nav-container {
     flex-wrap: wrap;
-    padding: 1rem;
+    padding: 1rem var(--layout-gutter);
   }
 
   .nav-links {
     order: 3;
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 0.25rem;
   }

@@ -118,16 +118,37 @@ img {
   border: 0;
 }
 
-/* Shared page hero styles */
+/* Shared page hero styles — left-aligned within the 1200px content column, so the hero
+   text lines up with the section content below it (not centered). */
 .page-hero {
-  padding: var(--space-16) var(--space-8);
-  text-align: center;
-  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  padding: var(--space-16) 0;
+  text-align: left;
+  /* Warm-tint hero band on every page — matches the home hero so all page tops read as
+     one warm brand banner, and guarantees a clear color step down to the first content
+     section (grey or white) instead of the old grey-hero-into-grey-intro blend. */
+  background-color: var(--accent-warm-tint);
+  border-bottom: 1px solid var(--border-color);
 }
 
+/* Gutter lives on the content (same as .section-container) so hero text lines up exactly
+   with the section content below it. */
 .page-hero-content {
-  max-width: var(--layout-prose-max);
+  max-width: var(--layout-content-max);
   margin: 0 auto;
+  padding: 0 var(--layout-gutter);
+}
+
+/* Warm eyebrow rule — a short earth stroke opening the hero; anchors the left edge and
+   threads the secondary accent onto every page. Decorative only (no text on it). */
+.page-hero-content::before,
+.home-hero-content::before {
+  content: "";
+  display: block;
+  width: var(--space-12);
+  height: 4px;
+  margin-bottom: var(--space-6);
+  background-color: var(--accent-warm);
+  border-radius: var(--radius-pill);
 }
 
 .page-hero h1 {
@@ -135,6 +156,7 @@ img {
   font-weight: var(--weight-extrabold);
   color: var(--text-primary);
   margin: 0 0 var(--space-4);
+  max-width: var(--layout-prose-max);
 }
 
 .page-hero-description {
@@ -142,13 +164,14 @@ img {
   color: var(--text-secondary);
   line-height: var(--leading-body);
   margin: 0;
+  max-width: var(--layout-prose-max);
 }
 
 /* Shared section container */
 .section-container {
   max-width: var(--layout-content-max);
   margin: 0 auto;
-  padding: 0 var(--space-8);
+  padding: 0 var(--layout-gutter);
 }
 
 /* Shared button styles */
@@ -170,14 +193,15 @@ img {
   outline-offset: var(--focus-ring-offset);
 }
 
+/* Primary button is the lime action color, the one thing lime is allowed to mean. */
 .btn-primary {
-  background-color: var(--accent-color);
-  color: var(--text-on-brand);
+  background-color: var(--action);
+  color: var(--action-text);
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-hover);
-  color: var(--text-on-brand);
+  background-color: var(--action-hover);
+  color: var(--action-text);
 }
 
 .btn-secondary {
@@ -196,21 +220,33 @@ img {
   font-size: var(--text-md);
 }
 
-/* CTA Section - shared across pages */
+/* CTA Section - shared across pages. This is an "act" block: green MEANS invitation to act,
+   so every page closes on the deep-green surface with white type and a lime primary button.
+   The rule above the heading is lime, tying it to the button. */
 .cta-section {
   padding: var(--space-16) 0;
-  background-color: var(--bg-secondary);
-  text-align: center;
+  background-color: var(--surface-act);
+  text-align: left;
 }
 
 .cta-section h2 {
   font-size: var(--text-2xl);
-  color: var(--text-primary);
+  color: var(--text-on-act);
   margin: 0 0 var(--space-4);
 }
 
+.cta-section h2::before {
+  content: "";
+  display: block;
+  width: var(--space-12);
+  height: 4px;
+  margin: 0 0 var(--space-5);
+  background-color: var(--action);
+  border-radius: var(--radius-pill);
+}
+
 .cta-section p {
-  color: var(--text-secondary);
+  color: var(--text-on-act-muted);
   font-size: var(--text-md);
   margin: 0 0 var(--space-8);
 }
@@ -218,7 +254,7 @@ img {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .page-hero {
-    padding: var(--space-8) var(--space-4);
+    padding: var(--space-8) 0;
   }
 
   .page-hero h1 {
@@ -230,7 +266,7 @@ img {
   }
 
   .section-container {
-    padding: 0 var(--space-4);
+    padding: 0 var(--layout-gutter);
   }
 
   .cta-section {

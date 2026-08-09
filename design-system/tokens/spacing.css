@@ -27,4 +27,8 @@
   --layout-content-max: 1200px; /* nav, footer, section containers */
   --layout-prose-max: 800px;    /* hero copy, reading width */
   --layout-touch-min: 44px;     /* minimum touch target (theme toggle, etc.) */
+  /* Horizontal page gutter — the breathing room between content and the viewport edge.
+     Scales with the viewport: 24px on phones, up to 64px on wide screens, so content
+     never sits smushed against the edge. Used by nav, hero, sections, and footer alike. */
+  --layout-gutter: clamp(var(--space-6), 6vw, var(--space-16));
 }

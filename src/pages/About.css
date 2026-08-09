@@ -1,0 +1,177 @@
+.about {
+  width: 100%;
+}
+
+/* Placeholder copy for unfinished client blurbs */
+.placeholder-copy {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Shared section intro line */
+.about-section-intro {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  max-width: var(--layout-prose-max);
+  margin: 0 0 var(--space-8);
+}
+
+/* Who We Are — white band */
+.about-intro {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-primary);
+}
+
+.about-intro h2 {
+  font-size: var(--text-xl);
+  color: var(--text-primary);
+  text-align: left;
+  margin: 0 0 var(--space-6);
+}
+
+.about-intro-copy {
+  max-width: var(--layout-prose-max);
+  margin: 0 0 var(--space-12);
+  text-align: left;
+}
+
+.about-intro-copy p {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  margin: 0 0 var(--space-4);
+}
+
+.about-intro-copy p:last-child {
+  margin-bottom: 0;
+}
+
+/* Three cards — on white section, filled with the secondary surface */
+.about-cards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-6);
+}
+
+.about-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-top: 3px solid var(--accent-warm);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+}
+
+.about-card h3 {
+  font-size: var(--text-md);
+  color: var(--brand-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.about-card p {
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  margin: 0;
+}
+
+/* Technical Capabilities — grey band */
+.about-capabilities {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-secondary);
+}
+
+.about-capabilities h2 {
+  font-size: var(--text-xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-4);
+}
+
+.capability-cards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-6);
+}
+
+/* Cards on a grey section use the primary surface + border */
+.capability-card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+}
+
+.capability-card h3 {
+  font-size: var(--text-md);
+  color: var(--brand-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.capability-card p {
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  margin: 0;
+}
+
+/* Industry Expertise — white band. Kept distinct from the grey Technical Capabilities
+   band above it so the page keeps a clean white/grey/white rhythm instead of two grey
+   bands reading as one long grey zone. */
+.about-industries {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+}
+
+.about-industries h2 {
+  font-size: var(--text-xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-4);
+}
+
+.industry-cards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-6);
+}
+
+/* Cards on the now-white Industry band take the secondary surface so they read as cards
+   (matching the About "Who We Are" cards on white). */
+.industry-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+}
+
+.industry-card h3 {
+  font-size: var(--text-md);
+  color: var(--brand-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.industry-card p {
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  margin: 0;
+}
+
+/* Give the closing CTA a seam so it reads apart from the grey band above it */
+.about .cta-section {
+  border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 768px) {
+  .about-intro,
+  .about-capabilities,
+  .about-industries {
+    padding: var(--space-12) 0;
+  }
+}
