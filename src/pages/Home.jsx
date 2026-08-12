@@ -10,8 +10,8 @@ function Home() {
       <section className="home-hero" aria-labelledby="hero-heading">
         <div className="home-hero-content">
           <h1 id="hero-heading" className="home-hero-title">
-            <span className="hero-line">The wrong software, written well, is still the wrong software.</span>{' '}
-            <span className="hero-line">We build the right thing for the problem you actually have.</span>
+            <span className="hero-line">Great software isn't just about clean code,</span>{' '}
+            <span className="hero-line">it's about solving real problems when it matters most.</span>
           </h1>
           <p className="home-hero-description">
             Like the protective forest layer we are named for, we create the
