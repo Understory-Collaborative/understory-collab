@@ -41,10 +41,10 @@ Adapt the flow to UC. Do **not** copy studio w labs wholesale (UC already has th
 
 | # | Decision | Status | Resolution |
 |---|---|---|---|
-| D1 | Buyer + forcing function | **RESOLVED** | Two on-ramps, one ladder: champion (TPM/product owner) enters via free rungs and carries UC up; exec enters near paid tiers. Forcing function: still needed from webs. |
-| D2 | One product or several; shared vs separate ladders | **RESOLVED** | One shared ladder. The three doors (delivery, team, AI) are the SCOPE of "work with me," not separate funnels. |
-| D3 | Real rungs and prices, esp. paid entry | **RESOLVED** | $50 office hours (toe-in) + fixed-price audit / "sprint zero" rung above it, then scoped engagement. Actual prices TBC; may be non-customer-facing. |
-| D4 | What the quiz/report assesses and produces | **IN PROGRESS** | webs: rethink quiz + reports together, driving both the questions AND the offer from the report content. Reading all four reports to propose a restructure. |
+| D1 | Buyer + forcing function | **RESOLVED** | Two on-ramps, one ladder, two drivers. **Champion** (TPM/PO): proactive, driven by *mastery* — learning to do the job better, what they don't know about being a TPM/PO. Lives on the free rungs + office hours; carries UC upward. **Exec** (CTO): reactive, driven by *pressure* — a project is behind or has been behind, asking "do we need a new team, or can we save the existing one?" Buys the engagement. |
+| D2 | One product or several; shared vs separate ladders | **RESOLVED** | One shared ladder. The three doors (delivery, team, AI) are the SCOPE of "work with me," qualified at intake, not separate funnels. |
+| D3 | Real rungs and prices, esp. paid entry | **RESOLVED** | $50 office hours → fixed-price audit / "sprint zero" → scoped engagement. **All prices in-house (intake-only) EXCEPT the $50 office hours, which is customer-facing.** |
+| D4 | What the quiz/report assesses and produces | **RESOLVED** | Surgical, not a rebuild. Keep the 6-question spine; close the one gap (knowledge concentration / load-bearing people / bus factor — the only strong cross-report theme not asked). Offer is **severity-driven**: quiz result routes to the report's named engagement pattern (see mapping below); domain qualified at intake. The four reports double as the audit **sample**. |
 
 ---
 
@@ -56,10 +56,21 @@ Adapt the flow to UC. Do **not** copy studio w labs wholesale (UC already has th
 - **Headings sentence case** ("What we do"). Metaphor lives in words, never literal flames/parachutes.
 - **Website voice:** "a seasoned CTO telling you the truth over coffee. Honest, plain, unhurried, never selling." Educate, don't pitch. Lead with the honest observation, not the offer.
 
-### Open brand flags (need webs)
-- **Font mismatch:** README/SKILL say Hanken Grotesk; `tokens/fonts.css` ships **Overpass**. Pick canonical, align docs + tokens.
-- **House voice canon not in repo** (referenced at `review/brand-offer-foundation.md:30`, incl. any "no em dashes" rule). Get the real doc from webs; do not reconstruct.
-- Many visual tokens (shadows, midtone ramps, warning/info) are marked `proposal`. Confirm which become real.
+### Brand decisions (resolved)
+- **Font: Overpass is canonical** (tokens already ship it). TO DO: update README + SKILL.md, which still say Hanken Grotesk.
+- **Voice:** proceed with the documented website voice (design-system README: "a seasoned CTO telling you the truth over coffee; educate, don't pitch") plus the house-canon rules (plain language, no AI slop, no self-certifying virtue words, warm with high standards, no em dashes). Canon not separately stored; flag if a real gap appears.
+- Proposal tokens (shadows, midtone ramps, warning/info) — confirm which become real as they're used.
+
+## Severity → engagement pattern (drives "work with me", from the reports)
+
+| Quiz result | Engagement pattern (already written in the report) |
+|---|---|
+| Brush Fire | Controlled burn practice (20% maintenance lane, quarterly burn weeks) |
+| Smolder | Visibility + burn-down momentum |
+| Crown Fire | 90-day stabilization |
+| Firestorm | 6-month transformation |
+
+The **fixed-price audit** = the "honest assessment" every report describes (map the real workflow, find the load-bearing people, save / sunset / rebuild triage). Reports are the sample of what it buys.
 
 ## Design & craft rules
 - **Anti-slop design:** NO colored left/top/bottom edge-accent bars. NO decorative or single-word pills. Differentiate with type hierarchy, whitespace, and real content (a small table, a code sample). Icons OK if `aria-hidden` and the text carries meaning.
@@ -80,15 +91,21 @@ Adapt the flow to UC. Do **not** copy studio w labs wholesale (UC already has th
 
 | Date | State |
 |---|---|
-| 2026-08-14 | Pivoted from copy workshop to funnel redesign. HANDOFF created. Brand/voice read complete (notes + open flags above). Four decisions (D1–D4) open, awaiting webs. Prior copy work (hero direction, 20-line artifact, comms guidelines) committed on this branch. |
+| 2026-08-14 | Pivoted from copy workshop to funnel redesign. HANDOFF created. Brand/voice read complete. Prior copy work (hero direction, 20-line artifact, comms guidelines) committed on this branch. |
+| 2026-08-14 | Read all four fire reports. **All decisions resolved (D1–D4).** Inputs from webs: font = Overpass; prices in-house except $50 office hours; forcing function + two buyer drivers captured. Build order set. Next: build rung destinations (Q&A + Office Hours pages). |
 
 ---
 
-## Next steps
+## Build order (bottom-up, so no CTA points to a missing page)
 
-1. Resolve D1–D4 with webs.
-2. Finish brand kit + voice canon read.
-3. Map every current page to a rung; find dead-ends and mismatched CTAs.
-4. Build rung by rung, small commits, mirror to `preview`, update this file each commit.
-5. Designer + product-steward review passes.
-6. Open PR.
+1. **New rung destinations first:** Q&A page (free, async/public; champion mastery voice) and Office Hours page ($50, 3 spots, bring the marked-up report). So every CTA has a real target.
+2. **Rewire endings:** quiz results screen + the four report endings → hand off to office hours / Q&A. Kill the dead-ends and the email-capture-only close.
+3. **Quiz surgical edit:** add the bus-factor axis; keep the 6-question spine; results route to the severity engagement pattern.
+4. **Homepage:** two on-ramps — champion (mastery, free rungs) and exec (behind project + the team question, paid tiers). One CTA per section.
+5. **"Work with me":** reframe offers around the severity engagement patterns; intake qualifies domain + scope (premium tone, not a nitty-gritty form).
+6. **Fold/retire** Advisory + Implementation into the ladder (decision I'll make and flag for review). Fix the **Accessibility ("signs") page contrast** bug.
+7. **Font docs:** README + SKILL.md → Overpass.
+8. **Reviews:** designer + product-steward passes on key pages.
+9. **PR** at the very end.
+
+Every step: small commit, update this file in the same commit, mirror the feature branch to `preview`.
