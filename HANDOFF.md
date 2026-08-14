@@ -41,10 +41,10 @@ Adapt the flow to UC. Do **not** copy studio w labs wholesale (UC already has th
 
 | # | Decision | Status | Resolution |
 |---|---|---|---|
-| D1 | Buyer (2 tiers: TPM/product-owner champion vs exec check-writer) + forcing function | **OPEN** | — |
-| D2 | One product or several; shared ladder or separate ladders per offering | **OPEN** | — |
-| D3 | Real rungs and prices, esp. the paid entry (prices may not be customer-facing) | **OPEN** | — |
-| D4 | What the free quiz/report actually assesses and produces | **OPEN** | — |
+| D1 | Buyer + forcing function | **RESOLVED** | Two on-ramps, one ladder: champion (TPM/product owner) enters via free rungs and carries UC up; exec enters near paid tiers. Forcing function: still needed from webs. |
+| D2 | One product or several; shared vs separate ladders | **RESOLVED** | One shared ladder. The three doors (delivery, team, AI) are the SCOPE of "work with me," not separate funnels. |
+| D3 | Real rungs and prices, esp. paid entry | **RESOLVED** | $50 office hours (toe-in) + fixed-price audit / "sprint zero" rung above it, then scoped engagement. Actual prices TBC; may be non-customer-facing. |
+| D4 | What the quiz/report assesses and produces | **IN PROGRESS** | webs: rethink quiz + reports together, driving both the questions AND the offer from the report content. Reading all four reports to propose a restructure. |
 
 ---
 
