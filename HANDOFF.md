@@ -92,6 +92,10 @@ The **fixed-price audit** = the "honest assessment" every report describes (map 
 
 > Mirroring: every commit is pushed to both `claude/website-copy-ab-testing-l4lcp3` and `preview` (fast-forward) so the host builds the latest.
 
+**Q&A rung is live end to end.** The 401 was an unpublished form; publishing it fixed it. Submissions land in the Google Form. Product field kept; Stage field removed (SWL vibe-coder framing, not UC's audience).
+
+**Designer audit run** on both new pages (design-audit skill). Applied: radio hit-target size + branded focus ring + on-scale hero type; **removed the green hero dash site-wide** (`.page-hero-content::before` / `.home-hero-content::before`). Still OPEN for webs: (1) the sibling **lime CTA dash** (`.cta-section h2::before`) — remove for consistency or keep (it ties the heading to the lime button); (2) **form input borders fail WCAG 1.4.11 contrast** in both themes on every form — strengthen site-wide?
+
 
 | Date | State |
 |---|---|
