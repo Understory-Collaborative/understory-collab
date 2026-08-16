@@ -23,7 +23,7 @@ const STAGE_OPTIONS = [
 
 const SHARE_OPTIONS = [
   { value: 'Yes, use my name', label: 'Yes, use my name' },
-  { value: 'Yes, but keep me anonymous', label: 'Yes, but keep me anonymous' },
+  { value: 'Yes, keep me anonymous', label: 'Yes, keep me anonymous' },
   { value: 'No, just answer me privately', label: 'No, just answer me privately' },
 ]
 
