@@ -15,6 +15,7 @@ import Quiz from './pages/Quiz'
 import OfferPage from './pages/OfferPage'
 import Apply from './pages/Apply'
 import OfficeHours from './pages/OfficeHours'
+import Questions from './pages/Questions'
 import './App.css'
 
 function App() {
@@ -44,6 +45,8 @@ function App() {
             <Route path="apply" element={<Apply />} />
             {/* Low-commitment paid rung: $50 group office hours */}
             <Route path="office-hours" element={<OfficeHours />} />
+            {/* Free async rung: public Q&A */}
+            <Route path="questions" element={<Questions />} />
           </Route>
         </Routes>
       </Router>

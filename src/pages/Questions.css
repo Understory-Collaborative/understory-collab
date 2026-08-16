@@ -1,0 +1,41 @@
+/* Q&A page — the free async rung. Reuses the shared form styles from Contact.css;
+   this file adds only the page rhythm, the email helper, the consent line, and the
+   next-rung handoff. Anti-slop: no edge-accent bars, no pills. */
+
+.questions-content {
+  padding-block: clamp(var(--space-6), 4vw, var(--space-10));
+}
+
+.questions .contact-form {
+  max-width: 42rem;
+}
+
+.contact-help {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.qa-consent {
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  max-width: 60ch;
+}
+
+/* Next rung: a neutral hairline divider sets it off, never a colored accent bar */
+.questions-next {
+  padding-block: clamp(var(--space-8), 5vw, var(--space-12));
+  border-top: 1px solid var(--border-subtle);
+}
+
+.questions-next h2 {
+  margin-bottom: var(--space-3);
+}
+
+.questions-next p {
+  max-width: 62ch;
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+}

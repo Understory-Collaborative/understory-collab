@@ -96,7 +96,8 @@ The **fixed-price audit** = the "honest assessment" every report describes (map 
 | 2026-08-14 | Read all four fire reports. **All decisions resolved (D1–D4).** Inputs from webs: font = Overpass; prices in-house except $50 office hours; forcing function + two buyer drivers captured. Build order set. Next: build rung destinations (Q&A + Office Hours pages). |
 | 2026-08-14 | Reports stay as-is: deep + generic. Free/paid line = the step-by-step remediation sequences (90-day, 6-month) read as "what the engagement does," not a DIY manual. |
 | 2026-08-14 | **Voice gate signed off and stored at `design-system/VOICE.md`.** All website copy passes through it. Rules are defaults; webs approves exceptions (logged in the file; first entry: "physics, not failure"). Ready to build pages. |
-| 2026-08-14 | Built **Office hours page** (`/office-hours`, rung 3). Copy approved (opener: "There's a problem you can't take to your team or your boss. Bring it here."). External booking link with new-tab cue + print style; at-a-glance table; free-Q&A fallback. Build passes. NOTE: fallback links to `/questions` (Q&A page), which is the next thing to build. Nav wiring deferred to the homepage/IA pass. |
+| 2026-08-14 | Built **Office hours page** (`/office-hours`, rung 3). Copy approved (opener: "There's a problem you can't take to your team or your boss. Bring it here."). External booking link with new-tab cue + print style; at-a-glance table; free-Q&A fallback. |
+| 2026-08-14 | Built **Q&A page** (`/questions`, rung 2) + `api/questions.js` (Apps Script -> Google Sheet, needs `QUESTIONS_SHEET_WEBHOOK_URL` env var). Copy approved. Question required; name/email optional; public-use consent line; hands off to office hours (no dead-end). Both rung destinations now exist and cross-link. Build + lint pass. Nav wiring still deferred to the homepage/IA pass. |
 
 ---
 
