@@ -4,21 +4,43 @@ import './Contact.css'
 import './Questions.css'
 
 const MAX = {
-  question: 3000,
+  stuck: 3000,
+  product: 500,
   name: 200,
   email: 320,
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+const STAGE_OPTIONS = [
+  { value: 'idea', label: 'Idea' },
+  { value: 'building', label: 'Building' },
+  { value: 'launched', label: 'Launched' },
+  { value: 'growing', label: 'Growing' },
+]
+
+const SHARE_OPTIONS = [
+  { value: 'name', label: 'Yes, and use my name' },
+  { value: 'anonymous', label: 'Yes, but keep me anonymous' },
+  { value: 'private', label: 'No, just answer me privately' },
+]
+
 function validate(values) {
   const errors = {}
 
-  const question = values.question.trim()
-  if (!question) {
-    errors.question = 'Please enter your question.'
-  } else if (question.length > MAX.question) {
-    errors.question = `Please keep your question under ${MAX.question} characters.`
+  const stuck = values.stuck.trim()
+  if (!stuck) {
+    errors.stuck = 'Please tell us what you are stuck on.'
+  } else if (stuck.length > MAX.stuck) {
+    errors.stuck = `Please keep this under ${MAX.stuck} characters.`
+  }
+
+  if (values.product.trim().length > MAX.product) {
+    errors.product = `Please keep this under ${MAX.product} characters.`
+  }
+
+  if (!values.share) {
+    errors.share = 'Please choose whether we can share your question.'
   }
 
   if (values.name.trim().length > MAX.name) {
@@ -26,23 +48,26 @@ function validate(values) {
   }
 
   const email = values.email.trim()
-  if (email) {
-    if (email.length > MAX.email) {
-      errors.email = `Please keep your email under ${MAX.email} characters.`
-    } else if (!EMAIL_RE.test(email)) {
-      errors.email = 'Please enter a valid email address, like name@example.com.'
-    }
+  if (!email) {
+    errors.email = 'Please enter your email address.'
+  } else if (email.length > MAX.email) {
+    errors.email = `Please keep your email under ${MAX.email} characters.`
+  } else if (!EMAIL_RE.test(email)) {
+    errors.email = 'Please enter a valid email address, like name@example.com.'
   }
 
   return errors
 }
 
 // Fields validated on submit, in DOM order — used to focus the first invalid one.
-const FOCUS_ORDER = ['question', 'name', 'email']
+const FOCUS_ORDER = ['stuck', 'product', 'share', 'name', 'email']
 
 function Questions() {
   const [values, setValues] = useState({
-    question: '',
+    stuck: '',
+    product: '',
+    stage: '',
+    share: '',
     name: '',
     email: '',
     company_website: '', // honeypot — humans never see or fill this
@@ -51,7 +76,9 @@ function Questions() {
   const [status, setStatus] = useState('idle') // idle | loading | success | error
 
   const refs = {
-    question: useRef(null),
+    stuck: useRef(null),
+    product: useRef(null),
+    share: useRef(null), // first radio of the share group
     name: useRef(null),
     email: useRef(null),
   }
@@ -84,7 +111,10 @@ function Questions() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          question: values.question.trim(),
+          stuck: values.stuck.trim(),
+          product: values.product.trim(),
+          stage: values.stage,
+          share: values.share,
           name: values.name.trim(),
           email: values.email.trim(),
           company_website: values.company_website,
@@ -96,7 +126,15 @@ function Questions() {
       }
 
       setStatus('success')
-      setValues({ question: '', name: '', email: '', company_website: '' })
+      setValues({
+        stuck: '',
+        product: '',
+        stage: '',
+        share: '',
+        name: '',
+        email: '',
+        company_website: '',
+      })
       setErrors({})
     } catch {
       setStatus('error')
@@ -111,9 +149,9 @@ function Questions() {
         <div className="page-hero-content">
           <h1 id="questions-heading">Ask a question</h1>
           <p className="page-hero-description">
-            Ask us a question about the work of a technical product manager. We
-            answer the ones that help the most people, on the blog and on
-            socials. It's free and open to anyone.
+            You have a question about what you are building, and you don't want a
+            sales call to get it answered. Ask it here, free. We answer the ones
+            that help the most people, on the blog and on socials.
           </p>
         </div>
       </section>
@@ -137,30 +175,120 @@ function Questions() {
             )}
 
             <div className="contact-field">
-              <label className="contact-label" htmlFor="qa-question">
-                Your question <span className="contact-required">(required)</span>
+              <label className="contact-label" htmlFor="qa-stuck">
+                What are you stuck on?{' '}
+                <span className="contact-required">(required)</span>
               </label>
               <textarea
-                id="qa-question"
-                name="question"
+                id="qa-stuck"
+                name="stuck"
                 className="contact-input contact-textarea"
-                value={values.question}
+                value={values.stuck}
                 onChange={handleChange}
-                ref={refs.question}
+                ref={refs.stuck}
                 required
                 aria-required="true"
                 rows={6}
-                maxLength={MAX.question}
-                aria-invalid={errors.question ? 'true' : undefined}
-                aria-describedby={errors.question ? 'qa-question-error' : undefined}
+                maxLength={MAX.stuck}
+                aria-invalid={errors.stuck ? 'true' : undefined}
+                aria-describedby={
+                  errors.stuck ? 'qa-stuck-error qa-stuck-help' : 'qa-stuck-help'
+                }
                 disabled={isSending}
               />
-              {errors.question && (
-                <p className="contact-error" id="qa-question-error">
-                  {errors.question}
+              <p className="contact-help" id="qa-stuck-help">
+                Give us enough that we can actually answer.
+              </p>
+              {errors.stuck && (
+                <p className="contact-error" id="qa-stuck-error">
+                  {errors.stuck}
                 </p>
               )}
             </div>
+
+            <div className="contact-field">
+              <label className="contact-label" htmlFor="qa-product">
+                What's the product?{' '}
+                <span className="contact-optional">(optional)</span>
+              </label>
+              <input
+                id="qa-product"
+                name="product"
+                type="text"
+                className="contact-input"
+                value={values.product}
+                onChange={handleChange}
+                ref={refs.product}
+                maxLength={MAX.product}
+                aria-describedby="qa-product-help"
+                aria-invalid={errors.product ? 'true' : undefined}
+                disabled={isSending}
+              />
+              <p className="contact-help" id="qa-product-help">
+                A link or a sentence.
+              </p>
+              {errors.product && (
+                <p className="contact-error" id="qa-product-error">
+                  {errors.product}
+                </p>
+              )}
+            </div>
+
+            <fieldset className="qa-fieldset">
+              <legend className="qa-legend">
+                Where is it right now?{' '}
+                <span className="contact-optional">(optional)</span>
+              </legend>
+              <div className="qa-choices">
+                {STAGE_OPTIONS.map((option) => (
+                  <label key={option.value} className="qa-choice">
+                    <input
+                      type="radio"
+                      name="stage"
+                      value={option.value}
+                      checked={values.stage === option.value}
+                      onChange={handleChange}
+                      disabled={isSending}
+                    />
+                    <span>{option.label}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <fieldset
+              className="qa-fieldset"
+              aria-describedby={errors.share ? 'qa-share-error' : undefined}
+            >
+              <legend className="qa-legend">
+                Can we share this publicly?{' '}
+                <span className="contact-required">(required)</span>
+              </legend>
+              <div className="qa-choices">
+                {SHARE_OPTIONS.map((option, index) => (
+                  <label key={option.value} className="qa-choice">
+                    <input
+                      type="radio"
+                      name="share"
+                      value={option.value}
+                      checked={values.share === option.value}
+                      onChange={handleChange}
+                      ref={index === 0 ? refs.share : undefined}
+                      required
+                      aria-required="true"
+                      aria-invalid={errors.share ? 'true' : undefined}
+                      disabled={isSending}
+                    />
+                    <span>{option.label}</span>
+                  </label>
+                ))}
+              </div>
+              {errors.share && (
+                <p className="contact-error" id="qa-share-error">
+                  {errors.share}
+                </p>
+              )}
+            </fieldset>
 
             <div className="contact-field">
               <label className="contact-label" htmlFor="qa-name">
@@ -189,7 +317,7 @@ function Questions() {
 
             <div className="contact-field">
               <label className="contact-label" htmlFor="qa-email">
-                Email <span className="contact-optional">(optional)</span>
+                Email <span className="contact-required">(required)</span>
               </label>
               <input
                 id="qa-email"
@@ -199,14 +327,18 @@ function Questions() {
                 value={values.email}
                 onChange={handleChange}
                 ref={refs.email}
+                required
+                aria-required="true"
                 autoComplete="email"
                 maxLength={MAX.email}
-                aria-describedby="qa-email-help"
+                aria-describedby={
+                  errors.email ? 'qa-email-error qa-email-help' : 'qa-email-help'
+                }
                 aria-invalid={errors.email ? 'true' : undefined}
                 disabled={isSending}
               />
               <p className="contact-help" id="qa-email-help">
-                We'll only use it to tell you when we answer.
+                Required, so we can keep the spam out. We only use it to reply.
               </p>
               {errors.email && (
                 <p className="contact-error" id="qa-email-error">
@@ -231,8 +363,8 @@ function Questions() {
             </div>
 
             <p className="qa-consent">
-              We may answer your question publicly, on the blog or on socials. We
-              keep you anonymous unless you tell us it's fine to use your name.
+              We keep you anonymous unless you tell us it's fine to use your
+              name. See our <Link to="/privacy">Privacy Policy</Link>.
             </p>
 
             <button
@@ -260,7 +392,8 @@ function Questions() {
           <h2 id="questions-next-heading">Want an answer now?</h2>
           <p>
             If it's about your own situation and you want it answered today,
-            bring it to office hours. <Link to="/office-hours">See office hours</Link>.
+            bring it to office hours.{' '}
+            <Link to="/office-hours">See office hours</Link>.
           </p>
         </div>
       </section>

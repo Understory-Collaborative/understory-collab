@@ -28,7 +28,8 @@
  */
 
 const LIMITS = {
-  question: 3000,
+  stuck: 3000,
+  product: 500,
   name: 200,
   email: 320,
 }
@@ -67,20 +68,26 @@ export default async function handler(req, res) {
     return res.status(200).json({ ok: true })
   }
 
-  const question = asString(body.question)
+  const stuck = asString(body.stuck)
+  const product = asString(body.product)
+  const stage = asString(body.stage)
+  const share = asString(body.share)
   const name = asString(body.name)
   const email = asString(body.email)
 
   const errors = []
-  if (!question) errors.push('question is required')
-  else if (question.length > LIMITS.question) errors.push('question is too long')
+  if (!stuck) errors.push('stuck is required')
+  else if (stuck.length > LIMITS.stuck) errors.push('stuck is too long')
+
+  if (product.length > LIMITS.product) errors.push('product is too long')
+
+  if (!share) errors.push('share preference is required')
 
   if (name.length > LIMITS.name) errors.push('name is too long')
 
-  if (email) {
-    if (email.length > LIMITS.email) errors.push('email is too long')
-    else if (!EMAIL_RE.test(email)) errors.push('email is invalid')
-  }
+  if (!email) errors.push('email is required')
+  else if (email.length > LIMITS.email) errors.push('email is too long')
+  else if (!EMAIL_RE.test(email)) errors.push('email is invalid')
 
   if (errors.length > 0) {
     return res.status(400).json({ ok: false, error: errors.join('; ') })
@@ -99,7 +106,7 @@ export default async function handler(req, res) {
     const upstream = await fetch(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question, name, email }),
+      body: JSON.stringify({ stuck, product, stage, share, name, email }),
     })
 
     if (!upstream.ok) {
