@@ -138,19 +138,6 @@ img {
   padding: 0 var(--layout-gutter);
 }
 
-/* Warm eyebrow rule — a short earth stroke opening the hero; anchors the left edge and
-   threads the secondary accent onto every page. Decorative only (no text on it). */
-.page-hero-content::before,
-.home-hero-content::before {
-  content: "";
-  display: block;
-  width: var(--space-12);
-  height: 4px;
-  margin-bottom: var(--space-6);
-  background-color: var(--accent-warm);
-  border-radius: var(--radius-pill);
-}
-
 .page-hero h1 {
   font-size: var(--text-3xl);
   font-weight: var(--weight-extrabold);
