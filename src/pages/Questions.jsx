@@ -140,10 +140,13 @@ function Questions() {
       <section className="page-hero" aria-labelledby="questions-heading">
         <div className="page-hero-content">
           <h1 id="questions-heading">Ask a question</h1>
-          <p className="page-hero-description">
-            You have a question about what you are building, and you don't want a
-            sales call to get it answered. Ask it here, free. We answer the ones
-            that help the most people, on the blog and on socials.
+          <p className="page-hero-lead">
+            You have a question about what you're building, and you don't want a
+            sales call to get it answered.
+          </p>
+          <p className="page-hero-support">
+            Ask it here, free. We answer the ones that help the most people, on
+            the blog and on socials.
           </p>
         </div>
       </section>

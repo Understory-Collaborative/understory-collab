@@ -154,6 +154,26 @@ img {
   max-width: var(--layout-prose-max);
 }
 
+/* Hero lead + support: a prominent opening line over a quieter support line. Shared so
+   pages that open on a hook (office hours, Q&A) read as one hand. */
+.page-hero-lead {
+  font-size: clamp(var(--text-xl), 1.1rem + 2vw, var(--text-2xl));
+  line-height: var(--leading-tight);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  max-width: 32ch;
+  text-wrap: balance;
+  margin: 0 0 var(--space-4);
+}
+
+.page-hero-support {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: var(--leading-snug);
+  max-width: 46ch;
+  margin: 0;
+}
+
 /* Shared section container */
 .section-container {
   max-width: var(--layout-content-max);
@@ -208,8 +228,7 @@ img {
 }
 
 /* CTA Section - shared across pages. This is an "act" block: green MEANS invitation to act,
-   so every page closes on the deep-green surface with white type and a lime primary button.
-   The rule above the heading is lime, tying it to the button. */
+   so every page closes on the deep-green surface with white type and a lime primary button. */
 .cta-section {
   padding: var(--space-16) 0;
   background-color: var(--surface-act);
@@ -220,16 +239,6 @@ img {
   font-size: var(--text-2xl);
   color: var(--text-on-act);
   margin: 0 0 var(--space-4);
-}
-
-.cta-section h2::before {
-  content: "";
-  display: block;
-  width: var(--space-12);
-  height: 4px;
-  margin: 0 0 var(--space-5);
-  background-color: var(--action);
-  border-radius: var(--radius-pill);
 }
 
 .cta-section p {

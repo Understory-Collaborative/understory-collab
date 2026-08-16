@@ -67,7 +67,7 @@
   font-family: inherit;
   color: var(--text-primary);
   background-color: var(--bg-primary);
-  border: 2px solid var(--border-color);
+  border: 2px solid var(--border-input);
   border-radius: var(--radius-control);
   transition: border-color var(--duration-fast) var(--ease-standard),
     box-shadow var(--duration-fast) var(--ease-standard);

@@ -9,11 +9,11 @@ function OfficeHours() {
       <section className="page-hero" aria-labelledby="oh-heading">
         <div className="page-hero-content">
           <h1 id="oh-heading">Office hours</h1>
-          <p className="oh-lead">
+          <p className="page-hero-lead">
             There's a problem you can't take to your team or your boss. Bring it
             here.
           </p>
-          <p className="oh-support">
+          <p className="page-hero-support">
             Thirty minutes with someone who's handled it before. Fifty dollars a
             seat.
           </p>

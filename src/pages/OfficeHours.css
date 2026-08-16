@@ -2,24 +2,6 @@
    Anti-slop: no colored edge-accent bars, no decorative pills. Hierarchy and
    whitespace carry the page; a small table carries the logistics. */
 
-.oh-lead {
-  font-size: clamp(var(--text-xl), 1.1rem + 2vw, var(--text-2xl));
-  line-height: var(--leading-tight);
-  font-weight: var(--weight-semibold);
-  color: var(--text-primary);
-  max-width: 24ch;
-  text-wrap: balance;
-  margin-top: var(--space-4);
-}
-
-.oh-support {
-  font-size: var(--text-lg);
-  color: var(--text-secondary);
-  line-height: var(--leading-snug);
-  max-width: 44ch;
-  margin-top: var(--space-4);
-}
-
 .oh-cta {
   margin-top: var(--space-8);
   display: flex;

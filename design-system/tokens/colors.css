@@ -145,6 +145,8 @@
   --border-subtle: var(--white-14);
   --border-default: var(--white-22);
   --border-strong: var(--white-22);
+  /* Form-control resting border; strong enough to clear WCAG 1.4.11 (3:1) on the canvas. */
+  --border-input: rgba(255, 255, 255, 0.42);
   --border-accent: var(--brand-primary);   /* green rules & card spines in both themes; clears 3:1 either way */
   --ring-brand: rgba(132, 173, 146, 0.3);
 
@@ -223,6 +225,7 @@
   --border-subtle: var(--neutral-200);
   --border-default: var(--neutral-300);
   --border-strong: var(--neutral-400);
+  --border-input: var(--neutral-500);
   --ring-brand: rgba(45, 90, 61, 0.3);
 
   --status-success-text: var(--success-700);
