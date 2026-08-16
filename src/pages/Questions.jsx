@@ -12,17 +12,19 @@ const MAX = {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+// Radio values must match the Google Form option text EXACTLY, or the form
+// drops the value on submit. Keep these strings in sync with the form's options.
 const STAGE_OPTIONS = [
-  { value: 'idea', label: 'Idea' },
-  { value: 'building', label: 'Building' },
-  { value: 'launched', label: 'Launched' },
-  { value: 'growing', label: 'Growing' },
+  { value: 'Idea', label: 'Idea' },
+  { value: 'Building', label: 'Building' },
+  { value: 'Launched', label: 'Launched' },
+  { value: 'Growing', label: 'Growing' },
 ]
 
 const SHARE_OPTIONS = [
-  { value: 'name', label: 'Yes, and use my name' },
-  { value: 'anonymous', label: 'Yes, but keep me anonymous' },
-  { value: 'private', label: 'No, just answer me privately' },
+  { value: 'Yes, use my name', label: 'Yes, use my name' },
+  { value: 'Yes, but keep me anonymous', label: 'Yes, but keep me anonymous' },
+  { value: 'No, just answer me privately', label: 'No, just answer me privately' },
 ]
 
 function validate(values) {
