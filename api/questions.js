@@ -116,7 +116,11 @@ export default async function handler(req, res) {
       console.error('Google Form responded with status', upstream.status)
       return res
         .status(502)
-        .json({ ok: false, error: 'Failed to deliver question' })
+        .json({
+          ok: false,
+          error: 'Failed to deliver question',
+          upstreamStatus: upstream.status,
+        })
     }
 
     return res.status(200).json({ ok: true })
