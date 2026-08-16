@@ -57,6 +57,7 @@ Adapt the flow to UC. Do **not** copy studio w labs wholesale (UC already has th
 - **Website voice:** "a seasoned CTO telling you the truth over coffee. Honest, plain, unhurried, never selling." Educate, don't pitch. Lead with the honest observation, not the offer.
 
 ### Brand decisions (resolved)
+- **Voice gate: `design-system/VOICE.md`.** Every line of website copy passes through it. Rules are defaults; webs approves exceptions (logged in the file).
 - **Font: Overpass is canonical** (tokens already ship it). TO DO: update README + SKILL.md, which still say Hanken Grotesk.
 - **Voice:** proceed with the documented website voice (design-system README: "a seasoned CTO telling you the truth over coffee; educate, don't pitch") plus the house-canon rules (plain language, no AI slop, no self-certifying virtue words, warm with high standards, no em dashes). Canon not separately stored; flag if a real gap appears.
 - Proposal tokens (shadows, midtone ramps, warning/info) — confirm which become real as they're used.
@@ -93,7 +94,8 @@ The **fixed-price audit** = the "honest assessment" every report describes (map 
 |---|---|
 | 2026-08-14 | Pivoted from copy workshop to funnel redesign. HANDOFF created. Brand/voice read complete. Prior copy work (hero direction, 20-line artifact, comms guidelines) committed on this branch. |
 | 2026-08-14 | Read all four fire reports. **All decisions resolved (D1–D4).** Inputs from webs: font = Overpass; prices in-house except $50 office hours; forcing function + two buyer drivers captured. Build order set. Next: build rung destinations (Q&A + Office Hours pages). |
-| 2026-08-14 | Reports stay as-is: deep + generic. Free/paid line = the step-by-step remediation sequences (90-day, 6-month) read as "what the engagement does," not a DIY manual. Voice gate drafted (see below), pending webs sign-off before storing in repo. |
+| 2026-08-14 | Reports stay as-is: deep + generic. Free/paid line = the step-by-step remediation sequences (90-day, 6-month) read as "what the engagement does," not a DIY manual. |
+| 2026-08-14 | **Voice gate signed off and stored at `design-system/VOICE.md`.** All website copy passes through it. Rules are defaults; webs approves exceptions (logged in the file; first entry: "physics, not failure"). Ready to build pages. |
 
 ---
 
