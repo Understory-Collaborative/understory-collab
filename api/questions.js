@@ -11,10 +11,10 @@
  * entry ids: in the form, top-right menu -> "Get pre-filled link", fill every
  * field with a distinct value, and read the entry.<id> values out of the URL.
  *
- * The form's Stage, Product, and Name questions must stay OPTIONAL (not required),
- * because the UI treats them as optional. Stuck, Share, and Email are required in
- * both places. Radio values (stage, share) must match the form's option text
- * exactly; see the matching lists in Questions.jsx.
+ * The form's Product and Name questions must stay OPTIONAL (not required), because
+ * the UI treats them as optional. Stuck, Share, and Email are required in both
+ * places. The Share radio values must match the form's option text exactly; see
+ * SHARE_OPTIONS in Questions.jsx.
  *
  * Privacy: this function never logs the submission contents.
  */
@@ -25,7 +25,6 @@ const FORM_RESPONSE_URL = `https://docs.google.com/forms/d/e/${FORM_ID}/formResp
 const ENTRY = {
   stuck: 'entry.1540066254',
   product: 'entry.18696469',
-  stage: 'entry.1644200461',
   share: 'entry.1252682430',
   name: 'entry.896079231',
   email: 'entry.1885750161',
@@ -75,7 +74,6 @@ export default async function handler(req, res) {
   const fields = {
     stuck: asString(body.stuck),
     product: asString(body.product),
-    stage: asString(body.stage),
     share: asString(body.share),
     name: asString(body.name),
     email: asString(body.email),

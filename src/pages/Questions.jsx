@@ -14,13 +14,6 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 // Radio values must match the Google Form option text EXACTLY, or the form
 // drops the value on submit. Keep these strings in sync with the form's options.
-const STAGE_OPTIONS = [
-  { value: 'Idea', label: 'Idea' },
-  { value: 'Building', label: 'Building' },
-  { value: 'Launched', label: 'Launched' },
-  { value: 'Growing', label: 'Growing' },
-]
-
 const SHARE_OPTIONS = [
   { value: 'Yes, use my name', label: 'Yes, use my name' },
   { value: 'Yes, keep me anonymous', label: 'Yes, keep me anonymous' },
@@ -68,7 +61,6 @@ function Questions() {
   const [values, setValues] = useState({
     stuck: '',
     product: '',
-    stage: '',
     share: '',
     name: '',
     email: '',
@@ -115,7 +107,6 @@ function Questions() {
         body: JSON.stringify({
           stuck: values.stuck.trim(),
           product: values.product.trim(),
-          stage: values.stage,
           share: values.share,
           name: values.name.trim(),
           email: values.email.trim(),
@@ -131,7 +122,6 @@ function Questions() {
       setValues({
         stuck: '',
         product: '',
-        stage: '',
         share: '',
         name: '',
         email: '',
@@ -235,28 +225,6 @@ function Questions() {
                 </p>
               )}
             </div>
-
-            <fieldset className="qa-fieldset">
-              <legend className="qa-legend">
-                Where is it right now?{' '}
-                <span className="contact-optional">(optional)</span>
-              </legend>
-              <div className="qa-choices">
-                {STAGE_OPTIONS.map((option) => (
-                  <label key={option.value} className="qa-choice">
-                    <input
-                      type="radio"
-                      name="stage"
-                      value={option.value}
-                      checked={values.stage === option.value}
-                      onChange={handleChange}
-                      disabled={isSending}
-                    />
-                    <span>{option.label}</span>
-                  </label>
-                ))}
-              </div>
-            </fieldset>
 
             <fieldset
               className="qa-fieldset"
