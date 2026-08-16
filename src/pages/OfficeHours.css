@@ -3,7 +3,7 @@
    whitespace carry the page; a small table carries the logistics. */
 
 .oh-lead {
-  font-size: clamp(1.5rem, 1.1rem + 2vw, 2rem);
+  font-size: clamp(var(--text-xl), 1.1rem + 2vw, var(--text-2xl));
   line-height: var(--leading-tight);
   font-weight: var(--weight-semibold);
   color: var(--text-primary);
