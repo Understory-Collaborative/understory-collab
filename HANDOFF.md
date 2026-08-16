@@ -90,6 +90,9 @@ The **fixed-price audit** = the "honest assessment" every report describes (map 
 
 ## Status log
 
+> Mirroring: every commit is pushed to both `claude/website-copy-ab-testing-l4lcp3` and `preview` (fast-forward) so the host builds the latest.
+
+
 | Date | State |
 |---|---|
 | 2026-08-14 | Pivoted from copy workshop to funnel redesign. HANDOFF created. Brand/voice read complete. Prior copy work (hero direction, 20-line artifact, comms guidelines) committed on this branch. |
