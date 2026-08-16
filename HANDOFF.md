@@ -94,7 +94,12 @@ The **fixed-price audit** = the "honest assessment" every report describes (map 
 
 **Q&A rung is live end to end.** The 401 was an unpublished form; publishing it fixed it. Submissions land in the Google Form. Product field kept; Stage field removed (SWL vibe-coder framing, not UC's audience).
 
-**Designer audit run** on both new pages (design-audit skill). Applied: radio hit-target size + branded focus ring + on-scale hero type; **removed the green hero dash site-wide** (`.page-hero-content::before` / `.home-hero-content::before`). Still OPEN for webs: (1) the sibling **lime CTA dash** (`.cta-section h2::before`) — remove for consistency or keep (it ties the heading to the lime button); (2) **form input borders fail WCAG 1.4.11 contrast** in both themes on every form — strengthen site-wide?
+**Designer audit run** on both new pages (design-audit skill), all findings resolved:
+- Radio hit-target size + branded focus ring + on-scale hero type — fixed.
+- Green hero dash removed site-wide (`.page-hero-content::before` / `.home-hero-content::before`).
+- Lime CTA dash removed (`.cta-section h2::before`) — consistency with the above.
+- Form input borders: new `--border-input` token (dark `rgba(255,255,255,0.42)`, light `--neutral-500`), `.contact-input` repointed at it — clears WCAG 1.4.11 (3:1) on every form.
+- Hero lead/support promoted to shared `.page-hero-lead` / `.page-hero-support`; office hours + Q&A now use the same treatment.
 
 
 | Date | State |
