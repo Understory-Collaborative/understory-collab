@@ -1,0 +1,96 @@
+/* Office hours — the low-commitment paid rung.
+   Anti-slop: no colored edge-accent bars, no decorative pills. Hierarchy and
+   whitespace carry the page; a small table carries the logistics. */
+
+.oh-lead {
+  font-size: clamp(1.5rem, 1.1rem + 2vw, 2rem);
+  line-height: var(--leading-tight);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  max-width: 24ch;
+  text-wrap: balance;
+  margin-top: var(--space-4);
+}
+
+.oh-support {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: var(--leading-snug);
+  max-width: 44ch;
+  margin-top: var(--space-4);
+}
+
+.oh-cta {
+  margin-top: var(--space-8);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.oh-newtab {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.oh-section {
+  padding-block: clamp(var(--space-8), 5vw, var(--space-12));
+}
+
+.oh-section h2 {
+  margin-bottom: var(--space-4);
+}
+
+.oh-section p {
+  max-width: 62ch;
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+}
+
+/* At-a-glance logistics: a real table, not decoration */
+.oh-glance {
+  margin-top: var(--space-6);
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 34rem;
+}
+
+.oh-glance th,
+.oh-glance td {
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: top;
+}
+
+.oh-glance th {
+  width: 8rem;
+  color: var(--text-muted);
+  font-weight: var(--weight-medium);
+}
+
+.oh-glance td {
+  color: var(--text-primary);
+}
+
+.oh-glance tr:last-child th,
+.oh-glance tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Not-ready fallback: a neutral hairline divider, never a colored accent bar */
+.oh-fallback {
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* Print: the booking link can't be clicked on paper, so print its address */
+@media print {
+  .oh-cta .oh-newtab {
+    display: none;
+  }
+  .oh-cta a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-weight: var(--weight-regular);
+    word-break: break-all;
+  }
+}

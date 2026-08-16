@@ -14,6 +14,7 @@ import Accessibility from './pages/Accessibility'
 import Quiz from './pages/Quiz'
 import OfferPage from './pages/OfferPage'
 import Apply from './pages/Apply'
+import OfficeHours from './pages/OfficeHours'
 import './App.css'
 
 function App() {
@@ -41,6 +42,8 @@ function App() {
             <Route path="offers/:slug" element={<OfferPage />} />
             {/* Short application — the conversation step; door prefilled via ?door=<slug> */}
             <Route path="apply" element={<Apply />} />
+            {/* Low-commitment paid rung: $50 group office hours */}
+            <Route path="office-hours" element={<OfficeHours />} />
           </Route>
         </Routes>
       </Router>
