@@ -78,7 +78,7 @@ The **fixed-price audit** = the "honest assessment" every report describes (map 
 - **No decorative accent bars or pills, ever** (standing rule, not just this redesign). Proof: the green hero dash and the lime CTA dash were removed site-wide.
 - **`design-audit` skill (designer plugin) is the standard design-review pass** run on any key page before it is finalized.
 - **Accessibility from the first draft:** COGA / WCAG / ADHD. Skimmable takeaway line + explanation underneath, not walls of prose. New-tab cues on external links, print styles, nothing meaningful on color alone.
-- **Known a11y bug:** the signs page has insufficient contrast on some text. → fix during redesign.
+- **Known a11y bug (accessibility / "signs" page):** audited 2026-08-17 against the current tokens. Every text pair on the page now clears WCAG AA. Lowest is the "last updated" metadata line (`--text-muted`) at 5.21:1 dark / 5.41:1 light; body, headings, hero text, and links all sit at 8:1 or higher. The original low-contrast text looks resolved by the color-token overhaul. **Action for webs:** if you still see a specific line reading low, name it and I will retune that token. (Page also still uses the old `.page-hero-description` markup, not the newer shared `.page-hero-lead`/`.page-hero-support` treatment; cosmetic, not a contrast issue.)
 
 ---
 
@@ -123,6 +123,7 @@ The **fixed-price audit** = the "honest assessment" every report describes (map 
 | 2026-08-14 | Built **Office hours page** (`/office-hours`, rung 3). Copy approved (opener: "There's a problem you can't take to your team or your boss. Bring it here."). External booking link with new-tab cue + print style; at-a-glance table; free-Q&A fallback. |
 | 2026-08-14 | Built **Q&A page** (`/questions`, rung 2) + `api/questions.js`. Copy approved. Hands off to office hours (no dead-end). Both rung destinations exist and cross-link. Nav wiring deferred to the homepage/IA pass. |
 | 2026-08-14 | Q&A backend **wired**: `api/questions.js` posts form-urlencoded `entry.*` to the Google Form's `/formResponse` (form id `1FAIpQLSd5HTS0VYZR4NDR5iRnz1Ecg3gUeJ0-un-45Pfs8bLmbb9i6Q`). No env var, no Apps Script. Entry map: stuck `1540066254`, product `18696469`, stage `1644200461`, share `1252682430`, name `896079231`, email `1885750161`. Email is now a normal required question (built-in collection off). Radio option text matched to the form exactly (stage: Idea/Building/Launched/Growing; share: "Yes, use my name" / "Yes, keep me anonymous" / "No, just answer me privately"). Form's Stage/Product/Name must stay OPTIONAL to match the UI. **Still to verify:** a real submit on preview/prod lands a row in the form (the sandbox proxy blocks outbound Google, so it can't be tested from here). |
+| 2026-08-17 | **Accessibility ("signs") page contrast audited (build order item 6).** Computed WCAG ratios for every text/background pair on `/accessibility` in both themes against the current tokens. All clear AA: hero and body 8:1+, links ~7–8:1, the only sub-6 value is the muted "last updated" line at 5.21:1 dark / 5.41:1 light (still above the 4.5 AA floor). The original bug reads as resolved by the color-token overhaul; no code change made. Flagged for webs to confirm the specific line if one still looks low. |
 | 2026-08-17 | **Font docs squared with the code (build order item 7).** The tokens already shipped Overpass; the docs lagged. Updated `design-system/README.md` (source-materials table + type note), `SKILL.md`, the comments in `tokens/fonts.css` and `tokens/typography.css`, and the standalone `foundations.preview.html` specimen (which was still loading Hanken Grotesk) to all read Overpass. Left the one-file revert note in `fonts.css` naming Hanken on purpose. Build + lint clean. |
 
 ---
@@ -149,7 +150,7 @@ UC's wedge against the big consultancies (Thoughtworks / Deloitte tier): they se
 3. **Quiz surgical edit:** add the bus-factor axis; keep the 6-question spine; results route to the severity engagement pattern.
 4. **Homepage:** two on-ramps — champion (mastery, free rungs) and exec (behind project + the team question, paid tiers). One CTA per section.
 5. **"Work with me":** reframe offers around the severity engagement patterns; intake qualifies domain + scope (premium tone, not a nitty-gritty form).
-6. **Fold/retire** Advisory + Implementation into the ladder (decision I'll make and flag for review). Fix the **Accessibility ("signs") page contrast** bug.
+6. **Fold/retire** Advisory + Implementation into the ladder (decision I'll make and flag for review). ~~Fix the **Accessibility ("signs") page contrast** bug~~ — audited 2026-08-17, all text clears AA; see the a11y note above. Awaiting webs confirmation of the specific line, if any remains.
 7. **Font docs:** README + SKILL.md → Overpass. **DONE** (2026-08-17).
 8. **Reviews:** designer + product-steward passes on key pages.
 9. **PR** at the very end.
