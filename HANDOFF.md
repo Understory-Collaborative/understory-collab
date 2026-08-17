@@ -58,7 +58,7 @@ Adapt the flow to UC. Do **not** copy studio w labs wholesale (UC already has th
 
 ### Brand decisions (resolved)
 - **Voice gate: `design-system/VOICE.md`.** Every line of website copy passes through it. Rules are defaults; webs approves exceptions (logged in the file).
-- **Font: Overpass is canonical** (tokens already ship it). TO DO: update README + SKILL.md, which still say Hanken Grotesk.
+- **Font: Overpass is canonical** (tokens already ship it). DONE: README, SKILL.md, the token-file comments, and the standalone `foundations.preview.html` specimen all read Overpass now. Only the one-file revert note in `tokens/fonts.css` still names Hanken Grotesk, on purpose (it documents how to swap back).
 - **Voice:** proceed with the documented website voice (design-system README: "a seasoned CTO telling you the truth over coffee; educate, don't pitch") plus the house-canon rules (plain language, no AI slop, no self-certifying virtue words, warm with high standards, no em dashes). Canon not separately stored; flag if a real gap appears.
 - Proposal tokens (shadows, midtone ramps, warning/info) — confirm which become real as they're used.
 
@@ -123,6 +123,7 @@ The **fixed-price audit** = the "honest assessment" every report describes (map 
 | 2026-08-14 | Built **Office hours page** (`/office-hours`, rung 3). Copy approved (opener: "There's a problem you can't take to your team or your boss. Bring it here."). External booking link with new-tab cue + print style; at-a-glance table; free-Q&A fallback. |
 | 2026-08-14 | Built **Q&A page** (`/questions`, rung 2) + `api/questions.js`. Copy approved. Hands off to office hours (no dead-end). Both rung destinations exist and cross-link. Nav wiring deferred to the homepage/IA pass. |
 | 2026-08-14 | Q&A backend **wired**: `api/questions.js` posts form-urlencoded `entry.*` to the Google Form's `/formResponse` (form id `1FAIpQLSd5HTS0VYZR4NDR5iRnz1Ecg3gUeJ0-un-45Pfs8bLmbb9i6Q`). No env var, no Apps Script. Entry map: stuck `1540066254`, product `18696469`, stage `1644200461`, share `1252682430`, name `896079231`, email `1885750161`. Email is now a normal required question (built-in collection off). Radio option text matched to the form exactly (stage: Idea/Building/Launched/Growing; share: "Yes, use my name" / "Yes, keep me anonymous" / "No, just answer me privately"). Form's Stage/Product/Name must stay OPTIONAL to match the UI. **Still to verify:** a real submit on preview/prod lands a row in the form (the sandbox proxy blocks outbound Google, so it can't be tested from here). |
+| 2026-08-17 | **Font docs squared with the code (build order item 7).** The tokens already shipped Overpass; the docs lagged. Updated `design-system/README.md` (source-materials table + type note), `SKILL.md`, the comments in `tokens/fonts.css` and `tokens/typography.css`, and the standalone `foundations.preview.html` specimen (which was still loading Hanken Grotesk) to all read Overpass. Left the one-file revert note in `fonts.css` naming Hanken on purpose. Build + lint clean. |
 
 ---
 
@@ -149,7 +150,7 @@ UC's wedge against the big consultancies (Thoughtworks / Deloitte tier): they se
 4. **Homepage:** two on-ramps — champion (mastery, free rungs) and exec (behind project + the team question, paid tiers). One CTA per section.
 5. **"Work with me":** reframe offers around the severity engagement patterns; intake qualifies domain + scope (premium tone, not a nitty-gritty form).
 6. **Fold/retire** Advisory + Implementation into the ladder (decision I'll make and flag for review). Fix the **Accessibility ("signs") page contrast** bug.
-7. **Font docs:** README + SKILL.md → Overpass.
+7. **Font docs:** README + SKILL.md → Overpass. **DONE** (2026-08-17).
 8. **Reviews:** designer + product-steward passes on key pages.
 9. **PR** at the very end.
 

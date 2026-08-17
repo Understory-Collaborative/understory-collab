@@ -8,14 +8,13 @@
 /* ===== tokens/fonts.css ===== */
 /* Font loading — Understory Collaborative.
 
-   One family throughout: Hanken Grotesk. A humanist grotesque — warm and approachable
-   without the rounded, playful terminals that read as cartoonish, and grounded enough for
-   a consultancy talking to a skeptical CTO. It matches the redesign brief's cue
-   ("purposeful, minimal, slightly sophisticated — think Stripe or Linear") while keeping
-   the brand's human warmth. Using it for both display and body gives the UI a single,
+   One family throughout: Overpass. A redesigned grotesque with a slightly narrower, cooler
+   cut, grounded enough for a consultancy talking to a skeptical CTO. It matches the redesign
+   brief's cue ("purposeful, minimal, slightly sophisticated — think Stripe or Linear") while
+   keeping the brand's human warmth. Using it for both display and body gives the UI a single,
    confident voice and avoids a thin, mismatched feel.
 
-   Hanken Grotesk ships a full weight range; we load the ones we use (400 body, 500/600 for
+   Overpass ships a full weight range; we load the ones we use (400 body, 500/600 for
    medium UI emphasis, 700/800 for headings) so headings read with real weight rather than
    a thin default. Italics at 400/600 cover emphasis.
 
@@ -23,15 +22,15 @@
    specimens share one source. Production hardening (a proposal): self-host the woff2 files
    under ../fonts and swap the @import for @font-face, to drop the third-party request. */
 
-@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap");
 
 :root {
   --family-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, sans-serif;
 
   /* Brand face, with the system stack as the fallback while the webfont loads. */
-  --family-display: "Hanken Grotesk", var(--family-system);
-  --family-body: "Hanken Grotesk", var(--family-system);
+  --family-display: "Overpass", var(--family-system);
+  --family-body: "Overpass", var(--family-system);
 }
 
 /* ===== tokens/colors.css ===== */
@@ -264,7 +263,7 @@
   --leading-snug: 1.3;
   --leading-body: 1.6;   /* body copy */
 
-  /* Weights. Hanken Grotesk ships the full range; these all render as real weights, not
+  /* Weights. Overpass ships the full range; these all render as real weights, not
      synthesized. Headings lead with bold/extrabold so the page reads with presence rather
      than thin. Body is regular; medium/semibold carry UI emphasis (buttons, labels, nav). */
   --weight-regular: 400;
