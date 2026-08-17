@@ -125,6 +125,12 @@ Framed as customer problems, not services: **Design · Build · Ship** = *what t
 
 This RE-CUTS the old three doors (delivery-rescue / team-turnaround / AI) along the lifecycle. Offer-page depth (proof, pricing in `offersData.js`) must be remapped onto Design/Build/Ship when the "work with me" rung is built. These three also collapse the old Advisory / Implementation pages; Values + About fold into the homepage/About.
 
+## Positioning: practical, not shiny
+
+UC's wedge against the big consultancies (Thoughtworks / Deloitte tier): they sell the shiny new build; UC gets what you already have running right. webs's metaphor: not a Bugatti, but fixing the alternator and repainting the Celica. Consistent with existing Advisory copy ("we will not sell you a rebuild you would then pay to run, secure, and maintain").
+- On the SITE: express the contrast WITHOUT naming competitors (naming reads insecure / invites trouble).
+- The car metaphor is vivid but off the forest/fire brand and the voice gate ("metaphor subtle, never literal"), so use it as a deliberate one-off or state plainly. TBD with webs.
+
 ## Build order (bottom-up, so no CTA points to a missing page)
 
 1. **New rung destinations first:** Q&A page (free, async/public; champion mastery voice) and Office Hours page ($50, 3 spots, bring the marked-up report). So every CTA has a real target.
