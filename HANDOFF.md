@@ -75,6 +75,8 @@ The **fixed-price audit** = the "honest assessment" every report describes (map 
 
 ## Design & craft rules
 - **Anti-slop design:** NO colored left/top/bottom edge-accent bars. NO decorative or single-word pills. Differentiate with type hierarchy, whitespace, and real content (a small table, a code sample). Icons OK if `aria-hidden` and the text carries meaning.
+- **No decorative accent bars or pills, ever** (standing rule, not just this redesign). Proof: the green hero dash and the lime CTA dash were removed site-wide.
+- **`design-audit` skill (designer plugin) is the standard design-review pass** run on any key page before it is finalized.
 - **Accessibility from the first draft:** COGA / WCAG / ADHD. Skimmable takeaway line + explanation underneath, not walls of prose. New-tab cues on external links, print styles, nothing meaningful on color alone.
 - **Known a11y bug:** the signs page has insufficient contrast on some text. → fix during redesign.
 
@@ -82,7 +84,9 @@ The **fixed-price audit** = the "honest assessment" every report describes (map 
 
 ## Process
 
-- **Branch:** `claude/website-copy-ab-testing-l4lcp3` (feature) → mirror to `preview` (host builds). Commit small.
+- **Branch:** `claude/website-copy-ab-testing-l4lcp3` (feature) → mirror to `preview` (host builds). Commit small; build + lint before each commit.
+- **Copy-first, gated, few options:** draft 1–2 lines already run through `VOICE.md` for review, never spray 20 raw options. (This was the fix for early churn.)
+- **Form backend pattern + gotchas:** custom UI posts to a Google Form's `formResponse` (the form owner's account), or Apps Script → Sheet. Google Form gotchas: publish the form; no verified-email collection or response limit (either forces sign-in → 401); radio values must match the form's option text exactly.
 - **Reviews:** designer + product-steward review passes on key pages before finalizing.
 - **PR:** open only at the end.
 

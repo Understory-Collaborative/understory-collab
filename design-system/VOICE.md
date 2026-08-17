@@ -17,6 +17,12 @@ This gate governs the **website**. Chat and non-website artifacts follow `CLAUDE
 
 ---
 
+## Expensive, not cheap
+
+Copy mechanisms (specificity, curiosity, contrast, a testimonial) are good and worth using. What makes copy read *cheap* is wearing the technique on its sleeve: the visible number-trick, the humble-brag "I," the dare. Keep the mechanism, hide the lever. The client is the hero, not us. Offer an observation, never a dare. Same craft as the classic direct-response headlines, at the Ogilvy altitude, not the late-night-infomercial one.
+
+---
+
 ## Blocklist — an automatic fail
 
 | Category | Examples |
@@ -43,6 +49,8 @@ This gate governs the **website**. Chat and non-website artifacts follow `CLAUDE
 - **Don't put your own stuff down to sell the next thing.** "No quiz required" negs the quiz. Sell each rung on what it is.
 - **A form starts a conversation. It doesn't scope a job.** Never promise an outcome, a price, or a scope from a form submission.
 - **Don't name things that don't exist yet.** No podcast until there is a podcast.
+- **Don't name competitors.** Imply the contrast; never call out a named firm. (We may even subcontract with them.)
+- **No unverified claims.** Don't assert a number, a time, or a metric unless it has been checked. "A few questions" beats a "two minutes" you can't defend.
 
 ---
 
