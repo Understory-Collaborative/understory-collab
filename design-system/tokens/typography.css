@@ -27,7 +27,7 @@
   --leading-snug: 1.3;
   --leading-body: 1.6;   /* body copy */
 
-  /* Weights. Hanken Grotesk ships the full range; these all render as real weights, not
+  /* Weights. Overpass ships the full range; these all render as real weights, not
      synthesized. Headings lead with bold/extrabold so the page reads with presence rather
      than thin. Body is regular; medium/semibold carry UI emphasis (buttons, labels, nav). */
   --weight-regular: 400;

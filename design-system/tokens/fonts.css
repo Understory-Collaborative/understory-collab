@@ -1,13 +1,12 @@
 /* Font loading — Understory Collaborative.
 
-   One family throughout: Hanken Grotesk. A humanist grotesque — warm and approachable
-   without the rounded, playful terminals that read as cartoonish, and grounded enough for
-   a consultancy talking to a skeptical CTO. It matches the redesign brief's cue
-   ("purposeful, minimal, slightly sophisticated — think Stripe or Linear") while keeping
-   the brand's human warmth. Using it for both display and body gives the UI a single,
+   One family throughout: Overpass. A redesigned grotesque with a slightly narrower, cooler
+   cut, grounded enough for a consultancy talking to a skeptical CTO. It matches the redesign
+   brief's cue ("purposeful, minimal, slightly sophisticated — think Stripe or Linear") while
+   keeping the brand's human warmth. Using it for both display and body gives the UI a single,
    confident voice and avoids a thin, mismatched feel.
 
-   Hanken Grotesk ships a full weight range; we load the ones we use (400 body, 500/600 for
+   Overpass ships a full weight range; we load the ones we use (400 body, 500/600 for
    medium UI emphasis, 700/800 for headings) so headings read with real weight rather than
    a thin default. Italics at 400/600 cover emphasis.
 

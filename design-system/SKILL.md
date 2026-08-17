@@ -29,7 +29,7 @@ few questions, and act as an expert designer who outputs HTML artifacts or produ
   sparingly, leads on dark). Severity ramp — brush `#e8a87c` → smolder `#e07b4c` → crown
   `#d94f30` → firestorm `#c62828`. Full neutral ramp (0–900), status (success / warning /
   danger / info), forest + earth tints. Dark canvas `#1a1a1a` default, light theme.
-- **Type:** Hanken Grotesk (display + body), loaded from Google Fonts. Headings
+- **Type:** Overpass (display + body), loaded from Google Fonts. Headings
   bold/extrabold, sentence case, 1rem base, 1.6 body line height.
 - **Icons:** none in use yet; pick one light-stroke set if needed (proposal).
 - **Feel:** soft forest-tinted shadows (reserved for hover; site is mostly flat), 8px

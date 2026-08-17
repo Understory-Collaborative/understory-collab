@@ -20,7 +20,7 @@ standalone surfaces link one file, `styles.css`.
 |---|---|---|
 | Logo (square badge + wordmark) | `assets/UC_Logo.png` | 500×500 PNG, no transparency (solid grass-green field). The only mark supplied. A transparent badge, a horizontal lockup, and an app icon are **missing** — flag for the brand owner. |
 | Color values | `tokens/colors.css` | Derived from the running site (`src/index.css`, `src/pages/Quiz.css`) and the logo. The severity ramp is a real product asset. Ramp steps the site never used are marked `(proposal)`. |
-| Type | `tokens/fonts.css` | **No brand font files were supplied.** The logo's display lettering is not shipped as a webfont. The system sets Hanken Grotesk (a humanist grotesque, loaded from Google Fonts) for display and body — a deliberate brand choice, not the logo's exact face. Self-hosting the woff2 is the production follow-up. |
+| Type | `tokens/fonts.css` | **No brand font files were supplied.** The logo's display lettering is not shipped as a webfont. The system sets Overpass (a redesigned grotesque, loaded from Google Fonts) for display and body, a deliberate brand choice rather than the logo's exact face. Self-hosting the woff2 is the production follow-up. |
 
 Anything not traceable to a source above is a considered proposal, labeled as such in the
 token files and open to your direction.
@@ -103,7 +103,7 @@ should sit somewhere on that arc, not invent a competing structure.
   paired with the type's name in text. The neutral ramp runs a full 0–900, status covers
   success / warning / danger / info, and there are soft forest and earth tints for selected
   states and callouts. Raw ramps and semantic aliases live in `tokens/colors.css`.
-- **Type.** Hanken Grotesk for display and body (see the source-materials note). Headings
+- **Type.** Overpass for display and body (see the source-materials note). Headings
   lead bold/extrabold so the page reads with weight, not thin. Scale runs 1rem body to
   2.5rem hero, sentence-case headings, line height 1.6 for body. See
   `tokens/typography.css`.
