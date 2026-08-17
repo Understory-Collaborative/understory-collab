@@ -41,37 +41,44 @@ function Home() {
         </div>
       </section>
 
-      <section className="what-we-do" aria-labelledby="what-we-do-heading">
+      <section className="offerings" aria-labelledby="offerings-heading">
         <div className="section-container">
-          <p className="section-eyebrow">Our services</p>
-          <h2 id="what-we-do-heading">What We Do</h2>
-          <p className="what-we-do-intro">
-            We take the work in whatever shape it arrives: a live crisis, a
-            single defined task, or ongoing technical leadership for your
-            roadmap.
-          </p>
-          <ul className="service-grid" role="list">
-            <li className="service-card">
-              <h3>Advisory</h3>
-              <p>
-                Strategic consulting, technology assessment, and digital
-                transformation guidance to help you make informed decisions.
+          <h2 id="offerings-heading">Where are you stuck?</h2>
+          <ul className="offering-list" role="list">
+            <li className="offering">
+              <h3 className="offering-label">Design</h3>
+              <p className="offering-job">what to build</p>
+              <p className="offering-problem">
+                The scope keeps shifting, and no one can say what the first
+                version even is.
               </p>
-              <Link to="/advisory" className="service-link">
-                Learn More<span className="sr-only"> about advisory services</span>
-              </Link>
             </li>
-            <li className="service-card">
-              <h3>Implementation</h3>
-              <p>
-                Full-stack development, DevOps, and specialized expertise in
-                accessibility, education technology, and more.
+            <li className="offering">
+              <h3 className="offering-label">Build</h3>
+              <p className="offering-job">how to build it</p>
+              <p className="offering-problem">
+                My team keeps missing, and I need to know if it can be turned
+                around.
               </p>
-              <Link to="/implementation" className="service-link">
-                Learn More<span className="sr-only"> about implementation services</span>
-              </Link>
+            </li>
+            <li className="offering">
+              <h3 className="offering-label">Ship</h3>
+              <p className="offering-job">how to ship it</p>
+              <p className="offering-problem">
+                We could be shipping far more often than we are, and too much is
+                still done by hand.
+              </p>
             </li>
           </ul>
+          <p className="offering-promise">
+            Repair or rebuild, the right call for what's in front of you. We've
+            seen enough of these to know when a system is worth saving and when it
+            isn't. What we won't do is sell you a rebuild you don't need, or a
+            patch that won't hold.
+          </p>
+          <Link to="/contact" className="btn btn-primary">
+            Talk to us about your situation
+          </Link>
         </div>
       </section>
 
