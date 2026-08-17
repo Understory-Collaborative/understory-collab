@@ -2,10 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { ThemeProvider } from './context/ThemeContext'
 import Layout from './components/Layout'
 import Home from './pages/Home'
-import Advisory from './pages/Advisory'
-import Implementation from './pages/Implementation'
 import About from './pages/About'
-import Values from './pages/Values'
 import OurWork from './pages/OurWork'
 import Contact from './pages/Contact'
 import Privacy from './pages/Privacy'
@@ -25,10 +22,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="advisory" element={<Advisory />} />
-            <Route path="implementation" element={<Implementation />} />
+            {/* Advisory + Implementation retired into the homepage Design/Build/Ship offerings */}
+            <Route path="advisory" element={<Navigate to="/" replace />} />
+            <Route path="implementation" element={<Navigate to="/" replace />} />
             <Route path="about" element={<About />} />
-            <Route path="values" element={<Values />} />
+            {/* Values folded into About */}
+            <Route path="values" element={<Navigate to="/about" replace />} />
             <Route path="our-work" element={<OurWork />} />
             {/* Old route kept as a redirect so existing links don't 404 */}
             <Route path="portfolios" element={<Navigate to="/our-work" replace />} />

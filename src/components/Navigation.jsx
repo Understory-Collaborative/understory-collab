@@ -1,46 +1,20 @@
-import { useEffect, useRef, useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
 import ucLogo from '../assets/UC_Logo.png'
 import './Navigation.css'
 
-const SERVICES = [
-  { to: '/advisory', label: 'Advisory' },
-  { to: '/implementation', label: 'Implementation' },
+// Flat nav for the funnel IA. The old Services dropdown (Advisory/Implementation)
+// and Values are retired; the offerings now live on the homepage as Design/Build/Ship.
+const LINKS = [
   { to: '/quiz', label: 'Assessment' },
+  { to: '/office-hours', label: 'Office hours' },
+  { to: '/our-work', label: 'Our work' },
+  { to: '/about', label: 'About' },
+  { to: '/contact', label: 'Contact' },
 ]
 
 function Navigation() {
   const { theme, toggleTheme } = useTheme()
-  const { pathname } = useLocation()
-  const [servicesOpen, setServicesOpen] = useState(false)
-  const servicesRef = useRef(null)
-  const servicesButtonRef = useRef(null)
-
-  const servicesActive = SERVICES.some(({ to }) => pathname === to)
-
-  // A click or focus outside the Services group closes it.
-  useEffect(() => {
-    if (!servicesOpen) return
-    const onOutside = (e) => {
-      if (servicesRef.current && !servicesRef.current.contains(e.target)) {
-        setServicesOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', onOutside)
-    document.addEventListener('focusin', onOutside)
-    return () => {
-      document.removeEventListener('mousedown', onOutside)
-      document.removeEventListener('focusin', onOutside)
-    }
-  }, [servicesOpen])
-
-  const onServicesKeyDown = (e) => {
-    if (e.key === 'Escape' && servicesOpen) {
-      setServicesOpen(false)
-      servicesButtonRef.current?.focus()
-    }
-  }
 
   return (
     <header className="nav-header">
@@ -51,60 +25,16 @@ function Navigation() {
         </Link>
 
         <ul className="nav-links" role="list">
-          <li className="nav-dropdown" ref={servicesRef} onKeyDown={onServicesKeyDown}>
-            <button
-              type="button"
-              ref={servicesButtonRef}
-              className={servicesActive ? 'nav-link nav-dropdown-toggle active' : 'nav-link nav-dropdown-toggle'}
-              aria-expanded={servicesOpen}
-              aria-controls="services-submenu"
-              aria-current={servicesActive ? 'true' : undefined}
-              onClick={() => setServicesOpen((open) => !open)}
-            >
-              Services
-              <svg
-                className={servicesOpen ? 'nav-caret open' : 'nav-caret'}
-                aria-hidden="true"
-                width="12" height="12" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+          {LINKS.map(({ to, label }) => (
+            <li key={to}>
+              <NavLink
+                to={to}
+                className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
               >
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </button>
-            <ul id="services-submenu" className="nav-submenu" role="list" hidden={!servicesOpen}>
-              {SERVICES.map(({ to, label }) => (
-                <li key={to}>
-                  <NavLink
-                    to={to}
-                    className={({ isActive }) => (isActive ? 'nav-sublink active' : 'nav-sublink')}
-                    onClick={() => setServicesOpen(false)}
-                  >
-                    {label}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </li>
-          <li>
-            <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              About Us
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/our-work" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              Our Work
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/values" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              Values
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/contact" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              Contact Us
-            </NavLink>
-          </li>
+                {label}
+              </NavLink>
+            </li>
+          ))}
         </ul>
 
         <button
