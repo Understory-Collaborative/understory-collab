@@ -23,7 +23,7 @@ This gate governs the **website**. Chat and non-website artifacts follow `CLAUDE
 |---|---|
 | Em dashes | (use periods, commas, colons, or parentheses) |
 | Self-certifying virtue words | honest, honestly, the truth is, straight, frankly, real talk |
-| AI-slop vocabulary | seamless, cutting-edge, game-changer, best-in-class, unlock, elevate, empower, leverage (as a verb), dive in, revolutionary, synergy, end-to-end, a "read" on the situation |
+| AI-slop vocabulary | seamless, cutting-edge, game-changer, best-in-class, unlock, elevate, empower, leverage (as a verb), dive in, revolutionary, synergy, end-to-end, a "read" on the situation, "it lands on you" / "it lands" |
 | False contrast | no trailing ", not X" and no leading "not X, but Y." State the positive directly. |
 | Cleverness that performs | wordplay or punch that draws attention to itself |
 | Stock names & ability metaphors | "Sarah Chen"; sensory or ability metaphors used loosely |
