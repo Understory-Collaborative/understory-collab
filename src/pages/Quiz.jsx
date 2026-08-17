@@ -75,7 +75,7 @@ function Quiz() {
               stand, and what it means.
             </p>
             <p className="quiz-meta">
-              Takes about 2 minutes. Your answers stay on your device.
+              Your answers stay on your device.
             </p>
             <button
               className="btn btn-primary btn-large quiz-start-btn"

@@ -10,14 +10,16 @@ function Home() {
       <section className="home-hero" aria-labelledby="hero-heading">
         <div className="home-hero-content">
           <h1 id="hero-heading" className="home-hero-title">
-            <span className="hero-line">Great software isn't just about clean code,</span>{' '}
-            <span className="hero-line">it's about solving real problems when it matters most.</span>
+            You aren't supposed to have all of this solved on your own.
           </h1>
           <p className="home-hero-description">
-            Like the protective forest layer we are named for, we create the
-            conditions for your team to thrive, building software that is
-            accessible, maintainable, and useful long after we hand it over.
+            Whether the project is late, the team is stuck, or the tooling has
+            gotten away from you, we've worked through it before. A few questions
+            will tell you how serious it is.
           </p>
+          <Link to="/quiz" className="btn btn-primary btn-large home-hero-cta">
+            Take the quiz
+          </Link>
         </div>
       </section>
 
