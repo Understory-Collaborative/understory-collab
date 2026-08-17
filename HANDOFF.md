@@ -116,6 +116,15 @@ The **fixed-price audit** = the "honest assessment" every report describes (map 
 
 ---
 
+## Offering trio (resolved with webs)
+
+Framed as customer problems, not services: **Design · Build · Ship** = *what to build · how to build it · how to ship it*.
+- **Design** — what to build (scope, the right first version).
+- **Build** — how to build it (the team / execution).
+- **Ship** — how to ship it (release cadence, automation, AI, practices). "Accelerate" is this bucket's benefit line, not its label.
+
+This RE-CUTS the old three doors (delivery-rescue / team-turnaround / AI) along the lifecycle. Offer-page depth (proof, pricing in `offersData.js`) must be remapped onto Design/Build/Ship when the "work with me" rung is built. These three also collapse the old Advisory / Implementation pages; Values + About fold into the homepage/About.
+
 ## Build order (bottom-up, so no CTA points to a missing page)
 
 1. **New rung destinations first:** Q&A page (free, async/public; champion mastery voice) and Office Hours page ($50, 3 spots, bring the marked-up report). So every CTA has a real target.
