@@ -88,7 +88,7 @@ The **fixed-price audit** = the "honest assessment" every report describes (map 
 - **Copy-first, gated, few options:** draft 1–2 lines already run through `VOICE.md` for review, never spray 20 raw options. (This was the fix for early churn.)
 - **Form backend pattern + gotchas:** custom UI posts to a Google Form's `formResponse` (the form owner's account), or Apps Script → Sheet. Google Form gotchas: publish the form; no verified-email collection or response limit (either forces sign-in → 401); radio values must match the form's option text exactly.
 - **Reviews:** designer + product-steward review passes on key pages before finalizing.
-- **PR:** open only at the end.
+- **PR:** [#28](https://github.com/Understory-Collaborative/understory-collab/pull/28) (opened from the Claude Code UI). Pushing to the feature branch updates it; no new PR needed.
 
 ---
 
