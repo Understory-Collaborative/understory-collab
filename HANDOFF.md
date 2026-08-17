@@ -101,6 +101,8 @@ The **fixed-price audit** = the "honest assessment" every report describes (map 
 - Form input borders: new `--border-input` token (dark `rgba(255,255,255,0.42)`, light `--neutral-500`), `.contact-input` repointed at it — clears WCAG 1.4.11 (3:1) on every form.
 - Hero lead/support promoted to shared `.page-hero-lead` / `.page-hero-support`; office hours + Q&A now use the same treatment.
 
+**Quiz results screen rewired** (`Quiz.jsx`) to the ladder: keeps the result + field-guide capture, then a "Your next move" handoff to office hours (primary) and Q&A (free alt). Dropped the three door links and the "Let's Talk"/contact ending (webs approved for iteration 2; doors move to the "work with me" rung later). Office hours support line aligned to "someone who's seen just about everything." **Still to do:** hand webs drop-in copy for the four report (PDF) endings.
+
 
 | Date | State |
 |---|---|

@@ -400,6 +400,29 @@
   flex-wrap: wrap;
 }
 
+.result-next {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.result-next h2 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin: 0 0 1rem;
+}
+
+.result-next-lead {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 52ch;
+  margin: 0 auto 1.5rem;
+}
+
+.result-next-alt {
+  color: var(--text-secondary);
+  margin: 1.25rem 0 2rem;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .quiz-intro {

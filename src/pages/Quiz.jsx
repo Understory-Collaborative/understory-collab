@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { quizQuestions, getCrisisType } from '../data/quizData'
-import { offers } from '../data/offersData'
 import './Quiz.css'
 
 function Quiz() {
@@ -117,35 +116,27 @@ function Quiz() {
               <FieldGuideForm fireType={crisisType.id} fireName={crisisType.name} />
             </div>
 
-            <div className="result-doors" aria-labelledby="result-doors-heading">
-              <h2 id="result-doors-heading">
-                Now you know the weather. Here is where we help.
-              </h2>
-              <p className="result-doors-intro">
-                We do three things well. If one of these is the specific problem in
-                front of you, open that door and read what it involves. If none of
-                them fits, we are probably not your people, and knowing that now
-                saves you time.
+            <div className="result-next" aria-labelledby="result-next-heading">
+              <h2 id="result-next-heading">Your next move</h2>
+              <p className="result-next-lead">
+                Read the guide and mark it up: what resonates, what doesn't, and
+                the one question you still have. Then bring that question to office
+                hours, thirty minutes with someone who's seen just about
+                everything.
               </p>
-              <ul className="result-doors-list" role="list">
-                {offers.map((offer) => (
-                  <li key={offer.id} className="result-door">
-                    <Link to={`/offers/${offer.slug}`} className="result-door-link">
-                      <span className="result-door-select">{offer.selfSelect}</span>
-                      <span className="result-door-name">{offer.name}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="result-actions">
-              <button className="btn btn-secondary" onClick={handleRestart}>
-                Retake the Quiz
-              </button>
-              <Link to="/contact" className="btn btn-primary">
-                Let's Talk
+              <Link to="/office-hours" className="btn btn-primary">
+                See office hours
               </Link>
+              <p className="result-next-alt">
+                Not there yet?{' '}
+                <Link to="/questions">Ask us a question for free.</Link>
+              </p>
+              <button
+                className="btn btn-secondary result-retake"
+                onClick={handleRestart}
+              >
+                Retake the quiz
+              </button>
             </div>
           </div>
         </section>

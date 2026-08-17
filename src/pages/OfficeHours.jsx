@@ -14,8 +14,8 @@ function OfficeHours() {
             here.
           </p>
           <p className="page-hero-support">
-            Thirty minutes with someone who's handled it before. Fifty dollars a
-            seat.
+            Thirty minutes with someone who's seen just about everything. Fifty
+            dollars a seat.
           </p>
           <p className="oh-cta">
             <a
