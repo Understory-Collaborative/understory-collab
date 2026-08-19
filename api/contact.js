@@ -18,9 +18,10 @@
  * Privacy: this function never logs the submitter's name, email, or message.
  */
 
-// Public Kit form id (same one src/lib/kit.js and api/field-guide.js use). Swap this for a
-// dedicated contact form id if contact submissions should not join the newsletter list.
-const CONTACT_KIT_FORM = '9782548'
+// Public Kit form id for the dedicated "Website contact" form (separate from the newsletter
+// form 9782548, so contacts don't land on the newsletter list and a Kit automation can
+// notify on this form alone). Its custom fields are name / business / message.
+const CONTACT_KIT_FORM = '9821838'
 const KIT_FORM_ENDPOINT = `https://app.kit.com/forms/${CONTACT_KIT_FORM}/subscriptions`
 
 const LIMITS = {
