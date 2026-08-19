@@ -81,6 +81,25 @@ function Home() {
         </div>
       </section>
 
+      <section className="positioning" aria-labelledby="positioning-heading">
+        <div className="section-container">
+          <div className="positioning-content">
+            <h2 id="positioning-heading">The work has a name: technical product management</h2>
+            <p>
+              Most technical work stalls in the gap between the people who can build
+              it and the people who can decide what it's worth. That gap is where we
+              work. We're close enough to the code to review the pull request, and far
+              enough back to see which fire actually matters this quarter.
+            </p>
+            <p>
+              On a given engagement that means deciding what to build and in what
+              order, moving a team we don't manage, and handing the whole thing back
+              running so you can steer it without us.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="how-we-work" aria-labelledby="how-we-work-heading">
         <div className="section-container">
           <h2 id="how-we-work-heading">How We Work</h2>

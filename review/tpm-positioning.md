@@ -128,12 +128,34 @@ Every line below is run through `design-system/VOICE.md`. Pick, cut, or redirect
 
 ---
 
-## Open questions for webs
+## Resolved with webs (2026-08-19)
 
-1. **The word.** "Technical product management" in full, or a shorter house phrasing? The
-   full term is clear and owns the category; it is also four words of jargon. [webs decides]
-2. **How-we-work section.** The current home "How We Work" (Root / Rise / Flourish) is
-   forest-metaphor, not TPM-shaped. Keep it and add a positioning band above it, or rework it
-   to carry the TPM method? [webs decides]
-3. **Range vocabulary.** Which two or three of the responsibility list to feature as proof
-   (my lean: integration sequencing, consolidation, lifecycle and deprecation). [webs decides]
+1. **The word:** use "technical product management" in full, in the identity layer. It owns
+   the category.
+2. **How-we-work section:** keep Root / Rise / Flourish; add a positioning band above it that
+   names the discipline and states the wedge. (Reworking the method into Root/Rise/Flourish
+   is a later option, not this pass.)
+3. **Range vocabulary:** feature the triad that proves the generalist spans all three axes,
+   each landing on the locked buyer's pain, rather than the most exotic-sounding duties:
+   - **Technical** — what to integrate, why, and in what sequence (a behind project is
+     usually a sequencing failure).
+   - **Market / strategic** — product strategy, what's worth building now (the half the code
+     shops miss).
+   - **People / org** — internal enablement and team development (the empowerment soul; the
+     anti-dependency proof).
+   Deprecation / sunsetting and multiyear consolidation move to intake-qualified scope, not
+   the shop window (nobody shops for a sunset; consolidation is portfolio-scale, past our
+   buyer).
+
+## First copy shipped (2026-08-19, for review)
+
+Gated through `VOICE.md`, on the session branch:
+- **Home positioning band** (`Home.jsx` / `Home.css`), above How We Work: names the
+  discipline, states the wedge (close enough to review the pull request, far enough back to
+  see which fire matters), and shows the triad in plain words (what to build and in what
+  order, moving a team we don't manage, handing it back running). No CTA (identity, not a
+  rung).
+- **About identity opener** (`About.jsx`, "Who We Are"): names technical product management
+  and shows the same triad, keeping the seasoned-technologists credibility line.
+
+Both build + lint clean. Awaiting webs's line edits.
