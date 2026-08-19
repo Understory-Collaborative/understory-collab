@@ -17,9 +17,6 @@ function Home() {
             gotten away from you, we've worked through it before. A few questions
             will tell you how serious it is.
           </p>
-          <Link to="/quiz" className="btn btn-primary btn-large home-hero-cta">
-            Take the quiz
-          </Link>
         </div>
       </section>
 
@@ -38,7 +35,7 @@ function Home() {
               one system is on fire or the whole canopy has become a firestorm,
               and points to where we can help.
             </p>
-            <Link to="/quiz" className="btn btn-primary">Take the Quiz</Link>
+            <Link to="/assessment" className="btn btn-primary">Take the assessment</Link>
           </div>
         </div>
       </section>

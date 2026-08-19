@@ -33,10 +33,13 @@
       <button class="uc-btn uc-btn--secondary theme-switch" id="theme" type="button">Toggle theme</button>
     </header>
 
-    <h2>Brand color</h2>
+    <h2>Brand color — olive, one identity in two modes</h2>
     <div class="swatches">
-      <div class="swatch"><div class="swatch__chip" style="background: var(--forest-700)"></div><div class="swatch__meta"><div class="swatch__name">Forest</div><div class="swatch__token">--forest-700</div></div></div>
-      <div class="swatch"><div class="swatch__chip" style="background: var(--earth-400)"></div><div class="swatch__meta"><div class="swatch__name">Earth accent</div><div class="swatch__token">--earth-400</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--surface-canvas)"></div><div class="swatch__meta"><div class="swatch__name">Canvas</div><div class="swatch__token">--surface-canvas</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--surface-brand)"></div><div class="swatch__meta"><div class="swatch__name">Nav / brand surface</div><div class="swatch__token">--surface-brand</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--brand-primary)"></div><div class="swatch__meta"><div class="swatch__name">Olive accent</div><div class="swatch__token">--brand-primary</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--action)"></div><div class="swatch__meta"><div class="swatch__name">Action (lime, "click this")</div><div class="swatch__token">--action</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--surface-act)"></div><div class="swatch__meta"><div class="swatch__name">Invite to act</div><div class="swatch__token">--surface-act</div></div></div>
       <div class="swatch"><div class="swatch__chip" style="background: var(--forest-logo)"></div><div class="swatch__meta"><div class="swatch__name">Logo green (decorative)</div><div class="swatch__token">--forest-logo</div></div></div>
     </div>
 
@@ -54,16 +57,14 @@
       <span class="uc-severity uc-severity--firestorm">Firestorm</span>
     </div>
 
-    <h2>Brand tints &amp; neutrals</h2>
+    <h2>Brand surfaces &amp; neutrals</h2>
+    <p class="note" style="margin-bottom: var(--space-3)">Olive brand surfaces, shown via the semantic tokens (they flip per theme). The raw <code>--forest-*</code> / <code>--earth-*</code> ramps are legacy and no longer the spine.</p>
     <div class="ramp" style="margin-bottom: var(--space-3)">
-      <div style="background: var(--forest-100); color: var(--neutral-900)">forest-100</div>
-      <div style="background: var(--forest-300); color: var(--neutral-900)">300</div>
-      <div style="background: var(--forest-500); color: #fff">500</div>
-      <div style="background: var(--forest-700); color: #fff">700</div>
-      <div style="background: var(--forest-900); color: #fff">900</div>
-      <div style="background: var(--earth-100); color: var(--neutral-900)">earth-100</div>
-      <div style="background: var(--earth-400); color: var(--neutral-900)">400</div>
-      <div style="background: var(--earth-600); color: #fff">600</div>
+      <div style="background: var(--surface-canvas); color: var(--text-primary)">canvas</div>
+      <div style="background: var(--surface-card); color: var(--text-primary)">card</div>
+      <div style="background: var(--surface-brand); color: var(--text-on-brand)">nav</div>
+      <div style="background: var(--brand-primary); color: var(--surface-canvas)">accent</div>
+      <div style="background: var(--surface-act); color: var(--text-on-act)">act</div>
     </div>
     <div class="ramp">
       <div style="background: var(--neutral-50); color: #1a1a1a">50</div>
