@@ -84,17 +84,17 @@ function Home() {
       <section className="positioning" aria-labelledby="positioning-heading">
         <div className="section-container">
           <div className="positioning-content">
-            <h2 id="positioning-heading">The work has a name: technical product management</h2>
+            <h2 id="positioning-heading">Technical product management</h2>
             <p>
-              Most technical work stalls in the gap between the people who can build
-              it and the people who can decide what it's worth. That gap is where we
-              work. We're close enough to the code to review the pull request, and far
-              enough back to see which fire actually matters this quarter.
+              You've probably hired both halves of this job before. One shop builds
+              exactly what you spec and never asks whether it's the right thing to build.
+              One advisor arrives with a deck full of opinions and has never opened your
+              codebase. Neither leaves you better off than when they showed up.
             </p>
             <p>
-              On a given engagement that means deciding what to build and in what
-              order, moving a team we don't manage, and handing the whole thing back
-              running so you can steer it without us.
+              We do both halves, and then we leave. We help you decide what to build and
+              in what order, we sit with the team that builds it, and we go once your
+              team can run it without us.
             </p>
           </div>
         </div>
