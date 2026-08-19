@@ -1,37 +1,27 @@
 /*
  * POST /api/contact — Understory Collaborative contact form handler (Vercel Node function).
  *
- * Delivers submissions to a Google Sheet with NO npm dependencies, by POSTing JSON
- * to a Google Apps Script Web App. Three-step setup:
+ * Delivers submissions to Kit (formerly ConvertKit), the same service the newsletter and
+ * field-guide signups use. NO npm dependencies, NO Vercel env var, NO Google Sheet: it
+ * subscribes the sender to the public Kit form and rides the name, business, and message
+ * along as Kit custom fields.
  *
- *   1. Create a Google Sheet (e.g. header row: Timestamp | Name | Business | Email | Message).
- *
- *   2. In that Sheet: Extensions → Apps Script, and add a doPost that appends a row, e.g.:
- *
- *        function doPost(e) {
- *          var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
- *          var data = JSON.parse(e.postData.contents);
- *          sheet.appendRow([
- *            new Date(),
- *            data.name || '',
- *            data.business || '',
- *            data.email || '',
- *            data.message || ''
- *          ]);
- *          return ContentService
- *            .createTextOutput(JSON.stringify({ ok: true }))
- *            .setMimeType(ContentService.MimeType.JSON);
- *        }
- *
- *      Deploy → New deployment → type "Web app" → Execute as "Me",
- *      Who has access "Anyone". Copy the resulting /exec Web App URL.
- *
- *   3. In Vercel (Project → Settings → Environment Variables) set:
- *        CONTACT_SHEET_WEBHOOK_URL = <the /exec Web App URL>
- *      Redeploy so the function picks it up.
+ * Kit setup (one-time, in the Kit account):
+ *   - The form id below is public (it ships in the site's newsletter embed), so there is no
+ *     key here and nothing that needs a paid plan.
+ *   - To STORE the extra fields, add custom fields named `name`, `business`, and `message`
+ *     in Kit (Grow → Subscribers → custom fields, or Settings). If a field is missing, Kit
+ *     ignores that value and the signup still succeeds — the email is always captured.
+ *   - Contact submitters land on the same Kit list as newsletter signups. If you want them
+ *     kept separate, point CONTACT_KIT_FORM at a dedicated Kit form id instead.
  *
  * Privacy: this function never logs the submitter's name, email, or message.
  */
+
+// Public Kit form id (same one src/lib/kit.js and api/field-guide.js use). Swap this for a
+// dedicated contact form id if contact submissions should not join the newsletter list.
+const CONTACT_KIT_FORM = '9782548'
+const KIT_FORM_ENDPOINT = `https://app.kit.com/forms/${CONTACT_KIT_FORM}/subscriptions`
 
 const LIMITS = {
   name: 200,
@@ -97,26 +87,26 @@ export default async function handler(req, res) {
     return res.status(400).json({ ok: false, error: errors.join('; ') })
   }
 
-  // Read via globalThis so this Node-runtime env access stays lint-clean under
-  // the project's browser-scoped ESLint config.
-  const webhookUrl = globalThis.process?.env?.CONTACT_SHEET_WEBHOOK_URL
-  if (!webhookUrl) {
-    // Do not leak config details to the client beyond a clear message.
-    return res
-      .status(500)
-      .json({ ok: false, error: 'Contact endpoint not configured' })
-  }
-
   try {
-    const upstream = await fetch(webhookUrl, {
+    // Kit's own HTML form posts email_address form-encoded; custom fields ride along as
+    // fields[<key>]. URLSearchParams keeps this a simple, dependency-free POST. Missing
+    // custom fields are ignored by Kit, so the email is captured either way.
+    const params = new URLSearchParams({
+      email_address: email,
+      'fields[name]': name,
+      'fields[message]': message,
+    })
+    if (business) params.set('fields[business]', business)
+
+    const upstream = await fetch(KIT_FORM_ENDPOINT, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, business, email, message }),
+      headers: { Accept: 'application/json' },
+      body: params,
     })
 
     if (!upstream.ok) {
       // Log status only — never the submission contents (no PII in logs).
-      console.error('Contact webhook responded with status', upstream.status)
+      console.error('Contact Kit subscribe responded with status', upstream.status)
       return res
         .status(502)
         .json({ ok: false, error: 'Failed to deliver message' })
@@ -125,7 +115,7 @@ export default async function handler(req, res) {
     return res.status(200).json({ ok: true })
   } catch {
     // Do not log the error object — it can echo the request payload / PII.
-    console.error('Contact webhook request failed')
+    console.error('Contact Kit request failed')
     return res
       .status(502)
       .json({ ok: false, error: 'Failed to deliver message' })
