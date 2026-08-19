@@ -40,9 +40,9 @@ export const offers = [
       'had the hard conversation about what the timeline could really fit, then shipped a real ' +
       'increment to customers.',
     engagement:
-      'It starts with an assessment that scopes the work, then a fixed price per delivery ' +
-      'iteration based on what the assessment finds. We settle the numbers with you after a ' +
-      'short application, not off a form.',
+      'It starts with an assessment that scopes the work, then an engagement priced from what ' +
+      'it finds, whether that is a fixed price per iteration or a monthly retainer. We settle ' +
+      'the shape with you after a short application, not off a form.',
   },
   {
     id: 'build',
@@ -70,9 +70,9 @@ export const offers = [
       'Two team turnarounds, from stuck and spiraling to a steady, predictable delivery pace ' +
       'within a month or two.',
     engagement:
-      'It starts with an assessment of the team, then an embedded monthly retainer while we ' +
-      'turn it around, scoped from what the assessment finds. We work out the shape with you ' +
-      'after a short application.',
+      'It starts with an assessment of the team, then an engagement scoped from what it finds, ' +
+      'usually an embedded retainer while we turn the team around. We work out the shape with ' +
+      'you after a short application.',
   },
   {
     id: 'ship',
@@ -103,9 +103,9 @@ export const offers = [
       'the method targets specific roles and then whole teams. The method itself is the proof, ' +
       'reaching the refusers and leaving the org able to run without us.',
     engagement:
-      'It starts with a readiness assessment, then an embedded monthly retainer for a phased ' +
-      'rollout, scoped from what the assessment finds. We work out the shape with you after a ' +
-      'short application.',
+      'It starts with a readiness assessment, then an engagement scoped from what it finds, ' +
+      'usually an embedded retainer for a phased rollout. We work out the shape with you after ' +
+      'a short application.',
   },
 ]
 
