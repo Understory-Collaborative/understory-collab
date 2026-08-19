@@ -6,7 +6,7 @@ import './Navigation.css'
 // Flat nav for the funnel IA. The old Services dropdown (Advisory/Implementation)
 // and Values are retired; the offerings now live on the homepage as Design/Build/Ship.
 const LINKS = [
-  { to: '/quiz', label: 'Assessment' },
+  { to: '/assessment', label: 'Assessment' },
   { to: '/office-hours', label: 'Office hours' },
   { to: '/our-work', label: 'Our work' },
   { to: '/about', label: 'About' },

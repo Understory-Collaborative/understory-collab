@@ -135,7 +135,7 @@ function Quiz() {
                 className="btn btn-secondary result-retake"
                 onClick={handleRestart}
               >
-                Retake the quiz
+                Retake the assessment
               </button>
             </div>
           </div>

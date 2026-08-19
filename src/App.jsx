@@ -37,7 +37,9 @@ function App() {
             <Route path="privacy" element={<Privacy />} />
             <Route path="unsubscribe" element={<Unsubscribe />} />
             <Route path="accessibility" element={<Accessibility />} />
-            <Route path="quiz" element={<Quiz />} />
+            <Route path="assessment" element={<Quiz />} />
+            {/* Renamed quiz → assessment; keep the old path as a redirect so existing links don't 404 */}
+            <Route path="quiz" element={<Navigate to="/assessment" replace />} />
             {/* The three doors — one offer page per door, data-driven from offersData.js */}
             <Route path="offers/:slug" element={<OfferPage />} />
             {/* Short application — the conversation step; door prefilled via ?door=<slug> */}
