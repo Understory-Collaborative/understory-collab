@@ -95,26 +95,31 @@ should sit somewhere on that arc, not invent a competing structure.
 
 ## Visual foundations
 
-- **Color.** Forest green (`--forest-700`, `#2d5a3d`) is the spine and the nav surface in
-  both themes. Warm earth (`--earth-400`, `#e8a87c`) is the accent and leads on dark
-  surfaces; it is used sparingly. On light surfaces the green leads, because the earth tone
-  is too pale to carry text at AA. The **severity ramp** (brush → smolder → crown →
-  firestorm) is the signature asset: warm-to-hot, decorative reinforcement only, always
-  paired with the type's name in text. The neutral ramp runs a full 0–900, status covers
-  success / warning / danger / info, and there are soft forest and earth tints for selected
-  states and callouts. Raw ramps and semantic aliases live in `tokens/colors.css`.
+- **Color.** Olive is the spine, one identity in two modes. **Dark:** a deep-olive canvas
+  (`#1c2902`), a mid-olive nav (`#5b5c1f`), warm cream text (`#eeeee1`), and a pale-olive
+  accent (`#b7de7c`) that leads because the deep olives are too dark for text there.
+  **Light:** a warm cream page (`#f4f2e4`), a pale-olive hero band, a deep-olive nav
+  (`#1c2902`), dark-olive text (`#232b10`), and a deep-olive accent (`#4c5a16`). The lime
+  action color (`--action`, `#8ed14f`) is shared across both modes and means "click this"
+  (primary button only). The **severity ramp** (brush → smolder → crown → firestorm) is the
+  signature asset and is unchanged: warm-to-hot, decorative reinforcement only, always paired
+  with the type's name in text. The neutral ramp runs a full 0–900, status covers success /
+  warning / danger / info, and there are soft olive tints for selected states and callouts.
+  Raw ramps and semantic aliases live in `tokens/colors.css`; the legacy forest ramp is kept
+  there but is no longer the brand spine.
 - **Type.** Overpass for display and body (see the source-materials note). Headings
   lead bold/extrabold so the page reads with weight, not thin. Scale runs 1rem body to
   2.5rem hero, sentence-case headings, line height 1.6 for body. See
   `tokens/typography.css`.
 - **Spacing and layout.** 4px grid. Content max 1200px, prose max 800px, 44px minimum touch
   target. `tokens/spacing.css`.
-- **Backgrounds.** Dark canvas by default (`#1a1a1a`) with a light theme. A subtle top-down
-  gradient (card → canvas) is used on heroes. No photographic backgrounds.
+- **Backgrounds.** Deep-olive canvas by default (`#1c2902`) with a warm cream light theme
+  (`#f4f2e4`, not white/grey). A subtle top-down gradient (card → canvas) is used on heroes.
+  No photographic backgrounds.
 - **Corner radii.** 8px controls, 12px cards, 16px panels, pill for badges.
-- **Cards.** Lifted surface, hairline border, default flat; the soft forest-tinted shadow is
+- **Cards.** Lifted surface, hairline border, default flat; the soft olive-tinted shadow is
   reserved for interactive hover.
-- **Shadows.** Forest-tinted, not black — and a **proposal**: the live site is nearly flat.
+- **Shadows.** Olive-tinted, not black — and a **proposal**: the live site is nearly flat.
   `tokens/elevation.css`.
 - **Motion.** Calm and quiet: 0.2s color/hover, 0.3s theme and page-enter fades, eased, no
   spring. Collapses to zero under `prefers-reduced-motion`. `tokens/motion.css`.
