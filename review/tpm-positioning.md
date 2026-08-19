@@ -159,3 +159,16 @@ Gated through `VOICE.md`, on the session branch:
   and shows the same triad, keeping the seasoned-technologists credibility line.
 
 Both build + lint clean. Awaiting webs's line edits.
+
+**Revised 2026-08-19 after webs feedback.** First draft was flat consultant abstraction
+("the work has a name", "in the gap between", "what it's worth"). Rewrote against
+`design/copy-that-moves` and the canonical PS voice: lead with the reader's real world,
+name the stake, skip the villain, one line to own, mechanics held.
+- **Home band:** kept "you've probably hired both halves of this job" (webs's favorite); the
+  two half-hires are ordinary friction, not a competitor villain; line to own is "We do both
+  halves, and then we leave."
+- **About opener:** folded in webs's own manifesto. The thesis ("we reject the idea that
+  people are either weak generalists or specialists; that's why there aren't many of us who
+  do this well") is the POV a rival can't copy. The concrete range span (market research,
+  enablement, go-to-market to reading technical documentation and challenge reviews) is the
+  triad in webs's words. Lands on the customer problem (behind project / stuck team).

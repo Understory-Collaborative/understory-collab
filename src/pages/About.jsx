@@ -56,15 +56,20 @@ function About() {
           <h2 id="who-we-are-heading">Who We Are</h2>
           <div className="about-intro-copy">
             <p>
-              We do technical product management. That means we help you decide what to build
-              and in what order, we work next to the team that builds it, and we step back once
-              your team can run it without us.
+              We are technical product managers. We reject the idea that people are either
+              weak generalists or specialists. That's why there aren't many of us who do this
+              well.
+            </p>
+            <p>
+              The work lives in the messy middle, and it takes someone who thrives there. That
+              person is a jack of all trades who works with real depth, from market research,
+              enablement, and go-to-market to reading the technical documentation and sitting
+              in a team's challenge reviews.
             </p>
             <p>
               We've spent decades on both sides of that, across healthcare, transportation,
-              legal services, and beyond. It's why we can sequence the work when everything
-              feels urgent, make the call on what's actually worth building now, and leave your
-              team stronger than we found it.
+              legal services, and beyond. When your project is behind or your team is stuck, we
+              come in, get it moving, and step back once your team can run it without us.
             </p>
           </div>
           <ul className="about-cards" role="list">
