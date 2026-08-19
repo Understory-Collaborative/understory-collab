@@ -17,10 +17,10 @@
 :root {
   /* ---- Raw ramps -------------------------------------------------------- */
 
-  /* Forest green. The brand's spine. 700 and 600 are the real site values; the rest fill
-     the ramp so there are tints for backgrounds/selected states (light end) and depth
-     (dark end). The logo's brighter grass green is kept separate as --forest-logo so it is
-     available without becoming the UI primary (too light for white body text at AA). */
+  /* Forest green — LEGACY. The brand spine moved to olive (see the semantic layer, where the
+     surface/brand/text tokens carry literal olive values). These forest steps are kept only
+     for the older design-system specimen pages and any status token still pointing at them;
+     do not reach for them in new work. The logo's grass green stays as --forest-logo. */
   --forest-50: #eef4ef;  /* proposal — faint tint, brand-wash backgrounds */
   --forest-100: #d7e6dc; /* proposal — selected/hover wash on light */
   --forest-200: #b1ccba; /* proposal */
@@ -92,30 +92,31 @@
   --info-400: #6fa982;    /* proposal — lifted forest for dark surfaces */
 
   /* ---- Semantic aliases (portable) — DARK theme is the default ----------- */
-  /* A lifted forest green leads on dark (forest-700 is too dark for text here). This keeps
-     the brand reading green in BOTH themes, so lime stays the only warm/bright accent. */
-  --brand-primary: #84ad92;                  /* forest-300, clears AA on the dark canvas */
-  --brand-primary-hover: #9cc0a8;
-  --brand-forest: var(--forest-700);         /* the green, for surfaces like the nav */
-  --brand-ink: var(--forest-900);
-  --brand-tint: rgba(132, 173, 146, 0.14);   /* soft green wash (selected, callout) */
+  /* The brand spine is OLIVE. A pale olive leads on dark (the deep olives are too dark for
+     text here). This keeps the brand reading olive-green in BOTH themes, so lime stays the
+     only warm/bright accent. The raw forest and ink ramps are legacy: the olive values below
+     are literal, and components read them through these semantic tokens. */
+  --brand-primary: #b7de7c;                  /* pale olive, clears AA on the deep-olive canvas */
+  --brand-primary-hover: #c7e894;
+  --brand-forest: #5b5c1f;                   /* mid olive, for surfaces like the nav */
+  --brand-ink: #14200a;
+  --brand-tint: rgba(183, 222, 124, 0.14);   /* soft olive wash (selected, callout) */
 
-  /* Warm earth — the SECONDARY accent, DECORATIVE ONLY. Never text or button fill
-     (earth fails contrast on white). Use for accent rules/eyebrows, card top-accents,
-     icon-chip backgrounds, and soft warm bands. --accent-warm is the solid decorative
-     stroke; the tints are washes that sit over the theme surface. */
-  --accent-warm: #6fa982;                        /* lifted forest, decorative hero/section rule on dark */
-  --accent-warm-tint: rgba(94, 141, 110, 0.12);  /* faint green band for hero statements (neutral-leaning) */
-  --accent-warm-tint-strong: rgba(94, 141, 110, 0.20);
-  /* Opaque pale-green chip. Solid (not a wash) so dark line-art icons read on it in BOTH
-     themes. A quiet green, never the lime action color, so lime keeps its one meaning. */
-  --accent-warm-chip: #dce8df;
+  /* Warm accent — the SECONDARY accent, DECORATIVE ONLY. Use for accent rules/eyebrows,
+     card top-accents, icon-chip backgrounds, and soft bands. --accent-warm is the solid
+     decorative stroke; the tints are washes that sit over the theme surface. */
+  --accent-warm: #b7de7c;                        /* pale olive, decorative hero/section rule on dark */
+  --accent-warm-tint: rgba(183, 222, 124, 0.08); /* faint olive band for hero statements */
+  --accent-warm-tint-strong: rgba(183, 222, 124, 0.14);
+  /* Opaque pale-olive chip. Solid (not a wash) so dark line-art icons read on it in BOTH
+     themes. A quiet olive, never the lime action color, so lime keeps its one meaning. */
+  --accent-warm-chip: #dce8cf;
 
-  /* Act surface — the deep-green "invitation to act" block. Color-as-meaning: green MEANS
+  /* Act surface — the deep-olive "invitation to act" block. Color-as-meaning: green MEANS
      "we are inviting you to act", so it is reserved for conversion moments (the closing CTA
      on every page, and the home assessment) and appears nowhere else. Lifted on dark so it
-     separates from the near-black canvas; deeper on light (see the light theme). */
-  --surface-act: #35674a;
+     separates from the deep-olive canvas; deeper on light (see the light theme). */
+  --surface-act: #47601e;
   --text-on-act: #ffffff;
   --text-on-act-muted: #e7f1e9;
   --eyebrow-on-act: #bfe3a8;
@@ -126,29 +127,27 @@
   --action-hover: #7cc23f;
   --action-text: #12300a;
 
-  --surface-canvas: var(--ink-900);
-  --surface-card: var(--ink-800);
-  --surface-sunken: var(--ink-800);
-  --surface-hover: var(--ink-700);
-  --surface-brand: var(--forest-700);        /* nav and brand-filled surfaces */
+  --surface-canvas: #1c2902;                 /* deep olive canvas (dark default) */
+  --surface-card: #26380b;                   /* lifted olive card */
+  --surface-sunken: #26380b;
+  --surface-hover: #2f4210;
+  --surface-brand: #5b5c1f;                  /* mid-olive nav and brand-filled surfaces */
 
-  --text-primary: var(--white-95);
-  --text-secondary: var(--white-75);
-  --text-muted: var(--white-50);             /* labels and metadata only, not body */
+  --text-primary: #eeeee1;                   /* warm cream on the deep-olive canvas */
+  --text-secondary: #cdd6bb;
+  --text-muted: #a7b58c;                     /* labels and metadata only, not body */
   --text-disabled: var(--neutral-500);
-  --text-on-brand: #ffffff;                  /* on --surface-brand (forest nav) — white passes on forest */
-  /* Text on the PRIMARY BUTTON fill. The fill flips per theme (earth on dark, forest on
-     light), so the text must flip too: dark ink on the light earth fill (dark theme),
-     white on the forest fill (light theme). Both clear AA. */
-  --text-on-primary: var(--forest-900);
+  --text-on-brand: #eeeee1;                  /* on --surface-brand (olive nav) — cream passes on the mid olive */
+  /* Text on the PRIMARY BUTTON fill. Dark olive ink clears AA on the lime action fill. */
+  --text-on-primary: #14200a;
 
   --border-subtle: var(--white-14);
   --border-default: var(--white-22);
   --border-strong: var(--white-22);
   /* Form-control resting border; strong enough to clear WCAG 1.4.11 (3:1) on the canvas. */
   --border-input: rgba(255, 255, 255, 0.42);
-  --border-accent: var(--brand-primary);   /* green rules & card spines in both themes; clears 3:1 either way */
-  --ring-brand: rgba(132, 173, 146, 0.3);
+  --border-accent: var(--brand-primary);   /* olive rules & card spines in both themes; clears 3:1 either way */
+  --ring-brand: rgba(183, 222, 124, 0.3);
 
   --status-success-text: var(--success-400);
   --status-success-bg: rgba(129, 199, 132, 0.1);
@@ -193,40 +192,41 @@
 }
 
 /* ---- Light theme --------------------------------------------------------- */
-/* On light surfaces the forest green leads (the accent is too pale to carry it), so the
-   brand-primary alias flips to green. The nav stays forest in both themes. */
+/* A WARM light olive, not white/grey: cream and pale-olive grounds with a deep-olive nav,
+   so the theme still reads olive-green in bright mode. The deep olive leads as the accent
+   here (the pale olive is too light to carry text on cream). */
 [data-theme="light"] {
-  --brand-primary: var(--forest-700);
-  --brand-primary-hover: var(--forest-600);
-  --brand-ink: var(--forest-900);
-  --brand-tint: var(--forest-50);
+  --brand-primary: #4c5a16;                  /* deep olive, accent/links on cream */
+  --brand-primary-hover: #3e4a12;
+  --brand-ink: #14200a;
+  --brand-tint: rgba(76, 90, 22, 0.10);
 
-  /* Warm earth accent — a touch deeper on light so a thin decorative rule reads on white.
+  /* Warm accent — a deep olive so a thin decorative rule reads on the cream ground.
      Still decorative only; never used as text or button fill. */
-  --accent-warm: #43785a;                        /* mid forest, decorative hero/section rule on light */
-  --accent-warm-tint: rgba(46, 90, 61, 0.05);    /* barely-there neutral-green band under hero statements */
-  --accent-warm-tint-strong: rgba(46, 90, 61, 0.08);
+  --accent-warm: #4c5a16;                        /* deep olive, decorative hero/section rule on light */
+  --accent-warm-tint: rgba(76, 90, 22, 0.14);    /* pale-olive band under hero statements */
+  --accent-warm-tint-strong: rgba(76, 90, 22, 0.20);
 
-  /* Deeper act green reads better as a block on the white light canvas. */
-  --surface-act: #2d5a3d;
+  /* Deeper olive act block on the cream light canvas. */
+  --surface-act: #35470f;
 
-  --surface-canvas: var(--neutral-0);
-  --surface-card: var(--neutral-50);
-  --surface-sunken: var(--neutral-50);
-  --surface-hover: var(--neutral-100);
-  --surface-brand: var(--forest-700);
+  --surface-canvas: #f4f2e4;                 /* warm cream page */
+  --surface-card: #fbfaf0;                   /* slightly lifted cream card */
+  --surface-sunken: #fbfaf0;
+  --surface-hover: #ecead8;
+  --surface-brand: #1c2902;                  /* deep-olive nav anchors the green in bright mode */
 
-  --text-primary: var(--neutral-900);
-  --text-secondary: var(--neutral-700);
-  --text-muted: var(--neutral-600);
+  --text-primary: #232b10;                   /* dark olive, warmer than black */
+  --text-secondary: #55603a;
+  --text-muted: #5a6534;
   --text-disabled: var(--neutral-400);
-  --text-on-primary: #ffffff;                /* light theme: forest button fill takes white text */
+  --text-on-primary: #ffffff;                /* light theme: deep-olive button fill takes white text */
 
   --border-subtle: var(--neutral-200);
   --border-default: var(--neutral-300);
   --border-strong: var(--neutral-400);
   --border-input: var(--neutral-500);
-  --ring-brand: rgba(45, 90, 61, 0.3);
+  --ring-brand: rgba(76, 90, 22, 0.3);
 
   --status-success-text: var(--success-700);
   --status-success-bg: rgba(46, 125, 50, 0.1);
@@ -242,7 +242,7 @@
   --status-info-border: rgba(45, 90, 61, 0.3);
 
   /* Site aliases that need light-specific raw values */
-  --accent-bg: rgba(45, 90, 61, 0.1);
+  --accent-bg: rgba(76, 90, 22, 0.1);
   --error-color: var(--danger-700);
   --error-text: var(--danger-700);
 }
