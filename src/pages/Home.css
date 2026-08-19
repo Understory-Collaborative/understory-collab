@@ -302,7 +302,23 @@
 .offering-problem {
   color: var(--text-secondary);
   line-height: var(--leading-body);
-  margin: 0;
+  margin: 0 0 var(--space-4);
+}
+
+.offering-link {
+  color: var(--brand-primary);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+}
+
+.offering-link:hover {
+  text-decoration: underline;
+}
+
+.offering-link:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-color);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-control);
 }
 
 .offering-promise {

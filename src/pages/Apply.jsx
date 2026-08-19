@@ -137,7 +137,7 @@ function Apply() {
                 <option value="">Choose one</option>
                 {offers.map((offer) => (
                   <option key={offer.id} value={offer.slug}>
-                    {offer.name} — {offer.descriptor}
+                    {offer.name}: {offer.descriptor}
                   </option>
                 ))}
               </select>

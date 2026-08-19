@@ -51,6 +51,7 @@ function Home() {
                 The scope keeps shifting, and no one can say what the first
                 version even is.
               </p>
+              <Link to="/offers/design" className="offering-link">How Design works</Link>
             </li>
             <li className="offering">
               <h3 className="offering-label">Build</h3>
@@ -59,6 +60,7 @@ function Home() {
                 My team keeps missing, and I need to know if it can be turned
                 around.
               </p>
+              <Link to="/offers/build" className="offering-link">How Build works</Link>
             </li>
             <li className="offering">
               <h3 className="offering-label">Ship</h3>
@@ -67,6 +69,7 @@ function Home() {
                 We could be shipping far more often than we are, and too much is
                 still done by hand.
               </p>
+              <Link to="/offers/ship" className="offering-link">How Ship works</Link>
             </li>
           </ul>
           <p className="offering-promise">
