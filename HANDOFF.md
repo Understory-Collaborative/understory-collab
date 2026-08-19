@@ -143,6 +143,28 @@ The **fixed-price audit** = the "honest assessment" every report describes (map 
 
 ---
 
+## TPM-forward positioning (decided with webs, 2026-08-19)
+
+UC is repositioning as a **technical-product-management-forward consultancy**. Full plan in
+`review/tpm-positioning.md`. The four locked calls:
+
+- **Path A:** TPM is the connective identity and method *over* Design / Build / Ship. Not a
+  recut of the offers, not a fourth door.
+- **Buyer unchanged:** the stuck-team / behind-project leader (CTO, VP Eng). TPM is the
+  differentiated *how*, and the champion (TPM / PO) who carries us in.
+- **Visibility:** the TPM label is **named openly in the identity layer** (About,
+  positioning, how-we-work) and **shown, not named, on the storefront** (the problem-framed
+  doors, where the buyer self-selects).
+- **Rejected:** the PE / VC segment, gainshare, and equity commercial models (off-brand;
+  the commercial models are out of scope for the site).
+
+The wedge: the rare generalist strategic enough to sequence the whole product and technical
+enough to read the pull request, who leaves the team stronger instead of dependent. webs's
+full TPM responsibility list (portfolio strategy, integration sequencing, consolidation, GTM,
+enablement, market strategy, vendor ecosystems, lifecycle and deprecation) serves as **proof
+of range** and **intake-qualified scope**, never a storefront menu. Next: webs reacts to the
+positioning note; then a gated copy pass (home positioning band, About identity).
+
 ## Offering trio (resolved with webs)
 
 Framed as customer problems, not services: **Design · Build · Ship** = *what to build · how to build it · how to ship it*.
