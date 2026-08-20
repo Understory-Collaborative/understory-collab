@@ -301,6 +301,10 @@ img {
 .page-hero::before,
 .cta-section::before,
 .forest-health-content::before {
+  /* Texture disabled pending webs's own tile. To restore: drop the new art into
+     --texture-canopy above and delete this `display: none`. The mask machinery below is
+     intact, so a one-color seamless tile themes itself on both bands. */
+  display: none;
   content: "";
   position: absolute;
   inset: 0;
