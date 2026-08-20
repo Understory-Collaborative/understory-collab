@@ -18,12 +18,24 @@
  * Without the key set, it falls back to the old public-form endpoint (which Kit may
  * quarantine — that is the bug this file works around).
  *
- * Privacy: this function never logs the submitter's name, email, or message.
+ * Never-miss email (the floor): before the Kit call, every valid submission emails
+ * contact@understorycollab.com via Resend, so webs is notified even if Kit (or any later
+ * pipeline step) fails. The notification is best-effort and independent of Kit: a Kit
+ * failure never swallows it, and a notification failure never blocks the Kit delivery.
+ * It needs RESEND_API_KEY plus a from address (CONTACT_NOTIFY_FROM, or FIELD_GUIDE_FROM as
+ * a fallback); without them the notification is skipped and Kit delivery is unchanged.
+ * The mailbox at CONTACT_NOTIFY_TO must be real and monitored for this to be the floor.
+ *
+ * Privacy: this function never logs the submitter's name, email, or message. The
+ * notification email carries them by design — it is sent only to the UC contact mailbox.
  */
 
 const CONTACT_KIT_FORM = '9821838'
 const KIT_FORM_ENDPOINT = `https://app.kit.com/forms/${CONTACT_KIT_FORM}/subscriptions`
 const KIT_API_BASE = 'https://api.kit.com/v4'
+
+// Where new-message notifications land. Must be a monitored mailbox for the floor to hold.
+const CONTACT_NOTIFY_TO = 'contact@understorycollab.com'
 
 const LIMITS = {
   name: 200,
@@ -48,6 +60,63 @@ function readBody(req) {
 
 function asString(value) {
   return typeof value === 'string' ? value.trim() : ''
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
+// Email webs about a new submission. Best-effort and self-contained: it catches its own
+// errors and returns a boolean, so it never throws into (or is swallowed by) the Kit path.
+// Returns false when unconfigured or on failure. Logs status only, never the submitter's data.
+async function notifyContact({ name, email, business, message }) {
+  const key = process.env.RESEND_API_KEY
+  const from = process.env.CONTACT_NOTIFY_FROM || process.env.FIELD_GUIDE_FROM
+  if (!key || !from) return false // notification not configured; Kit delivery still runs
+
+  // Strip line breaks from the subject to avoid header injection via the name field.
+  const safeName = name.replace(/[\r\n]+/g, ' ').slice(0, LIMITS.name)
+  const rows = [
+    ['name', name],
+    ['business', business || '(not given)'],
+    ['email', email],
+    // The "About: <topic>" line, when present, rides at the top of the message already.
+    ['message', message],
+  ]
+
+  const textBody = rows.map(([label, value]) => `${label}: ${value}`).join('\n\n')
+  const htmlBody = rows
+    .map(
+      ([label, value]) =>
+        `<p style="margin:0 0 12px"><strong>${escapeHtml(label)}:</strong><br>` +
+        `<span style="white-space:pre-wrap">${escapeHtml(value)}</span></p>`,
+    )
+    .join('')
+
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from,
+        to: [CONTACT_NOTIFY_TO],
+        reply_to: email, // reply goes straight to the person who wrote in
+        subject: `New contact form message from ${safeName}`,
+        text: textBody,
+        html: htmlBody,
+      }),
+    })
+    if (!res.ok) console.error('Contact notification email failed with status', res.status)
+    return res.ok
+  } catch {
+    console.error('Contact notification email request failed')
+    return false
+  }
 }
 
 export default async function handler(req, res) {
@@ -87,6 +156,10 @@ export default async function handler(req, res) {
   if (errors.length > 0) {
     return res.status(400).json({ ok: false, error: errors.join('; ') })
   }
+
+  // The floor: notify webs first, independent of Kit. Awaited so it lands before any Kit
+  // failure below can change the response, and best-effort so it never blocks delivery.
+  await notifyContact({ name, email, business, message })
 
   const apiKey = process.env.KIT_API_KEY || process.env.KIT_API
 
