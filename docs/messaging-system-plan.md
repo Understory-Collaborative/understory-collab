@@ -79,8 +79,10 @@ message server-side, so nothing regresses there. Best-effort and independent of 
 failure never swallows it, and a notification failure never blocks Kit delivery. Reply-to is set to the
 submitter so webs can reply directly. Config: `RESEND_API_KEY` plus a from address
 (`CONTACT_NOTIFY_FROM`, or `FIELD_GUIDE_FROM` as fallback); unset means the notification is
-skipped and Kit delivery is unchanged. Open before this is truly the floor: set the from
-env in Vercel and confirm `contact@understorycollab.com` is a real monitored mailbox.
+skipped and Kit delivery is unchanged. `contact@understorycollab.com` is confirmed a real
+monitored mailbox (2026-08-20), and the from address falls back to the already-configured
+`FIELD_GUIDE_FROM`, so the only remaining live check is `RESEND_API_KEY` present in Vercel
+(the field-guide endpoint already uses it) and one real test submission.
 
 ### Phase 2 — Buttondown for nurture + newsletter  (website + Buttondown)
 
@@ -196,7 +198,7 @@ three plugin agents.
 
 - [x] Decisions logged (`docs/decisions.md`)
 - [x] Master plan written (this file)
-- [x] Phase 1 — never-miss email (built; awaiting from-env + mailbox confirmation in Vercel)
+- [x] Phase 1 — never-miss email (built; mailbox confirmed, pending one live test submission)
 - [ ] Phase 2 — Buttondown nurture
 - [ ] Phase 3 — Tide inbound-lead feature
 - [ ] Phase 4 — website → Tide wiring

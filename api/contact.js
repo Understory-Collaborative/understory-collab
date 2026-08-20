@@ -25,7 +25,7 @@
  * The email shows name, business, email, topic, and message, each on its own line.
  * It needs RESEND_API_KEY plus a from address (CONTACT_NOTIFY_FROM, or FIELD_GUIDE_FROM as
  * a fallback); without them the notification is skipped and Kit delivery is unchanged.
- * The mailbox at CONTACT_NOTIFY_TO must be real and monitored for this to be the floor.
+ * The recipient is CONTACT_NOTIFY_TO below, a real monitored mailbox, so this is the floor.
  *
  * Privacy: this function never logs the submitter's name, email, or message. The
  * notification email carries them by design — it is sent only to the UC contact mailbox.
