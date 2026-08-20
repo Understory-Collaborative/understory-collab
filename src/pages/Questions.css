@@ -3,7 +3,7 @@
    next-rung handoff. Anti-slop: no edge-accent bars, no pills. */
 
 .questions-content {
-  padding-block: clamp(var(--space-6), 4vw, var(--space-10));
+  padding-block: clamp(var(--space-10), 5vw, var(--space-12));
 }
 
 .questions .contact-form {

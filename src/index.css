@@ -92,6 +92,14 @@ a:hover {
   color: var(--accent-hover);
 }
 
+/* Inline links inside prose carry an underline so they read as clickable.
+   Standalone links styled as buttons, nav, cards, and offerings set their own
+   text-decoration and are not affected. */
+p a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 a:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-color);
   outline-offset: var(--focus-ring-offset);
