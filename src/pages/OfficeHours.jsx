@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import PageMeta from '../components/PageMeta'
 import './OfficeHours.css'
 
 const BOOKING_URL = 'https://calendar.app.google/98a3uMFvjrRzfr7b6'
@@ -6,6 +7,10 @@ const BOOKING_URL = 'https://calendar.app.google/98a3uMFvjrRzfr7b6'
 function OfficeHours() {
   return (
     <div className="office-hours">
+      <PageMeta
+        title="Office hours"
+        description="Thirty minutes with someone who's seen just about everything, for a problem you can't take to your team or your boss. Fifty dollars a seat."
+      />
       <section className="page-hero" aria-labelledby="oh-heading">
         <div className="page-hero-content">
           <h1 id="oh-heading">Office hours</h1>

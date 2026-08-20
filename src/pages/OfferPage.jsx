@@ -1,5 +1,6 @@
 import { useParams, Navigate, Link } from 'react-router-dom'
 import { getOffer } from '../data/offersData'
+import PageMeta from '../components/PageMeta'
 import './OfferPage.css'
 
 // One offer page per bucket (Design / Build / Ship), built on the who / problem /
@@ -19,6 +20,7 @@ function OfferPage() {
 
   return (
     <div className="offer-page">
+      <PageMeta title={offer.name} description={offer.metaDescription} />
       <section className="page-hero" aria-labelledby="offer-heading">
         <div className="page-hero-content">
           <p className="offer-eyebrow">{offer.selfSelect}</p>

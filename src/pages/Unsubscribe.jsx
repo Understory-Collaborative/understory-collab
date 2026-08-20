@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom'
+import PageMeta from '../components/PageMeta'
 import './Unsubscribe.css'
 
 function Unsubscribe() {
   return (
     <div className="unsubscribe">
+      <PageMeta
+        title="Unsubscribe"
+        description="You can leave the Understory Collaborative newsletter at any time. Here's how."
+      />
       <section className="page-hero" aria-labelledby="unsubscribe-heading">
         <div className="page-hero-content">
           <h1 id="unsubscribe-heading">Unsubscribe</h1>

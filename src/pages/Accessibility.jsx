@@ -1,8 +1,13 @@
+import PageMeta from '../components/PageMeta'
 import './Accessibility.css'
 
 function Accessibility() {
   return (
     <div className="accessibility-page">
+      <PageMeta
+        title="Accessibility"
+        description="Our commitment to making this website accessible to everyone, and the accessibility features it includes."
+      />
       <section className="page-hero" aria-labelledby="accessibility-heading">
         <div className="page-hero-content">
           <h1 id="accessibility-heading">Accessibility Statement</h1>
