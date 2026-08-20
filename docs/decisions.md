@@ -20,6 +20,10 @@ owned, no third-party connector. "Not accessible to the whole team right now" is
 build-status detail on Tide (multi-user access not shipped yet), not a reason to
 move off it. Open: see Tide's data model / write API to design the intake integration.
 
+**Substack: ruled out for UC** on values and morals grounds. They platform nazis,
+and the team does not want to use them. This sets a broader criterion: **a vendor's
+values are a real filter for UC**, not only its features.
+
 **New criteria this adds to the tool choice:**
 
 - **Low or no added cost.** webs is cost-conscious. Favor genuine free tiers; do
