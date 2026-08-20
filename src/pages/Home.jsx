@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import PageMeta from '../components/PageMeta'
 import seedlingIcon from '../assets/noun-seedling-5009514.svg'
 import germinationIcon from '../assets/noun-germination-7706588.svg'
 import treeIcon from '../assets/noun-tree-with-leaves-6402273.svg'
@@ -7,6 +8,7 @@ import './Home.css'
 function Home() {
   return (
     <div className="home">
+      <PageMeta description="When a project is late, a team is stuck, or your tooling has gotten away from you, we've worked through it before. A few questions will tell you how serious it is." />
       <section className="home-hero" aria-labelledby="hero-heading">
         <div className="home-hero-content">
           <h1 id="hero-heading" className="home-hero-title">

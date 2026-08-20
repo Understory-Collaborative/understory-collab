@@ -21,6 +21,10 @@ export const offers = [
     name: 'Design',
     // Descriptor shows in the application dropdown; the selfSelect line is the page hook.
     descriptor: 'getting the first iteration shipped',
+    // One-line page description for search results and social shares.
+    metaDescription:
+      'For a leader whose delivery date keeps sliding and scope keeps shifting. We take ' +
+      'control and get a defined first iteration shipped, then give you back a project.',
     selfSelect: "The date keeps slipping, and I can't say what actually ships.",
     whoFor:
       'A leader on a project where the date keeps sliding, the scope keeps shifting, and no ' +
@@ -48,6 +52,10 @@ export const offers = [
     slug: 'build',
     name: 'Build',
     descriptor: 'turning a team around',
+    metaDescription:
+      "For a leader with an underperforming team that's already cycled through several leads. " +
+      'We find where the real issues are, then either turn the team around or give you a ' +
+      'defensible answer that it will not get there.',
     selfSelect: 'My team keeps missing, and I need to know whether it can be saved.',
     whoFor:
       'A leader with an underperforming team that has already cycled through several leads, ' +
@@ -79,6 +87,9 @@ export const offers = [
     slug: 'ship',
     name: 'Ship',
     descriptor: 'shipping more often, with AI that helps',
+    metaDescription:
+      'For a leader who wants AI to make their people better at the work. We put guardrails ' +
+      'around security, PII, and spend, and reach the people still refusing to touch it.',
     selfSelect: "AI is loose in my org, and it's more risk and noise than help.",
     whoFor:
       'A leader who wants AI to make their people better at the work. Instead they have ' +

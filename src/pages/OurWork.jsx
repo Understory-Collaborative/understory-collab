@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import PageMeta from '../components/PageMeta'
 import './OurWork.css'
 
 // NOTE: This is a trimmed, capability-level draft built from the client's raw problem/
@@ -55,6 +56,10 @@ const CATEGORIES = [
 function OurWork() {
   return (
     <div className="our-work">
+      <PageMeta
+        title="Our work"
+        description="We work in regulated, high-stakes domains where getting it wrong is expensive. This is the work we do best, and the problems we solve."
+      />
       <section className="page-hero" aria-labelledby="our-work-heading">
         <div className="page-hero-content">
           <h1 id="our-work-heading">Our work</h1>

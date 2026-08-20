@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { offers, getOffer } from '../data/offersData'
+import PageMeta from '../components/PageMeta'
 import './Contact.css'
 
 // Human-readable label for the "what's this about?" selection, appended to the
@@ -143,6 +144,10 @@ function Contact() {
 
   return (
     <div className="contact">
+      <PageMeta
+        title="Contact"
+        description="Tell us what you're working on. If it's a good match, we'll set up a time to talk."
+      />
       <section className="page-hero" aria-labelledby="contact-heading">
         <div className="page-hero-content">
           <h1 id="contact-heading">Tell us what you're working on</h1>

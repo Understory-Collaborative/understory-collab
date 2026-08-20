@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import PageMeta from '../components/PageMeta'
 import './About.css'
 
 function About() {
@@ -34,6 +35,10 @@ function About() {
 
   return (
     <div className="about">
+      <PageMeta
+        title="About"
+        description="We take our name from the forest's understory, the layer that shelters new growth. We create the conditions for people and organizations to flourish, through accessible, ethical technology and collaborative practice."
+      />
       <section className="page-hero" aria-labelledby="about-heading">
         <div className="page-hero-content">
           {/* FLAG: brand metaphor is the understory (beneath the canopy); confirm final hero wording with client */}

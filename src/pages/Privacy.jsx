@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom'
+import PageMeta from '../components/PageMeta'
 import './Privacy.css'
 
 function Privacy() {
   return (
     <div className="privacy">
+      <PageMeta
+        title="Privacy policy"
+        description="What information Understory Collaborative collects, how we use it, and the choices you have. We collect only what we need to talk with you and to run our newsletter."
+      />
       <section className="page-hero" aria-labelledby="privacy-heading">
         <div className="page-hero-content">
           <h1 id="privacy-heading">Privacy Policy</h1>
