@@ -35,10 +35,10 @@ export const offers = [
       'The date slides again, trust erodes with whoever is waiting, and the team burns out ' +
       'on a moving target.',
     proof:
-      'Three delivery rescues that show the range. We saved one by working alongside the ' +
-      'struggling team. We saved another by taking the project over ourselves. On a third we ' +
-      'had the hard conversation about what the timeline could really fit, then shipped a real ' +
-      'increment to customers.',
+      "Three delivery rescues from our team's past work, showing the range. One we saved by " +
+      'working alongside the struggling team. Another we saved by taking the project over ' +
+      'ourselves. On a third we had the hard conversation about what the timeline could really ' +
+      'fit, then shipped a real increment to customers.',
     engagement:
       "It starts with an assessment that scopes the work, then an engagement priced from what " +
       "it finds, whether that's a fixed price per iteration or a monthly retainer. We settle " +
@@ -67,8 +67,9 @@ export const offers = [
       'Months of sunk cost, quiet attrition of the good people, and a reorg made on a hunch ' +
       'instead of evidence.',
     proof:
-      'Two team turnarounds, from a stuck, spiraling team to a steady pace about seven times ' +
-      'what it started with, in a month or two.',
+      'Two team turnarounds our people have led, both development teams at mid-sized ' +
+      'companies, from stuck and spiraling to about seven times the throughput within a ' +
+      'month or two.',
     engagement:
       'It starts with an assessment of the team, then an engagement scoped from what it finds, ' +
       'usually an embedded retainer while we turn the team around. We work out the shape with ' +
@@ -95,12 +96,13 @@ export const offers = [
       'A PII or security incident, a budget surprise, and a workforce split between reckless ' +
       'and refusing.',
     proof:
-      'A repeatable adoption method already run under the understory brand. It starts opt-in, ' +
-      'reaching the specific people who are still struggling, so most of the work is ' +
-      'frustrations being heard and space made to learn the tools together. Office hours let ' +
-      'people drop in and share, a cache of internal experts grows on its own, and from there ' +
-      'the method targets specific roles and then whole teams. The method itself is the proof, ' +
-      'reaching the refusers and leaving the org able to run without us.',
+      'A repeatable enablement method our team has run before. The goal is people who can ' +
+      'actually use the tools well. It starts opt-in with the people still struggling, so most ' +
+      'of the work is frustrations being heard and space made to learn the tools together. ' +
+      'Office hours let people drop in and share, a cache of internal experts grows on its ' +
+      'own, and from there it reaches specific roles and then whole teams. The method itself ' +
+      'is the proof, reaching the people who were refusing and leaving the org able to run ' +
+      'without us.',
     engagement:
       'It starts with a readiness assessment, then an engagement scoped from what it finds, ' +
       'usually an embedded retainer for a phased rollout. We work out the shape with you after ' +
