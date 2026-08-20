@@ -62,8 +62,9 @@ export default async function handler(req, res) {
   }
 
   // Honeypot: a filled hidden field means a bot. Pretend success and drop it.
+  // `via` is a non-PII diagnostic so a debug view can show where a submit ended up.
   if (asString(body.hp_referral)) {
-    return res.status(200).json({ ok: true })
+    return res.status(200).json({ ok: true, via: 'honeypot' })
   }
 
   const name = asString(body.name)
@@ -105,20 +106,30 @@ export default async function handler(req, res) {
       body: params,
     })
 
-    if (!upstream.ok) {
-      // Log status only — never the submission contents (no PII in logs).
-      console.error('Contact Kit subscribe responded with status', upstream.status)
-      return res
-        .status(502)
-        .json({ ok: false, error: 'Failed to deliver message' })
+    // Diagnostic: Kit's HTTP status and a short snippet of its reply, so a debug view can
+    // show whether Kit actually accepted the subscription. The snippet is Kit's own JSON,
+    // which the test submitter only ever sees echoed back for their own request.
+    const kitStatus = upstream.status
+    let kitSnippet = ''
+    try {
+      kitSnippet = (await upstream.text()).slice(0, 200)
+    } catch {
+      kitSnippet = ''
     }
 
-    return res.status(200).json({ ok: true })
+    if (!upstream.ok) {
+      console.error('Contact Kit subscribe responded with status', kitStatus)
+      return res
+        .status(502)
+        .json({ ok: false, error: 'Failed to deliver message', via: 'kit', kitStatus, kitSnippet })
+    }
+
+    return res.status(200).json({ ok: true, via: 'kit', kitStatus, kitSnippet })
   } catch {
     // Do not log the error object — it can echo the request payload / PII.
     console.error('Contact Kit request failed')
     return res
       .status(502)
-      .json({ ok: false, error: 'Failed to deliver message' })
+      .json({ ok: false, error: 'Failed to deliver message', via: 'kit-exception' })
   }
 }
