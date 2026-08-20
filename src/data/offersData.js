@@ -29,8 +29,8 @@ export const offers = [
       'I need someone to take control of this and get a defined thing shipped, then hand me ' +
       'back a project I can steer.',
     impact:
-      'A first version everyone can name, a delivery path the team can see, and the project ' +
-      'handed back so it keeps moving after we go.',
+      'A first version everyone can name, a delivery path the team can see, and a project your ' +
+      'team keeps moving after we leave.',
     risk:
       'The date slides again, trust erodes with whoever is waiting, and the team burns out ' +
       'on a moving target.',
