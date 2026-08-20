@@ -20,9 +20,9 @@
   color: var(--text-primary);
   background-color: var(--surface-canvas);
 
-  /* Canopy texture tile — a geometric canopy lattice (hexagon honeycomb with a leaf-lens in each cell), applied as a mask so its
+  /* Canopy texture tile — webs hand-drawn vine field (Procreate), used as an alpha mask so it themes to olive, applied as a mask so its
      color comes from --texture-ink / --texture-ink-on-act (themeable). Decorative only. */
-  --texture-canopy: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22108%22%20height%3D%2262.35%22%20viewBox%3D%220%200%20108%2062.35%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%221.3%22%3E%3Cpath%20d%3D%22M-18.00%20-31.18%20L-36.00%200.00%20L-72.00%200.00%20L-90.00%20-31.17%20L-72.00%20-62.35%20L-36.00%20-62.35%20Z%22%2F%3E%3Cpath%20d%3D%22M-18.00%2031.18%20L-36.00%2062.35%20L-72.00%2062.35%20L-90.00%2031.18%20L-72.00%20-0.00%20L-36.00%20-0.00%20Z%22%2F%3E%3Cpath%20d%3D%22M-18.00%2093.53%20L-36.00%20124.70%20L-72.00%20124.70%20L-90.00%2093.53%20L-72.00%2062.35%20L-36.00%2062.35%20Z%22%2F%3E%3Cpath%20d%3D%22M-18.00%20155.88%20L-36.00%20187.05%20L-72.00%20187.05%20L-90.00%20155.88%20L-72.00%20124.70%20L-36.00%20124.70%20Z%22%2F%3E%3Cpath%20d%3D%22M36.00%20-62.35%20L18.00%20-31.17%20L-18.00%20-31.17%20L-36.00%20-62.35%20L-18.00%20-93.53%20L18.00%20-93.53%20Z%22%2F%3E%3Cpath%20d%3D%22M36.00%200.00%20L18.00%2031.18%20L-18.00%2031.18%20L-36.00%200.00%20L-18.00%20-31.18%20L18.00%20-31.18%20Z%22%2F%3E%3Cpath%20d%3D%22M36.00%2062.35%20L18.00%2093.53%20L-18.00%2093.53%20L-36.00%2062.35%20L-18.00%2031.17%20L18.00%2031.17%20Z%22%2F%3E%3Cpath%20d%3D%22M36.00%20124.70%20L18.00%20155.88%20L-18.00%20155.88%20L-36.00%20124.70%20L-18.00%2093.52%20L18.00%2093.52%20Z%22%2F%3E%3Cpath%20d%3D%22M90.00%20-31.18%20L72.00%200.00%20L36.00%200.00%20L18.00%20-31.17%20L36.00%20-62.35%20L72.00%20-62.35%20Z%22%2F%3E%3Cpath%20d%3D%22M90.00%2031.18%20L72.00%2062.35%20L36.00%2062.35%20L18.00%2031.18%20L36.00%20-0.00%20L72.00%20-0.00%20Z%22%2F%3E%3Cpath%20d%3D%22M90.00%2093.53%20L72.00%20124.70%20L36.00%20124.70%20L18.00%2093.53%20L36.00%2062.35%20L72.00%2062.35%20Z%22%2F%3E%3Cpath%20d%3D%22M90.00%20155.88%20L72.00%20187.05%20L36.00%20187.05%20L18.00%20155.88%20L36.00%20124.70%20L72.00%20124.70%20Z%22%2F%3E%3Cpath%20d%3D%22M144.00%20-62.35%20L126.00%20-31.17%20L90.00%20-31.17%20L72.00%20-62.35%20L90.00%20-93.53%20L126.00%20-93.53%20Z%22%2F%3E%3Cpath%20d%3D%22M144.00%200.00%20L126.00%2031.18%20L90.00%2031.18%20L72.00%200.00%20L90.00%20-31.18%20L126.00%20-31.18%20Z%22%2F%3E%3Cpath%20d%3D%22M144.00%2062.35%20L126.00%2093.53%20L90.00%2093.53%20L72.00%2062.35%20L90.00%2031.17%20L126.00%2031.17%20Z%22%2F%3E%3Cpath%20d%3D%22M144.00%20124.70%20L126.00%20155.88%20L90.00%20155.88%20L72.00%20124.70%20L90.00%2093.52%20L126.00%2093.52%20Z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%221.3%22%3E%3Cpath%20d%3D%22M%20-54%20-49.53%20Q%20-45.00%20-31.175%20-54%20-12.82%20Q%20-63.00%20-31.175%20-54%20-49.53%20Z%22%2F%3E%3Cpath%20d%3D%22M%20-54%2012.82%20Q%20-45.00%2031.175%20-54%2049.53%20Q%20-63.00%2031.175%20-54%2012.82%20Z%22%2F%3E%3Cpath%20d%3D%22M%20-54%2075.17%20Q%20-45.00%2093.525%20-54%20111.89%20Q%20-63.00%2093.525%20-54%2075.17%20Z%22%2F%3E%3Cpath%20d%3D%22M%20-54%20137.51%20Q%20-45.00%20155.875%20-54%20174.24%20Q%20-63.00%20155.875%20-54%20137.51%20Z%22%2F%3E%3Cpath%20d%3D%22M%200%20-80.71%20Q%209.00%20-62.35%200%20-43.99%20Q%20-9.00%20-62.35%200%20-80.71%20Z%22%2F%3E%3Cpath%20d%3D%22M%200%20-18.36%20Q%209.00%200%200%2018.36%20Q%20-9.00%200%200%20-18.36%20Z%22%2F%3E%3Cpath%20d%3D%22M%200%2043.99%20Q%209.00%2062.35%200%2080.71%20Q%20-9.00%2062.35%200%2043.99%20Z%22%2F%3E%3Cpath%20d%3D%22M%200%20106.34%20Q%209.00%20124.7%200%20143.06%20Q%20-9.00%20124.7%200%20106.34%20Z%22%2F%3E%3Cpath%20d%3D%22M%2054%20-49.53%20Q%2063.00%20-31.175%2054%20-12.82%20Q%2045.00%20-31.175%2054%20-49.53%20Z%22%2F%3E%3Cpath%20d%3D%22M%2054%2012.82%20Q%2063.00%2031.175%2054%2049.53%20Q%2045.00%2031.175%2054%2012.82%20Z%22%2F%3E%3Cpath%20d%3D%22M%2054%2075.17%20Q%2063.00%2093.525%2054%20111.89%20Q%2045.00%2093.525%2054%2075.17%20Z%22%2F%3E%3Cpath%20d%3D%22M%2054%20137.51%20Q%2063.00%20155.875%2054%20174.24%20Q%2045.00%20155.875%2054%20137.51%20Z%22%2F%3E%3Cpath%20d%3D%22M%20108%20-80.71%20Q%20117.00%20-62.35%20108%20-43.99%20Q%2099.00%20-62.35%20108%20-80.71%20Z%22%2F%3E%3Cpath%20d%3D%22M%20108%20-18.36%20Q%20117.00%200%20108%2018.36%20Q%2099.00%200%20108%20-18.36%20Z%22%2F%3E%3Cpath%20d%3D%22M%20108%2043.99%20Q%20117.00%2062.35%20108%2080.71%20Q%2099.00%2062.35%20108%2043.99%20Z%22%2F%3E%3Cpath%20d%3D%22M%20108%20106.34%20Q%20117.00%20124.7%20108%20143.06%20Q%2099.00%20124.7%20108%20106.34%20Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  --texture-canopy: url("/vine-texture.png");
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -301,10 +301,6 @@ img {
 .page-hero::before,
 .cta-section::before,
 .forest-health-content::before {
-  /* Texture disabled pending webs's own tile. To restore: drop the new art into
-     --texture-canopy above and delete this `display: none`. The mask machinery below is
-     intact, so a one-color seamless tile themes itself on both bands. */
-  display: none;
   content: "";
   position: absolute;
   inset: 0;
@@ -313,11 +309,15 @@ img {
   background-color: var(--texture-ink);
   -webkit-mask-image: var(--texture-canopy);
   mask-image: var(--texture-canopy);
-  -webkit-mask-repeat: repeat;
-  mask-repeat: repeat;
-  -webkit-mask-size: 128px auto;
-  mask-size: 128px auto;
-  opacity: 0.06;
+  /* webs's vine field is a full illustration, not a small tile: scale it to cover each band,
+     centered, no repeat — so there is no seam and the vine scale reads as one drawn backdrop. */
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-position: center;
+  mask-position: center;
+  opacity: 0.08;
 }
 
 /* The deep-olive act blocks keep a pale watermark in both themes, a touch stronger so it
