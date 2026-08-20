@@ -107,7 +107,7 @@ function Home() {
           <h2 id="how-we-work-heading">How we work</h2>
           <ul className="work-grid" role="list">
             <li className="work-step">
-              <img className="work-icon" src={seedIcon} alt="" aria-hidden="true" />
+              <img className="work-icon work-icon--seed" src={seedIcon} alt="" aria-hidden="true" />
               <h3>Root</h3>
               <p>
                 We begin by understanding your foundation. Through deep
@@ -117,7 +117,7 @@ function Home() {
               </p>
             </li>
             <li className="work-step">
-              <img className="work-icon" src={sproutIcon} alt="" aria-hidden="true" />
+              <img className="work-icon work-icon--sprout" src={sproutIcon} alt="" aria-hidden="true" />
               <h3>Rise</h3>
               <p>
                 With a solid foundation, we begin building. Through

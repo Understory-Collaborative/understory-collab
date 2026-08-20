@@ -258,6 +258,17 @@
   border-radius: var(--radius-pill);
 }
 
+/* Scale the mark by growth stage: a seed reads small, a sprout mid, the tree fills the chip.
+   Extra padding shrinks the contained art, which also pulls the fuller seed/sprout drawings
+   in off the circle's edge so they stop looking clipped. */
+.work-icon--seed {
+  padding: var(--space-8);
+}
+
+.work-icon--sprout {
+  padding: var(--space-6);
+}
+
 .work-step h3 {
   font-size: var(--text-xl);
   color: var(--brand-primary);
