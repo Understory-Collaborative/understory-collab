@@ -2,191 +2,150 @@
   width: 100%;
 }
 
-.section-container {
-  max-width: 1200px;
+/* Home hero (grey band) — larger display headline than the shared .page-hero.
+   Left-aligned within the 1200px content column, matching the sections below. */
+.home-hero {
+  padding: var(--space-16) 0;
+  text-align: left;
+  background-color: var(--accent-warm-tint);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Same wrapper geometry as .section-container so the hero text lines up exactly with the
+   section content below it (1200px column, gutter padding on the content itself). */
+.home-hero-content {
+  max-width: var(--layout-content-max);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--layout-gutter);
 }
 
-/* Hero Section */
-.hero {
-  padding: 4rem 2rem 4rem;
-  text-align: center;
-  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-}
-
-.hero-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.hero h1 {
-  font-size: 2.5rem;
-  margin: 0 0 0.75rem;
+.home-hero-title {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
   color: var(--text-primary);
+  margin: 0 0 var(--space-5);
+  max-width: none;
+  text-wrap: pretty;
 }
 
-.hero-tagline {
-  font-size: 1.5rem;
-  color: var(--accent-color);
-  font-weight: 500;
-  margin: 0 0 1.5rem;
+/* Each sentence of the hero headline on its own line, under CSS control rather than
+   handed to the browser's balancer. Block spans keep the single <h1> semantics intact. */
+.home-hero-title .hero-line {
+  display: block;
 }
 
-.hero-description {
-  font-size: 1.125rem;
+/* Small role signpost above a section heading, so adjacent sections read as different
+   jobs at a glance: a free assessment versus the services menu. */
+.section-eyebrow {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.home-hero-description {
+  font-size: var(--text-md);
   color: var(--text-secondary);
-  line-height: 1.7;
-  margin: 0 0 2rem;
-}
-
-.hero-cta {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-/* Buttons */
-.btn {
-  display: inline-block;
-  padding: 0.875rem 1.75rem;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s;
-  border: 2px solid transparent;
-}
-
-.btn:focus-visible {
-  outline: 3px solid var(--focus-color);
-  outline-offset: 2px;
-}
-
-.btn-primary {
-  background-color: var(--accent-color);
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: var(--accent-hover);
-  color: white;
-}
-
-.btn-secondary {
-  background-color: transparent;
-  border-color: var(--accent-color);
-  color: var(--accent-color);
-}
-
-.btn-secondary:hover {
-  background-color: var(--accent-color);
-  color: white;
-}
-
-.btn-large {
-  padding: 1rem 2.5rem;
-  font-size: 1.125rem;
-}
-
-/* About Section */
-.about {
-  padding: 5rem 0;
-}
-
-.about h2 {
-  text-align: center;
-  margin-bottom: 3rem;
-  font-size: 2rem;
-  color: var(--text-primary);
-}
-
-.about-content {
-  display: grid;
-  gap: 3rem;
-}
-
-.about-text {
-  max-width: 700px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.about-text p {
-  color: var(--text-secondary);
-  font-size: 1.125rem;
-  line-height: 1.7;
-  margin: 0 0 1.5rem;
-}
-
-.about-highlights {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.highlight {
-  text-align: center;
-  padding: 2rem;
-  background-color: var(--bg-secondary);
-  border-radius: 12px;
-}
-
-.highlight h3 {
-  color: var(--accent-color);
-  margin: 0 0 0.75rem;
-  font-size: 1.25rem;
-}
-
-.highlight p {
-  color: var(--text-secondary);
+  line-height: var(--leading-body);
   margin: 0;
-  line-height: 1.6;
+  max-width: var(--layout-prose-max);
 }
 
-/* Services Preview */
-.services-preview {
-  padding: 3rem 0 5rem;
+/* How Healthy Is Your Digital Forest? (white) */
+.forest-health {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-primary);
+}
+
+/* The assessment is an "act" block: same deep-green surface as the closing CTA, so the two
+   conversion moments mirror each other and green consistently means "invitation to act". */
+.forest-health-content {
+  max-width: var(--layout-prose-max);
+  margin: 0;
+  text-align: left;
+  background-color: var(--surface-act);
+  border: 1px solid var(--surface-act);
+  border-radius: var(--radius-card);
+  padding: var(--space-8);
+}
+
+.forest-health-content .section-eyebrow {
+  color: var(--eyebrow-on-act);
+}
+
+.forest-health-content h2 {
+  font-size: var(--text-3xl);
+  color: var(--text-on-act);
+  margin: 0 0 var(--space-6);
+}
+
+.forest-health-content p {
+  font-size: var(--text-md);
+  color: var(--text-on-act-muted);
+  line-height: var(--leading-body);
+  margin: 0 0 var(--space-6);
+}
+
+.forest-health-content .btn {
+  margin-top: var(--space-2);
+}
+
+/* What We Do (grey band) */
+.what-we-do {
+  padding: var(--space-16) 0;
   background-color: var(--bg-secondary);
 }
 
-.services-preview h2 {
-  text-align: center;
-  margin-bottom: 3rem;
-  font-size: 2rem;
+.what-we-do h2 {
+  text-align: left;
+  font-size: var(--text-2xl);
   color: var(--text-primary);
+  margin: 0 0 var(--space-4);
 }
 
-.services-grid {
+.what-we-do-intro {
+  text-align: left;
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  max-width: var(--layout-prose-max);
+  margin: 0 0 var(--space-12);
+}
+
+.service-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 900px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-8);
 }
 
 .service-card {
   background-color: var(--bg-primary);
-  padding: 2rem;
-  border-radius: 12px;
   border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
+  padding: var(--space-8);
 }
 
 .service-card h3 {
-  color: var(--text-primary);
-  margin: 0 0 1rem;
-  font-size: 1.5rem;
+  font-size: var(--text-xl);
+  color: var(--brand-primary);
+  margin: 0 0 var(--space-4);
 }
 
 .service-card p {
   color: var(--text-secondary);
-  line-height: 1.6;
-  margin: 0 0 1.5rem;
+  line-height: var(--leading-body);
+  margin: 0 0 var(--space-6);
 }
 
 .service-link {
-  color: var(--accent-color);
-  font-weight: 600;
+  color: var(--brand-primary);
+  font-weight: var(--weight-semibold);
   text-decoration: none;
 }
 
@@ -195,152 +154,190 @@
 }
 
 .service-link:focus-visible {
-  outline: 3px solid var(--focus-color);
-  outline-offset: 2px;
-  border-radius: 4px;
+  outline: var(--focus-ring-width) solid var(--focus-color);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-control);
 }
 
-/* Process Section */
-.process {
-  padding: 5rem 0;
+/* Positioning band (grey) — the one place on home that names the discipline and states
+   the wedge. Anti-slop: type hierarchy and whitespace only, no cards, no accent bars,
+   no CTA (it is identity, not a rung). */
+.positioning {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-secondary);
 }
 
-.process h2 {
-  text-align: center;
-  margin-bottom: 1rem;
-  font-size: 2rem;
-  color: var(--text-primary);
-}
-
-.process-intro {
-  text-align: center;
-  color: var(--text-secondary);
-  font-size: 1.125rem;
-  margin: 0 auto 3rem;
-  max-width: 600px;
-}
-
-.process-steps {
-  list-style: none;
-  padding: 0;
+.positioning-content {
+  max-width: var(--layout-prose-max);
   margin: 0;
-  max-width: 800px;
-  margin: 0 auto;
+  text-align: left;
 }
 
-.process-step {
-  display: flex;
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
+.positioning-content h2 {
+  font-size: var(--text-2xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-6);
 }
 
-.process-step:last-child {
+.positioning-content p {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  margin: 0 0 var(--space-5);
+}
+
+.positioning-content p:last-child {
   margin-bottom: 0;
 }
 
-.step-number {
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  background-color: var(--accent-color);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 1.25rem;
+/* How We Work (white) — three columns */
+.how-we-work {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-primary);
 }
 
-.step-content h3 {
-  color: var(--accent-color);
-  margin: 0 0 0.5rem;
-  font-size: 1.5rem;
+.how-we-work h2 {
+  text-align: left;
+  font-size: var(--text-2xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-12);
 }
 
-.step-content p {
-  color: var(--text-secondary);
+.work-grid {
+  list-style: none;
+  padding: 0;
   margin: 0;
-  line-height: 1.7;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-12);
 }
 
-/* Quiz CTA Section */
-.quiz-cta {
-  padding: 5rem 0;
-  text-align: center;
-  background: var(--bg-primary);
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+.work-step {
+  text-align: left;
 }
 
-.quiz-cta-content {
-  max-width: 600px;
-  margin: 0 auto;
+/* Warm pale-earth chip behind the Root/Rise/Flourish line icons — adds warmth and, since
+   the icons are dark line art, keeps them legible on the dark theme too. object-fit:contain
+   keeps each icon inside the circle instead of being clipped by it. */
+.work-icon {
+  box-sizing: border-box;
+  width: 88px;
+  height: 88px;
+  max-width: 100%;
+  padding: var(--space-5);
+  margin: 0 0 var(--space-5);
+  display: block;
+  object-fit: contain;
+  background-color: var(--accent-warm-chip);
+  border-radius: var(--radius-pill);
 }
 
-.quiz-cta h2 {
-  font-size: 2rem;
-  color: var(--text-primary);
-  margin: 0 0 0.5rem;
+.work-step h3 {
+  font-size: var(--text-xl);
+  color: var(--brand-primary);
+  margin: 0 0 var(--space-3);
 }
 
-.quiz-cta-subtitle {
-  font-size: 1.125rem;
-  color: var(--accent-color);
-  font-weight: 500;
-  margin: 0 0 1.5rem;
-}
-
-.quiz-cta-description {
-  font-size: 1.0625rem;
+.work-step p {
   color: var(--text-secondary);
-  line-height: 1.7;
-  margin: 0 0 2rem;
-}
-
-/* CTA Section */
-.cta-section {
-  padding: 5rem 0;
-  background-color: var(--bg-secondary);
-  text-align: center;
-}
-
-.cta-section h2 {
-  font-size: 2rem;
-  color: var(--text-primary);
-  margin: 0 0 1rem;
-}
-
-.cta-section p {
-  color: var(--text-secondary);
-  font-size: 1.125rem;
-  margin: 0 0 2rem;
+  line-height: var(--leading-body);
+  margin: 0;
+  max-width: 40ch;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .hero {
-    padding: 2rem 1rem 4rem;
+  .home-hero {
+    padding: var(--space-8) 0;
   }
 
-  .hero h1 {
-    font-size: 2rem;
+  .home-hero-title {
+    font-size: var(--text-3xl);
   }
 
-  .section-container {
-    padding: 0 1rem;
+  .home-hero-description {
+    font-size: var(--text-md);
   }
 
-  .process-step {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+  .forest-health,
+  .what-we-do,
+  .how-we-work {
+    padding: var(--space-12) 0;
+  }
+}
+
+/* Offerings — Design / Build / Ship, framed as the customer's problem.
+   Anti-slop: type hierarchy and whitespace, no cards-with-borders, no accent bars. */
+.offerings {
+  padding: var(--space-16) 0;
+}
+
+.offerings h2 {
+  font-size: var(--text-2xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-10);
+}
+
+.offering-list {
+  list-style: none;
+  margin: 0 0 var(--space-10);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+}
+
+.offering-label {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.offering-problem {
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  margin: 0 0 var(--space-4);
+}
+
+/* Reads as a link at a glance: persistent underline plus a nudging arrow, so the
+   click affordance never depends on color or hover alone. */
+.offering-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--brand-primary);
+  font-weight: var(--weight-semibold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.offering-link::after {
+  content: '\2192';
+  margin-left: var(--space-2);
+  transition: transform var(--duration-fast, 0.15s) ease;
+}
+
+.offering-link:hover::after {
+  transform: translateX(3px);
+}
+
+.offering-link:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-color);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-control);
+}
+
+@media (max-width: 768px) {
+  /* Stacked, each bucket separated by a hairline divider and balanced space so the
+     three read as distinct blocks instead of one run of text. */
+  .offering-list {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
-  .about,
-  .services-preview,
-  .process,
-  .cta-section {
-    padding: 3rem 0;
+  .offering + .offering {
+    margin-top: var(--space-8);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--border-color);
   }
 }

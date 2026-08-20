@@ -9,7 +9,7 @@
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 1rem var(--layout-gutter);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,6 +19,7 @@
 .nav-logo-link {
   display: flex;
   align-items: center;
+  gap: var(--space-3);
   text-decoration: none;
   border-radius: 8px;
   padding: 0.25rem;
@@ -33,6 +34,15 @@
   width: 40px;
   height: 40px;
   border-radius: 8px;
+}
+
+.nav-wordmark {
+  color: #ffffff;
+  font-weight: var(--weight-bold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -50,6 +60,8 @@
   color: rgba(255, 255, 255, 0.85);
   border-radius: 6px;
   font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   transition: color 0.2s, background-color 0.2s;
 }
 
@@ -66,6 +78,38 @@
 .nav-link.active {
   color: white;
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Right-hand cluster: theme toggle plus (on mobile) the menu button. */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Menu (hamburger) button — hidden on desktop, shown at the mobile breakpoint. */
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.nav-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.nav-toggle:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 2px;
 }
 
 .theme-toggle {
@@ -92,23 +136,38 @@
   outline-offset: 2px;
 }
 
-/* Mobile navigation */
+/* Mobile navigation: the links collapse behind the menu button and stack full width
+   when opened, so the header no longer fills the screen. */
 @media (max-width: 768px) {
   .nav-container {
     flex-wrap: wrap;
-    padding: 1rem;
+    row-gap: 0.5rem;
+    padding: 1rem var(--layout-gutter);
   }
 
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  /* Collapsed by default; shown only when the menu button sets data-open. */
   .nav-links {
     order: 3;
     width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: none;
+    flex-direction: column;
     gap: 0.25rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
   }
 
+  .nav-links[data-open] {
+    display: flex;
+  }
+
+  /* Full-width rows with a ~44px tap target (WCAG 2.5.8 target size). */
   .nav-link {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.9rem;
+    padding: 0.75rem;
+    font-size: 1rem;
   }
 }

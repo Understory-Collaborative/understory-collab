@@ -3,17 +3,6 @@ import { Link } from 'react-router-dom'
 import { quizQuestions, getCrisisType } from '../data/quizData'
 import './Quiz.css'
 
-const HUBSPOT_PORTAL_ID = '21315907'
-
-function trackEvent(eventName, properties = {}) {
-  if (window._hsq) {
-    window._hsq.push(['trackCustomBehavioralEvent', {
-      name: eventName,
-      properties,
-    }])
-  }
-}
-
 function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState([])
@@ -45,7 +34,6 @@ function Quiz() {
 
   function handleStart() {
     setQuizStarted(true)
-    trackEvent('quiz_started')
   }
 
   function handleSelectAnswer(answer) {
@@ -57,26 +45,12 @@ function Quiz() {
 
     const newAnswers = [...answers, selectedAnswer]
     setAnswers(newAnswers)
-
-    trackEvent('quiz_question_answered', {
-      question_number: String(currentQuestion + 1),
-      answer_label: selectedAnswer.label,
-      answer_points: String(selectedAnswer.points),
-    })
-
     setSelectedAnswer(null)
 
     if (currentQuestion + 1 < totalQuestions) {
       setCurrentQuestion(currentQuestion + 1)
     } else {
-      const finalScore = newAnswers.reduce((sum, a) => sum + a.points, 0)
-      const result = getCrisisType(finalScore)
       setQuizComplete(true)
-
-      trackEvent('quiz_completed', {
-        crisis_type: result.name,
-        total_score: String(finalScore),
-      })
     }
   }
 
@@ -96,18 +70,17 @@ function Quiz() {
             <h1 id="quiz-heading">What's On Fire?</h1>
             <p className="quiz-subtitle">A technical health self-assessment</p>
             <p className="quiz-description">
-              Six honest questions about the state of your engineering organization.
-              No vendor pitch. No lead form. Just a clear-eyed look at where you stand —
-              and what it means.
+              Six questions about the state of your engineering organization.
+              You'll get a report on where you stand and what it means.
             </p>
             <p className="quiz-meta">
-              Takes about 2 minutes. Your answers are anonymous.
+              Your answers stay on your device.
             </p>
             <button
               className="btn btn-primary btn-large quiz-start-btn"
               onClick={handleStart}
             >
-              Start the Assessment
+              Start the assessment
             </button>
           </div>
         </section>
@@ -132,34 +105,37 @@ function Quiz() {
             <p className="result-description">{crisisType.description}</p>
             <p className="result-details">{crisisType.details}</p>
 
-            <div className="result-cta" aria-labelledby="whitepaper-heading">
-              <h2 id="whitepaper-heading">We wrote a field guide for this.</h2>
+            <div className="result-cta" aria-labelledby="fieldguide-heading">
+              <h2 id="fieldguide-heading">We wrote a field guide for this.</h2>
               <p className="whitepaper-title">{crisisType.whitePaper}</p>
               <p className="whitepaper-description">
-                Enter your email to get the guide. We'll send it straight to your
-                inbox — no spam, no sequences, just the paper.
+                Enter your email and we'll give you the full guide right here, and
+                send it to your inbox once you confirm. No spam, unsubscribe anytime.
               </p>
-              <div
-                className="hubspot-form-container"
-                id="hubspot-quiz-form"
-              >
-                <HubSpotForm
-                  portalId={HUBSPOT_PORTAL_ID}
-                  crisisType={crisisType.name}
-                />
-              </div>
+              <FieldGuideForm fireType={crisisType.id} fireName={crisisType.name} />
             </div>
 
-            <div className="result-actions">
+            <div className="result-next" aria-labelledby="result-next-heading">
+              <h2 id="result-next-heading">Your next move</h2>
+              <p className="result-next-lead">
+                Read the guide and mark it up: what resonates, what doesn't, and
+                the one question you still have. Then bring that question to office
+                hours, thirty minutes with someone who's seen just about
+                everything.
+              </p>
+              <Link to="/office-hours" className="btn btn-primary">
+                See office hours
+              </Link>
+              <p className="result-next-alt">
+                Not there yet?{' '}
+                <Link to="/questions">Ask us a question for free.</Link>
+              </p>
               <button
-                className="btn btn-secondary"
+                className="btn btn-secondary result-retake"
                 onClick={handleRestart}
               >
-                Retake the Quiz
+                Retake the assessment
               </button>
-              <Link to="/contact" className="btn btn-primary">
-                Let's Talk
-              </Link>
             </div>
           </div>
         </section>
@@ -174,6 +150,9 @@ function Quiz() {
     <div className="quiz-page">
       <section className="quiz-active" aria-labelledby="question-heading">
         <div className="quiz-active-content">
+          {/* Persistent page title for the active view so the heading order starts at h1
+              (the question is an h2 that changes per step). */}
+          <h1 className="sr-only">What's On Fire? assessment</h1>
           <div
             className="quiz-progress"
             role="progressbar"
@@ -242,88 +221,81 @@ function Quiz() {
   )
 }
 
-function HubSpotForm({ portalId, crisisType }) {
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+function FieldGuideForm({ fireType, fireName }) {
   const [email, setEmail] = useState('')
-  const [status, setStatus] = useState('idle')
+  const [status, setStatus] = useState('idle') // idle | submitting | success | error
   const [errorMessage, setErrorMessage] = useState('')
+  const [invalidEmail, setInvalidEmail] = useState(false)
+  const inputRef = useRef(null)
+  const pdfUrl = `/field-guides/${fireType}.pdf`
 
   async function handleSubmit(e) {
     e.preventDefault()
+    if (status === 'submitting') return
 
-    if (!email || !email.includes('@')) {
+    const trimmed = email.trim()
+    if (!EMAIL_RE.test(trimmed)) {
+      setStatus('error')
+      setInvalidEmail(true)
       setErrorMessage('Please enter a valid email address.')
+      inputRef.current?.focus()
       return
     }
 
     setStatus('submitting')
+    setInvalidEmail(false)
     setErrorMessage('')
 
-    trackEvent('quiz_whitepaper_requested', {
-      crisis_type: crisisType,
-    })
-
     try {
-      const response = await fetch(
-        `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/3b9315b4-fda0-4ea5-a7a9-4516ba4dfb59`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            fields: [
-              { objectTypeId: '0-1', name: 'email', value: email },
-              { objectTypeId: '0-1', name: 'fire_type', value: crisisType },
-            ],
-            context: {
-              hutk: document.cookie.match(/hubspotutk=([^;]*)/)?.[1] || '',
-              pageUri: window.location.href,
-              pageName: 'What\'s On Fire? Quiz Results',
-            },
-          }),
-        }
-      );
-
-      if (response.ok) {
-        setStatus('success')
-
-        if (window._hsq) {
-          window._hsq.push(['identify', { email }])
-          window._hsq.push(['trackPageView'])
-        }
-      } else {
-        const data = await response.json().catch(() => ({}))
-        setErrorMessage(data.message || 'Something went wrong. Please try again.')
-        setStatus('error')
-      }
+      const response = await fetch('/api/field-guide', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: trimmed, fireType, fireName }),
+      })
+      if (!response.ok) throw new Error(`Request failed: ${response.status}`)
+      setStatus('success')
     } catch {
-      setErrorMessage('Network error. Please check your connection and try again.')
       setStatus('error')
+      setErrorMessage('Something went wrong. Please try again.')
+      inputRef.current?.focus()
     }
   }
 
   if (status === 'success') {
     return (
-      <div className="form-success" role="status">
-        <p className="form-success-message">
-          Check your inbox. The field guide is on its way.
+      <div className="fieldguide-success" role="status">
+        <p className="fieldguide-success-message">
+          Your guide is ready. Check your inbox to confirm your subscription.
+          We'll email it to you too.
         </p>
+        <a className="btn btn-primary" href={pdfUrl} download>
+          Download the Guide (PDF)
+        </a>
       </div>
     )
   }
 
+  const errorId = 'fieldguide-form-error'
+
   return (
-    <form onSubmit={handleSubmit} className="whitepaper-form" noValidate>
+    <form onSubmit={handleSubmit} className="fieldguide-form" noValidate>
       <div className="form-row">
-        <label htmlFor="quiz-email" className="sr-only">
+        <label htmlFor="fieldguide-email" className="sr-only">
           Email address
         </label>
         <input
-          id="quiz-email"
+          ref={inputRef}
+          id="fieldguide-email"
           type="email"
           placeholder="you@company.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          aria-describedby={errorMessage ? 'quiz-form-error' : undefined}
+          autoComplete="email"
+          aria-invalid={invalidEmail}
+          aria-describedby={errorMessage ? errorId : undefined}
           disabled={status === 'submitting'}
           className="form-input"
         />
@@ -332,11 +304,11 @@ function HubSpotForm({ portalId, crisisType }) {
           className="btn btn-primary"
           disabled={status === 'submitting'}
         >
-          {status === 'submitting' ? 'Sending…' : 'Send Me the Guide'}
+          {status === 'submitting' ? 'Sending…' : 'Get the Guide'}
         </button>
       </div>
       {errorMessage && (
-        <p id="quiz-form-error" className="form-error" role="alert">
+        <p id={errorId} className="form-error" role="alert">
           {errorMessage}
         </p>
       )}

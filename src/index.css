@@ -92,6 +92,14 @@ a:hover {
   color: var(--accent-hover);
 }
 
+/* Inline links inside prose carry an underline so they read as clickable.
+   Standalone links styled as buttons, nav, cards, and offerings set their own
+   text-decoration and are not affected. */
+p a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 a:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-color);
   outline-offset: var(--focus-ring-offset);
@@ -118,16 +126,24 @@ img {
   border: 0;
 }
 
-/* Shared page hero styles */
+/* Shared page hero styles — left-aligned within the 1200px content column, so the hero
+   text lines up with the section content below it (not centered). */
 .page-hero {
-  padding: var(--space-16) var(--space-8);
-  text-align: center;
-  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  padding: var(--space-16) 0;
+  text-align: left;
+  /* Warm-tint hero band on every page — matches the home hero so all page tops read as
+     one warm brand banner, and guarantees a clear color step down to the first content
+     section (grey or white) instead of the old grey-hero-into-grey-intro blend. */
+  background-color: var(--accent-warm-tint);
+  border-bottom: 1px solid var(--border-color);
 }
 
+/* Gutter lives on the content (same as .section-container) so hero text lines up exactly
+   with the section content below it. */
 .page-hero-content {
-  max-width: var(--layout-prose-max);
+  max-width: var(--layout-content-max);
   margin: 0 auto;
+  padding: 0 var(--layout-gutter);
 }
 
 .page-hero h1 {
@@ -135,6 +151,7 @@ img {
   font-weight: var(--weight-extrabold);
   color: var(--text-primary);
   margin: 0 0 var(--space-4);
+  max-width: var(--layout-prose-max);
 }
 
 .page-hero-description {
@@ -142,13 +159,34 @@ img {
   color: var(--text-secondary);
   line-height: var(--leading-body);
   margin: 0;
+  max-width: var(--layout-prose-max);
+}
+
+/* Hero lead + support: a prominent opening line over a quieter support line. Shared so
+   pages that open on a hook (office hours, Q&A) read as one hand. */
+.page-hero-lead {
+  font-size: clamp(var(--text-xl), 1.1rem + 2vw, var(--text-2xl));
+  line-height: var(--leading-tight);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  max-width: 32ch;
+  text-wrap: balance;
+  margin: 0 0 var(--space-4);
+}
+
+.page-hero-support {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: var(--leading-snug);
+  max-width: 46ch;
+  margin: 0;
 }
 
 /* Shared section container */
 .section-container {
   max-width: var(--layout-content-max);
   margin: 0 auto;
-  padding: 0 var(--space-8);
+  padding: 0 var(--layout-gutter);
 }
 
 /* Shared button styles */
@@ -170,14 +208,15 @@ img {
   outline-offset: var(--focus-ring-offset);
 }
 
+/* Primary button is the lime action color, the one thing lime is allowed to mean. */
 .btn-primary {
-  background-color: var(--accent-color);
-  color: var(--text-on-brand);
+  background-color: var(--action);
+  color: var(--action-text);
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-hover);
-  color: var(--text-on-brand);
+  background-color: var(--action-hover);
+  color: var(--action-text);
 }
 
 .btn-secondary {
@@ -196,21 +235,22 @@ img {
   font-size: var(--text-md);
 }
 
-/* CTA Section - shared across pages */
+/* CTA Section - shared across pages. This is an "act" block: green MEANS invitation to act,
+   so every page closes on the deep-green surface with white type and a lime primary button. */
 .cta-section {
   padding: var(--space-16) 0;
-  background-color: var(--bg-secondary);
-  text-align: center;
+  background-color: var(--surface-act);
+  text-align: left;
 }
 
 .cta-section h2 {
   font-size: var(--text-2xl);
-  color: var(--text-primary);
+  color: var(--text-on-act);
   margin: 0 0 var(--space-4);
 }
 
 .cta-section p {
-  color: var(--text-secondary);
+  color: var(--text-on-act-muted);
   font-size: var(--text-md);
   margin: 0 0 var(--space-8);
 }
@@ -218,7 +258,7 @@ img {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .page-hero {
-    padding: var(--space-8) var(--space-4);
+    padding: var(--space-8) 0;
   }
 
   .page-hero h1 {
@@ -230,7 +270,7 @@ img {
   }
 
   .section-container {
-    padding: 0 var(--space-4);
+    padding: 0 var(--layout-gutter);
   }
 
   .cta-section {

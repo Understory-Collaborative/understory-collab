@@ -8,14 +8,13 @@
 /* ===== tokens/fonts.css ===== */
 /* Font loading — Understory Collaborative.
 
-   One family throughout: Hanken Grotesk. A humanist grotesque — warm and approachable
-   without the rounded, playful terminals that read as cartoonish, and grounded enough for
-   a consultancy talking to a skeptical CTO. It matches the redesign brief's cue
-   ("purposeful, minimal, slightly sophisticated — think Stripe or Linear") while keeping
-   the brand's human warmth. Using it for both display and body gives the UI a single,
+   One family throughout: Overpass. A redesigned grotesque with a slightly narrower, cooler
+   cut, grounded enough for a consultancy talking to a skeptical CTO. It matches the redesign
+   brief's cue ("purposeful, minimal, slightly sophisticated — think Stripe or Linear") while
+   keeping the brand's human warmth. Using it for both display and body gives the UI a single,
    confident voice and avoids a thin, mismatched feel.
 
-   Hanken Grotesk ships a full weight range; we load the ones we use (400 body, 500/600 for
+   Overpass ships a full weight range; we load the ones we use (400 body, 500/600 for
    medium UI emphasis, 700/800 for headings) so headings read with real weight rather than
    a thin default. Italics at 400/600 cover emphasis.
 
@@ -23,15 +22,15 @@
    specimens share one source. Production hardening (a proposal): self-host the woff2 files
    under ../fonts and swap the @import for @font-face, to drop the third-party request. */
 
-@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap");
 
 :root {
   --family-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, sans-serif;
 
   /* Brand face, with the system stack as the fallback while the webfont loads. */
-  --family-display: "Hanken Grotesk", var(--family-system);
-  --family-body: "Hanken Grotesk", var(--family-system);
+  --family-display: "Overpass", var(--family-system);
+  --family-body: "Overpass", var(--family-system);
 }
 
 /* ===== tokens/colors.css ===== */
@@ -54,10 +53,10 @@
 :root {
   /* ---- Raw ramps -------------------------------------------------------- */
 
-  /* Forest green. The brand's spine. 700 and 600 are the real site values; the rest fill
-     the ramp so there are tints for backgrounds/selected states (light end) and depth
-     (dark end). The logo's brighter grass green is kept separate as --forest-logo so it is
-     available without becoming the UI primary (too light for white body text at AA). */
+  /* Forest green — LEGACY. The brand spine moved to olive (see the semantic layer, where the
+     surface/brand/text tokens carry literal olive values). These forest steps are kept only
+     for the older design-system specimen pages and any status token still pointing at them;
+     do not reach for them in new work. The logo's grass green stays as --forest-logo. */
   --forest-50: #eef4ef;  /* proposal — faint tint, brand-wash backgrounds */
   --forest-100: #d7e6dc; /* proposal — selected/hover wash on light */
   --forest-200: #b1ccba; /* proposal */
@@ -129,28 +128,62 @@
   --info-400: #6fa982;    /* proposal — lifted forest for dark surfaces */
 
   /* ---- Semantic aliases (portable) — DARK theme is the default ----------- */
-  --brand-primary: var(--earth-400);        /* the accent leads on dark surfaces */
-  --brand-primary-hover: var(--earth-500);
-  --brand-forest: var(--forest-700);         /* the green, for surfaces like the nav */
-  --brand-ink: var(--forest-900);
-  --brand-tint: rgba(232, 168, 124, 0.12);   /* soft accent wash (selected, callout) */
+  /* The brand spine is OLIVE. A pale olive leads on dark (the deep olives are too dark for
+     text here). This keeps the brand reading olive-green in BOTH themes, so lime stays the
+     only warm/bright accent. The raw forest and ink ramps are legacy: the olive values below
+     are literal, and components read them through these semantic tokens. */
+  --brand-primary: #b7de7c;                  /* pale olive, clears AA on the deep-olive canvas */
+  --brand-primary-hover: #c7e894;
+  --brand-forest: #5b5c1f;                   /* mid olive, for surfaces like the nav */
+  --brand-ink: #14200a;
+  --brand-tint: rgba(183, 222, 124, 0.14);   /* soft olive wash (selected, callout) */
 
-  --surface-canvas: var(--ink-900);
-  --surface-card: var(--ink-800);
-  --surface-sunken: var(--ink-800);
-  --surface-hover: var(--ink-700);
-  --surface-brand: var(--forest-700);        /* nav and brand-filled surfaces */
+  /* Warm accent — the SECONDARY accent, DECORATIVE ONLY. Use for accent rules/eyebrows,
+     card top-accents, icon-chip backgrounds, and soft bands. --accent-warm is the solid
+     decorative stroke; the tints are washes that sit over the theme surface. */
+  --accent-warm: #b7de7c;                        /* pale olive, decorative hero/section rule on dark */
+  --accent-warm-tint: rgba(183, 222, 124, 0.08); /* faint olive band for hero statements */
+  --accent-warm-tint-strong: rgba(183, 222, 124, 0.14);
+  /* Opaque pale-olive chip. Solid (not a wash) so dark line-art icons read on it in BOTH
+     themes. A quiet olive, never the lime action color, so lime keeps its one meaning. */
+  --accent-warm-chip: #dce8cf;
 
-  --text-primary: var(--white-95);
-  --text-secondary: var(--white-75);
-  --text-muted: var(--white-50);             /* labels and metadata only, not body */
+  /* Act surface — the deep-olive "invitation to act" block. Color-as-meaning: green MEANS
+     "we are inviting you to act", so it is reserved for conversion moments (the closing CTA
+     on every page, and the home assessment) and appears nowhere else. Lifted on dark so it
+     separates from the deep-olive canvas; deeper on light (see the light theme). */
+  --surface-act: #47601e;
+  --text-on-act: #ffffff;
+  --text-on-act-muted: #e7f1e9;
+  --eyebrow-on-act: #bfe3a8;
+
+  /* Action — the lime spark. Reserved for the PRIMARY button only; lime MEANS "click this".
+     Dark ink text on lime clears AA (about 7.8:1). */
+  --action: #8ed14f;
+  --action-hover: #7cc23f;
+  --action-text: #12300a;
+
+  --surface-canvas: #1c2902;                 /* deep olive canvas (dark default) */
+  --surface-card: #26380b;                   /* lifted olive card */
+  --surface-sunken: #26380b;
+  --surface-hover: #2f4210;
+  --surface-brand: #5b5c1f;                  /* mid-olive nav and brand-filled surfaces */
+
+  --text-primary: #eeeee1;                   /* warm cream on the deep-olive canvas */
+  --text-secondary: #cdd6bb;
+  --text-muted: #a7b58c;                     /* labels and metadata only, not body */
   --text-disabled: var(--neutral-500);
-  --text-on-brand: #ffffff;                  /* on --surface-brand / --brand-primary */
+  --text-on-brand: #eeeee1;                  /* on --surface-brand (olive nav) — cream passes on the mid olive */
+  /* Text on the PRIMARY BUTTON fill. Dark olive ink clears AA on the lime action fill. */
+  --text-on-primary: #14200a;
 
   --border-subtle: var(--white-14);
   --border-default: var(--white-22);
   --border-strong: var(--white-22);
-  --ring-brand: rgba(232, 168, 124, 0.3);
+  /* Form-control resting border; strong enough to clear WCAG 1.4.11 (3:1) on the canvas. */
+  --border-input: rgba(255, 255, 255, 0.42);
+  --border-accent: var(--brand-primary);   /* olive rules & card spines in both themes; clears 3:1 either way */
+  --ring-brand: rgba(183, 222, 124, 0.3);
 
   --status-success-text: var(--success-400);
   --status-success-bg: rgba(129, 199, 132, 0.1);
@@ -188,33 +221,48 @@
 
   --success-bg: var(--status-success-bg);
   --success-border: var(--status-success-border);
-  --success-text: var(--success-400);
+  /* Track the status token so success text flips per theme (success-400 on dark,
+     success-700 on light). Referencing success-400 directly left light-mode text
+     as a pale green on a near-white tint, well under AA contrast. */
+  --success-text: var(--status-success-text);
 }
 
 /* ---- Light theme --------------------------------------------------------- */
-/* On light surfaces the forest green leads (the accent is too pale to carry it), so the
-   brand-primary alias flips to green. The nav stays forest in both themes. */
+/* A WARM light olive, not white/grey: cream and pale-olive grounds with a deep-olive nav,
+   so the theme still reads olive-green in bright mode. The deep olive leads as the accent
+   here (the pale olive is too light to carry text on cream). */
 [data-theme="light"] {
-  --brand-primary: var(--forest-700);
-  --brand-primary-hover: var(--forest-600);
-  --brand-ink: var(--forest-900);
-  --brand-tint: var(--forest-50);
+  --brand-primary: #4c5a16;                  /* deep olive, accent/links on cream */
+  --brand-primary-hover: #3e4a12;
+  --brand-ink: #14200a;
+  --brand-tint: rgba(76, 90, 22, 0.10);
 
-  --surface-canvas: var(--neutral-0);
-  --surface-card: var(--neutral-50);
-  --surface-sunken: var(--neutral-50);
-  --surface-hover: var(--neutral-100);
-  --surface-brand: var(--forest-700);
+  /* Warm accent — a deep olive so a thin decorative rule reads on the cream ground.
+     Still decorative only; never used as text or button fill. */
+  --accent-warm: #4c5a16;                        /* deep olive, decorative hero/section rule on light */
+  --accent-warm-tint: rgba(76, 90, 22, 0.14);    /* pale-olive band under hero statements */
+  --accent-warm-tint-strong: rgba(76, 90, 22, 0.20);
 
-  --text-primary: var(--neutral-900);
-  --text-secondary: var(--neutral-700);
-  --text-muted: var(--neutral-600);
+  /* Deeper olive act block on the cream light canvas. */
+  --surface-act: #35470f;
+
+  --surface-canvas: #f4f2e4;                 /* warm cream page */
+  --surface-card: #fbfaf0;                   /* slightly lifted cream card */
+  --surface-sunken: #fbfaf0;
+  --surface-hover: #ecead8;
+  --surface-brand: #1c2902;                  /* deep-olive nav anchors the green in bright mode */
+
+  --text-primary: #232b10;                   /* dark olive, warmer than black */
+  --text-secondary: #55603a;
+  --text-muted: #5a6534;
   --text-disabled: var(--neutral-400);
+  --text-on-primary: #ffffff;                /* light theme: deep-olive button fill takes white text */
 
   --border-subtle: var(--neutral-200);
   --border-default: var(--neutral-300);
   --border-strong: var(--neutral-400);
-  --ring-brand: rgba(45, 90, 61, 0.3);
+  --border-input: var(--neutral-500);
+  --ring-brand: rgba(76, 90, 22, 0.3);
 
   --status-success-text: var(--success-700);
   --status-success-bg: rgba(46, 125, 50, 0.1);
@@ -230,7 +278,7 @@
   --status-info-border: rgba(45, 90, 61, 0.3);
 
   /* Site aliases that need light-specific raw values */
-  --accent-bg: rgba(45, 90, 61, 0.1);
+  --accent-bg: rgba(76, 90, 22, 0.1);
   --error-color: var(--danger-700);
   --error-text: var(--danger-700);
 }
@@ -264,7 +312,7 @@
   --leading-snug: 1.3;
   --leading-body: 1.6;   /* body copy */
 
-  /* Weights. Hanken Grotesk ships the full range; these all render as real weights, not
+  /* Weights. Overpass ships the full range; these all render as real weights, not
      synthesized. Headings lead with bold/extrabold so the page reads with presence rather
      than thin. Body is regular; medium/semibold carry UI emphasis (buttons, labels, nav). */
   --weight-regular: 400;
@@ -321,10 +369,10 @@
    default surface flat. The focus ring is real — it is what the site already renders. */
 
 :root {
-  /* Soft, forest-tinted shadows (proposal). */
-  --shadow-sm: 0 1px 2px rgba(22, 48, 31, 0.10);
-  --shadow-md: 0 4px 12px rgba(22, 48, 31, 0.14);
-  --shadow-lg: 0 12px 32px rgba(22, 48, 31, 0.18);
+  /* Soft, olive-tinted shadows (proposal). */
+  --shadow-sm: 0 1px 2px rgba(20, 32, 10, 0.10);
+  --shadow-md: 0 4px 12px rgba(20, 32, 10, 0.14);
+  --shadow-lg: 0 12px 32px rgba(20, 32, 10, 0.18);
 
   /* Focus ring — real. 3px solid ring + offset is the site's keyboard-focus treatment. */
   --focus-ring-width: 3px;
@@ -744,8 +792,11 @@ svg {
 
     <h2>Brand color</h2>
     <div class="swatches">
-      <div class="swatch"><div class="swatch__chip" style="background: var(--forest-700)"></div><div class="swatch__meta"><div class="swatch__name">Forest</div><div class="swatch__token">--forest-700</div></div></div>
-      <div class="swatch"><div class="swatch__chip" style="background: var(--earth-400)"></div><div class="swatch__meta"><div class="swatch__name">Earth accent</div><div class="swatch__token">--earth-400</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--surface-canvas)"></div><div class="swatch__meta"><div class="swatch__name">Canvas</div><div class="swatch__token">--surface-canvas</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--surface-brand)"></div><div class="swatch__meta"><div class="swatch__name">Nav / brand surface</div><div class="swatch__token">--surface-brand</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--brand-primary)"></div><div class="swatch__meta"><div class="swatch__name">Olive accent</div><div class="swatch__token">--brand-primary</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--action)"></div><div class="swatch__meta"><div class="swatch__name">Action (lime, "click this")</div><div class="swatch__token">--action</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--surface-act)"></div><div class="swatch__meta"><div class="swatch__name">Invite to act</div><div class="swatch__token">--surface-act</div></div></div>
       <div class="swatch"><div class="swatch__chip" style="background: var(--forest-logo)"></div><div class="swatch__meta"><div class="swatch__name">Logo green (decorative)</div><div class="swatch__token">--forest-logo</div></div></div>
     </div>
 
@@ -763,16 +814,14 @@ svg {
       <span class="uc-severity uc-severity--firestorm">Firestorm</span>
     </div>
 
-    <h2>Brand tints &amp; neutrals</h2>
+    <h2>Brand surfaces &amp; neutrals</h2>
+    <p class="note" style="margin-bottom: var(--space-3)">Olive brand surfaces, shown via the semantic tokens (they flip per theme). The raw <code>--forest-*</code> / <code>--earth-*</code> ramps are legacy and no longer the spine.</p>
     <div class="ramp" style="margin-bottom: var(--space-3)">
-      <div style="background: var(--forest-100); color: var(--neutral-900)">forest-100</div>
-      <div style="background: var(--forest-300); color: var(--neutral-900)">300</div>
-      <div style="background: var(--forest-500); color: #fff">500</div>
-      <div style="background: var(--forest-700); color: #fff">700</div>
-      <div style="background: var(--forest-900); color: #fff">900</div>
-      <div style="background: var(--earth-100); color: var(--neutral-900)">earth-100</div>
-      <div style="background: var(--earth-400); color: var(--neutral-900)">400</div>
-      <div style="background: var(--earth-600); color: #fff">600</div>
+      <div style="background: var(--surface-canvas); color: var(--text-primary)">canvas</div>
+      <div style="background: var(--surface-card); color: var(--text-primary)">card</div>
+      <div style="background: var(--surface-brand); color: var(--text-on-brand)">nav</div>
+      <div style="background: var(--brand-primary); color: var(--surface-canvas)">accent</div>
+      <div style="background: var(--surface-act); color: var(--text-on-act)">act</div>
     </div>
     <div class="ramp">
       <div style="background: var(--neutral-50); color: #1a1a1a">50</div>

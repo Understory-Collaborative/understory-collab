@@ -272,7 +272,7 @@
 }
 
 /* Email Form */
-.whitepaper-form {
+.fieldguide-form {
   width: 100%;
 }
 
@@ -313,17 +313,83 @@
   margin: 0.5rem 0 0;
 }
 
-.form-success {
+.fieldguide-success {
   padding: 1.25rem;
   background-color: var(--success-bg);
   border: 1px solid var(--success-border);
   border-radius: 8px;
 }
 
-.form-success-message {
+.fieldguide-success-message {
   color: var(--success-text);
   font-weight: 500;
+  margin: 0 0 1rem;
+}
+
+/* Result doors: the three doors as an honest qualifier after the diagnosis.
+   Uses design tokens to stay in step with the rest of the site. */
+.result-doors {
+  margin: var(--space-10) 0 var(--space-8);
+  text-align: left;
+}
+
+.result-doors h2 {
+  font-size: var(--text-2xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.result-doors-intro {
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  max-width: var(--layout-prose-max);
+  margin: 0 0 var(--space-6);
+}
+
+.result-doors-list {
+  list-style: none;
+  padding: 0;
   margin: 0;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.result-door-link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-6);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
+  text-decoration: none;
+  transition: border-color var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard);
+}
+
+.result-door-link:hover {
+  border-color: var(--border-accent);
+  background-color: var(--accent-warm-tint);
+}
+
+.result-door-link:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.result-door-select {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  line-height: var(--leading-snug);
+}
+
+.result-door-name {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand-primary);
 }
 
 /* Result Actions */
@@ -332,6 +398,29 @@
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.result-next {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.result-next h2 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin: 0 0 1rem;
+}
+
+.result-next-lead {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 52ch;
+  margin: 0 auto 1.5rem;
+}
+
+.result-next-alt {
+  color: var(--text-secondary);
+  margin: 1.25rem 0 2rem;
 }
 
 /* Responsive */

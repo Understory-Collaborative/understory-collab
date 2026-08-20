@@ -1,0 +1,60 @@
+.our-work {
+  width: 100%;
+}
+
+.work-category {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+}
+
+.work-category--tint {
+  background-color: var(--bg-secondary);
+}
+
+.work-category h2 {
+  font-size: var(--text-2xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-4);
+}
+
+.work-category-intro {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  max-width: var(--layout-prose-max);
+  margin: 0 0 var(--space-6);
+}
+
+/* Problem/solution items in a responsive grid */
+.work-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-6);
+}
+
+.work-item {
+  padding-top: var(--space-1);
+}
+
+.work-item-lead {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  color: var(--brand-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.work-item-body {
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .work-category {
+    padding: var(--space-12) 0;
+  }
+}
