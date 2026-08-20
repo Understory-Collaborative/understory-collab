@@ -77,8 +77,8 @@ function OfficeHours() {
         <div className="section-container">
           <h2 id="oh-fallback-heading">Not ready to book?</h2>
           <p>
-            Ask a question for free, and we'll answer it on the blog and on
-            socials. <Link to="/questions">Ask a question</Link>.
+            Ask a question for free, and we'll answer it publicly or reply to
+            you. <Link to="/questions">Ask a question</Link>.
           </p>
         </div>
       </section>

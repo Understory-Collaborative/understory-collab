@@ -145,8 +145,8 @@ function Questions() {
             sales call to get it answered.
           </p>
           <p className="page-hero-support">
-            Ask it here, free. We answer the ones that help the most people, on
-            the blog and on socials.
+            Ask it here, free. We answer the ones that help the most people
+            publicly, and reply to the rest privately.
           </p>
         </div>
       </section>
@@ -351,8 +351,8 @@ function Questions() {
             <div className="contact-status" role="status" aria-live="polite">
               {status === 'success' && (
                 <p className="contact-success">
-                  Thanks. We read every one. If we answer yours, it'll be on the
-                  blog or socials.
+                  Thanks. We read every one. If we answer yours, we'll follow the
+                  sharing choice you made above.
                 </p>
               )}
             </div>
@@ -364,7 +364,7 @@ function Questions() {
         <div className="section-container">
           <h2 id="questions-next-heading">Want an answer now?</h2>
           <p>
-            If it's about your own situation and you want it answered today,
+            If it's about your own situation and you want to talk it through,
             bring it to office hours.{' '}
             <Link to="/office-hours">See office hours</Link>.
           </p>
