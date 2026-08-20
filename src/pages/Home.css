@@ -29,19 +29,25 @@
   min-width: 0;
 }
 
-/* Canopy mark — the site's tree line-art rendered as a solid olive emblem via a mask, so its
-   color is a theme token (pale on the deep-olive canvas, deep on the cream light theme) and it
-   stays crisp at any size. Decorative (aria-hidden). Softened so it anchors the hero without
-   competing with the headline, and hidden on narrow screens where the column stacks. */
-.home-hero-mark {
+/* Framed brand logo — the hero focal. The UC badge sits in a matte frame (card surface,
+   hairline border, soft olive shadow) so it reads as a framed mark rather than a floating
+   icon. Hidden on narrow screens where the column stacks and the headline owns the width. */
+.home-hero-logo {
   flex: 0 0 auto;
-  align-self: stretch;
-  width: clamp(200px, 30vw, 400px);
-  min-height: 260px;
-  background-color: var(--brand-primary);
-  opacity: 0.85;
-  -webkit-mask: var(--mark) center / contain no-repeat;
-  mask: var(--mark) center / contain no-repeat;
+  align-self: center;
+  width: clamp(180px, 26vw, 300px);
+  padding: var(--space-4);
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-md);
+}
+
+.home-hero-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card);
 }
 
 .home-hero-title {
@@ -296,9 +302,9 @@
     font-size: var(--text-2xl);
   }
 
-  /* Stack to a single column and drop the mark: on a phone the statement should own the
-     full width, and a large emblem would only crowd it. */
-  .home-hero-mark {
+  /* Stack to a single column and drop the framed logo: on a phone the statement should own
+     the full width, and a large mark would only crowd it. */
+  .home-hero-logo {
     display: none;
   }
 
