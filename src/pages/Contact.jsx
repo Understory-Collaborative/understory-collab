@@ -71,10 +71,9 @@ function Contact() {
   })
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle') // idle | loading | success | error
-  // Temporary on-page diagnostic, shown only with ?debug=1 so we can see where a submit
-  // ends up (honeypot vs Kit, and Kit's status) without dev tools. Remove once the form
-  // delivery is confirmed working.
-  const debug = searchParams.get('debug')
+  // TEMPORARY on-page diagnostic: after a submit, show where the request ended up
+  // (honeypot vs Kit, and Kit's status) without needing dev tools. Remove once the
+  // form delivery is confirmed working.
   const [debugInfo, setDebugInfo] = useState(null)
 
   const refs = {
@@ -369,7 +368,7 @@ function Contact() {
                 )}
               </div>
 
-              {debug && debugInfo && (
+              {debugInfo && (
                 <pre
                   style={{
                     marginTop: '1rem',
