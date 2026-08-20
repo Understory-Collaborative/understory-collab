@@ -145,8 +145,8 @@ function Questions() {
             sales call to get it answered.
           </p>
           <p className="page-hero-support">
-            Ask it here, free. We answer the ones that help the most people
-            publicly, and reply to the rest privately.
+            Ask it here, free. We answer the ones that help the most people on
+            the blog and on socials.
           </p>
         </div>
       </section>
@@ -351,8 +351,8 @@ function Questions() {
             <div className="contact-status" role="status" aria-live="polite">
               {status === 'success' && (
                 <p className="contact-success">
-                  Thanks. We read every one. If we answer yours, we'll follow the
-                  sharing choice you made above.
+                  Thanks. We read every one. If we answer yours, it'll be on the
+                  blog and on socials, unless you asked us to keep it private.
                 </p>
               )}
             </div>
