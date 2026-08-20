@@ -262,11 +262,15 @@
    Extra padding shrinks the contained art, which also pulls the fuller seed/sprout drawings
    in off the circle's edge so they stop looking clipped. */
 .work-icon--seed {
-  padding: var(--space-8);
+  padding: var(--space-6);
 }
 
+/* The sprout's leaves spread wide at the top of its art, where the circular chip is
+   narrowest, so it needs a little more inset than the seed plus a nudge downward into the
+   wider middle of the circle to stop the tips from clipping. */
 .work-icon--sprout {
   padding: var(--space-6);
+  object-position: center 62%;
 }
 
 .work-step h3 {
