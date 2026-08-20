@@ -67,8 +67,8 @@ export const offers = [
       'Months of sunk cost, quiet attrition of the good people, and a reorg made on a hunch ' +
       'instead of evidence.',
     proof:
-      'Two team turnarounds, from a stuck, spiraling team to a steady pace about seven times ' +
-      'what it started with, in a month or two.',
+      'Two team turnarounds, both development teams at mid-sized companies, from stuck and ' +
+      'spiraling to about seven times the throughput within a month or two.',
     engagement:
       'It starts with an assessment of the team, then an engagement scoped from what it finds, ' +
       'usually an embedded retainer while we turn the team around. We work out the shape with ' +
