@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import PageMeta from '../components/PageMeta'
-import seedlingIcon from '../assets/noun-seedling-5009514.svg'
-import germinationIcon from '../assets/noun-germination-7706588.svg'
+import seedIcon from '../assets/noun-seed-6474297.svg'
+import sproutIcon from '../assets/noun-sprout-7907397.svg'
+import treeStepIcon from '../assets/noun-tree-201654.svg'
 import treeIcon from '../assets/noun-tree-with-leaves-6402273.svg'
 import './Home.css'
 
@@ -106,7 +107,7 @@ function Home() {
           <h2 id="how-we-work-heading">How we work</h2>
           <ul className="work-grid" role="list">
             <li className="work-step">
-              <img className="work-icon" src={germinationIcon} alt="" aria-hidden="true" />
+              <img className="work-icon" src={seedIcon} alt="" aria-hidden="true" />
               <h3>Root</h3>
               <p>
                 We begin by understanding your foundation. Through deep
@@ -116,7 +117,7 @@ function Home() {
               </p>
             </li>
             <li className="work-step">
-              <img className="work-icon" src={seedlingIcon} alt="" aria-hidden="true" />
+              <img className="work-icon" src={sproutIcon} alt="" aria-hidden="true" />
               <h3>Rise</h3>
               <p>
                 With a solid foundation, we begin building. Through
@@ -126,7 +127,7 @@ function Home() {
               </p>
             </li>
             <li className="work-step">
-              <img className="work-icon" src={treeIcon} alt="" aria-hidden="true" />
+              <img className="work-icon" src={treeStepIcon} alt="" aria-hidden="true" />
               <h3>Flourish</h3>
               <p>
                 We deliver solutions built to thrive. Beyond launch, we make sure
