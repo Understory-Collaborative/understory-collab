@@ -7,8 +7,8 @@ import './OfferPage.css'
 // offersData.js so all three share one template.
 //
 // Price is intake-only (webs, 2026-08-19): the page describes the engagement shape
-// without a number, and scope is settled after a short application. The CTA points
-// at that application.
+// without a number, and scope is settled in conversation. The CTA invites a note
+// that opens that conversation.
 function OfferPage() {
   const { slug } = useParams()
   const offer = getOffer(slug)
@@ -62,13 +62,13 @@ function OfferPage() {
 
       <section className="cta-section" aria-labelledby="offer-cta-heading">
         <div className="section-container">
-          <h2 id="offer-cta-heading">Think this is your door?</h2>
+          <h2 id="offer-cta-heading">Sound like your situation?</h2>
           <p>
-            Tell us where you're stuck in a short application. If it's a fit, we'll
-            set up a conversation.
+            Drop us a note about what's going on. If it's a good match, we'll set up
+            a time to talk.
           </p>
           <Link to={`/apply?door=${offer.slug}`} className="btn btn-primary btn-large">
-            Start an application
+            Send us a note
           </Link>
         </div>
       </section>

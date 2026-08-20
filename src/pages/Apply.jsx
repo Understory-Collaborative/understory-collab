@@ -12,10 +12,11 @@ const TIMELINES = [
   'Still exploring',
 ]
 
-// Short application. A real form (not a mailto): on submit it POSTs to /api/apply,
-// which emails a shared inbox via Resend so webs can read it and reply to the good
-// fits. The hidden company_website field is a honeypot; the server drops any
-// submission that fills it.
+// The offer intake, framed as a conversation, not an application (webs: "application
+// sounds cheap"; modeled on the Thoughtworks "Contact us" form). A real form (not a
+// mailto): on submit it POSTs to /api/apply, which emails a shared inbox via Resend so
+// webs can read it and reply to the good fits. The hidden company_website field is a
+// honeypot; the server drops any submission that fills it.
 function Apply() {
   const [searchParams] = useSearchParams()
   const doorFromUrl = searchParams.get('door')
@@ -42,7 +43,7 @@ function Apply() {
 
     if (!door) {
       setStatus('error')
-      setErrorMessage('Please choose which door fits.')
+      setErrorMessage('Please pick what this is about.')
       return
     }
     if (!name.trim()) {
@@ -57,7 +58,7 @@ function Apply() {
     }
     if (!situation.trim()) {
       setStatus('error')
-      setErrorMessage('Please tell us what is stuck.')
+      setErrorMessage("Please tell us what's going on.")
       return
     }
 
@@ -92,11 +93,11 @@ function Apply() {
         <section className="page-hero" aria-labelledby="apply-heading">
           <div className="page-hero-content">
             <h1 id="apply-heading" ref={headingRef} tabIndex={-1}>
-              Thank you. Your application is in.
+              Thanks, your note is in.
             </h1>
             <p className="apply-success">
-              We read every one. If it is a fit, we will reply to set up a
-              conversation. If it is not, we will tell you that too.
+              We read every one. If it's a good match, we'll reply to set up a time
+              to talk. If it isn't, we'll tell you that too.
             </p>
           </div>
         </section>
@@ -110,10 +111,10 @@ function Apply() {
     <div className="apply-page">
       <section className="page-hero" aria-labelledby="apply-heading">
         <div className="page-hero-content">
-          <h1 id="apply-heading">Apply</h1>
+          <h1 id="apply-heading">Let's talk</h1>
           <p className="apply-intro">
-            Tell us where you're stuck. If it's a fit, we'll set up a conversation.
-            If it isn't, we'll say so, and that saves us both time.
+            Tell us what's going on. If it's a good match, we'll set up a time to
+            talk. If it isn't, we'll say so, and that saves us both time.
           </p>
         </div>
       </section>
@@ -121,11 +122,11 @@ function Apply() {
       <section className="apply-body" aria-labelledby="apply-form-heading">
         <div className="section-container">
           <h2 id="apply-form-heading" className="sr-only">
-            Application form
+            Contact form
           </h2>
           <form className="apply-form" onSubmit={handleSubmit} noValidate>
             <div className="apply-field">
-              <label htmlFor="apply-door">Which door fits?</label>
+              <label htmlFor="apply-door">What's this about?</label>
               <select
                 id="apply-door"
                 value={door}
@@ -184,7 +185,7 @@ function Apply() {
             </div>
 
             <div className="apply-field">
-              <label htmlFor="apply-situation">What is stuck?</label>
+              <label htmlFor="apply-situation">What's going on?</label>
               <textarea
                 id="apply-situation"
                 value={situation}
@@ -232,7 +233,7 @@ function Apply() {
               className="btn btn-primary btn-large"
               disabled={status === 'loading'}
             >
-              {status === 'loading' ? 'Sending…' : 'Send application'}
+              {status === 'loading' ? 'Sending…' : 'Send'}
             </button>
 
             <div className="apply-status" role="status" aria-live="polite">
