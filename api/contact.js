@@ -95,7 +95,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ ok: false, error: errors.join('; ') })
   }
 
-  const apiKey = process.env.KIT_API_KEY
+  const apiKey = process.env.KIT_API_KEY || process.env.KIT_API
 
   try {
     let kitStatus = 0
