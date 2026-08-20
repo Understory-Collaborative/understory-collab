@@ -42,7 +42,7 @@ function App() {
             <Route path="quiz" element={<Navigate to="/assessment" replace />} />
             {/* The three doors — one offer page per door, data-driven from offersData.js */}
             <Route path="offers/:slug" element={<OfferPage />} />
-            {/* Short application — the conversation step; door prefilled via ?door=<slug> */}
+            {/* Offer intake ("Let's talk") — the conversation step; door prefilled via ?door=<slug> */}
             <Route path="apply" element={<Apply />} />
             {/* Low-commitment paid rung: $50 group office hours */}
             <Route path="office-hours" element={<OfficeHours />} />
