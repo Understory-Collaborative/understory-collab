@@ -71,8 +71,7 @@ function Quiz() {
             <p className="quiz-subtitle">A technical health self-assessment</p>
             <p className="quiz-description">
               Six questions about the state of your engineering organization.
-              No vendor pitch. No sales sequence. Just a plain read on where you
-              stand, and what it means.
+              You'll get a report on where you stand and what it means.
             </p>
             <p className="quiz-meta">
               Your answers stay on your device.
@@ -81,7 +80,7 @@ function Quiz() {
               className="btn btn-primary btn-large quiz-start-btn"
               onClick={handleStart}
             >
-              Start the Assessment
+              Start the assessment
             </button>
           </div>
         </section>
