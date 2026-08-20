@@ -40,7 +40,7 @@
   line-height: var(--leading-body);
 }
 
-/* Radio groups (stage, share-consent). Fieldset reset, then a scannable list. */
+/* Share-consent radio group. Fieldset reset, then a scannable list. */
 .qa-fieldset {
   border: 0;
   padding: 0;
