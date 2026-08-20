@@ -111,6 +111,10 @@
   /* Opaque pale-olive chip. Solid (not a wash) so dark line-art icons read on it in BOTH
      themes. A quiet olive, never the lime action color, so lime keeps its one meaning. */
   --accent-warm-chip: #dce8cf;
+  /* Warm text accent (PROTOTYPE) — a terracotta counterpoint to the olive, for small labels
+     (eyebrows) and link arrows, so the page carries one non-olive hue and stops reading flat.
+     Sparing use only; never a heading or body color. AA on the canvas (7.5:1) and card (6.2:1). */
+  --accent-warm-text: #e8a87c;
 
   /* Act surface — the deep-olive "invitation to act" block. Color-as-meaning: green MEANS
      "we are inviting you to act", so it is reserved for conversion moments (the closing CTA
@@ -213,6 +217,8 @@
   --accent-warm: #4c5a16;                        /* deep olive, decorative hero/section rule on light */
   --accent-warm-tint: rgba(76, 90, 22, 0.14);    /* pale-olive band under hero statements */
   --accent-warm-tint-strong: rgba(76, 90, 22, 0.20);
+  /* Deep terracotta so the warm accent clears AA on cream (6.1:1) and the pale hero band (4.9:1). */
+  --accent-warm-text: #8a4a1f;
 
   /* Deeper olive act block on the cream light canvas. */
   --surface-act: #35470f;

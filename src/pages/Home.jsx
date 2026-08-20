@@ -31,6 +31,7 @@ function Home() {
 
       <section className="offerings" aria-labelledby="offerings-heading">
         <div className="section-container">
+          <p className="section-eyebrow">What we do</p>
           <h2 id="offerings-heading">Where are you stuck?</h2>
           <ul className="offering-list" role="list">
             <li className="offering">
