@@ -80,9 +80,14 @@ failure never swallows it, and a notification failure never blocks Kit delivery.
 submitter so webs can reply directly. Config: `RESEND_API_KEY` plus a from address
 (`CONTACT_NOTIFY_FROM`, or `FIELD_GUIDE_FROM` as fallback); unset means the notification is
 skipped and Kit delivery is unchanged. `contact@understorycollab.com` is confirmed a real
-monitored mailbox (2026-08-20), the from address falls back to the already-configured
-`FIELD_GUIDE_FROM`, and `RESEND_API_KEY` is set in Vercel (2026-08-20). All config is in
-place; the only step left is one real test submission to confirm the email lands.
+monitored mailbox (2026-08-20), and `RESEND_API_KEY` is set in Vercel (2026-08-20).
+**Still open (2026-08-20):** the from address env var is NOT set in Vercel, so on a test
+submission the notification skipped silently and no email arrived (and the Resend key
+showed no activity). The floor needs a from address: `CONTACT_NOTIFY_FROM`, or
+`FIELD_GUIDE_FROM` as fallback (setting `FIELD_GUIDE_FROM` fixes the field-guide email
+too). The from domain (`understorycollab.com`) must be verified in Resend. The handler now
+logs the skip so a missing-config case is visible in Vercel logs instead of silent. Set the
+from var, redeploy, then one real test submission confirms the email lands.
 
 ### Phase 2 — Buttondown for nurture + newsletter  (website + Buttondown)
 

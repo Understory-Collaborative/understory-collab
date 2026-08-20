@@ -79,7 +79,15 @@ function escapeHtml(value) {
 async function notifyContact({ name, email, business, topic, message }) {
   const key = process.env.RESEND_API_KEY
   const from = process.env.CONTACT_NOTIFY_FROM || process.env.FIELD_GUIDE_FROM
-  if (!key || !from) return false // notification not configured; Kit delivery still runs
+  if (!key || !from) {
+    // The floor is the whole point, so a skip must be visible in the logs, never silent.
+    // Names only, never the submitter's data.
+    const missing = [!key && 'RESEND_API_KEY', !from && 'CONTACT_NOTIFY_FROM/FIELD_GUIDE_FROM']
+      .filter(Boolean)
+      .join(' and ')
+    console.error(`Contact notification skipped: ${missing} not set`)
+    return false // notification not configured; Kit delivery still runs
+  }
 
   // Strip line breaks from the subject to avoid header injection via the name field.
   const safeName = name.replace(/[\r\n]+/g, ' ').slice(0, LIMITS.name)
