@@ -26,16 +26,15 @@ export const offers = [
       'A leader on a project where the date keeps sliding, the scope keeps shifting, and no ' +
       'one can say what the first version even delivers.',
     problem:
-      'I need someone to take control of this and get a defined thing shipped, then hand me ' +
-      'back a project I can steer.',
+      'I need someone to take control of this and get a defined thing shipped, then give me ' +
+      'back a project.',
     impact:
-      'A first version everyone can name, a delivery path the team can see, and a project your ' +
-      'team keeps moving after we leave.',
+      'A first iteration everyone can explain, a delivery path the team can see, and a ' +
+      'project your team keeps going after we leave.',
     risk:
-      'The date slides again, trust erodes with whoever is waiting, and the team burns out ' +
-      'on a moving target.',
+      'The date slides again, trust erodes with whoever is waiting, and the team burns out.',
     proof:
-      "Three delivery rescues from our team's past work, showing the range. One we saved by " +
+      "Three delivery rescues from our team's past work. One we saved by " +
       'working alongside the struggling team. Another we saved by taking the project over ' +
       'ourselves. On a third we had the hard conversation about what the timeline could really ' +
       'fit, then shipped a real increment to customers.',
