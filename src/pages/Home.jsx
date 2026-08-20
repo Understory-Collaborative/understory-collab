@@ -69,12 +69,6 @@ function Home() {
               <Link to="/offers/ship" className="offering-link">How Ship works</Link>
             </li>
           </ul>
-          <p className="offering-promise">
-            Repair or rebuild, the right call for what's in front of you. We've
-            seen enough of these to know when a system is worth saving and when it
-            isn't. What we won't do is sell you a rebuild you don't need, or a
-            patch that won't hold.
-          </p>
         </div>
       </section>
 
