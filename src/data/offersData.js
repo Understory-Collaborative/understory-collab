@@ -21,7 +21,7 @@ export const offers = [
     name: 'Design',
     // Descriptor shows in the application dropdown; the selfSelect line is the page hook.
     descriptor: 'getting the first version shipped',
-    selfSelect: 'The date keeps slipping, and no one can say what actually ships.',
+    selfSelect: "The date keeps slipping, and I can't say what actually ships.",
     whoFor:
       'A leader on a project where the date keeps sliding, the scope keeps shifting, and no ' +
       'one can say what the first version even delivers.',
@@ -40,9 +40,9 @@ export const offers = [
       'had the hard conversation about what the timeline could really fit, then shipped a real ' +
       'increment to customers.',
     engagement:
-      'It starts with an assessment that scopes the work, then an engagement priced from what ' +
-      'it finds, whether that is a fixed price per iteration or a monthly retainer. We settle ' +
-      'the shape with you after a short application, not off a form.',
+      "It starts with an assessment that scopes the work, then an engagement priced from what " +
+      "it finds, whether that's a fixed price per iteration or a monthly retainer. We settle " +
+      'the shape with you in a short conversation after a brief application.',
   },
   {
     id: 'build',
@@ -52,10 +52,10 @@ export const offers = [
     selfSelect: 'My team keeps missing, and I need to know whether it can be saved.',
     whoFor:
       'A leader with an underperforming team that has already cycled through several leads, ' +
-      'where moving or replacing people is expensive and slow, and they want one last effort ' +
-      'to save the people they have. This includes the leader who has just made an ' +
-      'acquisition, inherited a team, and needs to know quickly whether it can succeed and ' +
-      'what has to change.',
+      'where moving or replacing people is expensive and slow. They want one last effort to ' +
+      'save the people they have. This includes the leader who has just made an acquisition, ' +
+      'inherited a team, and needs to know quickly whether it can succeed and what has to ' +
+      'change.',
     problem:
       'I need to know I did right by them. Can this team actually succeed, and if so, what ' +
       'has to change, and if not, I need to know that too.',
@@ -81,11 +81,10 @@ export const offers = [
     descriptor: 'shipping more often, with AI that helps',
     selfSelect: "AI is loose in my org, and it's more risk and noise than help.",
     whoFor:
-      'A leader who wants AI to make their people better at the work, and instead has finance ' +
-      'shipping ' +
-      'to production with unknown security and PII exposure, runaway token spend, a chunk of ' +
-      'the org refusing to touch it, and inboxes full of five-paragraph slop and enormous ' +
-      'documents about nothing.',
+      'A leader who wants AI to make their people better at the work. Instead they have ' +
+      'finance shipping to production with unknown security and PII exposure, runaway token ' +
+      'spend, a chunk of the org refusing to touch it, and inboxes full of five-paragraph ' +
+      'slop and enormous documents about nothing.',
     problem:
       'I want the upside without the risk and the noise. I need guardrails, cost control, and ' +
       'people actually using this well.',

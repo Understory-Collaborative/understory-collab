@@ -53,7 +53,7 @@ function About() {
 
       <section className="about-intro" aria-labelledby="who-we-are-heading">
         <div className="section-container">
-          <h2 id="who-we-are-heading">Who We Are</h2>
+          <h2 id="who-we-are-heading">Who we are</h2>
           <div className="about-intro-copy">
             <p>
               We are technical product managers. We reject the idea that people are either
@@ -74,7 +74,7 @@ function About() {
           </div>
           <ul className="about-cards" role="list">
             <li className="about-card">
-              <h3>Human-Centric</h3>
+              <h3>Human-centric</h3>
               <p>We put people first, designing around how people actually work and what they need.</p>
             </li>
             <li className="about-card">
@@ -91,7 +91,7 @@ function About() {
 
       <section className="about-capabilities" aria-labelledby="capabilities-heading">
         <div className="section-container">
-          <h2 id="capabilities-heading">Technical Capabilities</h2>
+          <h2 id="capabilities-heading">Technical capabilities</h2>
           <p className="about-section-intro">
             Our team covers the full stack, infrastructure, back end, front end, and
             design, with specialized expertise in modern development practices.
@@ -109,7 +109,7 @@ function About() {
 
       <section className="about-industries" aria-labelledby="industries-heading">
         <div className="section-container">
-          <h2 id="industries-heading">Industry Expertise</h2>
+          <h2 id="industries-heading">Industry expertise</h2>
           <p className="about-section-intro">
             We've delivered solutions across diverse industries, bringing domain
             knowledge that accelerates delivery and reduces risk.

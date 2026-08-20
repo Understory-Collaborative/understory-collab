@@ -48,8 +48,8 @@ function Home() {
               <h3 className="offering-label">Design</h3>
               <p className="offering-job">what to build</p>
               <p className="offering-problem">
-                The scope keeps shifting, and no one can say what the first
-                version even is.
+                The scope keeps shifting, and I can't say what the first version
+                even is.
               </p>
               <Link to="/offers/design" className="offering-link">How Design works</Link>
             </li>
@@ -78,9 +78,6 @@ function Home() {
             isn't. What we won't do is sell you a rebuild you don't need, or a
             patch that won't hold.
           </p>
-          <Link to="/contact" className="btn btn-primary">
-            Talk to us about your situation
-          </Link>
         </div>
       </section>
 
@@ -105,7 +102,7 @@ function Home() {
 
       <section className="how-we-work" aria-labelledby="how-we-work-heading">
         <div className="section-container">
-          <h2 id="how-we-work-heading">How We Work</h2>
+          <h2 id="how-we-work-heading">How we work</h2>
           <ul className="work-grid" role="list">
             <li className="work-step">
               <img className="work-icon" src={germinationIcon} alt="" aria-hidden="true" />
@@ -131,10 +128,10 @@ function Home() {
               <img className="work-icon" src={treeIcon} alt="" aria-hidden="true" />
               <h3>Flourish</h3>
               <p>
-                We deliver solutions built to thrive. Beyond launch, we ensure
-                your team is empowered to maintain and evolve what we've built
-                together. We measure our work by whether your team can carry it
-                forward without us.
+                We deliver solutions built to thrive. Beyond launch, we make sure
+                your team can maintain and evolve what we've built together. We
+                measure our work by whether your team can carry it forward without
+                us.
               </p>
             </li>
           </ul>
@@ -143,9 +140,12 @@ function Home() {
 
       <section className="cta-section" aria-labelledby="cta-heading">
         <div className="section-container">
-          <h2 id="cta-heading">Ready to Grow Together?</h2>
-          <p>Let's discuss how we can help transform your ideas into reality.</p>
-          <Link to="/contact" className="btn btn-primary btn-large">Start a Conversation</Link>
+          <h2 id="cta-heading">Not sure which of these is you?</h2>
+          <p>
+            Tell us what's going on in your own words, and we'll set up a
+            conversation to work out the scope together.
+          </p>
+          <Link to="/contact" className="btn btn-primary btn-large">Start a conversation</Link>
         </div>
       </section>
     </div>

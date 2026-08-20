@@ -64,8 +64,8 @@ function OfferPage() {
         <div className="section-container">
           <h2 id="offer-cta-heading">Think this is your door?</h2>
           <p>
-            Tell us where you are stuck in a short application. If it is a fit, we
-            will set up a conversation.
+            Tell us where you're stuck in a short application. If it's a fit, we'll
+            set up a conversation.
           </p>
           <Link to={`/apply?door=${offer.slug}`} className="btn btn-primary btn-large">
             Start an application

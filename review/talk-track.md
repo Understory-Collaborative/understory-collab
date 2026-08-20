@@ -124,10 +124,10 @@ Drawn from the personas. Answer plainly; do not oversell.
 | They ask | We say |
 |---|---|
 | "How is this different from the last consultancy?" | "We do both halves of the job, and we leave. We will not sell you a rebuild you would then pay to run and maintain." |
-| "Are you big enough for our scale?" | "We scope to a defined slice, embed with your team, and hand capability back. You are not buying a pyramid of juniors." |
+| "Are you big enough for our scale?" | "We scope to a defined slice, embed with your team, and hand capability back. You work directly with senior people, not a stack of billable hours under a senior name." |
 | "Do you actually know our industry?" | "Decades across healthcare, transportation, legal services, and education." |
 | "Will you keep us dependent?" | "The proof we did the job is that you no longer need us." |
-| "Will I get seniors or juniors?" | **[webs decides]** — staffing model not settled here; do not invent one. |
+| "Will I get seniors or juniors?" | "Today you work directly with senior people. We do not run a pyramid where junior staff do the work under a senior name." The point is the model, and paying senior rates for junior output, never that junior people are lesser. Keep it present tense; do not promise senior-only forever. |
 
 ---
 
@@ -143,6 +143,8 @@ Drawn from the personas. Answer plainly; do not oversell.
 ## Still open (do not guess)
 
 1. **Lead proof per offer:** which single story or number leads Design, Build, and Ship.
-2. **Staffing model:** the seniors-vs-juniors answer above.
+2. **Staffing model:** answered as present-tense senior-only, framed against the pyramid
+   model rather than against junior people. Not stated as a forever promise. Confirm if you
+   want a stronger or softer version.
 3. **Format:** this is a working doc. It can also become a one-page printed card or a styled
    artifact for onboarding. Say which, if any.
