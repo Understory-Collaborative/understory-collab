@@ -71,10 +71,12 @@ Notification uses **Resend**, already wired in `api/field-guide.js`
 - Acceptance: submit the form, webs gets a readable email.
 
 **Built (2026-08-20):** `api/contact.js` now emails `contact@understorycollab.com`
-via Resend before the Kit call. It carries name, business, email, and the full message
-(the "About: <topic>" line already rides at the top of the message body, so topic is
-included without a new field). Best-effort and independent of Kit: a Kit failure never
-swallows it, and a notification failure never blocks Kit delivery. Reply-to is set to the
+via Resend before the Kit call. It carries name, business, email, topic, and message,
+each on its own line. Topic is now its own form field (`topic`); the old "fold it into
+the message" hack existed only to avoid a Kit custom field, and with Kit leaving it is no
+longer needed. For Kit's still-live record the topic is folded back into the stored
+message server-side, so nothing regresses there. Best-effort and independent of Kit: a Kit
+failure never swallows it, and a notification failure never blocks Kit delivery. Reply-to is set to the
 submitter so webs can reply directly. Config: `RESEND_API_KEY` plus a from address
 (`CONTACT_NOTIFY_FROM`, or `FIELD_GUIDE_FROM` as fallback); unset means the notification is
 skipped and Kit delivery is unchanged. Open before this is truly the floor: set the from

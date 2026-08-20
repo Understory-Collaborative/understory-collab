@@ -22,6 +22,7 @@
  * contact@understorycollab.com via Resend, so webs is notified even if Kit (or any later
  * pipeline step) fails. The notification is best-effort and independent of Kit: a Kit
  * failure never swallows it, and a notification failure never blocks the Kit delivery.
+ * The email shows name, business, email, topic, and message, each on its own line.
  * It needs RESEND_API_KEY plus a from address (CONTACT_NOTIFY_FROM, or FIELD_GUIDE_FROM as
  * a fallback); without them the notification is skipped and Kit delivery is unchanged.
  * The mailbox at CONTACT_NOTIFY_TO must be real and monitored for this to be the floor.
@@ -41,6 +42,7 @@ const LIMITS = {
   name: 200,
   email: 320,
   business: 200,
+  topic: 200,
   message: 5000,
 }
 
@@ -74,7 +76,7 @@ function escapeHtml(value) {
 // Email webs about a new submission. Best-effort and self-contained: it catches its own
 // errors and returns a boolean, so it never throws into (or is swallowed by) the Kit path.
 // Returns false when unconfigured or on failure. Logs status only, never the submitter's data.
-async function notifyContact({ name, email, business, message }) {
+async function notifyContact({ name, email, business, topic, message }) {
   const key = process.env.RESEND_API_KEY
   const from = process.env.CONTACT_NOTIFY_FROM || process.env.FIELD_GUIDE_FROM
   if (!key || !from) return false // notification not configured; Kit delivery still runs
@@ -85,7 +87,7 @@ async function notifyContact({ name, email, business, message }) {
     ['name', name],
     ['business', business || '(not given)'],
     ['email', email],
-    // The "About: <topic>" line, when present, rides at the top of the message already.
+    ['topic', topic || '(not specified)'],
     ['message', message],
   ]
 
@@ -138,6 +140,7 @@ export default async function handler(req, res) {
   const name = asString(body.name)
   const email = asString(body.email)
   const business = asString(body.business)
+  const topic = asString(body.topic)
   const message = asString(body.message)
 
   const errors = []
@@ -152,6 +155,7 @@ export default async function handler(req, res) {
   else if (message.length > LIMITS.message) errors.push('message is too long')
 
   if (business.length > LIMITS.business) errors.push('business is too long')
+  if (topic.length > LIMITS.topic) errors.push('topic is too long')
 
   if (errors.length > 0) {
     return res.status(400).json({ ok: false, error: errors.join('; ') })
@@ -159,7 +163,11 @@ export default async function handler(req, res) {
 
   // The floor: notify webs first, independent of Kit. Awaited so it lands before any Kit
   // failure below can change the response, and best-effort so it never blocks delivery.
-  await notifyContact({ name, email, business, message })
+  await notifyContact({ name, email, business, topic, message })
+
+  // Kit has no topic field, so fold the topic into the stored message to keep Kit's record
+  // whole while it is still live. The notification above already shows topic on its own.
+  const kitMessage = topic ? `About: ${topic}\n\n${message}` : message
 
   const apiKey = process.env.KIT_API_KEY || process.env.KIT_API
 
@@ -168,7 +176,7 @@ export default async function handler(req, res) {
 
     if (apiKey) {
       // v4 API: authenticated, so not subject to the form spam guard/quarantine.
-      const fields = { message }
+      const fields = { message: kitMessage }
       if (business) fields.business = business
 
       const subRes = await fetch(`${KIT_API_BASE}/subscribers`, {
@@ -193,7 +201,7 @@ export default async function handler(req, res) {
       const params = new URLSearchParams({
         email_address: email,
         'fields[name]': name,
-        'fields[message]': message,
+        'fields[message]': kitMessage,
       })
       if (business) params.set('fields[business]', business)
 
