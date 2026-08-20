@@ -4,8 +4,8 @@ import { offers, getOffer } from '../data/offersData'
 import PageMeta from '../components/PageMeta'
 import './Contact.css'
 
-// Human-readable label for the "what's this about?" selection, appended to the
-// message body on submit so it rides along to Kit with no extra backend field.
+// Human-readable label for the "what's this about?" selection, sent as its own
+// `topic` field so the notification email can show it on its own line.
 function topicLabel(topic) {
   if (topic === 'other') return 'Something else'
   return getOffer(topic)?.name || ''
@@ -103,11 +103,6 @@ function Contact() {
 
     setStatus('loading')
 
-    const label = topicLabel(values.topic)
-    const message = label
-      ? `About: ${label}\n\n${values.message.trim()}`
-      : values.message.trim()
-
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -116,7 +111,8 @@ function Contact() {
           name: values.name.trim(),
           business: values.business.trim(),
           email: values.email.trim(),
-          message,
+          topic: topicLabel(values.topic),
+          message: values.message.trim(),
           hp_referral: values.hp_referral,
         }),
       })

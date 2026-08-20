@@ -20,6 +20,10 @@
   color: var(--text-primary);
   background-color: var(--surface-canvas);
 
+  /* Canopy texture tile — webs hand-drawn vine field (Procreate), used as an alpha mask so it themes to olive, applied as a mask so its
+     color comes from --texture-ink / --texture-ink-on-act (themeable). Decorative only. */
+  --texture-canopy: url("/vine-texture.png");
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -277,3 +281,59 @@ img {
     padding: var(--space-12) 0;
   }
 }
+
+
+/* ---- Canopy texture -------------------------------------------------------
+   A faint botanical watermark on the warm hero bands and the deep-olive "act" blocks,
+   giving the pages quiet depth and brand personality without any colored accent bar.
+   The tile is a mask, so the color is a themeable token and the opacity stays low enough
+   that no text/background contrast pair is affected. Decorative and aria-hidden by nature
+   (a ::before with no content). Honors reduced-motion by being static. */
+.home-hero,
+.page-hero,
+.cta-section,
+.forest-health-content {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-hero::before,
+.page-hero::before,
+.cta-section::before,
+.forest-health-content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--texture-ink);
+  -webkit-mask-image: var(--texture-canopy);
+  mask-image: var(--texture-canopy);
+  /* webs's vine field is a full illustration, not a small tile: scale it to cover each band,
+     centered, no repeat — so there is no seam and the vine scale reads as one drawn backdrop. */
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-position: center;
+  mask-position: center;
+  opacity: 0.08;
+}
+
+/* The deep-olive act blocks keep a pale watermark in both themes, a touch stronger so it
+   reads against the dark surface. */
+.cta-section::before,
+.forest-health-content::before {
+  background-color: var(--texture-ink-on-act);
+  opacity: 0.06;
+}
+
+/* Lift real content above the watermark layer. */
+.home-hero-content,
+.page-hero-content,
+.cta-section .section-container,
+.forest-health-content > * {
+  position: relative;
+  z-index: 1;
+}
+

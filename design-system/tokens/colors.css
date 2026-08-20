@@ -111,6 +111,10 @@
   /* Opaque pale-olive chip. Solid (not a wash) so dark line-art icons read on it in BOTH
      themes. A quiet olive, never the lime action color, so lime keeps its one meaning. */
   --accent-warm-chip: #dce8cf;
+  /* Warm text accent (PROTOTYPE) — a terracotta counterpoint to the olive, for small labels
+     (eyebrows) and link arrows, so the page carries one non-olive hue and stops reading flat.
+     Sparing use only; never a heading or body color. AA on the canvas (7.5:1) and card (6.2:1). */
+  --accent-warm-text: #e8a87c;
 
   /* Act surface — the deep-olive "invitation to act" block. Color-as-meaning: green MEANS
      "we are inviting you to act", so it is reserved for conversion moments (the closing CTA
@@ -148,6 +152,13 @@
   --border-input: rgba(255, 255, 255, 0.42);
   --border-accent: var(--brand-primary);   /* olive rules & card spines in both themes; clears 3:1 either way */
   --ring-brand: rgba(183, 222, 124, 0.3);
+
+  /* Canopy texture — a faint botanical watermark (see --texture-canopy in src/index.css).
+     Decorative only, aria-hidden, applied via a mask so the color is themeable. --texture-ink
+     adapts per theme for the pale hero bands; --texture-ink-on-act stays pale-olive because the
+     deep-olive "act" blocks are dark in both themes. Kept very low so no text contrast shifts. */
+  --texture-ink: #b7de7c;          /* pale olive, reads on the deep-olive canvas/hero */
+  --texture-ink-on-act: #b7de7c;   /* always pale on the deep-olive act blocks */
 
   --status-success-text: var(--success-400);
   --status-success-bg: rgba(129, 199, 132, 0.1);
@@ -206,6 +217,8 @@
   --accent-warm: #4c5a16;                        /* deep olive, decorative hero/section rule on light */
   --accent-warm-tint: rgba(76, 90, 22, 0.14);    /* pale-olive band under hero statements */
   --accent-warm-tint-strong: rgba(76, 90, 22, 0.20);
+  /* Deep terracotta so the warm accent clears AA on cream (6.1:1) and the pale hero band (4.9:1). */
+  --accent-warm-text: #8a4a1f;
 
   /* Deeper olive act block on the cream light canvas. */
   --surface-act: #35470f;
@@ -227,6 +240,10 @@
   --border-strong: var(--neutral-400);
   --border-input: var(--neutral-500);
   --ring-brand: rgba(76, 90, 22, 0.3);
+
+  /* Light theme: the hero bands are warm cream, so the watermark goes deep olive to read.
+     The act blocks stay deep-olive in both themes, so --texture-ink-on-act stays pale. */
+  --texture-ink: #4c5a16;          /* deep olive, reads on the cream hero band */
 
   --status-success-text: var(--success-700);
   --status-success-bg: rgba(46, 125, 50, 0.1);
