@@ -3,7 +3,7 @@ import PageMeta from '../components/PageMeta'
 import seedIcon from '../assets/noun-seed-6474297.svg'
 import sproutIcon from '../assets/noun-sprout-7907397.svg'
 import treeStepIcon from '../assets/noun-tree-201654.svg'
-import treeIcon from '../assets/noun-tree-with-leaves-6402273.svg'
+import ucLogo from '../assets/UC_Logo.png'
 import './Home.css'
 
 function Home() {
@@ -22,11 +22,9 @@ function Home() {
               will tell you how serious it is.
             </p>
           </div>
-          <div
-            className="home-hero-mark"
-            aria-hidden="true"
-            style={{ '--mark': `url(${treeIcon})` }}
-          />
+          <div className="home-hero-logo">
+            <img src={ucLogo} alt="Understory Collaborative" />
+          </div>
         </div>
       </section>
 
