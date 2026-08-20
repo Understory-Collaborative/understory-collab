@@ -25,10 +25,12 @@
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-// Kit form that newsletter and field-guide signups both feed. The id is public, so it is
-// safe to hardcode and needs no key. To capture the fire type, add a "fire_type" custom
-// field in Kit; if it is missing, Kit simply ignores the value and the signup still works.
-const KIT_FORM_ENDPOINT = 'https://app.kit.com/forms/9782548/subscriptions'
+// Kit form that newsletter and field-guide signups both feed. To capture the fire type,
+// add a "fire_type" custom field in Kit; if it is missing, Kit simply ignores the value
+// and the signup still works.
+const KIT_FORM = '9782548'
+const KIT_FORM_ENDPOINT = `https://app.kit.com/forms/${KIT_FORM}/subscriptions`
+const KIT_API_BASE = 'https://api.kit.com/v4'
 
 // The four fire types are the only valid guides; this allowlist also prevents any
 // path trickery from reaching the /field-guides/<slug>.pdf link.
@@ -60,8 +62,31 @@ function siteOrigin(req) {
 }
 
 async function subscribeToKit({ email, fireType }) {
-  // Kit's own HTML form posts email_address form-encoded; custom fields ride along as
-  // fields[<key>]. URLSearchParams keeps this a simple, dependency-free POST.
+  const apiKey = process.env.KIT_API_KEY || process.env.KIT_API
+
+  // Prefer Kit's authenticated v4 API. The public form endpoint is spam-guarded: it
+  // QUARANTINES server-side POSTs (returns 200 but never creates a subscriber), so a
+  // form-endpoint "success" is not a real signup. The v4 API is not guarded.
+  if (apiKey) {
+    const subRes = await fetch(`${KIT_API_BASE}/subscribers`, {
+      method: 'POST',
+      headers: { 'X-Kit-Api-Key': apiKey, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email_address: email, fields: { fire_type: fireType } }),
+    })
+    if (!subRes.ok) {
+      console.error('Kit subscribe failed:', subRes.status)
+      return false
+    }
+    // Add them to the form so its opt-in/incentive automation fires. Best-effort.
+    await fetch(`${KIT_API_BASE}/forms/${KIT_FORM}/subscribers`, {
+      method: 'POST',
+      headers: { 'X-Kit-Api-Key': apiKey, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email_address: email }),
+    }).catch(() => {})
+    return true
+  }
+
+  // Fallback: the public form endpoint (Kit may quarantine this — set KIT_API_KEY).
   const res = await fetch(KIT_FORM_ENDPOINT, {
     method: 'POST',
     headers: { Accept: 'application/json' },

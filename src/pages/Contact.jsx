@@ -71,10 +71,6 @@ function Contact() {
   })
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle') // idle | loading | success | error
-  // TEMPORARY on-page diagnostic: after a submit, show where the request ended up
-  // (honeypot vs Kit, and Kit's status) without needing dev tools. Remove once the
-  // form delivery is confirmed working.
-  const [debugInfo, setDebugInfo] = useState(null)
 
   const refs = {
     name: useRef(null),
@@ -123,9 +119,6 @@ function Contact() {
           hp_referral: values.hp_referral,
         }),
       })
-
-      const data = await response.json().catch(() => ({}))
-      setDebugInfo({ httpStatus: response.status, ...data })
 
       if (!response.ok) {
         throw new Error(`Request failed with status ${response.status}`)
@@ -367,22 +360,6 @@ function Contact() {
                   </p>
                 )}
               </div>
-
-              {debugInfo && (
-                <pre
-                  style={{
-                    marginTop: '1rem',
-                    padding: '0.75rem',
-                    whiteSpace: 'pre-wrap',
-                    wordBreak: 'break-word',
-                    fontSize: '0.8rem',
-                    border: '1px dashed currentColor',
-                    borderRadius: '6px',
-                  }}
-                >
-                  {`debug — httpStatus: ${debugInfo.httpStatus}\nvia: ${debugInfo.via}\nkitStatus: ${debugInfo.kitStatus ?? 'n/a'}\nkitSnippet: ${debugInfo.kitSnippet ?? ''}`}
-                </pre>
-              )}
             </form>
           </div>
         </div>
