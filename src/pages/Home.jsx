@@ -46,7 +46,6 @@ function Home() {
           <ul className="offering-list" role="list">
             <li className="offering">
               <h3 className="offering-label">Design</h3>
-              <p className="offering-job">what to build</p>
               <p className="offering-problem">
                 The scope keeps shifting, and I can't say what the first version
                 even is.
@@ -55,7 +54,6 @@ function Home() {
             </li>
             <li className="offering">
               <h3 className="offering-label">Build</h3>
-              <p className="offering-job">how to build it</p>
               <p className="offering-problem">
                 My team keeps missing, and I need to know if it can be turned
                 around.
@@ -64,7 +62,6 @@ function Home() {
             </li>
             <li className="offering">
               <h3 className="offering-label">Ship</h3>
-              <p className="offering-job">how to ship it</p>
               <p className="offering-problem">
                 We could be shipping far more often than we are, and too much is
                 still done by hand.
