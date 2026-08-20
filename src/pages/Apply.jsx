@@ -112,9 +112,8 @@ function Apply() {
         <div className="page-hero-content">
           <h1 id="apply-heading">Apply</h1>
           <p className="apply-intro">
-            A short application, not a sales form. Tell us where you are stuck. If
-            it is a fit, we will set up a conversation. If it is not, we will tell
-            you that too, and that saves us both time.
+            Tell us where you're stuck. If it's a fit, we'll set up a conversation.
+            If it isn't, we'll say so, and that saves us both time.
           </p>
         </div>
       </section>

@@ -47,7 +47,7 @@ function Home() {
             <li className="offering">
               <h3 className="offering-label">Design</h3>
               <p className="offering-problem">
-                The scope keeps shifting, and I can't say what the first version
+                The scope keeps shifting, and I can't say what the first iteration
                 even is.
               </p>
               <Link to="/offers/design" className="offering-link">How Design works</Link>

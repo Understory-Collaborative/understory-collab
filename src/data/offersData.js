@@ -9,7 +9,7 @@
 // Decided with webs (2026-08-19): names are Design / Build / Ship; price is intake-only
 // (no public number on these pages — the $50 office hours is the only customer-facing
 // price, per HANDOFF D3). The `engagement` field describes the shape without a number, and
-// scope is settled after a short application, never off a form (VOICE.md selling rule).
+// scope is settled with the client in conversation, not quoted from a form (VOICE.md selling rule).
 //
 // `selfSelect` lines are reader-voice hooks. The proof stories are webs's, kept general
 // (no client named).
@@ -20,11 +20,11 @@ export const offers = [
     slug: 'design',
     name: 'Design',
     // Descriptor shows in the application dropdown; the selfSelect line is the page hook.
-    descriptor: 'getting the first version shipped',
+    descriptor: 'getting the first iteration shipped',
     selfSelect: "The date keeps slipping, and I can't say what actually ships.",
     whoFor:
       'A leader on a project where the date keeps sliding, the scope keeps shifting, and no ' +
-      'one can say what the first version even delivers.',
+      'one can say what the first iteration even delivers.',
     problem:
       'I need someone to take control of this and get a defined thing shipped, then give me ' +
       'back a project.',
@@ -34,14 +34,14 @@ export const offers = [
     risk:
       'The date slides again, trust erodes with whoever is waiting, and the team burns out.',
     proof:
-      "Three delivery rescues from our team's past work. One we saved by " +
-      'working alongside the struggling team. Another we saved by taking the project over ' +
-      'ourselves. On a third we had the hard conversation about what the timeline could really ' +
-      'fit, then shipped a real increment to customers.',
+      "Three delivery rescues from our team's past work. On one, the team got it back on " +
+      'track with us alongside them. On another, we took the project over and shipped it ' +
+      'ourselves. On a third, we had the hard conversation about what the timeline could ' +
+      'really fit, then delivered a working release to customers.',
     engagement:
       "It starts with an assessment that scopes the work, then an engagement priced from what " +
       "it finds, whether that's a fixed price per iteration or a monthly retainer. We settle " +
-      'the shape with you in a short conversation after a brief application.',
+      "the scope with you once we've talked.",
   },
   {
     id: 'build',
@@ -66,13 +66,13 @@ export const offers = [
       'Months of sunk cost, quiet attrition of the good people, and a reorg made on a hunch ' +
       'instead of evidence.',
     proof:
-      'Two team turnarounds our people have led, both development teams at mid-sized ' +
-      'companies, from stuck and spiraling to about seven times the throughput within a ' +
-      'month or two.',
+      'Two development teams at mid-sized companies that went from stuck and spiraling to ' +
+      'about seven times the throughput in a month or two, with our people leading the ' +
+      'turnaround.',
     engagement:
       'It starts with an assessment of the team, then an engagement scoped from what it finds, ' +
-      'usually an embedded retainer while we turn the team around. We work out the shape with ' +
-      'you after a short application.',
+      "usually an embedded retainer while we turn the team around. We settle the scope with " +
+      "you once we've talked.",
   },
   {
     id: 'ship',
@@ -99,13 +99,12 @@ export const offers = [
       'actually use the tools well. It starts opt-in with the people still struggling, so most ' +
       'of the work is frustrations being heard and space made to learn the tools together. ' +
       'Office hours let people drop in and share, a cache of internal experts grows on its ' +
-      'own, and from there it reaches specific roles and then whole teams. The method itself ' +
-      'is the proof, reaching the people who were refusing and leaving the org able to run ' +
-      'without us.',
+      'own, and from there it reaches specific roles and then whole teams, including the ' +
+      'people who were refusing, and leaves the org able to run without us.',
     engagement:
       'It starts with a readiness assessment, then an engagement scoped from what it finds, ' +
-      'usually an embedded retainer for a phased rollout. We work out the shape with you after ' +
-      'a short application.',
+      "usually an embedded retainer for a phased rollout. We settle the scope with you once " +
+      "we've talked.",
   },
 ]
 
