@@ -67,7 +67,7 @@ export default async function handler(req, res) {
   }
 
   // Honeypot: a filled hidden field means a bot. Pretend success and drop it.
-  if (asString(body.company_website)) {
+  if (asString(body.hp_referral)) {
     return res.status(200).json({ ok: true })
   }
 
