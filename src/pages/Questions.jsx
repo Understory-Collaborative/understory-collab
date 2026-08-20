@@ -64,7 +64,7 @@ function Questions() {
     share: '',
     name: '',
     email: '',
-    company_website: '', // honeypot — humans never see or fill this
+    hp_referral: '', // honeypot — neutral name so browser autofill won't populate it
   })
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle') // idle | loading | success | error
@@ -110,7 +110,7 @@ function Questions() {
           share: values.share,
           name: values.name.trim(),
           email: values.email.trim(),
-          company_website: values.company_website,
+          hp_referral: values.hp_referral,
         }),
       })
 
@@ -125,7 +125,7 @@ function Questions() {
         share: '',
         name: '',
         email: '',
-        company_website: '',
+        hp_referral: '',
       })
       setErrors({})
     } catch {
@@ -321,17 +321,25 @@ function Questions() {
             </div>
 
             {/* Honeypot — hidden from users and assistive tech; bots that fill
-                it are silently dropped by the server. */}
+                it are silently dropped by the server. Neutral field name plus the
+                autofill/password-manager opt-outs so a real person's browser never
+                fills it and gets dropped as a bot. */}
             <div className="sr-only" aria-hidden="true">
-              <label htmlFor="qa-company-website">Leave this field empty</label>
+              <label htmlFor="qa-hp-referral">Leave this field empty</label>
               <input
-                id="qa-company-website"
-                name="company_website"
+                id="qa-hp-referral"
+                name="hp_referral"
                 type="text"
-                value={values.company_website}
+                value={values.hp_referral}
                 onChange={handleChange}
                 tabIndex={-1}
                 autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck={false}
+                data-1p-ignore="true"
+                data-lpignore="true"
+                data-form-type="other"
               />
             </div>
 
