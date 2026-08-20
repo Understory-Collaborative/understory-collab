@@ -9,7 +9,7 @@ import './Home.css'
 function Home() {
   return (
     <div className="home">
-      <PageMeta description="When a project is late, a team is stuck, or your tooling has gotten away from you, we've worked through it before. A few questions will tell you how serious it is." />
+      <PageMeta description="When a project is late, a team is stuck, or your tooling has gotten away from you, we've worked through it before. Start wherever you're stuck." />
       <section className="home-hero" aria-labelledby="hero-heading">
         <div className="home-hero-content">
           <div className="home-hero-text">
@@ -18,8 +18,8 @@ function Home() {
             </h1>
             <p className="home-hero-description">
               Whether the project is late, the team is stuck, or the tooling has
-              gotten away from you, we've worked through it before. A few questions
-              will tell you how serious it is.
+              gotten away from you, we've worked through it before. Start wherever
+              you're stuck.
             </p>
           </div>
           <div className="home-hero-logo">
