@@ -160,6 +160,11 @@ UC is repositioning as a **technical-product-management-forward consultancy**. F
 - **Rejected:** the PE / VC segment, gainshare, and equity commercial models (off-brand;
   the commercial models are out of scope for the site).
 
+**Internal talk-track** (how staff describe UC): lives as a Google Doc in the "The Understory
+Collaborative" Drive folder, "How to talk about Understory Collaborative (internal
+talk-track)". webs asked for it in Docs rather than the repo, so it is not tracked here. Open
+items in it: lead proof per offer, and confirming the senior-only staffing line.
+
 The wedge: the rare generalist strategic enough to sequence the whole product and technical
 enough to read the pull request, who leaves the team stronger instead of dependent. webs's
 full TPM responsibility list (portfolio strategy, integration sequencing, consolidation, GTM,
