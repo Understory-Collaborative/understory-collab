@@ -2,8 +2,11 @@
    this file adds only the page rhythm, the email helper, the consent line, and the
    next-rung handoff. Anti-slop: no edge-accent bars, no pills. */
 
+/* Extra top room: unlike the other pages, the hero here is followed straight by a
+   form field (no visible section heading), so it needs more separation from the band. */
 .questions-content {
-  padding-block: clamp(var(--space-10), 5vw, var(--space-12));
+  padding-top: clamp(var(--space-12), 6vw, var(--space-16));
+  padding-bottom: clamp(var(--space-10), 5vw, var(--space-12));
 }
 
 .questions .contact-form {
