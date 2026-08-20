@@ -58,7 +58,7 @@ function About() {
             <p>
               We are technical product managers. We reject the idea that you're either a weak
               generalist or a narrow specialist. It's a rare combination, and a hard one to do
-              well, which is usually why the work stalled before we got there.
+              well.
             </p>
             <p>
               The work lives in the messy middle, and it takes someone who thrives there. That
@@ -127,9 +127,9 @@ function About() {
 
       <section className="cta-section" aria-labelledby="about-cta-heading">
         <div className="section-container">
-          <h2 id="about-cta-heading">We'd Love to Hear From You</h2>
-          <p>Let's start a conversation that gets you closer to a solution.</p>
-          <Link to="/contact" className="btn btn-primary btn-large">Contact Us</Link>
+          <h2 id="about-cta-heading">We'd love to hear from you</h2>
+          <p>Tell us what you're working on, and we'll tell you how we can help.</p>
+          <Link to="/contact" className="btn btn-primary btn-large">Send us a note</Link>
         </div>
       </section>
     </div>

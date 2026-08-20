@@ -57,7 +57,7 @@ function OurWork() {
     <div className="our-work">
       <section className="page-hero" aria-labelledby="our-work-heading">
         <div className="page-hero-content">
-          <h1 id="our-work-heading">Our Work</h1>
+          <h1 id="our-work-heading">Our work</h1>
           <p className="page-hero-description">
             We work in regulated, high-stakes domains where the cost of getting it wrong is
             high. Here's where we do our best work, and the kinds of problems we solve.
@@ -88,9 +88,9 @@ function OurWork() {
 
       <section className="cta-section" aria-labelledby="our-work-cta-heading">
         <div className="section-container">
-          <h2 id="our-work-cta-heading">Have a Problem That Looks Familiar?</h2>
+          <h2 id="our-work-cta-heading">Have a problem that looks familiar?</h2>
           <p>Tell us what you're working on and we'll tell you how we can help.</p>
-          <Link to="/contact" className="btn btn-primary btn-large">Start a Conversation</Link>
+          <Link to="/contact" className="btn btn-primary btn-large">Send us a note</Link>
         </div>
       </section>
     </div>
