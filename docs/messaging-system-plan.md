@@ -70,6 +70,20 @@ Notification uses **Resend**, already wired in `api/field-guide.js`
 - Confirm contact@understorycollab.com is a real monitored mailbox first.
 - Acceptance: submit the form, webs gets a readable email.
 
+**Built (2026-08-20):** `api/contact.js` now emails `contact@understorycollab.com`
+via Resend before the Kit call. It carries name, business, email, topic, and message,
+each on its own line. Topic is now its own form field (`topic`); the old "fold it into
+the message" hack existed only to avoid a Kit custom field, and with Kit leaving it is no
+longer needed. For Kit's still-live record the topic is folded back into the stored
+message server-side, so nothing regresses there. Best-effort and independent of Kit: a Kit
+failure never swallows it, and a notification failure never blocks Kit delivery. Reply-to is set to the
+submitter so webs can reply directly. Config: `RESEND_API_KEY` plus a from address
+(`CONTACT_NOTIFY_FROM`, or `FIELD_GUIDE_FROM` as fallback); unset means the notification is
+skipped and Kit delivery is unchanged. `contact@understorycollab.com` is confirmed a real
+monitored mailbox (2026-08-20), the from address falls back to the already-configured
+`FIELD_GUIDE_FROM`, and `RESEND_API_KEY` is set in Vercel (2026-08-20). All config is in
+place; the only step left is one real test submission to confirm the email lands.
+
 ### Phase 2 — Buttondown for nurture + newsletter  (website + Buttondown)
 
 **Goal:** assessment-takers and subscribers get a compliant nurture sequence.
@@ -184,7 +198,7 @@ three plugin agents.
 
 - [x] Decisions logged (`docs/decisions.md`)
 - [x] Master plan written (this file)
-- [ ] Phase 1 — never-miss email
+- [x] Phase 1 — never-miss email (built; mailbox confirmed, pending one live test submission)
 - [ ] Phase 2 — Buttondown nurture
 - [ ] Phase 3 — Tide inbound-lead feature
 - [ ] Phase 4 — website → Tide wiring
