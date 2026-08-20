@@ -2,12 +2,6 @@
   width: 100%;
 }
 
-/* Placeholder copy for unfinished client blurbs */
-.placeholder-copy {
-  color: var(--text-muted);
-  font-style: italic;
-}
-
 /* Shared section intro line */
 .about-section-intro {
   font-size: var(--text-md);
@@ -47,36 +41,6 @@
   margin-bottom: 0;
 }
 
-/* Three cards — on white section, filled with the secondary surface */
-.about-cards {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--space-6);
-}
-
-.about-card {
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-top: 3px solid var(--accent-warm);
-  border-radius: var(--radius-card);
-  padding: var(--space-6);
-}
-
-.about-card h3 {
-  font-size: var(--text-md);
-  color: var(--brand-primary);
-  margin: 0 0 var(--space-3);
-}
-
-.about-card p {
-  color: var(--text-secondary);
-  line-height: var(--leading-body);
-  margin: 0;
-}
-
 /* Technical Capabilities — grey band */
 .about-capabilities {
   padding: var(--space-16) 0;
@@ -94,7 +58,7 @@
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: var(--space-6);
 }
 
