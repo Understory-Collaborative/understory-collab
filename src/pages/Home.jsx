@@ -22,26 +22,6 @@ function Home() {
         </div>
       </section>
 
-      <section className="forest-health" aria-labelledby="forest-health-heading">
-        <div className="section-container">
-          <div className="forest-health-content">
-            <p className="section-eyebrow">Free self-assessment</p>
-            <h2 id="forest-health-heading">How Healthy Is Your Digital Forest?</h2>
-            <p>
-              Technical debt builds quietly, complexity grows, and a crisis can
-              arrive without warning. Knowing where your systems actually stand
-              is the first step toward changing it.
-            </p>
-            <p>
-              Our free assessment shows where your team is struggling, whether
-              one system is on fire or the whole canopy has become a firestorm,
-              and points to where we can help.
-            </p>
-            <Link to="/assessment" className="btn btn-primary">Take the assessment</Link>
-          </div>
-        </div>
-      </section>
-
       <section className="offerings" aria-labelledby="offerings-heading">
         <div className="section-container">
           <h2 id="offerings-heading">Where are you stuck?</h2>
@@ -71,6 +51,26 @@ function Home() {
               <Link to="/offers/ship" className="offering-link">How Ship works</Link>
             </li>
           </ul>
+        </div>
+      </section>
+
+      <section className="forest-health" aria-labelledby="forest-health-heading">
+        <div className="section-container">
+          <div className="forest-health-content">
+            <p className="section-eyebrow">Free self-assessment</p>
+            <h2 id="forest-health-heading">How Healthy Is Your Digital Forest?</h2>
+            <p>
+              Technical debt builds quietly, complexity grows, and a crisis can
+              arrive without warning. Knowing where your systems actually stand
+              is the first step toward changing it.
+            </p>
+            <p>
+              Our free assessment shows where your team is struggling, whether
+              one system is on fire or the whole canopy has become a firestorm,
+              and points to where we can help.
+            </p>
+            <Link to="/assessment" className="btn btn-primary">Take the assessment</Link>
+          </div>
         </div>
       </section>
 

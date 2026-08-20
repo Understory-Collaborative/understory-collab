@@ -20,6 +20,10 @@
   color: var(--text-primary);
   background-color: var(--surface-canvas);
 
+  /* Canopy texture tile — a faint two-sprig botanical watermark, applied as a mask so its
+     color comes from --texture-ink / --texture-ink-on-act (themeable). Decorative only. */
+  --texture-canopy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='%23000' stroke='none'%3E%3Cg transform='translate(60 210)'%3E%3Cpath d='M0 0 C -6 -50 6 -100 0 -150' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round'/%3E%3Cpath transform='translate(-1 -34) rotate(-28) scale(0.85)' d='M0 0 C5 -11 17 -15 26 -12 C19 -3 9 1 0 0 Z'/%3E%3Cpath transform='translate(1 -60) rotate(150) scale(-0.85 0.85)' d='M0 0 C5 -11 17 -15 26 -12 C19 -3 9 1 0 0 Z'/%3E%3Cpath transform='translate(-1 -92) rotate(-24) scale(0.95)' d='M0 0 C5 -11 17 -15 26 -12 C19 -3 9 1 0 0 Z'/%3E%3Cpath transform='translate(1 -120) rotate(150) scale(-0.95 0.95)' d='M0 0 C5 -11 17 -15 26 -12 C19 -3 9 1 0 0 Z'/%3E%3Cpath transform='translate(-1 -146) rotate(-20) scale(0.8)' d='M0 0 C5 -11 17 -15 26 -12 C19 -3 9 1 0 0 Z'/%3E%3C/g%3E%3Cg transform='translate(180 92) rotate(180)'%3E%3Cpath d='M0 0 C -6 -46 6 -92 0 -138' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round'/%3E%3Cpath transform='translate(-1 -30) rotate(-28) scale(0.8)' d='M0 0 C5 -11 17 -15 26 -12 C19 -3 9 1 0 0 Z'/%3E%3Cpath transform='translate(1 -56) rotate(150) scale(-0.8 0.8)' d='M0 0 C5 -11 17 -15 26 -12 C19 -3 9 1 0 0 Z'/%3E%3Cpath transform='translate(-1 -86) rotate(-24) scale(0.9)' d='M0 0 C5 -11 17 -15 26 -12 C19 -3 9 1 0 0 Z'/%3E%3Cpath transform='translate(1 -112) rotate(150) scale(-0.9 0.9)' d='M0 0 C5 -11 17 -15 26 -12 C19 -3 9 1 0 0 Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -277,3 +281,55 @@ img {
     padding: var(--space-12) 0;
   }
 }
+
+
+/* ---- Canopy texture -------------------------------------------------------
+   A faint botanical watermark on the warm hero bands and the deep-olive "act" blocks,
+   giving the pages quiet depth and brand personality without any colored accent bar.
+   The tile is a mask, so the color is a themeable token and the opacity stays low enough
+   that no text/background contrast pair is affected. Decorative and aria-hidden by nature
+   (a ::before with no content). Honors reduced-motion by being static. */
+.home-hero,
+.page-hero,
+.cta-section,
+.forest-health-content {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-hero::before,
+.page-hero::before,
+.cta-section::before,
+.forest-health-content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--texture-ink);
+  -webkit-mask-image: var(--texture-canopy);
+  mask-image: var(--texture-canopy);
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+  -webkit-mask-size: 260px auto;
+  mask-size: 260px auto;
+  opacity: 0.05;
+}
+
+/* The deep-olive act blocks keep a pale watermark in both themes, a touch stronger so it
+   reads against the dark surface. */
+.cta-section::before,
+.forest-health-content::before {
+  background-color: var(--texture-ink-on-act);
+  opacity: 0.06;
+}
+
+/* Lift real content above the watermark layer. */
+.home-hero-content,
+.page-hero-content,
+.cta-section .section-container,
+.forest-health-content > * {
+  position: relative;
+  z-index: 1;
+}
+
