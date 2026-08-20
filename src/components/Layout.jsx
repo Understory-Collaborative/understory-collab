@@ -17,7 +17,9 @@ function Layout() {
       return
     }
     if (mainRef.current) {
-      mainRef.current.focus()
+      // preventScroll so focusing <main> doesn't yank its top under the sticky
+      // nav; scrollTo then puts us cleanly at the top of the page.
+      mainRef.current.focus({ preventScroll: true })
       window.scrollTo(0, 0)
     }
   }, [pathname])
