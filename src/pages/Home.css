@@ -36,18 +36,22 @@
   flex: 0 0 auto;
   align-self: center;
   width: clamp(180px, 26vw, 300px);
-  padding: var(--space-4);
+  aspect-ratio: 1;
+  padding: var(--space-3);
+  display: grid;
+  place-items: center;
   background-color: var(--surface-card);
   border: 1px solid var(--border-default);
-  border-radius: var(--radius-panel);
+  border-radius: var(--radius-pill);
   box-shadow: var(--shadow-md);
 }
 
 .home-hero-logo img {
   display: block;
   width: 100%;
-  height: auto;
-  border-radius: var(--radius-card);
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-pill);
 }
 
 .home-hero-title {
