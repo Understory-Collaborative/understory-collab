@@ -67,7 +67,7 @@ function OfferPage() {
             Drop us a note about what's going on. If it's a good match, we'll set up
             a time to talk.
           </p>
-          <Link to={`/apply?door=${offer.slug}`} className="btn btn-primary btn-large">
+          <Link to={`/contact?door=${offer.slug}`} className="btn btn-primary btn-large">
             Send us a note
           </Link>
         </div>
