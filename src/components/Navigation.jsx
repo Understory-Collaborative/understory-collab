@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
-import ucLogo from '../assets/UC_Logo.png'
+import treeMark from '../assets/noun-tree-with-leaves-6402273.svg'
 import './Navigation.css'
 
 // Flat nav for the funnel IA. The old Services dropdown (Advisory/Implementation)
@@ -41,7 +41,11 @@ function Navigation() {
           aria-label="Understory Collaborative home"
           onClick={closeMenu}
         >
-          <img src={ucLogo} alt="" className="nav-logo" aria-hidden="true" />
+          <span
+            className="nav-logo"
+            aria-hidden="true"
+            style={{ '--mark': `url(${treeMark})` }}
+          />
           <span className="nav-wordmark">Understory Collaborative</span>
         </Link>
 
