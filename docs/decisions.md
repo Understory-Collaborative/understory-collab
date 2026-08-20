@@ -3,6 +3,33 @@
 Internal record of tooling and process decisions, so we don't re-litigate them
 and so we remember why we chose what we chose. Newest first.
 
+The full system design and the phased build plan live in
+`docs/messaging-system-plan.md`. Start there to resume this work.
+
+---
+
+## 2026-08-20 — ESP, and the lead model
+
+**ESP: Buttondown, chosen.** Markdown-first, indie, cheap, clean API, pro-privacy
+stance. It handles only the send + nurture + unsubscribe; the blog stays owned in
+the website repo. Confirm current pricing and values live before wiring (sandbox
+egress is blocked, so we could not verify from here).
+
+**A lead can belong to more than one business.** Someone might be a fit for UC and
+SWL at once. So the model is a many-to-many tag, not a single owner: a `contacts`
+(lead) record links to zero or more businesses (`teams`) through a join table. This
+replaces the earlier "add a teamId column to contacts" idea.
+
+**Lead vs prospect (definitions we'll use):**
+
+- **Lead** — a raw inbound contact who just raised a hand (filled the form, took the
+  assessment). Not yet qualified. You don't yet know if they're a fit.
+- **Prospect** — a lead you've qualified: you've made contact and believe there's a
+  real potential deal. Actively pursuing.
+- These describe the **relationship** (the `contacts.role` field). The **deal** itself
+  is an `engagement`, whose `status` runs lead to committed to active to done. So a
+  person is a lead/prospect; the specific job is an engagement in the pipeline.
+
 ---
 
 ## 2026-08-20 — Ghost is out; pipeline lives in Tide
