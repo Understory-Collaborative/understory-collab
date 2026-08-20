@@ -60,8 +60,8 @@ export const offers = [
       'has to change, and if not, I need to know that too.',
     impact:
       'A clear evaluation of where the real issues are, the small irritants cleared first, ' +
-      'and a team that either climbs back to a steady, predictable pace or a defensible answer ' +
-      'that it cannot, so you can act with a clear conscience.',
+      'and either a team that climbs back to a steady, predictable pace or a defensible answer ' +
+      "that it won't get there, so you can act with a clear conscience.",
     risk:
       'Months of sunk cost, quiet attrition of the good people, and a reorg made on a hunch ' +
       'instead of evidence.',
@@ -96,7 +96,7 @@ export const offers = [
       'and refusing.',
     proof:
       'A repeatable enablement method our team has run before. The goal is people who can ' +
-      'actually use the tools well. It starts opt-in with the people still struggling, so most ' +
+      'use the tools well. It starts opt-in with the people still struggling, so most ' +
       'of the work is frustrations being heard and space made to learn the tools together. ' +
       'Office hours let people drop in and share, a cache of internal experts grows on its ' +
       'own, and from there it reaches specific roles and then whole teams, including the ' +

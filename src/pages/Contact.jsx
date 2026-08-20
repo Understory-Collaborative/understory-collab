@@ -1,6 +1,14 @@
 import { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
+import { offers, getOffer } from '../data/offersData'
 import './Contact.css'
+
+// Human-readable label for the "what's this about?" selection, appended to the
+// message body on submit so it rides along to Kit with no extra backend field.
+function topicLabel(topic) {
+  if (topic === 'other') return 'Something else'
+  return getOffer(topic)?.name || ''
+}
 
 const MAX = {
   name: 200,
@@ -48,7 +56,13 @@ function validate(values) {
 const FOCUS_ORDER = ['name', 'business', 'email', 'message']
 
 function Contact() {
+  const [searchParams] = useSearchParams()
+  // Preselect the topic when someone arrives from an offer page (/contact?door=design).
+  const doorParam = searchParams.get('door')
+  const initialTopic = getOffer(doorParam) ? doorParam : ''
+
   const [values, setValues] = useState({
+    topic: initialTopic,
     name: '',
     business: '',
     email: '',
@@ -88,6 +102,11 @@ function Contact() {
 
     setStatus('loading')
 
+    const label = topicLabel(values.topic)
+    const message = label
+      ? `About: ${label}\n\n${values.message.trim()}`
+      : values.message.trim()
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -96,7 +115,7 @@ function Contact() {
           name: values.name.trim(),
           business: values.business.trim(),
           email: values.email.trim(),
-          message: values.message.trim(),
+          message,
           company_website: values.company_website,
         }),
       })
@@ -107,6 +126,7 @@ function Contact() {
 
       setStatus('success')
       setValues({
+        topic: '',
         name: '',
         business: '',
         email: '',
@@ -125,12 +145,10 @@ function Contact() {
     <div className="contact">
       <section className="page-hero" aria-labelledby="contact-heading">
         <div className="page-hero-content">
-          <h1 id="contact-heading">
-            Tell Us What You're Working On and We'll Tell You How We Can
-            Collaborate.
-          </h1>
+          <h1 id="contact-heading">Tell us what you're working on</h1>
           <p className="page-hero-description">
-            Drop us a line, we're always happy to chat!
+            Send a note about what's going on. If it's a good match, we'll set up a
+            time to talk.
           </p>
         </div>
       </section>
@@ -139,7 +157,7 @@ function Contact() {
         <div className="section-container">
           <div className="contact-body">
             <div className="contact-intro">
-              <h2 id="say-hello-heading">Say Hello!</h2>
+              <h2 id="say-hello-heading">Say hello</h2>
               <p>
                 Send a quick question or start a longer conversation. Either way,
                 we meet you where you are.
@@ -159,6 +177,29 @@ function Contact() {
                   .
                 </div>
               )}
+
+              <div className="contact-field">
+                <label className="contact-label" htmlFor="contact-topic">
+                  What's this about?{' '}
+                  <span className="contact-optional">(optional)</span>
+                </label>
+                <select
+                  id="contact-topic"
+                  name="topic"
+                  className="contact-input"
+                  value={values.topic}
+                  onChange={handleChange}
+                  disabled={isSending}
+                >
+                  <option value="">Choose one</option>
+                  {offers.map((offer) => (
+                    <option key={offer.id} value={offer.slug}>
+                      {offer.name}
+                    </option>
+                  ))}
+                  <option value="other">Something else</option>
+                </select>
+              </div>
 
               <div className="contact-field">
                 <label className="contact-label" htmlFor="contact-name">
@@ -299,7 +340,7 @@ function Contact() {
                 className="btn btn-primary contact-submit"
                 disabled={isSending}
               >
-                {isSending ? 'Sending…' : 'Send Message'}
+                {isSending ? 'Sending…' : 'Send'}
               </button>
 
               {/* Success status. role="status" + aria-live="polite" announces

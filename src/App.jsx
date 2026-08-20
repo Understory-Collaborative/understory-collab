@@ -10,7 +10,6 @@ import Unsubscribe from './pages/Unsubscribe'
 import Accessibility from './pages/Accessibility'
 import Quiz from './pages/Quiz'
 import OfferPage from './pages/OfferPage'
-import Apply from './pages/Apply'
 import OfficeHours from './pages/OfficeHours'
 import Questions from './pages/Questions'
 import './App.css'
@@ -42,8 +41,9 @@ function App() {
             <Route path="quiz" element={<Navigate to="/assessment" replace />} />
             {/* The three doors — one offer page per door, data-driven from offersData.js */}
             <Route path="offers/:slug" element={<OfferPage />} />
-            {/* Offer intake ("Let's talk") — the conversation step; door prefilled via ?door=<slug> */}
-            <Route path="apply" element={<Apply />} />
+            {/* Apply retired; the Contact form is the single intake. Old links redirect,
+                carrying the door through so the topic stays preselected. */}
+            <Route path="apply" element={<Navigate to="/contact" replace />} />
             {/* Low-commitment paid rung: $50 group office hours */}
             <Route path="office-hours" element={<OfficeHours />} />
             {/* Free async rung: public Q&A */}
