@@ -56,9 +56,9 @@ function About() {
           <h2 id="who-we-are-heading">Who we are</h2>
           <div className="about-intro-copy">
             <p>
-              We are technical product managers. We reject the idea that people are either
-              weak generalists or specialists. That's why there aren't many of us who do this
-              well.
+              We are technical product managers. We reject the idea that you're either a weak
+              generalist or a narrow specialist. It's a rare combination, and a hard one to do
+              well, which is usually why the work stalled before we got there.
             </p>
             <p>
               The work lives in the messy middle, and it takes someone who thrives there. That
