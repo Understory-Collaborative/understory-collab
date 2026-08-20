@@ -1,28 +1,29 @@
 /*
  * POST /api/contact — Understory Collaborative contact form handler (Vercel Node function).
  *
- * Delivers submissions to Kit (formerly ConvertKit), the same service the newsletter and
- * field-guide signups use. NO npm dependencies, NO Vercel env var, NO Google Sheet: it
- * subscribes the sender to the public Kit form and rides the name, business, and message
- * along as Kit custom fields.
+ * Delivers submissions to Kit (formerly ConvertKit). It prefers Kit's authenticated v4 API,
+ * because the anonymous public-form endpoint is subject to Kit's spam "guard", which
+ * QUARANTINES server-side POSTs (returns 200 but never creates a real subscriber). The v4
+ * API is authenticated, so it is not guarded.
  *
- * Kit setup (one-time, in the Kit account):
- *   - The form id below is public (it ships in the site's newsletter embed), so there is no
- *     key here and nothing that needs a paid plan.
- *   - To STORE the extra fields, add custom fields named `name`, `business`, and `message`
- *     in Kit (Grow → Subscribers → custom fields, or Settings). If a field is missing, Kit
- *     ignores that value and the signup still succeeds — the email is always captured.
- *   - Contact submitters land on the same Kit list as newsletter signups. If you want them
- *     kept separate, point CONTACT_KIT_FORM at a dedicated Kit form id instead.
+ * Setup (one-time):
+ *   - Create a Kit v4 API key: Kit account → Settings → Developer (or Advanced) → API keys.
+ *   - Add it to Vercel as an environment variable named KIT_API_KEY (KIT_API also works),
+ *     then redeploy.
+ *   - In Kit, custom fields `business` and `message` should exist so those values are stored
+ *     (name maps to the standard first_name field). The email is captured either way.
+ *   - New contacts are added to the "Website contact" form 9821838, so the form's
+ *     new-subscriber notification fires.
+ *
+ * Without the key set, it falls back to the old public-form endpoint (which Kit may
+ * quarantine — that is the bug this file works around).
  *
  * Privacy: this function never logs the submitter's name, email, or message.
  */
 
-// Public Kit form id for the dedicated "Website contact" form (separate from the newsletter
-// form 9782548, so contacts don't land on the newsletter list and a Kit automation can
-// notify on this form alone). Its custom fields are name / business / message.
 const CONTACT_KIT_FORM = '9821838'
 const KIT_FORM_ENDPOINT = `https://app.kit.com/forms/${CONTACT_KIT_FORM}/subscriptions`
+const KIT_API_BASE = 'https://api.kit.com/v4'
 
 const LIMITS = {
   name: 200,
@@ -34,7 +35,6 @@ const LIMITS = {
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function readBody(req) {
-  // Vercel usually parses JSON into req.body; fall back to manual parsing.
   if (req.body && typeof req.body === 'object') return req.body
   if (typeof req.body === 'string' && req.body.length > 0) {
     try {
@@ -88,37 +88,58 @@ export default async function handler(req, res) {
     return res.status(400).json({ ok: false, error: errors.join('; ') })
   }
 
+  const apiKey = process.env.KIT_API_KEY || process.env.KIT_API
+
   try {
-    // Kit's own HTML form posts email_address form-encoded; custom fields ride along as
-    // fields[<key>]. URLSearchParams keeps this a simple, dependency-free POST. Missing
-    // custom fields are ignored by Kit, so the email is captured either way.
-    const params = new URLSearchParams({
-      email_address: email,
-      'fields[name]': name,
-      'fields[message]': message,
-    })
-    if (business) params.set('fields[business]', business)
+    let ok = false
 
-    const upstream = await fetch(KIT_FORM_ENDPOINT, {
-      method: 'POST',
-      headers: { Accept: 'application/json' },
-      body: params,
-    })
+    if (apiKey) {
+      // v4 API: authenticated, so not subject to the form spam guard/quarantine.
+      const fields = { message }
+      if (business) fields.business = business
 
-    if (!upstream.ok) {
-      // Log status only — never the submission contents (no PII in logs).
-      console.error('Contact Kit subscribe responded with status', upstream.status)
-      return res
-        .status(502)
-        .json({ ok: false, error: 'Failed to deliver message' })
+      const subRes = await fetch(`${KIT_API_BASE}/subscribers`, {
+        method: 'POST',
+        headers: { 'X-Kit-Api-Key': apiKey, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email_address: email, first_name: name, fields }),
+      })
+      ok = subRes.ok
+
+      if (ok) {
+        // Land them on the contact form so its notification fires. Best-effort.
+        await fetch(`${KIT_API_BASE}/forms/${CONTACT_KIT_FORM}/subscribers`, {
+          method: 'POST',
+          headers: { 'X-Kit-Api-Key': apiKey, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email_address: email }),
+        }).catch(() => {})
+      } else {
+        console.error('Contact Kit v4 responded with status', subRes.status)
+      }
+    } else {
+      // Fallback: the public form endpoint (Kit may quarantine this — set KIT_API_KEY).
+      const params = new URLSearchParams({
+        email_address: email,
+        'fields[name]': name,
+        'fields[message]': message,
+      })
+      if (business) params.set('fields[business]', business)
+
+      const upstream = await fetch(KIT_FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: params,
+      })
+      ok = upstream.ok
+      if (!ok) console.error('Contact Kit form responded with status', upstream.status)
+    }
+
+    if (!ok) {
+      return res.status(502).json({ ok: false, error: 'Failed to deliver message' })
     }
 
     return res.status(200).json({ ok: true })
   } catch {
-    // Do not log the error object — it can echo the request payload / PII.
     console.error('Contact Kit request failed')
-    return res
-      .status(502)
-      .json({ ok: false, error: 'Failed to deliver message' })
+    return res.status(502).json({ ok: false, error: 'Failed to deliver message' })
   }
 }
