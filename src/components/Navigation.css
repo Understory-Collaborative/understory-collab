@@ -78,77 +78,36 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Services dropdown (accessible disclosure) */
-.nav-dropdown {
-  position: relative;
-  /* Shrink the list item to the toggle's own height (instead of stretching to the full nav
-     row) so the submenu can sit flush beneath the button with no dead gap. */
-  align-self: center;
-}
-
-.nav-dropdown-toggle {
-  display: inline-flex;
+/* Right-hand cluster: theme toggle plus (on mobile) the menu button. */
+.nav-actions {
+  display: flex;
   align-items: center;
-  gap: 0.35rem;
-  font: inherit;
-  font-weight: 500;
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-family: var(--font-body);
+  gap: 0.5rem;
 }
 
-.nav-caret {
-  transition: transform var(--duration-fast, 0.15s) ease;
-}
-
-.nav-caret.open {
-  transform: rotate(180deg);
-}
-
-.nav-submenu {
-  position: absolute;
-  top: calc(100% + var(--space-1));
-  left: 0;
-  min-width: 12rem;
-  margin: 0;
-  padding: 0.5rem;
-  list-style: none;
-  background-color: var(--surface-card);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
-  z-index: 200;
-}
-
-.nav-submenu[hidden] {
+/* Menu (hamburger) button — hidden on desktop, shown at the mobile breakpoint. */
+.nav-toggle {
   display: none;
-}
-
-.nav-sublink {
-  display: block;
-  padding: 0.55rem 0.75rem;
-  border-radius: 6px;
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 500;
-  white-space: nowrap;
-  transition: color 0.2s, background-color 0.2s;
-}
-
-.nav-sublink:hover {
-  color: #ffffff;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
-.nav-sublink:focus-visible {
+.nav-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.nav-toggle:focus-visible {
   outline: 3px solid white;
   outline-offset: 2px;
-}
-
-.nav-sublink.active {
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .theme-toggle {
@@ -175,23 +134,38 @@
   outline-offset: 2px;
 }
 
-/* Mobile navigation */
+/* Mobile navigation: the links collapse behind the menu button and stack full width
+   when opened, so the header no longer fills the screen. */
 @media (max-width: 768px) {
   .nav-container {
     flex-wrap: wrap;
+    row-gap: 0.5rem;
     padding: 1rem var(--layout-gutter);
   }
 
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  /* Collapsed by default; shown only when the menu button sets data-open. */
   .nav-links {
     order: 3;
     width: 100%;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    display: none;
+    flex-direction: column;
     gap: 0.25rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
   }
 
+  .nav-links[data-open] {
+    display: flex;
+  }
+
+  /* Full-width rows with a ~44px tap target (WCAG 2.5.8 target size). */
   .nav-link {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.9rem;
+    padding: 0.75rem;
+    font-size: 1rem;
   }
 }
