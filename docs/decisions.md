@@ -5,6 +5,32 @@ and so we remember why we chose what we chose. Newest first.
 
 ---
 
+## 2026-08-20 — Ghost is out; pipeline lives in Tide
+
+**Ghost: ruled out.** webs went to log in and the URL was gone. No notification, no
+warning, no export, just vanished. Likely a self-hosted instance or a lapsed
+plan/domain, but the cause matters less than the lesson: **do not put the blog
+anywhere it can silently disappear.** She also does not want the added cost.
+
+**Pipeline: in Tide, which webs is building herself.** Tide is webs's own software
+to manage all her businesses, and it holds the pipeline stages (lead to won). So we
+are NOT adding HubSpot for pipeline, and HubSpot can lapse in April. Because Tide is
+her own product, the website can post a new prospect straight into Tide's API, fully
+owned, no third-party connector. "Not accessible to the whole team right now" is a
+build-status detail on Tide (multi-user access not shipped yet), not a reason to
+move off it. Open: see Tide's data model / write API to design the intake integration.
+
+**New criteria this adds to the tool choice:**
+
+- **Low or no added cost.** webs is cost-conscious. Favor genuine free tiers; do
+  not stack subscriptions.
+- **Data ownership, no silent vanish.** The blog and list must be exportable and
+  must not be able to disappear without warning. Strong case for owning the blog
+  in the website repo itself (versioned in git, deploys on Vercel, cannot poof),
+  with a replaceable ESP handling only the send + unsubscribe.
+
+---
+
 ## 2026-08-20 — Leaving Kit (ConvertKit) for contact + nurture
 
 **Status:** decided to leave. System of record still being chosen (see open question below).
