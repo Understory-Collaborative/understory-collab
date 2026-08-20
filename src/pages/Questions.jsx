@@ -362,7 +362,7 @@ function Questions() {
 
       <section className="questions-next" aria-labelledby="questions-next-heading">
         <div className="section-container">
-          <h2 id="questions-next-heading">Want an answer now?</h2>
+          <h2 id="questions-next-heading">Want to talk it through?</h2>
           <p>
             If it's about your own situation and you want to talk it through,
             bring it to office hours.{' '}
