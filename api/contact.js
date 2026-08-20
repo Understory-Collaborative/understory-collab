@@ -8,13 +8,14 @@
  *
  * Setup (one-time):
  *   - Create a Kit v4 API key: Kit account → Settings → Developer (or Advanced) → API keys.
- *   - Add it to Vercel as an environment variable named KIT_API_KEY, then redeploy.
+ *   - Add it to Vercel as an environment variable named KIT_API_KEY (KIT_API also works),
+ *     then redeploy.
  *   - In Kit, custom fields `business` and `message` should exist so those values are stored
  *     (name maps to the standard first_name field). The email is captured either way.
  *   - New contacts are added to the "Website contact" form 9821838, so the form's
  *     new-subscriber notification fires.
  *
- * Without KIT_API_KEY set, it falls back to the old public-form endpoint (which Kit may
+ * Without the key set, it falls back to the old public-form endpoint (which Kit may
  * quarantine — that is the bug this file works around).
  *
  * Privacy: this function never logs the submitter's name, email, or message.
@@ -49,14 +50,6 @@ function asString(value) {
   return typeof value === 'string' ? value.trim() : ''
 }
 
-async function snippet(response) {
-  try {
-    return (await response.text()).slice(0, 200)
-  } catch {
-    return ''
-  }
-}
-
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST')
@@ -70,7 +63,7 @@ export default async function handler(req, res) {
 
   // Honeypot: a filled hidden field means a bot. Pretend success and drop it.
   if (asString(body.hp_referral)) {
-    return res.status(200).json({ ok: true, via: 'honeypot' })
+    return res.status(200).json({ ok: true })
   }
 
   const name = asString(body.name)
@@ -98,14 +91,10 @@ export default async function handler(req, res) {
   const apiKey = process.env.KIT_API_KEY || process.env.KIT_API
 
   try {
-    let kitStatus = 0
-    let kitSnippet = ''
     let ok = false
-    let via = ''
 
     if (apiKey) {
       // v4 API: authenticated, so not subject to the form spam guard/quarantine.
-      via = 'kit-v4'
       const fields = { message }
       if (business) fields.business = business
 
@@ -114,8 +103,6 @@ export default async function handler(req, res) {
         headers: { 'X-Kit-Api-Key': apiKey, 'Content-Type': 'application/json' },
         body: JSON.stringify({ email_address: email, first_name: name, fields }),
       })
-      kitStatus = subRes.status
-      kitSnippet = await snippet(subRes)
       ok = subRes.ok
 
       if (ok) {
@@ -125,10 +112,11 @@ export default async function handler(req, res) {
           headers: { 'X-Kit-Api-Key': apiKey, 'Content-Type': 'application/json' },
           body: JSON.stringify({ email_address: email }),
         }).catch(() => {})
+      } else {
+        console.error('Contact Kit v4 responded with status', subRes.status)
       }
     } else {
       // Fallback: the public form endpoint (Kit may quarantine this — set KIT_API_KEY).
-      via = 'kit-form'
       const params = new URLSearchParams({
         email_address: email,
         'fields[name]': name,
@@ -141,21 +129,17 @@ export default async function handler(req, res) {
         headers: { Accept: 'application/json' },
         body: params,
       })
-      kitStatus = upstream.status
-      kitSnippet = await snippet(upstream)
       ok = upstream.ok
+      if (!ok) console.error('Contact Kit form responded with status', upstream.status)
     }
 
     if (!ok) {
-      console.error('Contact Kit responded with status', kitStatus)
-      return res
-        .status(502)
-        .json({ ok: false, error: 'Failed to deliver message', via, kitStatus, kitSnippet })
+      return res.status(502).json({ ok: false, error: 'Failed to deliver message' })
     }
 
-    return res.status(200).json({ ok: true, via, kitStatus, kitSnippet })
+    return res.status(200).json({ ok: true })
   } catch {
     console.error('Contact Kit request failed')
-    return res.status(502).json({ ok: false, error: 'Failed to deliver message', via: 'exception' })
+    return res.status(502).json({ ok: false, error: 'Failed to deliver message' })
   }
 }
