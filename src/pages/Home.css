@@ -12,21 +12,47 @@
 }
 
 /* Same wrapper geometry as .section-container so the hero text lines up exactly with the
-   section content below it (1200px column, gutter padding on the content itself). */
+   section content below it (1200px column, gutter padding on the content itself). On wide
+   screens it becomes a two-column row: the statement on the left, the canopy mark on the
+   right, so the hero has a focal anchor instead of reading as text on a flat band. */
 .home-hero-content {
   max-width: var(--layout-content-max);
   margin: 0 auto;
   padding: 0 var(--layout-gutter);
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.home-hero-text {
+  flex: 1 1 60%;
+  min-width: 0;
+}
+
+/* Canopy mark — the site's tree line-art rendered as a solid olive emblem via a mask, so its
+   color is a theme token (pale on the deep-olive canvas, deep on the cream light theme) and it
+   stays crisp at any size. Decorative (aria-hidden). Softened so it anchors the hero without
+   competing with the headline, and hidden on narrow screens where the column stacks. */
+.home-hero-mark {
+  flex: 0 0 auto;
+  align-self: stretch;
+  width: clamp(200px, 30vw, 400px);
+  min-height: 260px;
+  background-color: var(--brand-primary);
+  opacity: 0.85;
+  -webkit-mask: var(--mark) center / contain no-repeat;
+  mask: var(--mark) center / contain no-repeat;
 }
 
 .home-hero-title {
-  font-size: var(--text-2xl);
-  font-weight: var(--weight-bold);
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-extrabold);
+  letter-spacing: var(--tracking-display);
   line-height: var(--leading-tight);
   color: var(--text-primary);
   margin: 0 0 var(--space-5);
-  max-width: none;
-  text-wrap: pretty;
+  max-width: 18ch;
+  text-wrap: balance;
 }
 
 /* Each sentence of the hero headline on its own line, under CSS control rather than
@@ -42,7 +68,7 @@
   font-weight: var(--weight-semibold);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--brand-primary);
+  color: var(--accent-warm-text);
   margin: 0 0 var(--space-3);
 }
 
@@ -232,6 +258,17 @@
   border-radius: var(--radius-pill);
 }
 
+/* Scale the mark by growth stage: a seed reads small, a sprout mid, the tree fills the chip.
+   Extra padding shrinks the contained art, which also pulls the fuller seed/sprout drawings
+   in off the circle's edge so they stop looking clipped. */
+.work-icon--seed {
+  padding: var(--space-8);
+}
+
+.work-icon--sprout {
+  padding: var(--space-6);
+}
+
 .work-step h3 {
   font-size: var(--text-xl);
   color: var(--brand-primary);
@@ -252,7 +289,13 @@
   }
 
   .home-hero-title {
-    font-size: var(--text-3xl);
+    font-size: var(--text-2xl);
+  }
+
+  /* Stack to a single column and drop the mark: on a phone the statement should own the
+     full width, and a large emblem would only crowd it. */
+  .home-hero-mark {
+    display: none;
   }
 
   .home-hero-description {
@@ -270,12 +313,15 @@
    Anti-slop: type hierarchy and whitespace, no cards-with-borders, no accent bars. */
 .offerings {
   padding: var(--space-16) 0;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .offerings h2 {
   font-size: var(--text-2xl);
   color: var(--text-primary);
-  margin: 0 0 var(--space-10);
+  margin: 0 0 var(--space-12);
+  max-width: 20ch;
 }
 
 .offering-list {
@@ -284,20 +330,22 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-8);
+  gap: var(--space-12);
 }
 
 .offering-label {
   font-size: var(--text-xl);
   font-weight: var(--weight-bold);
   color: var(--text-primary);
-  margin: 0 0 var(--space-3);
+  margin: 0 0 var(--space-4);
 }
 
 .offering-problem {
+  font-size: var(--text-md);
   color: var(--text-secondary);
   line-height: var(--leading-body);
-  margin: 0 0 var(--space-4);
+  margin: 0 0 var(--space-5);
+  max-width: 34ch;
 }
 
 /* Reads as a link at a glance: persistent underline plus a nudging arrow, so the
@@ -314,6 +362,7 @@
 .offering-link::after {
   content: '\2192';
   margin-left: var(--space-2);
+  color: var(--accent-warm-text);
   transition: transform var(--duration-fast, 0.15s) ease;
 }
 

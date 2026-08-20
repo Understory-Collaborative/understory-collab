@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import PageMeta from '../components/PageMeta'
-import seedlingIcon from '../assets/noun-seedling-5009514.svg'
-import germinationIcon from '../assets/noun-germination-7706588.svg'
+import seedIcon from '../assets/noun-seed-6474297.svg'
+import sproutIcon from '../assets/noun-sprout-7907397.svg'
+import treeStepIcon from '../assets/noun-tree-201654.svg'
 import treeIcon from '../assets/noun-tree-with-leaves-6402273.svg'
 import './Home.css'
 
@@ -11,39 +12,27 @@ function Home() {
       <PageMeta description="When a project is late, a team is stuck, or your tooling has gotten away from you, we've worked through it before. A few questions will tell you how serious it is." />
       <section className="home-hero" aria-labelledby="hero-heading">
         <div className="home-hero-content">
-          <h1 id="hero-heading" className="home-hero-title">
-            You aren't supposed to have all of this solved on your own.
-          </h1>
-          <p className="home-hero-description">
-            Whether the project is late, the team is stuck, or the tooling has
-            gotten away from you, we've worked through it before. A few questions
-            will tell you how serious it is.
-          </p>
-        </div>
-      </section>
-
-      <section className="forest-health" aria-labelledby="forest-health-heading">
-        <div className="section-container">
-          <div className="forest-health-content">
-            <p className="section-eyebrow">Free self-assessment</p>
-            <h2 id="forest-health-heading">How Healthy Is Your Digital Forest?</h2>
-            <p>
-              Technical debt builds quietly, complexity grows, and a crisis can
-              arrive without warning. Knowing where your systems actually stand
-              is the first step toward changing it.
+          <div className="home-hero-text">
+            <h1 id="hero-heading" className="home-hero-title">
+              You aren't supposed to have all of this solved on your own.
+            </h1>
+            <p className="home-hero-description">
+              Whether the project is late, the team is stuck, or the tooling has
+              gotten away from you, we've worked through it before. A few questions
+              will tell you how serious it is.
             </p>
-            <p>
-              Our free assessment shows where your team is struggling, whether
-              one system is on fire or the whole canopy has become a firestorm,
-              and points to where we can help.
-            </p>
-            <Link to="/assessment" className="btn btn-primary">Take the assessment</Link>
           </div>
+          <div
+            className="home-hero-mark"
+            aria-hidden="true"
+            style={{ '--mark': `url(${treeIcon})` }}
+          />
         </div>
       </section>
 
       <section className="offerings" aria-labelledby="offerings-heading">
         <div className="section-container">
+          <p className="section-eyebrow">What we do</p>
           <h2 id="offerings-heading">Where are you stuck?</h2>
           <ul className="offering-list" role="list">
             <li className="offering">
@@ -74,6 +63,26 @@ function Home() {
         </div>
       </section>
 
+      <section className="forest-health" aria-labelledby="forest-health-heading">
+        <div className="section-container">
+          <div className="forest-health-content">
+            <p className="section-eyebrow">Free self-assessment</p>
+            <h2 id="forest-health-heading">How Healthy Is Your Digital Forest?</h2>
+            <p>
+              Technical debt builds quietly, complexity grows, and a crisis can
+              arrive without warning. Knowing where your systems actually stand
+              is the first step toward changing it.
+            </p>
+            <p>
+              Our free assessment shows where your team is struggling, whether
+              one system is on fire or the whole canopy has become a firestorm,
+              and points to where we can help.
+            </p>
+            <Link to="/assessment" className="btn btn-primary">Take the assessment</Link>
+          </div>
+        </div>
+      </section>
+
       <section className="positioning" aria-labelledby="positioning-heading">
         <div className="section-container">
           <div className="positioning-content">
@@ -98,7 +107,7 @@ function Home() {
           <h2 id="how-we-work-heading">How we work</h2>
           <ul className="work-grid" role="list">
             <li className="work-step">
-              <img className="work-icon" src={germinationIcon} alt="" aria-hidden="true" />
+              <img className="work-icon work-icon--seed" src={seedIcon} alt="" aria-hidden="true" />
               <h3>Root</h3>
               <p>
                 We begin by understanding your foundation. Through deep
@@ -108,7 +117,7 @@ function Home() {
               </p>
             </li>
             <li className="work-step">
-              <img className="work-icon" src={seedlingIcon} alt="" aria-hidden="true" />
+              <img className="work-icon work-icon--sprout" src={sproutIcon} alt="" aria-hidden="true" />
               <h3>Rise</h3>
               <p>
                 With a solid foundation, we begin building. Through
@@ -118,7 +127,7 @@ function Home() {
               </p>
             </li>
             <li className="work-step">
-              <img className="work-icon" src={treeIcon} alt="" aria-hidden="true" />
+              <img className="work-icon" src={treeStepIcon} alt="" aria-hidden="true" />
               <h3>Flourish</h3>
               <p>
                 We deliver solutions built to thrive. Beyond launch, we make sure
