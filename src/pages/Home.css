@@ -288,7 +288,8 @@
 }
 
 .offering-label {
-  font-size: var(--text-xl);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
   color: var(--text-primary);
   margin: 0 0 var(--space-1);
 }
@@ -305,14 +306,25 @@
   margin: 0 0 var(--space-4);
 }
 
+/* Reads as a link at a glance: persistent underline plus a nudging arrow, so the
+   click affordance never depends on color or hover alone. */
 .offering-link {
+  display: inline-flex;
+  align-items: center;
   color: var(--brand-primary);
   font-weight: var(--weight-semibold);
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.offering-link:hover {
-  text-decoration: underline;
+.offering-link::after {
+  content: '\2192';
+  margin-left: var(--space-2);
+  transition: transform var(--duration-fast, 0.15s) ease;
+}
+
+.offering-link:hover::after {
+  transform: translateX(3px);
 }
 
 .offering-link:focus-visible {
@@ -330,8 +342,16 @@
 }
 
 @media (max-width: 768px) {
+  /* Stacked, each bucket separated by a hairline divider and balanced space so the
+     three read as distinct blocks instead of one run of text. */
   .offering-list {
     grid-template-columns: 1fr;
-    gap: var(--space-6);
+    gap: 0;
+  }
+
+  .offering + .offering {
+    margin-top: var(--space-8);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--border-color);
   }
 }
