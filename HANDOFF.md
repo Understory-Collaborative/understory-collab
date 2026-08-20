@@ -127,6 +127,8 @@ The **fixed-price audit** = the "honest assessment" every report describes (map 
 
 | Date | State |
 |---|---|
+| 2026-08-20 | **Designer + product-steward review passes run on the TPM pass; fixes applied.** Both passes reviewed the home band, About opener, and Design/Build/Ship offer pages. Fixed: the colored left edge-accent bar on the offer `.offer-problem` quote (standing anti-slop rule); offer-page grid capped to 2 columns so the who/problem/impact/cost/proof/how-it-works argument keeps reading order; POV parallelism (Design hook now first person like Build/Ship); missing contractions in the offer CTA and Design engagement; a false-contrast fail ("not off a form") in the Design engagement; long Build/Ship `whoFor` sentences split; sentence-case headings ("Who we are", "How we work", "Technical capabilities", "Industry expertise", "Human-centric"); the "empowered" blocklist word in the Flourish step; and the slop closing CTA ("Ready to Grow Together? / transform your ideas into reality") rewritten in peer-diagnosis voice ("Not sure which of these is you?"). Also removed the now-redundant offerings-section "/contact" button (the three door links carry that rung; one contact CTA remains at page bottom). **Open flags for webs (not changed, awaiting her call):** the About line "there aren't many of us who do this well" (PS reads it as self-certifying; it is webs's own manifesto line); the positioning band's two-archetype edge ("Neither leaves you better off"; deliberate, webs-approved, flagged only against the note's "skip the villain"); and the Build proof "within a month or two" time claim (confirm it holds for both turnarounds). Remaining title-case sweep (About bottom CTA, a few labels) and adjacency slop noted for a later full-page gate pass. Preview deploy still held per webs. |
+| 2026-08-19 | **TPM-forward positioning + offer pages.** Adopted TPM-forward positioning (Path A, buyer unchanged; see the TPM section above and `review/tpm-positioning.md`). Shipped the home positioning band and the About identity opener (webs's own manifesto folded in), all through the voice gate + `copy-that-moves` + PS voice. Then built the "work with me" rung: `offersData.js` renamed to Design / Build / Ship, price pulled to intake-only, `OfferPage.jsx` de-priced, homepage buckets wired to the offer pages. Fixed a rendered em dash in `Apply.jsx`. Build + lint clean throughout. **Flag for webs:** three rendered em dashes remain in `quizData.js` result copy (lines ~72/74/83), a voice-gate fail slated for the quiz surgical pass. |
 | 2026-08-14 | Pivoted from copy workshop to funnel redesign. HANDOFF created. Brand/voice read complete. Prior copy work (hero direction, 20-line artifact, comms guidelines) committed on this branch. |
 | 2026-08-14 | Read all four fire reports. **All decisions resolved (D1–D4).** Inputs from webs: font = Overpass; prices in-house except $50 office hours; forcing function + two buyer drivers captured. Build order set. Next: build rung destinations (Q&A + Office Hours pages). |
 | 2026-08-14 | Reports stay as-is: deep + generic. Free/paid line = the step-by-step remediation sequences (90-day, 6-month) read as "what the engagement does," not a DIY manual. |
@@ -142,6 +144,33 @@ The **fixed-price audit** = the "honest assessment" every report describes (map 
 | 2026-08-17 | **Font docs squared with the code (build order item 7).** The tokens already shipped Overpass; the docs lagged. Updated `design-system/README.md` (source-materials table + type note), `SKILL.md`, the comments in `tokens/fonts.css` and `tokens/typography.css`, and the standalone `foundations.preview.html` specimen (which was still loading Hanken Grotesk) to all read Overpass. Left the one-file revert note in `fonts.css` naming Hanken on purpose. Build + lint clean. |
 
 ---
+
+## TPM-forward positioning (decided with webs, 2026-08-19)
+
+UC is repositioning as a **technical-product-management-forward consultancy**. Full plan in
+`review/tpm-positioning.md`. The four locked calls:
+
+- **Path A:** TPM is the connective identity and method *over* Design / Build / Ship. Not a
+  recut of the offers, not a fourth door.
+- **Buyer unchanged:** the stuck-team / behind-project leader (CTO, VP Eng). TPM is the
+  differentiated *how*, and the champion (TPM / PO) who carries us in.
+- **Visibility:** the TPM label is **named openly in the identity layer** (About,
+  positioning, how-we-work) and **shown, not named, on the storefront** (the problem-framed
+  doors, where the buyer self-selects).
+- **Rejected:** the PE / VC segment, gainshare, and equity commercial models (off-brand;
+  the commercial models are out of scope for the site).
+
+**Internal talk-track** (how staff describe UC): lives as a Google Doc in the "The Understory
+Collaborative" Drive folder, "How to talk about Understory Collaborative (internal
+talk-track)". webs asked for it in Docs rather than the repo, so it is not tracked here. Open
+items in it: lead proof per offer, and confirming the senior-only staffing line.
+
+The wedge: the rare generalist strategic enough to sequence the whole product and technical
+enough to read the pull request, who leaves the team stronger instead of dependent. webs's
+full TPM responsibility list (portfolio strategy, integration sequencing, consolidation, GTM,
+enablement, market strategy, vendor ecosystems, lifecycle and deprecation) serves as **proof
+of range** and **intake-qualified scope**, never a storefront menu. Next: webs reacts to the
+positioning note; then a gated copy pass (home positioning band, About identity).
 
 ## Offering trio (resolved with webs)
 
@@ -164,7 +193,7 @@ UC's wedge against the big consultancies (Thoughtworks / Deloitte tier): they se
 2. **Rewire endings:** ~~quiz results screen~~ **DONE** → the four report (PDF) endings still need drop-in copy handed to webs.
 3. **Quiz/assessment surgical edit** (NEXT): add the bus-factor axis; keep the 6-question spine; results route to the severity engagement pattern. Also fix the intro gate issues (blocklisted "read", ad-fragments, the "Six questions" count once the question is added).
 4. **Homepage:** two on-ramps — champion (mastery, free rungs) and exec (behind project + the team question, paid tiers). One CTA per section. (Hero, Design/Build/Ship, nav done; the ladder/on-ramps section is what's left.)
-5. **"Work with me":** reframe offers around the severity engagement patterns; intake qualifies domain + scope (premium tone, not a nitty-gritty form). Remap `offersData.js` onto Design/Build/Ship.
+5. **"Work with me":** ~~remap `offersData.js` onto Design/Build/Ship~~ **DONE (2026-08-19).** Offers renamed Design / Build / Ship, mapped to the delivery-rescue / team-turnaround / AI stories; price pulled to intake-only (no public number, per D3); `OfferPage.jsx` price block replaced with "How the engagement works"; homepage buckets now link to `/offers/design|build|ship` (rung no longer orphaned). All copy run through `VOICE.md` + `copy-that-moves` + PS voice. **Still open:** intake qualifies domain + scope (premium tone, not a nitty-gritty form); severity-engagement-pattern framing not yet woven in.
 6. ~~**Fold/retire** Advisory + Implementation~~ **DONE** (redirects in place; dead components deleted 2026-08-19). ~~Fix the **Accessibility ("signs") page contrast** bug~~ — audited 2026-08-17, all text clears AA. **Open:** confirm the About/Values fold (does About stay or fold onto the homepage?).
 7. ~~**Font docs:** README + SKILL.md → Overpass.~~ **DONE** (2026-08-17).
 8. **Reviews:** designer + product-steward passes on key pages.

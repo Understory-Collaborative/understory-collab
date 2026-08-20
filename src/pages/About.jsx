@@ -53,22 +53,28 @@ function About() {
 
       <section className="about-intro" aria-labelledby="who-we-are-heading">
         <div className="section-container">
-          <h2 id="who-we-are-heading">Who We Are</h2>
+          <h2 id="who-we-are-heading">Who we are</h2>
           <div className="about-intro-copy">
             <p>
-              We are a team of seasoned technologists with decades of combined experience
-              across diverse industries including healthcare, transportation, legal services
-              and beyond.
+              We are technical product managers. We reject the idea that people are either
+              weak generalists or specialists. That's why there aren't many of us who do this
+              well.
             </p>
             <p>
-              We bridge the gap between business objectives and technical implementation
-              through a deep understanding of both our clients' systems and the people they
-              serve.
+              The work lives in the messy middle, and it takes someone who thrives there. That
+              person is a jack of all trades who works with real depth, from market research,
+              enablement, and go-to-market to reading the technical documentation and sitting
+              in a team's challenge reviews.
+            </p>
+            <p>
+              We've spent decades on both sides of that, across healthcare, transportation,
+              legal services, and beyond. When your project is behind or your team is stuck, we
+              come in, get it moving, and step back once your team can run it without us.
             </p>
           </div>
           <ul className="about-cards" role="list">
             <li className="about-card">
-              <h3>Human-Centric</h3>
+              <h3>Human-centric</h3>
               <p>We put people first, designing around how people actually work and what they need.</p>
             </li>
             <li className="about-card">
@@ -85,7 +91,7 @@ function About() {
 
       <section className="about-capabilities" aria-labelledby="capabilities-heading">
         <div className="section-container">
-          <h2 id="capabilities-heading">Technical Capabilities</h2>
+          <h2 id="capabilities-heading">Technical capabilities</h2>
           <p className="about-section-intro">
             Our team covers the full stack, infrastructure, back end, front end, and
             design, with specialized expertise in modern development practices.
@@ -103,7 +109,7 @@ function About() {
 
       <section className="about-industries" aria-labelledby="industries-heading">
         <div className="section-container">
-          <h2 id="industries-heading">Industry Expertise</h2>
+          <h2 id="industries-heading">Industry expertise</h2>
           <p className="about-section-intro">
             We've delivered solutions across diverse industries, bringing domain
             knowledge that accelerates delivery and reduces risk.

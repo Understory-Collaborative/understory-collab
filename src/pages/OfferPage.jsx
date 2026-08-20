@@ -1,15 +1,14 @@
 import { useParams, Navigate, Link } from 'react-router-dom'
-import { getOffer, PENDING } from '../data/offersData'
+import { getOffer } from '../data/offersData'
 import './OfferPage.css'
 
-// One offer page per door, built on the who / problem / impact / proof structure
-// from review/brand-offer-foundation.md. Data-driven from offersData.js so all
-// three doors share one template. Price and the lead proof metric render as
-// visible "to confirm" placeholders until webs fills them.
+// One offer page per bucket (Design / Build / Ship), built on the who / problem /
+// impact / proof structure from review/brand-offer-foundation.md. Data-driven from
+// offersData.js so all three share one template.
 //
-// Conversation step = short application (webs's decision). The CTA points at the
-// application; the dedicated application form is a follow-up once the questions
-// it asks are settled.
+// Price is intake-only (webs, 2026-08-19): the page describes the engagement shape
+// without a number, and scope is settled after a short application. The CTA points
+// at that application.
 function OfferPage() {
   const { slug } = useParams()
   const offer = getOffer(slug)
@@ -17,8 +16,6 @@ function OfferPage() {
   if (!offer) {
     return <Navigate to="/" replace />
   }
-
-  const proofLeadPending = offer.proofLead === PENDING
 
   return (
     <div className="offer-page">
@@ -54,18 +51,11 @@ function OfferPage() {
           <div className="offer-block">
             <h2>Proof</h2>
             <p>{offer.proof}</p>
-            {proofLeadPending && (
-              <p className="offer-pending" role="note">
-                To confirm: which metric or story leads here, and whether a client
-                can be named.
-              </p>
-            )}
           </div>
 
-          <div className="offer-block offer-price">
-            <h2>Investment</h2>
-            <p className="offer-price-value">{offer.price}</p>
-            {offer.engagement && <p>{offer.engagement}</p>}
+          <div className="offer-block offer-engagement">
+            <h2>How the engagement works</h2>
+            <p>{offer.engagement}</p>
           </div>
         </div>
       </section>
@@ -74,8 +64,8 @@ function OfferPage() {
         <div className="section-container">
           <h2 id="offer-cta-heading">Think this is your door?</h2>
           <p>
-            Tell us where you are stuck in a short application. If it is a fit, we
-            will set up a conversation.
+            Tell us where you're stuck in a short application. If it's a fit, we'll
+            set up a conversation.
           </p>
           <Link to={`/apply?door=${offer.slug}`} className="btn btn-primary btn-large">
             Start an application

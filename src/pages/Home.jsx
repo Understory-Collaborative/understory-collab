@@ -48,9 +48,10 @@ function Home() {
               <h3 className="offering-label">Design</h3>
               <p className="offering-job">what to build</p>
               <p className="offering-problem">
-                The scope keeps shifting, and no one can say what the first
-                version even is.
+                The scope keeps shifting, and I can't say what the first version
+                even is.
               </p>
+              <Link to="/offers/design" className="offering-link">How Design works</Link>
             </li>
             <li className="offering">
               <h3 className="offering-label">Build</h3>
@@ -59,6 +60,7 @@ function Home() {
                 My team keeps missing, and I need to know if it can be turned
                 around.
               </p>
+              <Link to="/offers/build" className="offering-link">How Build works</Link>
             </li>
             <li className="offering">
               <h3 className="offering-label">Ship</h3>
@@ -67,6 +69,7 @@ function Home() {
                 We could be shipping far more often than we are, and too much is
                 still done by hand.
               </p>
+              <Link to="/offers/ship" className="offering-link">How Ship works</Link>
             </li>
           </ul>
           <p className="offering-promise">
@@ -75,15 +78,31 @@ function Home() {
             isn't. What we won't do is sell you a rebuild you don't need, or a
             patch that won't hold.
           </p>
-          <Link to="/contact" className="btn btn-primary">
-            Talk to us about your situation
-          </Link>
+        </div>
+      </section>
+
+      <section className="positioning" aria-labelledby="positioning-heading">
+        <div className="section-container">
+          <div className="positioning-content">
+            <h2 id="positioning-heading">Technical product management</h2>
+            <p>
+              You've probably hired both halves of this job before. One shop builds
+              exactly what you spec and never asks whether it's the right thing to build.
+              One advisor arrives with a deck full of opinions and has never opened your
+              codebase. Neither leaves you better off than when they showed up.
+            </p>
+            <p>
+              We do both halves, and then we leave. We help you decide what to build and
+              in what order, we sit with the team that builds it, and we go once your
+              team can run it without us.
+            </p>
+          </div>
         </div>
       </section>
 
       <section className="how-we-work" aria-labelledby="how-we-work-heading">
         <div className="section-container">
-          <h2 id="how-we-work-heading">How We Work</h2>
+          <h2 id="how-we-work-heading">How we work</h2>
           <ul className="work-grid" role="list">
             <li className="work-step">
               <img className="work-icon" src={germinationIcon} alt="" aria-hidden="true" />
@@ -109,10 +128,10 @@ function Home() {
               <img className="work-icon" src={treeIcon} alt="" aria-hidden="true" />
               <h3>Flourish</h3>
               <p>
-                We deliver solutions built to thrive. Beyond launch, we ensure
-                your team is empowered to maintain and evolve what we've built
-                together. We measure our work by whether your team can carry it
-                forward without us.
+                We deliver solutions built to thrive. Beyond launch, we make sure
+                your team can maintain and evolve what we've built together. We
+                measure our work by whether your team can carry it forward without
+                us.
               </p>
             </li>
           </ul>
@@ -121,9 +140,12 @@ function Home() {
 
       <section className="cta-section" aria-labelledby="cta-heading">
         <div className="section-container">
-          <h2 id="cta-heading">Ready to Grow Together?</h2>
-          <p>Let's discuss how we can help transform your ideas into reality.</p>
-          <Link to="/contact" className="btn btn-primary btn-large">Start a Conversation</Link>
+          <h2 id="cta-heading">Not sure which of these is you?</h2>
+          <p>
+            Tell us what's going on in your own words, and we'll set up a
+            conversation to work out the scope together.
+          </p>
+          <Link to="/contact" className="btn btn-primary btn-large">Start a conversation</Link>
         </div>
       </section>
     </div>

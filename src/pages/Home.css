@@ -159,6 +159,37 @@
   border-radius: var(--radius-control);
 }
 
+/* Positioning band (grey) — the one place on home that names the discipline and states
+   the wedge. Anti-slop: type hierarchy and whitespace only, no cards, no accent bars,
+   no CTA (it is identity, not a rung). */
+.positioning {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-secondary);
+}
+
+.positioning-content {
+  max-width: var(--layout-prose-max);
+  margin: 0;
+  text-align: left;
+}
+
+.positioning-content h2 {
+  font-size: var(--text-2xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-6);
+}
+
+.positioning-content p {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  margin: 0 0 var(--space-5);
+}
+
+.positioning-content p:last-child {
+  margin-bottom: 0;
+}
+
 /* How We Work (white) — three columns */
 .how-we-work {
   padding: var(--space-16) 0;
@@ -271,7 +302,23 @@
 .offering-problem {
   color: var(--text-secondary);
   line-height: var(--leading-body);
-  margin: 0;
+  margin: 0 0 var(--space-4);
+}
+
+.offering-link {
+  color: var(--brand-primary);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+}
+
+.offering-link:hover {
+  text-decoration: underline;
+}
+
+.offering-link:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-color);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-control);
 }
 
 .offering-promise {
