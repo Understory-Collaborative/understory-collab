@@ -75,7 +75,7 @@ function Home() {
       <section className="positioning" aria-labelledby="positioning-heading">
         <div className="section-container">
           <div className="positioning-content">
-            <h2 id="positioning-heading">Technical product management</h2>
+            <h2 id="positioning-heading">Most help is only half the job</h2>
             <p>
               You've probably hired both halves of this job before. One shop builds
               exactly what you spec and never asks whether it's the right thing to build.
@@ -83,9 +83,9 @@ function Home() {
               codebase. Neither leaves you better off than when they showed up.
             </p>
             <p>
-              We do both halves, and then we leave. We help you decide what to build and
-              in what order, we sit with the team that builds it, and we go once your
-              team can run it without us.
+              We do both halves, and then we leave. That's technical product management.
+              We help you decide what to build and in what order, we sit with the team
+              that builds it, and we go once your team can run it without us.
             </p>
           </div>
         </div>
