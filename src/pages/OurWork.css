@@ -26,26 +26,6 @@
   margin: 0 0 var(--space-6);
 }
 
-/* Frameworks / standards as small pills */
-.framework-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  list-style: none;
-  padding: 0;
-  margin: 0 0 var(--space-8);
-}
-
-.framework-tag {
-  font-size: var(--text-sm);
-  font-weight: var(--weight-medium);
-  color: var(--brand-primary);
-  background-color: var(--accent-warm-tint);
-  border: 1px solid var(--accent-warm);
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-pill);
-}
-
 /* Problem/solution items in a responsive grid */
 .work-items {
   list-style: none;
@@ -57,8 +37,7 @@
 }
 
 .work-item {
-  border-left: 3px solid var(--border-accent);
-  padding-left: var(--space-4);
+  padding-top: var(--space-1);
 }
 
 .work-item-lead {

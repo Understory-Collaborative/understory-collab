@@ -7,8 +7,6 @@ function About() {
     { name: 'Design', description: 'User research, UX design, visual design, design systems' },
     { name: 'Front End', description: 'React, Vue, Angular, responsive design, performance optimization' },
     { name: 'Back End', description: 'APIs, microservices, databases, system architecture' },
-    { name: 'Business Process Outsourcing', description: 'Process automation, workflow optimization, operational efficiency' },
-    { name: 'IT Outsourcing', description: 'Staff augmentation, managed services, technical leadership' },
   ]
 
   const industries = [
@@ -72,20 +70,6 @@ function About() {
               come in, get it moving, and step back once your team can run it without us.
             </p>
           </div>
-          <ul className="about-cards" role="list">
-            <li className="about-card">
-              <h3>Human-centric</h3>
-              <p>We put people first, designing around how people actually work and what they need.</p>
-            </li>
-            <li className="about-card">
-              <h3>Experienced</h3>
-              <p>Decades of professional experience across industries and technologies.</p>
-            </li>
-            <li className="about-card">
-              <h3>Holistic</h3>
-              <p>We understand both business drivers and technical constraints.</p>
-            </li>
-          </ul>
         </div>
       </section>
 
@@ -93,8 +77,7 @@ function About() {
         <div className="section-container">
           <h2 id="capabilities-heading">Technical capabilities</h2>
           <p className="about-section-intro">
-            Our team covers the full stack, infrastructure, back end, front end, and
-            design, with specialized expertise in modern development practices.
+            Our team covers the full stack: infrastructure, back end, front end, and design.
           </p>
           <ul className="capability-cards" role="list">
             {capabilities.map((capability) => (
@@ -111,8 +94,8 @@ function About() {
         <div className="section-container">
           <h2 id="industries-heading">Industry expertise</h2>
           <p className="about-section-intro">
-            We've delivered solutions across diverse industries, bringing domain
-            knowledge that accelerates delivery and reduces risk.
+            These are the industries where we've spent the most time, and we know what tends
+            to be hard in each.
           </p>
           <ul className="industry-cards" role="list">
             {industries.map((industry) => (

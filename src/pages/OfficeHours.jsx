@@ -36,9 +36,9 @@ function OfficeHours() {
         <div className="section-container">
           <h2 id="oh-who-heading">Who it's for</h2>
           <p>
-            The person closest to the work who wants to get sharper at it. A
-            product owner or technical product manager learning the job as you
-            go, or a leader who wants an outside read before committing to
+            The person closest to the work who wants to get better at it. A
+            product owner or technical product manager learning the job as they
+            go, or a leader who wants an outside opinion before committing to
             anything bigger.
           </p>
         </div>
@@ -48,7 +48,7 @@ function OfficeHours() {
         <div className="section-container">
           <h2 id="oh-bring-heading">What to bring</h2>
           <p>
-            Your field guide, marked up with what landed and what you're still
+            Your field guide, marked up with what rang true and what you're still
             unsure about, and the one question you most want answered. The prep
             is what makes the time count.
           </p>
