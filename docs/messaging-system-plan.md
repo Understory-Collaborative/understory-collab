@@ -103,6 +103,26 @@ logs a skip so a missing-config case is visible in Vercel logs instead of silent
 - Retire Kit once parity is confirmed. Log it.
 - Acceptance: a test signup lands in Buttondown, gets the sequence, can unsubscribe.
 
+**Built (2026-08-21):** the two signups now go to Buttondown, server-side.
+
+- **Newsletter** is a new server route `api/subscribe.js` (Buttondown needs a secret token, so
+  the old browser-to-Kit post could not stay client-side). `src/lib/kit.js` is retired,
+  replaced by `src/lib/subscribe.js`, which posts `{ email }` to the route; `SubscribeForm`
+  now shows an "already on the list" success state. Tag: `newsletter`.
+- **Field guide** (`api/field-guide.js`) swaps its Kit calls for the same `addToButtondown`
+  helper. Tags: `assessment` and `assessment:<fire-type>`. The instant PDF download and the
+  Resend guide email are unchanged.
+- **Env:** `BUTTONDOWN_API_KEY` (required) and optional `BUTTONDOWN_API_URL` host override, both
+  documented in `.env.example`. Without the key the signups return a clean "unavailable" error.
+- **Contact form is untouched** — it still uses Kit until the Tide phases, so Kit is not fully
+  retired yet.
+- lint and build pass. **Open before this is done:** add `BUTTONDOWN_API_KEY` in Vercel;
+  keep double opt-in ON in Buttondown (the "check your inbox" copy assumes it); webs writes the
+  first nurture sequence; then a live test signup confirms opt-in + sequence + unsubscribe.
+- **Known limitation:** an already-subscribed address is treated as success (guide still
+  delivered) but is not re-tagged with a new fire type; refine later if cross-fire retargeting
+  matters.
+
 ### Phase 3 — Tide inbound-lead feature  (Tide, product-level)
 
 **Goal:** the website drops a lead straight into Tide's pipeline.
@@ -204,7 +224,7 @@ three plugin agents.
 - [x] Decisions logged (`docs/decisions.md`)
 - [x] Master plan written (this file)
 - [x] Phase 1 — never-miss email (complete; verified end to end 2026-08-20)
-- [ ] Phase 2 — Buttondown nurture
+- [~] Phase 2 — Buttondown nurture (code built; needs the Vercel key, nurture copy, and a live test)
 - [ ] Phase 3 — Tide inbound-lead feature
 - [ ] Phase 4 — website → Tide wiring
 - [ ] Phase 5 — owned blog + CMS

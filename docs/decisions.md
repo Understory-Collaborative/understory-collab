@@ -8,6 +8,24 @@ The full system design and the phased build plan live in
 
 ---
 
+## 2026-08-21 — Newsletter signup moved server-side for Buttondown
+
+**Buttondown authenticates every write with a secret token.** The old Kit newsletter signup
+posted straight from the browser to a public form endpoint with no secret. Buttondown cannot
+work that way without exposing the token, so the newsletter signup moved to a server route
+(`api/subscribe.js`); the field-guide route already ran server-side. The token lives only in
+Vercel env (`BUTTONDOWN_API_KEY`), never in the client bundle.
+
+**Tags carry the source:** `newsletter` for the footer/subscribe form, and `assessment` plus
+`assessment:<fire-type>` for the assessment guide, so a sequence can target the whole cohort or
+one fire. This is the tagging the plan asked for.
+
+**Kit is not fully retired yet.** The contact form still posts to Kit until the Tide phases move
+it, so the Kit account stays live for contact only. Newsletter and field-guide no longer touch
+Kit.
+
+---
+
 ## 2026-08-20 — ESP, and the lead model
 
 **ESP: Buttondown, chosen.** Markdown-first, indie, cheap, clean API, pro-privacy
