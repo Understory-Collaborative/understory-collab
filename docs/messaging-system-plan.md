@@ -84,10 +84,10 @@ monitored mailbox (2026-08-20), and `RESEND_API_KEY` is set in Vercel (2026-08-2
 **Config complete (2026-08-20):** `FIELD_GUIDE_FROM` is set in Vercel to
 `contact@understorycollab.com` (the notification's from-address fallback), and Resend is
 set up with the domain verified. So the notification sends from `contact@` to `contact@`, a
-self-addressed message that delivers normally; reply-to is still the submitter. An earlier
-test showed no email only because the from var was not yet set; the handler now logs a skip
-so a missing-config case is visible in Vercel logs instead of silent. Only step left is one
-real test submission on the redeployed preview to confirm the email lands.
+self-addressed message that delivers normally; reply-to is still the submitter. The handler
+logs a skip so a missing-config case is visible in Vercel logs instead of silent.
+**Verified end to end (2026-08-20):** a real test submission landed the email in the
+`contact@understorycollab.com` inbox. Phase 1 is complete.
 
 ### Phase 2 — Buttondown for nurture + newsletter  (website + Buttondown)
 
@@ -203,7 +203,7 @@ three plugin agents.
 
 - [x] Decisions logged (`docs/decisions.md`)
 - [x] Master plan written (this file)
-- [x] Phase 1 — never-miss email (built; mailbox confirmed, pending one live test submission)
+- [x] Phase 1 — never-miss email (complete; verified end to end 2026-08-20)
 - [ ] Phase 2 — Buttondown nurture
 - [ ] Phase 3 — Tide inbound-lead feature
 - [ ] Phase 4 — website → Tide wiring
