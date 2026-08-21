@@ -81,13 +81,13 @@ submitter so webs can reply directly. Config: `RESEND_API_KEY` plus a from addre
 (`CONTACT_NOTIFY_FROM`, or `FIELD_GUIDE_FROM` as fallback); unset means the notification is
 skipped and Kit delivery is unchanged. `contact@understorycollab.com` is confirmed a real
 monitored mailbox (2026-08-20), and `RESEND_API_KEY` is set in Vercel (2026-08-20).
-**Still open (2026-08-20):** the from address env var is NOT set in Vercel, so on a test
-submission the notification skipped silently and no email arrived (and the Resend key
-showed no activity). The floor needs a from address: `CONTACT_NOTIFY_FROM`, or
-`FIELD_GUIDE_FROM` as fallback (setting `FIELD_GUIDE_FROM` fixes the field-guide email
-too). The from domain (`understorycollab.com`) must be verified in Resend. The handler now
-logs the skip so a missing-config case is visible in Vercel logs instead of silent. Set the
-from var, redeploy, then one real test submission confirms the email lands.
+**Config complete (2026-08-20):** `FIELD_GUIDE_FROM` is set in Vercel to
+`contact@understorycollab.com` (the notification's from-address fallback), and Resend is
+set up with the domain verified. So the notification sends from `contact@` to `contact@`, a
+self-addressed message that delivers normally; reply-to is still the submitter. The handler
+logs a skip so a missing-config case is visible in Vercel logs instead of silent.
+**Verified end to end (2026-08-20):** a real test submission landed the email in the
+`contact@understorycollab.com` inbox. Phase 1 is complete.
 
 ### Phase 2 — Buttondown for nurture + newsletter  (website + Buttondown)
 
@@ -203,7 +203,7 @@ three plugin agents.
 
 - [x] Decisions logged (`docs/decisions.md`)
 - [x] Master plan written (this file)
-- [x] Phase 1 — never-miss email (built; mailbox confirmed, pending one live test submission)
+- [x] Phase 1 — never-miss email (complete; verified end to end 2026-08-20)
 - [ ] Phase 2 — Buttondown nurture
 - [ ] Phase 3 — Tide inbound-lead feature
 - [ ] Phase 4 — website → Tide wiring
