@@ -1,29 +1,29 @@
 /**
- * Vercel Node serverless function: field-guide email capture (Buttondown).
+ * Vercel Node serverless function: field-guide email capture (MailerLite).
  *
  * Flow: a visitor finishes the "What's On Fire?" assessment and enters their email to get the
- * matching field guide. We add them to Buttondown (which sends the double opt-in confirmation
- * when the newsletter has double opt-in on), tagging the fire type as `assessment:<fire-type>`
- * so a sequence can target it, and, if a sender is configured, email them the guide link too.
- * The front end also reveals an instant on-page download, so delivery is immediate AND arrives
- * by email.
+ * matching field guide. We add them to MailerLite (which sends the double opt-in confirmation
+ * when the account has double opt-in on), into the assessment group so a future sequence can
+ * target it, and, if a sender is configured, email them the guide link too. The front end also
+ * reveals an instant on-page download, so delivery is immediate AND arrives by email.
  *
- * Buttondown authenticates every write with a secret token, so this must run server-side.
+ * MailerLite authenticates every write with a secret token, so this must run server-side.
  *
  * Environment variables (set in Vercel, never committed):
- *   BUTTONDOWN_API_KEY — required to add the subscriber (see api/subscribe.js). Without it the
- *                        signup is refused rather than silently dropped.
- *   RESEND_API_KEY     — (optional) Resend API key to email the guide link. If unset, we skip
- *                        the email; the Buttondown opt-in email and the instant download still work.
- *   FIELD_GUIDE_FROM   — (optional) From address for the guide email, e.g.
- *                        "Understory Collaborative <contact@understorycollab.com>"
- *   SITE_URL           — (optional) canonical site origin for absolute PDF links in the email;
- *                        falls back to the request's own host.
+ *   MAILERLITE_API_KEY          — required to add the subscriber (see api/subscribe.js). Without
+ *                                 it the signup is refused rather than silently dropped.
+ *   MAILERLITE_GROUP_ASSESSMENT — (optional) group id for assessment signups.
+ *   RESEND_API_KEY              — (optional) Resend API key to email the guide link. If unset, we
+ *                                 skip the email; the opt-in email and instant download still work.
+ *   FIELD_GUIDE_FROM            — (optional) From address for the guide email, e.g.
+ *                                 "Understory Collaborative <contact@understorycollab.com>"
+ *   SITE_URL                    — (optional) canonical site origin for absolute PDF links in the
+ *                                 email; falls back to the request's own host.
  *
  * Privacy: never logs the email address; returns a generic error without echoing input.
  */
 
-import { addToButtondown } from './subscribe.js'
+import { addSubscriber } from './subscribe.js'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -97,11 +97,12 @@ export default async function handler(req, res) {
   const pdfPath = `/field-guides/${fireType}.pdf`
 
   try {
-    // Tag the source and the specific fire type so a sequence can target either the whole
-    // assessment cohort or one fire. An already-subscribed address still gets the guide.
-    const result = await addToButtondown({
+    // Add to the assessment group so a future sequence can target the assessment cohort. A
+    // returning address still gets the guide (MailerLite upserts). Fire-type granularity waits
+    // for the nurture build.
+    const result = await addSubscriber({
       email,
-      tags: ['assessment', `assessment:${fireType}`],
+      groups: [process.env.MAILERLITE_GROUP_ASSESSMENT],
     })
     if (!result.configured) {
       return res.status(503).json({ error: 'Could not process your request. Please try again.' })

@@ -103,25 +103,30 @@ logs a skip so a missing-config case is visible in Vercel logs instead of silent
 - Retire Kit once parity is confirmed. Log it.
 - Acceptance: a test signup lands in Buttondown, gets the sequence, can unsubscribe.
 
-**Built (2026-08-21):** the two signups now go to Buttondown, server-side.
+**Built (2026-08-23):** the two signups now go to MailerLite, server-side. ESP chosen after a
+sourced price-first sweep with automation deferred (see `docs/decisions.md`). **Scope is capture
+only; nurture automation is being built in-house later, not in MailerLite.**
 
-- **Newsletter** is a new server route `api/subscribe.js` (Buttondown needs a secret token, so
-  the old browser-to-Kit post could not stay client-side). `src/lib/kit.js` is retired,
-  replaced by `src/lib/subscribe.js`, which posts `{ email }` to the route; `SubscribeForm`
-  now shows an "already on the list" success state. Tag: `newsletter`.
-- **Field guide** (`api/field-guide.js`) swaps its Kit calls for the same `addToButtondown`
-  helper. Tags: `assessment` and `assessment:<fire-type>`. The instant PDF download and the
-  Resend guide email are unchanged.
-- **Env:** `BUTTONDOWN_API_KEY` (required) and optional `BUTTONDOWN_API_URL` host override, both
-  documented in `.env.example`. Without the key the signups return a clean "unavailable" error.
+- **Newsletter** is a server route `api/subscribe.js` (MailerLite needs a secret token, so the
+  old browser-to-Kit post could not stay client-side). `src/lib/kit.js` is retired, replaced by
+  `src/lib/subscribe.js`, which posts `{ email }` to the route; `SubscribeForm` shows an "already
+  on the list" success state. Grouped via `MAILERLITE_GROUP_NEWSLETTER` when set.
+- **Field guide** (`api/field-guide.js`) uses the same provider-neutral `addSubscriber` helper.
+  Grouped via `MAILERLITE_GROUP_ASSESSMENT` when set. Instant PDF download and Resend guide email
+  unchanged. Fire-type granularity deferred to the nurture build.
+- **Source capture uses MailerLite groups** (their tag equivalent). Group ids are optional env
+  vars, so capture works before the groups exist and starts grouping once the ids are set.
+- **Upsert semantics:** MailerLite upserts non-destructively, so a returning address is a success
+  (200 vs 201 for new), not an error.
+- **Env:** `MAILERLITE_API_KEY` (required), `MAILERLITE_GROUP_NEWSLETTER` /
+  `MAILERLITE_GROUP_ASSESSMENT` (optional), `MAILERLITE_API_URL` (optional override) — all in
+  `.env.example`. Without the key the signups return a clean "unavailable" error.
 - **Contact form is untouched** — it still uses Kit until the Tide phases, so Kit is not fully
   retired yet.
-- lint and build pass. **Open before this is done:** add `BUTTONDOWN_API_KEY` in Vercel;
-  keep double opt-in ON in Buttondown (the "check your inbox" copy assumes it); webs writes the
-  first nurture sequence; then a live test signup confirms opt-in + sequence + unsubscribe.
-- **Known limitation:** an already-subscribed address is treated as success (guide still
-  delivered) but is not re-tagged with a new fire type; refine later if cross-fire retargeting
-  matters.
+- lint and build pass; both api modules load-checked. **Open before this is done:** add
+  `MAILERLITE_API_KEY` in Vercel; keep double opt-in ON in MailerLite (the "check your inbox" copy
+  assumes it); optionally create the two groups and set their id envs; then a live test signup
+  confirms capture + opt-in + unsubscribe.
 
 ### Phase 3 — Tide inbound-lead feature  (Tide, product-level)
 
@@ -224,7 +229,8 @@ three plugin agents.
 - [x] Decisions logged (`docs/decisions.md`)
 - [x] Master plan written (this file)
 - [x] Phase 1 — never-miss email (complete; verified end to end 2026-08-20)
-- [~] Phase 2 — Buttondown nurture (code built; needs the Vercel key, nurture copy, and a live test)
+- [~] Phase 2 — MailerLite capture (code built; needs the Vercel key + a live test). Nurture
+  automation deferred to an in-house build.
 - [ ] Phase 3 — Tide inbound-lead feature
 - [ ] Phase 4 — website → Tide wiring
 - [ ] Phase 5 — owned blog + CMS

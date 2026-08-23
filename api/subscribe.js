@@ -1,20 +1,24 @@
 /**
- * Vercel Node serverless function: newsletter signup (Buttondown).
+ * Vercel Node serverless function: newsletter signup (MailerLite).
  *
- * The newsletter form used to post straight to Kit's public form endpoint from the browser
- * (src/lib/kit.js). Buttondown authenticates every write with a secret token, so the signup
- * has to run server-side now: the browser posts { email } here, and this function calls
- * Buttondown with the token, tagging the signup `newsletter` so a sequence can target it.
+ * The newsletter form used to post straight to Kit's public form endpoint from the browser.
+ * MailerLite authenticates every write with a secret token, so the signup runs server-side:
+ * the browser posts { email } here, and this function upserts the subscriber in MailerLite.
  *
- * Double opt-in is a newsletter-level setting in Buttondown, not a payload flag. With it on,
- * Buttondown sends the confirmation email, which is why the on-page copy asks the subscriber
- * to check their inbox. Keep double opt-in enabled for that copy to stay accurate.
+ * Source is captured with MailerLite "groups" (their tag equivalent): if a group id is
+ * configured for a source, the subscriber is added to it, so a future sequence can target it.
+ * Group ids are optional, so capture works before any group exists and starts grouping once
+ * the ids are set. Nurture automation itself is being built later, not in MailerLite.
+ *
+ * Double opt-in is an account-level setting in MailerLite. With it on, MailerLite sends the
+ * confirmation email, which is why the on-page copy asks the subscriber to check their inbox.
  *
  * Environment variables (set in Vercel, never committed):
- *   BUTTONDOWN_API_KEY — required. Buttondown API token. Without it, signups are refused
- *                        (503) rather than silently dropped.
- *   BUTTONDOWN_API_URL — optional override of the subscribers endpoint, in case Buttondown
- *                        moves hosts. Defaults to the v1 subscribers endpoint below.
+ *   MAILERLITE_API_KEY        — required. MailerLite API token. Without it, signups are
+ *                               refused (503) rather than silently dropped.
+ *   MAILERLITE_GROUP_NEWSLETTER — optional. Group id for newsletter signups.
+ *   MAILERLITE_GROUP_ASSESSMENT — optional. Group id for assessment (field-guide) signups.
+ *   MAILERLITE_API_URL        — optional override of the subscribers endpoint.
  *
  * Privacy: never logs the email address; returns a generic error without echoing input.
  */
@@ -23,8 +27,8 @@ const { process } = globalThis
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-const BUTTONDOWN_SUBSCRIBERS_URL =
-  process.env.BUTTONDOWN_API_URL || 'https://api.buttondown.email/v1/subscribers'
+const MAILERLITE_SUBSCRIBERS_URL =
+  process.env.MAILERLITE_API_URL || 'https://connect.mailerlite.com/api/subscribers'
 
 async function readJsonBody(req) {
   if (req.body && typeof req.body === 'object') return req.body
@@ -37,65 +41,39 @@ async function readJsonBody(req) {
   try { return JSON.parse(raw) } catch { return null }
 }
 
-// True when Buttondown rejects a create because the address is already on the list. An
-// existing subscriber is a success from the visitor's point of view, not an error.
-function isAlreadySubscribed(status, text) {
-  return status === 400 && /already|exist/i.test(text || '')
-}
-
-// True when the rejection is the free plan refusing tags ("feature_disabled"). Tags are a
-// Basic-plan feature; on the free plan we still want the signup to succeed, just untagged.
-function isTagsDisabled(status, text) {
-  return status === 403 && /tag|feature_disabled/i.test(text || '')
-}
-
-async function postSubscriber(key, email, tags) {
-  const payload = { email_address: email }
-  if (tags && tags.length) payload.tags = tags
-  return fetch(BUTTONDOWN_SUBSCRIBERS_URL, {
-    method: 'POST',
-    headers: { Authorization: `Token ${key}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  })
-}
-
-// Add an email to Buttondown with the given source tags. Returns a small result object so the
-// caller can tell a genuine failure from an already-subscribed address. If the plan does not
-// allow tags, the subscriber is still created without them so the signup never fails over a
-// plan limit; tagging resumes on its own if the account is later upgraded. Logs status only.
-export async function addToButtondown({ email, tags }) {
-  const key = process.env.BUTTONDOWN_API_KEY
+// Upsert an email into MailerLite, optionally into the given source groups. Returns a small
+// result object so the caller can tell a genuine failure from an unconfigured key. MailerLite
+// upserts non-destructively, so an existing address is a success (a 200, versus 201 for new),
+// not an error. Logs status only, never the subscriber's data.
+export async function addSubscriber({ email, groups }) {
+  const key = process.env.MAILERLITE_API_KEY
   if (!key) return { ok: false, configured: false }
+
+  const payload = { email }
+  const groupIds = (groups || []).filter(Boolean)
+  if (groupIds.length) payload.groups = groupIds
 
   let res
   try {
-    res = await postSubscriber(key, email, tags)
-    if (!res.ok) {
-      const detail = await res.text().catch(() => '')
-      if (isAlreadySubscribed(res.status, detail)) {
-        return { ok: true, configured: true, already: true, tagged: false }
-      }
-      if (tags && tags.length && isTagsDisabled(res.status, detail)) {
-        // Retry without tags so the free plan still gets the subscriber.
-        console.error('Buttondown tags unavailable on this plan; subscribing without tags')
-        res = await postSubscriber(key, email, null)
-        if (res.ok) return { ok: true, configured: true, already: false, tagged: false }
-        const retryDetail = await res.text().catch(() => '')
-        if (isAlreadySubscribed(res.status, retryDetail)) {
-          return { ok: true, configured: true, already: true, tagged: false }
-        }
-        console.error('Buttondown subscribe failed:', res.status, retryDetail.slice(0, 300))
-        return { ok: false, configured: true }
-      }
-      console.error('Buttondown subscribe failed:', res.status, detail.slice(0, 300))
-      return { ok: false, configured: true }
-    }
+    res = await fetch(MAILERLITE_SUBSCRIBERS_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${key}`,
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(payload),
+    })
   } catch {
-    console.error('Buttondown subscribe request failed')
+    console.error('MailerLite subscribe request failed')
     return { ok: false, configured: true }
   }
 
-  return { ok: true, configured: true, already: false, tagged: Boolean(tags && tags.length) }
+  if (res.ok) return { ok: true, configured: true, already: res.status === 200 }
+
+  const detail = await res.text().catch(() => '')
+  console.error('MailerLite subscribe failed:', res.status, detail.slice(0, 300))
+  return { ok: false, configured: true }
 }
 
 export default async function handler(req, res) {
@@ -110,13 +88,16 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'A valid email address is required' })
   }
 
-  const result = await addToButtondown({ email, tags: ['newsletter'] })
+  const result = await addSubscriber({
+    email,
+    groups: [process.env.MAILERLITE_GROUP_NEWSLETTER],
+  })
   if (!result.configured) {
     return res.status(503).json({ error: 'Subscriptions are currently unavailable.' })
   }
   if (!result.ok) {
     return res.status(502).json({ error: 'Could not subscribe you. Please try again.' })
   }
-  // already-subscribed is surfaced so the form can show the friendly "already on the list" copy.
+  // already (a returning address) is surfaced so the form can show the "already on the list" copy.
   return res.status(200).json({ ok: true, already: result.already })
 }
