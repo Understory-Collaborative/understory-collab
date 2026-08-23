@@ -8,6 +8,26 @@ The full system design and the phased build plan live in
 
 ---
 
+## 2026-08-23 — Buttondown free is too limited; HubSpot is out for nurture
+
+**Buttondown's free plan cannot run the nurture.** Live check of the plan table: tags need
+Basic ($9/mo), and **automations (the nurture sequence) need Standard ($29/mo)**. Free gives
+capture, manual newsletter sends (broadcasts), and unsubscribe only. Metadata and analytics are
+also paid. So Buttondown free covers capture but not the automated nurture that is the point of
+this phase. The signup code stays plan-resilient: it subscribes without tags when the plan
+disallows them, so capture works on free and tagging resumes if the account is ever upgraded.
+
+**HubSpot is out as the nurture home.** webs's HubSpot plan has no automations (workflows are a
+Marketing Hub Professional feature she does not have), she finds it hard to use, and it is still
+being let lapse in April. Wiring nurture into a departing tool is throwaway work and repeats the
+Ghost lesson (do not build on something set to vanish). Not reversing the lapse.
+
+**Still open:** the nurture engine. The remaining fit for the cost goal is an ESP whose free
+tier includes automations and that we keep long term. Candidate to verify: MailerLite. Values
+gut-check required before committing, per the Substack precedent.
+
+---
+
 ## 2026-08-21 — Newsletter signup moved server-side for Buttondown
 
 **Buttondown authenticates every write with a secret token.** The old Kit newsletter signup
