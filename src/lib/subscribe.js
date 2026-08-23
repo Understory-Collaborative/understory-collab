@@ -1,9 +1,9 @@
-// Newsletter subscription (Buttondown, via our own /api/subscribe endpoint).
+// Newsletter subscription (MailerLite, via our own /api/subscribe endpoint).
 //
-// Buttondown authenticates with a secret token, so unlike the old Kit embed this cannot
+// MailerLite authenticates with a secret token, so unlike the old Kit embed this cannot
 // post from the browser. We post the email to our serverless function, which holds the
-// token and adds the subscriber. The newsletter is double opt-in, so a success means the
-// confirmation email is on its way, not that the address is confirmed yet.
+// token and adds the subscriber. With double opt-in on, a success means the confirmation
+// email is on its way, not that the address is confirmed yet.
 
 async function describeError(res) {
   try {

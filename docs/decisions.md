@@ -8,26 +8,33 @@ The full system design and the phased build plan live in
 
 ---
 
-## 2026-08-23 — ESP chosen: EcoSend (values-led)
+## 2026-08-23 — ESP chosen: MailerLite (capture now, nurture built later)
 
-**EcoSend is the ESP.** After a sourced sweep (Buttondown, HubSpot, MailerLite, Brevo,
-Mailchimp, beehiiv, Flodesk), EcoSend won on the values bar that matters most to UC: it is a
-**B Corp and carbon-neutral** (renewable-powered, offsets sends via tree planting). This is the
-same values filter that ruled out Substack, applied in the positive. Free tier is 250 contacts
-(fine: the list is at 0), with paid from ~£15/mo. Whether automation/drip is on the free tier
-was not confirmable from here and should be checked in-account; if it is paid, the modest cost
-is accepted for the values fit.
+**MailerLite is the ESP.** The decision moved through two candidates in one sitting: EcoSend was
+picked first on values (a B Corp, carbon-neutral), then the frame changed. webs decided the
+nurture **automation will be built in-house later**, not bought. That removed automation as an
+ESP requirement and turned the choice into a price question for a capture-and-broadcast list.
 
-**Open — integration method.** EcoSend's site is egress-blocked from the sandbox and no public
-"create subscriber" REST endpoint surfaced in search; their integration path looks like forms /
-Zapier. Before wiring, confirm in the EcoSend account whether it exposes an API key + a
-subscriber-create endpoint (the current server-side approach re-points cleanly to that), or
-whether capture must go through an EcoSend form or Zapier instead. Do not build against a
-guessed endpoint.
+Re-run price-first (all figures sourced from vendor/review pages, 2026):
 
-**Sweep result for the record:** only MailerLite and Brevo run automation on a $0 tier;
-Buttondown ($29 Standard), Mailchimp, beehiiv ($43), and Flodesk paywall it. EcoSend was chosen
-over those two free options on values, not price.
+- **MailerLite** — free to 250 subscribers (branded), then **$10/mo** removes the logo with no
+  send caps. Cheapest clean paid tier. **Chosen.**
+- Brevo — potentially $0 forever (unlimited contacts, 300 sends/day) but stamps its logo on
+  free; runner-up on absolute price.
+- beehiiv — free to 2,500 subscribers, unlimited sends, but a $43/mo cliff after and a logo.
+- EcoSend — the values pick, but ~£15/mo and no free-forever edge over Brevo/beehiiv.
+
+MailerLite won on clean-and-cheap with automation off the table. EcoSend's values edge did not
+outweigh the cost once nurture was going to be built in-house anyway.
+
+**What is built:** capture only. `api/subscribe.js` + `api/field-guide.js` upsert subscribers via
+MailerLite's API (`POST connect.mailerlite.com/api/subscribers`, Bearer token). Source is
+captured with MailerLite **groups** (their tag equivalent), assigned via optional env group ids
+(`MAILERLITE_GROUP_NEWSLETTER`, `MAILERLITE_GROUP_ASSESSMENT`) so capture works before the groups
+exist. Fire-type granularity is deferred to the nurture build.
+
+**Nurture automation: deferred, to be built in-house.** Likely on Resend (already owned) plus a
+data store, when there is a list worth nurturing. Not in MailerLite.
 
 ---
 
