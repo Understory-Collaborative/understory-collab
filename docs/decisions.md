@@ -8,6 +8,29 @@ The full system design and the phased build plan live in
 
 ---
 
+## 2026-08-23 — ESP chosen: EcoSend (values-led)
+
+**EcoSend is the ESP.** After a sourced sweep (Buttondown, HubSpot, MailerLite, Brevo,
+Mailchimp, beehiiv, Flodesk), EcoSend won on the values bar that matters most to UC: it is a
+**B Corp and carbon-neutral** (renewable-powered, offsets sends via tree planting). This is the
+same values filter that ruled out Substack, applied in the positive. Free tier is 250 contacts
+(fine: the list is at 0), with paid from ~£15/mo. Whether automation/drip is on the free tier
+was not confirmable from here and should be checked in-account; if it is paid, the modest cost
+is accepted for the values fit.
+
+**Open — integration method.** EcoSend's site is egress-blocked from the sandbox and no public
+"create subscriber" REST endpoint surfaced in search; their integration path looks like forms /
+Zapier. Before wiring, confirm in the EcoSend account whether it exposes an API key + a
+subscriber-create endpoint (the current server-side approach re-points cleanly to that), or
+whether capture must go through an EcoSend form or Zapier instead. Do not build against a
+guessed endpoint.
+
+**Sweep result for the record:** only MailerLite and Brevo run automation on a $0 tier;
+Buttondown ($29 Standard), Mailchimp, beehiiv ($43), and Flodesk paywall it. EcoSend was chosen
+over those two free options on values, not price.
+
+---
+
 ## 2026-08-23 — Buttondown free is too limited; HubSpot is out for nurture
 
 **Buttondown's free plan cannot run the nurture.** Live check of the plan table: tags need
