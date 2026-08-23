@@ -19,12 +19,12 @@
  * Privacy: never logs the email address; returns a generic error without echoing input.
  */
 
+const { process } = globalThis
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const BUTTONDOWN_SUBSCRIBERS_URL =
   process.env.BUTTONDOWN_API_URL || 'https://api.buttondown.email/v1/subscribers'
-
-const { process } = globalThis
 
 async function readJsonBody(req) {
   if (req.body && typeof req.body === 'object') return req.body
