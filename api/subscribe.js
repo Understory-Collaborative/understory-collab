@@ -67,8 +67,8 @@ export async function addToButtondown({ email, tags }) {
   if (isAlreadySubscribed(res.status, detail)) {
     return { ok: true, configured: true, already: true }
   }
-  console.error('Buttondown subscribe failed:', res.status)
-  return { ok: false, configured: true }
+  console.error('Buttondown subscribe failed:', res.status, detail.slice(0, 500))
+  return { ok: false, configured: true, status: res.status, detail: detail.slice(0, 500) }
 }
 
 export default async function handler(req, res) {
@@ -88,7 +88,13 @@ export default async function handler(req, res) {
     return res.status(503).json({ error: 'Subscriptions are currently unavailable.' })
   }
   if (!result.ok) {
-    return res.status(502).json({ error: 'Could not subscribe you. Please try again.' })
+    // Surface Buttondown's status and message so a preview test can diagnose without digging
+    // through Vercel logs. Buttondown validation detail carries no secret and no email here.
+    return res.status(502).json({
+      error: 'Could not subscribe you. Please try again.',
+      buttondownStatus: result.status,
+      buttondownDetail: result.detail,
+    })
   }
   // already-subscribed is surfaced so the form can show the friendly "already on the list" copy.
   return res.status(200).json({ ok: true, already: result.already })
