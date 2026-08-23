@@ -43,32 +43,59 @@ function isAlreadySubscribed(status, text) {
   return status === 400 && /already|exist/i.test(text || '')
 }
 
+// True when the rejection is the free plan refusing tags ("feature_disabled"). Tags are a
+// Basic-plan feature; on the free plan we still want the signup to succeed, just untagged.
+function isTagsDisabled(status, text) {
+  return status === 403 && /tag|feature_disabled/i.test(text || '')
+}
+
+async function postSubscriber(key, email, tags) {
+  const payload = { email_address: email }
+  if (tags && tags.length) payload.tags = tags
+  return fetch(BUTTONDOWN_SUBSCRIBERS_URL, {
+    method: 'POST',
+    headers: { Authorization: `Token ${key}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+}
+
 // Add an email to Buttondown with the given source tags. Returns a small result object so the
-// caller can tell a genuine failure from an already-subscribed address. Logs status only.
+// caller can tell a genuine failure from an already-subscribed address. If the plan does not
+// allow tags, the subscriber is still created without them so the signup never fails over a
+// plan limit; tagging resumes on its own if the account is later upgraded. Logs status only.
 export async function addToButtondown({ email, tags }) {
   const key = process.env.BUTTONDOWN_API_KEY
   if (!key) return { ok: false, configured: false }
 
   let res
   try {
-    res = await fetch(BUTTONDOWN_SUBSCRIBERS_URL, {
-      method: 'POST',
-      headers: { Authorization: `Token ${key}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email_address: email, tags }),
-    })
+    res = await postSubscriber(key, email, tags)
+    if (!res.ok) {
+      const detail = await res.text().catch(() => '')
+      if (isAlreadySubscribed(res.status, detail)) {
+        return { ok: true, configured: true, already: true, tagged: false }
+      }
+      if (tags && tags.length && isTagsDisabled(res.status, detail)) {
+        // Retry without tags so the free plan still gets the subscriber.
+        console.error('Buttondown tags unavailable on this plan; subscribing without tags')
+        res = await postSubscriber(key, email, null)
+        if (res.ok) return { ok: true, configured: true, already: false, tagged: false }
+        const retryDetail = await res.text().catch(() => '')
+        if (isAlreadySubscribed(res.status, retryDetail)) {
+          return { ok: true, configured: true, already: true, tagged: false }
+        }
+        console.error('Buttondown subscribe failed:', res.status, retryDetail.slice(0, 300))
+        return { ok: false, configured: true }
+      }
+      console.error('Buttondown subscribe failed:', res.status, detail.slice(0, 300))
+      return { ok: false, configured: true }
+    }
   } catch {
     console.error('Buttondown subscribe request failed')
     return { ok: false, configured: true }
   }
 
-  if (res.ok) return { ok: true, configured: true, already: false }
-
-  const detail = await res.text().catch(() => '')
-  if (isAlreadySubscribed(res.status, detail)) {
-    return { ok: true, configured: true, already: true }
-  }
-  console.error('Buttondown subscribe failed:', res.status, detail.slice(0, 500))
-  return { ok: false, configured: true, status: res.status, detail: detail.slice(0, 500) }
+  return { ok: true, configured: true, already: false, tagged: Boolean(tags && tags.length) }
 }
 
 export default async function handler(req, res) {
@@ -88,13 +115,7 @@ export default async function handler(req, res) {
     return res.status(503).json({ error: 'Subscriptions are currently unavailable.' })
   }
   if (!result.ok) {
-    // Surface Buttondown's status and message so a preview test can diagnose without digging
-    // through Vercel logs. Buttondown validation detail carries no secret and no email here.
-    return res.status(502).json({
-      error: 'Could not subscribe you. Please try again.',
-      buttondownStatus: result.status,
-      buttondownDetail: result.detail,
-    })
+    return res.status(502).json({ error: 'Could not subscribe you. Please try again.' })
   }
   // already-subscribed is surfaced so the form can show the friendly "already on the list" copy.
   return res.status(200).json({ ok: true, already: result.already })
