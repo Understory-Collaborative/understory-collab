@@ -255,12 +255,12 @@
   position: absolute;
   inset: 0;
   background: url('/Flowers.png') bottom center / 100% auto no-repeat;
-  opacity: 0.2;
+  opacity: 0.1;
   pointer-events: none;
 }
 
 :root:not([data-theme='light']) .office-hours-callout::after {
-  opacity: 0.32;
+  opacity: 0.16;
 }
 
 /* Keep the eyebrow, heading, copy, and button above the texture. */
