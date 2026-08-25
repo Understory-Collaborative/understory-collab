@@ -236,12 +236,37 @@
 /* Office-hours callout — a framed card so it reads as an aside beside the prose, not another
    paragraph. Warm tint keeps it distinct from the deep-green "act" blocks below. */
 .office-hours-callout {
+  position: sticky;
+  top: var(--space-8);
+  /* Clip the botanical texture to the card's rounded corners. */
+  overflow: hidden;
   background-color: var(--surface-card);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-card);
   padding: var(--space-8);
-  position: sticky;
-  top: var(--space-8);
+}
+
+/* Botanical texture along the bottom edge, behind the copy. The art sits only in the lower
+   band of the source image and the callout's text sits at the top, so they don't compete.
+   Low opacity keeps it a texture rather than a picture; tuned per theme so it reads on both
+   the cream (light) and deep-olive (dark) card. */
+.office-hours-callout::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/Flowers.png') bottom center / 100% auto no-repeat;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+:root:not([data-theme='light']) .office-hours-callout::after {
+  opacity: 0.32;
+}
+
+/* Keep the eyebrow, heading, copy, and button above the texture. */
+.office-hours-callout > * {
+  position: relative;
+  z-index: 1;
 }
 
 .office-hours-callout h3 {
