@@ -10,20 +10,20 @@
  * MailerLite authenticates every write with a secret token, so this must run server-side.
  *
  * Environment variables (set in Vercel, never committed):
- *   MAILERLITE_API_KEY          — required to add the subscriber (see api/subscribe.js). Without
- *                                 it the signup is refused rather than silently dropped.
- *   MAILERLITE_GROUP_ASSESSMENT — (optional) group id for assessment signups.
- *   RESEND_API_KEY              — (optional) Resend API key to email the guide link. If unset, we
- *                                 skip the email; the opt-in email and instant download still work.
- *   FIELD_GUIDE_FROM            — (optional) From address for the guide email, e.g.
- *                                 "Understory Collaborative <contact@understorycollab.com>"
- *   SITE_URL                    — (optional) canonical site origin for absolute PDF links in the
- *                                 email; falls back to the request's own host.
+ *   MAILERLITE_API_KEY — required to add the subscriber (see api/subscribe.js). Without it the
+ *                        signup is refused rather than silently dropped.
+ *   RESEND_API_KEY     — (optional) Resend API key to email the guide link. If unset, we skip
+ *                        the email; the opt-in email and instant download still work.
+ *   FIELD_GUIDE_FROM   — (optional) From address for the guide email, e.g.
+ *                        "Understory Collaborative <contact@understorycollab.com>"
+ *   SITE_URL           — (optional) canonical site origin for absolute PDF links in the email;
+ *                        falls back to the request's own host.
+ * The assessment group id is not secret and lives in api/subscribe.js (MAILERLITE_GROUPS).
  *
  * Privacy: never logs the email address; returns a generic error without echoing input.
  */
 
-import { addSubscriber } from './subscribe.js'
+import { addSubscriber, MAILERLITE_GROUPS } from './subscribe.js'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -102,7 +102,7 @@ export default async function handler(req, res) {
     // for the nurture build.
     const result = await addSubscriber({
       email,
-      groups: [process.env.MAILERLITE_GROUP_ASSESSMENT],
+      groups: [MAILERLITE_GROUPS.assessment],
     })
     if (!result.configured) {
       return res.status(503).json({ error: 'Could not process your request. Please try again.' })

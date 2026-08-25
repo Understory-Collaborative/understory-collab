@@ -5,20 +5,18 @@
  * MailerLite authenticates every write with a secret token, so the signup runs server-side:
  * the browser posts { email } here, and this function upserts the subscriber in MailerLite.
  *
- * Source is captured with MailerLite "groups" (their tag equivalent): if a group id is
- * configured for a source, the subscriber is added to it, so a future sequence can target it.
- * Group ids are optional, so capture works before any group exists and starts grouping once
- * the ids are set. Nurture automation itself is being built later, not in MailerLite.
+ * Source is captured with MailerLite "groups" (their tag equivalent): the subscriber is added
+ * to the source's group so a future sequence can target it. The group ids are not secret, so
+ * they live in the repo (MAILERLITE_GROUPS below), not in Vercel. Nurture automation itself is
+ * being built later, not in MailerLite.
  *
  * Double opt-in is an account-level setting in MailerLite. With it on, MailerLite sends the
  * confirmation email, which is why the on-page copy asks the subscriber to check their inbox.
  *
  * Environment variables (set in Vercel, never committed):
- *   MAILERLITE_API_KEY        — required. MailerLite API token. Without it, signups are
- *                               refused (503) rather than silently dropped.
- *   MAILERLITE_GROUP_NEWSLETTER — optional. Group id for newsletter signups.
- *   MAILERLITE_GROUP_ASSESSMENT — optional. Group id for assessment (field-guide) signups.
- *   MAILERLITE_API_URL        — optional override of the subscribers endpoint.
+ *   MAILERLITE_API_KEY — required. MailerLite API token (secret). Without it, signups are
+ *                        refused (503) rather than silently dropped.
+ *   MAILERLITE_API_URL — optional override of the subscribers endpoint.
  *
  * Privacy: never logs the email address; returns a generic error without echoing input.
  */
@@ -29,6 +27,14 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const MAILERLITE_SUBSCRIBERS_URL =
   process.env.MAILERLITE_API_URL || 'https://connect.mailerlite.com/api/subscribers'
+
+// MailerLite group ids per signup source. These are not secret (they only identify a list, and
+// do nothing without the API key), so they live in the repo like the old Kit form id did, not in
+// Vercel. Find an id in the group's dashboard URL (the number after `group=`).
+export const MAILERLITE_GROUPS = {
+  newsletter: '196791362105902969',
+  assessment: '196791369635726530',
+}
 
 async function readJsonBody(req) {
   if (req.body && typeof req.body === 'object') return req.body
@@ -90,7 +96,7 @@ export default async function handler(req, res) {
 
   const result = await addSubscriber({
     email,
-    groups: [process.env.MAILERLITE_GROUP_NEWSLETTER],
+    groups: [MAILERLITE_GROUPS.newsletter],
   })
   if (!result.configured) {
     return res.status(503).json({ error: 'Subscriptions are currently unavailable.' })
