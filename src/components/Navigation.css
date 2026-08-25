@@ -52,20 +52,22 @@
 
 .nav-links {
   display: flex;
-  gap: 0.5rem;
+  /* Tight gap so the five links read as one right-aligned group. */
+  gap: 0.125rem;
   list-style: none;
   margin: 0;
-  /* Extra breathing room so the first link ("Assessment") doesn't crowd the wordmark. */
-  margin-left: 2.5rem;
+  /* Push the whole group to the right, next to the actions; the logo stays at the left. */
+  margin-left: auto;
   padding: 0;
 }
 
 .nav-link {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.65rem;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.85);
   border-radius: 6px;
+  font-size: var(--text-sm);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.06em;
