@@ -16,11 +16,22 @@
  * places. The Share radio values must match the form's option text exactly; see
  * SHARE_OPTIONS in Questions.jsx.
  *
- * Privacy: this function never logs the submission contents.
+ * Never-miss email: before the Google Form post, every valid submission emails
+ * contact@understorycollab.com via Resend, so webs sees the question even if the Google
+ * Form post fails. Best-effort and independent of the form: a form failure never swallows
+ * it, and a notification failure never blocks the form. It needs RESEND_API_KEY plus a from
+ * address (CONTACT_NOTIFY_FROM, or FIELD_GUIDE_FROM as fallback); without them it is skipped
+ * (and logs the skip) and the form post is unchanged.
+ *
+ * Privacy: this function never logs the submission contents. The notification email carries
+ * them by design — it is sent only to the UC contact mailbox.
  */
 
 const FORM_ID = '1FAIpQLSd5HTS0VYZR4NDR5iRnz1Ecg3gUeJ0-un-45Pfs8bLmbb9i6Q'
 const FORM_RESPONSE_URL = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`
+
+// Where Q&A notifications land. The same monitored mailbox as the contact floor.
+const NOTIFY_TO = 'contact@understorycollab.com'
 
 const ENTRY = {
   stuck: 'entry.1540066254',
@@ -53,6 +64,70 @@ function readBody(req) {
 
 function asString(value) {
   return typeof value === 'string' ? value.trim() : ''
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
+// Email webs about a new Q&A submission. Best-effort and self-contained: it catches its own
+// errors and returns a boolean, so it never throws into (or is swallowed by) the form post.
+// Returns false when unconfigured or on failure. Logs status only, never the submission.
+async function notifyQuestion(fields) {
+  const key = process.env.RESEND_API_KEY
+  const from = process.env.CONTACT_NOTIFY_FROM || process.env.FIELD_GUIDE_FROM
+  if (!key || !from) {
+    // The point is not to miss a question, so a skip must be visible in logs, never silent.
+    const missing = [!key && 'RESEND_API_KEY', !from && 'CONTACT_NOTIFY_FROM/FIELD_GUIDE_FROM']
+      .filter(Boolean)
+      .join(' and ')
+    console.error(`Q&A notification skipped: ${missing} not set`)
+    return false
+  }
+
+  // Strip line breaks from the subject to avoid header injection via the name field.
+  const who = (fields.name || fields.email).replace(/[\r\n]+/g, ' ').slice(0, LIMITS.name)
+  const rows = [
+    ['question', fields.stuck],
+    ['product', fields.product || '(not given)'],
+    ['share preference', fields.share],
+    ['name', fields.name || '(not given)'],
+    ['email', fields.email],
+  ]
+
+  const textBody = rows.map(([label, value]) => `${label}: ${value}`).join('\n\n')
+  const htmlBody = rows
+    .map(
+      ([label, value]) =>
+        `<p style="margin:0 0 12px"><strong>${escapeHtml(label)}:</strong><br>` +
+        `<span style="white-space:pre-wrap">${escapeHtml(value)}</span></p>`,
+    )
+    .join('')
+
+  try {
+    const emailRes = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from,
+        to: [NOTIFY_TO],
+        reply_to: fields.email, // reply goes straight to the person who asked
+        subject: `New Q&A question from ${who}`,
+        text: textBody,
+        html: htmlBody,
+      }),
+    })
+    if (!emailRes.ok) console.error('Q&A notification email failed with status', emailRes.status)
+    return emailRes.ok
+  } catch {
+    console.error('Q&A notification email request failed')
+    return false
+  }
 }
 
 export default async function handler(req, res) {
@@ -96,6 +171,10 @@ export default async function handler(req, res) {
   if (errors.length > 0) {
     return res.status(400).json({ ok: false, error: errors.join('; ') })
   }
+
+  // The floor: email webs first, independent of the Google Form. Awaited so it lands before any
+  // form failure below can change the response, and best-effort so it never blocks delivery.
+  await notifyQuestion(fields)
 
   // Map to the form's fields. Skip empty optional values.
   const params = new URLSearchParams()
