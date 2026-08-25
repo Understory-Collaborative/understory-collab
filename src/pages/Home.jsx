@@ -52,12 +52,42 @@ function Home() {
             <li className="offering">
               <h3 className="offering-label">Ship</h3>
               <p className="offering-problem">
-                We could be shipping far more often than we are, and too much is
-                still done by hand.
+                We could be shipping more frequently and too much is still done
+                by hand.
               </p>
               <Link to="/offers/ship" className="offering-link">How Ship works</Link>
             </li>
           </ul>
+        </div>
+      </section>
+
+      <section className="positioning" aria-labelledby="positioning-heading">
+        <div className="section-container">
+          <div className="positioning-layout">
+            <div className="positioning-content">
+              <h2 id="positioning-heading">Most help is only half the job</h2>
+              <p>
+                You've probably hired both halves of this job before. One shop builds
+                exactly what you spec and never asks whether it's the right thing to build.
+                One advisor arrives with a deck full of opinions and has never opened your
+                codebase. Neither leaves you better off than when they showed up.
+              </p>
+              <p>
+                We do both halves, and then we leave. That's technical product management.
+                We help you decide what to build and in what order, we sit with the team
+                that builds it, and we go once your team can run it without us.
+              </p>
+            </div>
+            <aside className="office-hours-callout" aria-labelledby="office-hours-callout-heading">
+              <p className="section-eyebrow">Office hours</p>
+              <h3 id="office-hours-callout-heading">Do you have a specific question?</h3>
+              <p>
+                Thirty minutes with someone who's seen just about everything, for
+                the problem you can't take to your team or your boss.
+              </p>
+              <Link to="/office-hours" className="btn btn-primary">See office hours</Link>
+            </aside>
+          </div>
         </div>
       </section>
 
@@ -77,25 +107,6 @@ function Home() {
               and points to where we can help.
             </p>
             <Link to="/assessment" className="btn btn-primary">Take the assessment</Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="positioning" aria-labelledby="positioning-heading">
-        <div className="section-container">
-          <div className="positioning-content">
-            <h2 id="positioning-heading">Most help is only half the job</h2>
-            <p>
-              You've probably hired both halves of this job before. One shop builds
-              exactly what you spec and never asks whether it's the right thing to build.
-              One advisor arrives with a deck full of opinions and has never opened your
-              codebase. Neither leaves you better off than when they showed up.
-            </p>
-            <p>
-              We do both halves, and then we leave. That's technical product management.
-              We help you decide what to build and in what order, we sit with the team
-              that builds it, and we go once your team can run it without us.
-            </p>
           </div>
         </div>
       </section>
