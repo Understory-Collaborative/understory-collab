@@ -230,7 +230,9 @@
 }
 
 .office-hours-callout h3 {
-  font-size: var(--text-xl);
+  /* A step below --text-xl (28px) so the callout sits under the "Most help" h2 in the
+     hierarchy instead of competing with it. */
+  font-size: 1.5rem;
   color: var(--text-primary);
   margin: 0 0 var(--space-4);
 }
