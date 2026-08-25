@@ -114,13 +114,14 @@ only; nurture automation is being built in-house later, not in MailerLite.**
 - **Field guide** (`api/field-guide.js`) uses the same provider-neutral `addSubscriber` helper.
   Grouped via `MAILERLITE_GROUP_ASSESSMENT` when set. Instant PDF download and Resend guide email
   unchanged. Fire-type granularity deferred to the nurture build.
-- **Source capture uses MailerLite groups** (their tag equivalent). Group ids are optional env
-  vars, so capture works before the groups exist and starts grouping once the ids are set.
+- **Source capture uses MailerLite groups** (their tag equivalent). The group ids are not secret,
+  so they live in code (`api/subscribe.js`, `MAILERLITE_GROUPS`), like the old Kit form id, not in
+  Vercel. Only the secret API key is a Vercel env var.
 - **Upsert semantics:** MailerLite upserts non-destructively, so a returning address is a success
   (200 vs 201 for new), not an error.
-- **Env:** `MAILERLITE_API_KEY` (required), `MAILERLITE_GROUP_NEWSLETTER` /
-  `MAILERLITE_GROUP_ASSESSMENT` (optional), `MAILERLITE_API_URL` (optional override) — all in
-  `.env.example`. Without the key the signups return a clean "unavailable" error.
+- **Env:** `MAILERLITE_API_KEY` (required, secret) and `MAILERLITE_API_URL` (optional override) —
+  in `.env.example`. Group ids are in code, not env. Without the key the signups return a clean
+  "unavailable" error.
 - **Contact form is untouched** — it still uses Kit until the Tide phases, so Kit is not fully
   retired yet.
 - lint and build pass; both api modules load-checked. **Open before this is done:** add
