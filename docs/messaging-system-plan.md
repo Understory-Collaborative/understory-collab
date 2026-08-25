@@ -124,10 +124,13 @@ only; nurture automation is being built in-house later, not in MailerLite.**
   "unavailable" error.
 - **Contact form is untouched** — it still uses Kit until the Tide phases, so Kit is not fully
   retired yet.
-- lint and build pass; both api modules load-checked. **Open before this is done:** add
-  `MAILERLITE_API_KEY` in Vercel; keep double opt-in ON in MailerLite (the "check your inbox" copy
-  assumes it); optionally create the two groups and set their id envs; then a live test signup
-  confirms capture + opt-in + unsubscribe.
+- lint and build pass; both api modules load-checked. **Verified on preview (2026-08-24):** a
+  live footer signup landed the subscriber in MailerLite, in the newsletter group. Capture works
+  end to end. `MAILERLITE_API_KEY` is set; group ids are in code. Keep double opt-in ON in
+  MailerLite for the "check your inbox" copy to hold.
+- **Open before production:** promoting to main switches live newsletter + field-guide signups
+  from Kit to MailerLite, so confirm `MAILERLITE_API_KEY` is set for the Vercel **production**
+  environment (not just preview) before the promote.
 
 ### Phase 3 — Tide inbound-lead feature  (Tide, product-level)
 
@@ -230,8 +233,8 @@ three plugin agents.
 - [x] Decisions logged (`docs/decisions.md`)
 - [x] Master plan written (this file)
 - [x] Phase 1 — never-miss email (complete; verified end to end 2026-08-20)
-- [~] Phase 2 — MailerLite capture (code built; needs the Vercel key + a live test). Nurture
-  automation deferred to an in-house build.
+- [x] Phase 2 — MailerLite capture (verified on preview 2026-08-24). Nurture automation deferred
+  to an in-house build.
 - [ ] Phase 3 — Tide inbound-lead feature
 - [ ] Phase 4 — website → Tide wiring
 - [ ] Phase 5 — owned blog + CMS
