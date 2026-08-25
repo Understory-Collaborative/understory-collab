@@ -83,7 +83,7 @@
 }
 
 .home-hero-description {
-  font-size: var(--text-md);
+  font-size: var(--text-lg);
   color: var(--text-secondary);
   line-height: var(--leading-body);
   margin: 0;
@@ -203,10 +203,59 @@
   background-color: var(--bg-secondary);
 }
 
+/* Two-column row: the positioning statement on the left, an office-hours callout on the
+   right, so the identity block also offers a low-commitment next step. */
+.positioning-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: var(--space-12);
+  align-items: start;
+}
+
 .positioning-content {
   max-width: var(--layout-prose-max);
   margin: 0;
   text-align: left;
+}
+
+/* Office-hours callout — a framed card so it reads as an aside beside the prose, not another
+   paragraph. Warm tint keeps it distinct from the deep-green "act" blocks below. */
+.office-hours-callout {
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-card);
+  padding: var(--space-8);
+  position: sticky;
+  top: var(--space-8);
+}
+
+.office-hours-callout h3 {
+  font-size: var(--text-xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-4);
+}
+
+.office-hours-callout p {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  margin: 0 0 var(--space-6);
+}
+
+.office-hours-callout .btn {
+  margin-top: var(--space-2);
+}
+
+@media (max-width: 768px) {
+  /* Stack the callout under the statement on narrow screens, and drop the sticky pin. */
+  .positioning-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .office-hours-callout {
+    position: static;
+  }
 }
 
 .positioning-content h2 {
@@ -313,7 +362,7 @@
   }
 
   .home-hero-description {
-    font-size: var(--text-md);
+    font-size: var(--text-lg);
   }
 
   .forest-health,
