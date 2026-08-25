@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { subscribe } from '../lib/kit'
+import { subscribe } from '../lib/subscribe'
 import './SubscribeForm.css'
 
 function SubscribeForm({ variant = 'default', heading, description }) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState('idle')
+  const [already, setAlready] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
   async function handleSubmit(event) {
@@ -15,7 +16,8 @@ function SubscribeForm({ variant = 'default', heading, description }) {
     setErrorMessage('')
 
     try {
-      await subscribe(email.trim())
+      const result = await subscribe(email.trim())
+      setAlready(Boolean(result?.already))
       setStatus('success')
       setEmail('')
     } catch (error) {
@@ -84,7 +86,9 @@ function SubscribeForm({ variant = 'default', heading, description }) {
       >
         {status === 'success' && (
           <p className="subscribe-form__success">
-            Check your inbox to confirm your subscription.
+            {already
+              ? "You're already on the list. Check your inbox for our emails."
+              : 'Check your inbox to confirm your subscription.'}
           </p>
         )}
         {status === 'error' && (

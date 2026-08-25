@@ -8,6 +8,74 @@ The full system design and the phased build plan live in
 
 ---
 
+## 2026-08-23 — ESP chosen: MailerLite (capture now, nurture built later)
+
+**MailerLite is the ESP.** The decision moved through two candidates in one sitting: EcoSend was
+picked first on values (a B Corp, carbon-neutral), then the frame changed. webs decided the
+nurture **automation will be built in-house later**, not bought. That removed automation as an
+ESP requirement and turned the choice into a price question for a capture-and-broadcast list.
+
+Re-run price-first (all figures sourced from vendor/review pages, 2026):
+
+- **MailerLite** — free to 250 subscribers (branded), then **$10/mo** removes the logo with no
+  send caps. Cheapest clean paid tier. **Chosen.**
+- Brevo — potentially $0 forever (unlimited contacts, 300 sends/day) but stamps its logo on
+  free; runner-up on absolute price.
+- beehiiv — free to 2,500 subscribers, unlimited sends, but a $43/mo cliff after and a logo.
+- EcoSend — the values pick, but ~£15/mo and no free-forever edge over Brevo/beehiiv.
+
+MailerLite won on clean-and-cheap with automation off the table. EcoSend's values edge did not
+outweigh the cost once nurture was going to be built in-house anyway.
+
+**What is built:** capture only. `api/subscribe.js` + `api/field-guide.js` upsert subscribers via
+MailerLite's API (`POST connect.mailerlite.com/api/subscribers`, Bearer token). Source is
+captured with MailerLite **groups** (their tag equivalent), assigned via optional env group ids
+(`MAILERLITE_GROUP_NEWSLETTER`, `MAILERLITE_GROUP_ASSESSMENT`) so capture works before the groups
+exist. Fire-type granularity is deferred to the nurture build.
+
+**Nurture automation: deferred, to be built in-house.** Likely on Resend (already owned) plus a
+data store, when there is a list worth nurturing. Not in MailerLite.
+
+---
+
+## 2026-08-23 — Buttondown free is too limited; HubSpot is out for nurture
+
+**Buttondown's free plan cannot run the nurture.** Live check of the plan table: tags need
+Basic ($9/mo), and **automations (the nurture sequence) need Standard ($29/mo)**. Free gives
+capture, manual newsletter sends (broadcasts), and unsubscribe only. Metadata and analytics are
+also paid. So Buttondown free covers capture but not the automated nurture that is the point of
+this phase. The signup code stays plan-resilient: it subscribes without tags when the plan
+disallows them, so capture works on free and tagging resumes if the account is ever upgraded.
+
+**HubSpot is out as the nurture home.** webs's HubSpot plan has no automations (workflows are a
+Marketing Hub Professional feature she does not have), she finds it hard to use, and it is still
+being let lapse in April. Wiring nurture into a departing tool is throwaway work and repeats the
+Ghost lesson (do not build on something set to vanish). Not reversing the lapse.
+
+**Still open:** the nurture engine. The remaining fit for the cost goal is an ESP whose free
+tier includes automations and that we keep long term. Candidate to verify: MailerLite. Values
+gut-check required before committing, per the Substack precedent.
+
+---
+
+## 2026-08-21 — Newsletter signup moved server-side for Buttondown
+
+**Buttondown authenticates every write with a secret token.** The old Kit newsletter signup
+posted straight from the browser to a public form endpoint with no secret. Buttondown cannot
+work that way without exposing the token, so the newsletter signup moved to a server route
+(`api/subscribe.js`); the field-guide route already ran server-side. The token lives only in
+Vercel env (`BUTTONDOWN_API_KEY`), never in the client bundle.
+
+**Tags carry the source:** `newsletter` for the footer/subscribe form, and `assessment` plus
+`assessment:<fire-type>` for the assessment guide, so a sequence can target the whole cohort or
+one fire. This is the tagging the plan asked for.
+
+**Kit is not fully retired yet.** The contact form still posts to Kit until the Tide phases move
+it, so the Kit account stays live for contact only. Newsletter and field-guide no longer touch
+Kit.
+
+---
+
 ## 2026-08-20 — ESP, and the lead model
 
 **ESP: Buttondown, chosen.** Markdown-first, indie, cheap, clean API, pro-privacy

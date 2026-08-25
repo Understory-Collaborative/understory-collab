@@ -1,36 +1,31 @@
 /**
- * Vercel Node serverless function: field-guide email capture (Kit, formerly ConvertKit).
+ * Vercel Node serverless function: field-guide email capture (MailerLite).
  *
- * Flow: a visitor finishes the "What's On Fire?" quiz and enters their email to get the
- * matching field guide. We subscribe them to our Kit form (which sends Kit's double
- * opt-in confirmation email), tagging the fire type as a custom field so the list can be
- * segmented later, and, if a sender is configured, email them the guide link too. The
- * front end also reveals an instant on-page download, so delivery is immediate AND
- * arrives by email.
+ * Flow: a visitor finishes the "What's On Fire?" assessment and enters their email to get the
+ * matching field guide. We add them to MailerLite (which sends the double opt-in confirmation
+ * when the account has double opt-in on), into the assessment group so a future sequence can
+ * target it, and, if a sender is configured, email them the guide link too. The front end also
+ * reveals an instant on-page download, so delivery is immediate AND arrives by email.
  *
- * Kit's public form endpoint takes only an email plus optional custom fields, and the form
- * id is public (it ships in the embed on the site), so there is no API key here and nothing
- * that requires a paid plan.
+ * MailerLite authenticates every write with a secret token, so this must run server-side.
  *
  * Environment variables (set in Vercel, never committed):
- *   RESEND_API_KEY   — (optional) Resend API key to email the guide link. If unset, we skip
- *                      the email; Kit's opt-in email and the instant download still work.
- *   FIELD_GUIDE_FROM — (optional) From address for the guide email, e.g.
- *                      "Understory Collaborative <hello@understorycollab.com>"
- *   SITE_URL         — (optional) canonical site origin for absolute PDF links in the email;
- *                      falls back to the request's own host.
+ *   MAILERLITE_API_KEY — required to add the subscriber (see api/subscribe.js). Without it the
+ *                        signup is refused rather than silently dropped.
+ *   RESEND_API_KEY     — (optional) Resend API key to email the guide link. If unset, we skip
+ *                        the email; the opt-in email and instant download still work.
+ *   FIELD_GUIDE_FROM   — (optional) From address for the guide email, e.g.
+ *                        "Understory Collaborative <contact@understorycollab.com>"
+ *   SITE_URL           — (optional) canonical site origin for absolute PDF links in the email;
+ *                        falls back to the request's own host.
+ * The assessment group id is not secret and lives in api/subscribe.js (MAILERLITE_GROUPS).
  *
  * Privacy: never logs the email address; returns a generic error without echoing input.
  */
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+import { addSubscriber, MAILERLITE_GROUPS } from './subscribe.js'
 
-// Kit form that newsletter and field-guide signups both feed. To capture the fire type,
-// add a "fire_type" custom field in Kit; if it is missing, Kit simply ignores the value
-// and the signup still works.
-const KIT_FORM = '9782548'
-const KIT_FORM_ENDPOINT = `https://app.kit.com/forms/${KIT_FORM}/subscriptions`
-const KIT_API_BASE = 'https://api.kit.com/v4'
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 // The four fire types are the only valid guides; this allowlist also prevents any
 // path trickery from reaching the /field-guides/<slug>.pdf link.
@@ -59,44 +54,6 @@ function siteOrigin(req) {
   const proto = req.headers['x-forwarded-proto'] || 'https'
   const host = req.headers['x-forwarded-host'] || req.headers.host
   return `${proto}://${host}`
-}
-
-async function subscribeToKit({ email, fireType }) {
-  const apiKey = process.env.KIT_API_KEY || process.env.KIT_API
-
-  // Prefer Kit's authenticated v4 API. The public form endpoint is spam-guarded: it
-  // QUARANTINES server-side POSTs (returns 200 but never creates a subscriber), so a
-  // form-endpoint "success" is not a real signup. The v4 API is not guarded.
-  if (apiKey) {
-    const subRes = await fetch(`${KIT_API_BASE}/subscribers`, {
-      method: 'POST',
-      headers: { 'X-Kit-Api-Key': apiKey, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email_address: email, fields: { fire_type: fireType } }),
-    })
-    if (!subRes.ok) {
-      console.error('Kit subscribe failed:', subRes.status)
-      return false
-    }
-    // Add them to the form so its opt-in/incentive automation fires. Best-effort.
-    await fetch(`${KIT_API_BASE}/forms/${KIT_FORM}/subscribers`, {
-      method: 'POST',
-      headers: { 'X-Kit-Api-Key': apiKey, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email_address: email }),
-    }).catch(() => {})
-    return true
-  }
-
-  // Fallback: the public form endpoint (Kit may quarantine this — set KIT_API_KEY).
-  const res = await fetch(KIT_FORM_ENDPOINT, {
-    method: 'POST',
-    headers: { Accept: 'application/json' },
-    body: new URLSearchParams({ email_address: email, 'fields[fire_type]': fireType }),
-  })
-  if (!res.ok) {
-    // Log status only — never the email address (no PII in logs).
-    console.error('Kit subscribe failed:', res.status)
-  }
-  return res.ok
 }
 
 async function emailGuide({ email, guideName, pdfHref }) {
@@ -140,8 +97,17 @@ export default async function handler(req, res) {
   const pdfPath = `/field-guides/${fireType}.pdf`
 
   try {
-    const added = await subscribeToKit({ email, fireType })
-    if (!added) {
+    // Add to the assessment group so a future sequence can target the assessment cohort. A
+    // returning address still gets the guide (MailerLite upserts). Fire-type granularity waits
+    // for the nurture build.
+    const result = await addSubscriber({
+      email,
+      groups: [MAILERLITE_GROUPS.assessment],
+    })
+    if (!result.configured) {
+      return res.status(503).json({ error: 'Could not process your request. Please try again.' })
+    }
+    if (!result.ok) {
       return res.status(502).json({ error: 'Could not process your request. Please try again.' })
     }
     await emailGuide({ email, guideName, pdfHref: `${siteOrigin(req)}${pdfPath}` })
