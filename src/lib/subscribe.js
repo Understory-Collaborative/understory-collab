@@ -26,7 +26,9 @@ export async function subscribe(email) {
   })
   if (!res.ok) {
     const detail = await describeError(res)
-    throw new Error(detail || `Subscribe failed: ${res.status}`)
+    const error = new Error(detail || `Subscribe failed: ${res.status}`)
+    error.status = res.status
+    throw error
   }
   const data = await res.json().catch(() => ({}))
   return { already: Boolean(data?.already) }

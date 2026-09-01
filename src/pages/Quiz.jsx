@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { quizQuestions, getCrisisType } from '../data/quizData'
 import PageMeta from '../components/PageMeta'
+import { submitErrorMessage } from '../lib/formErrors'
 import './Quiz.css'
 
 function Quiz() {
@@ -267,11 +268,15 @@ function FieldGuideForm({ fireType, fireName }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: trimmed, fireType, fireName }),
       })
-      if (!response.ok) throw new Error(`Request failed: ${response.status}`)
+      if (!response.ok) {
+        const error = new Error(`Request failed: ${response.status}`)
+        error.status = response.status
+        throw error
+      }
       setStatus('success')
-    } catch {
+    } catch (error) {
       setStatus('error')
-      setErrorMessage('Something went wrong. Please try again.')
+      setErrorMessage(submitErrorMessage(error?.status, 'send you the guide'))
       inputRef.current?.focus()
     }
   }
