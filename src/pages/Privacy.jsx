@@ -48,9 +48,9 @@ function Privacy() {
           <section className="privacy-section" aria-labelledby="where-heading">
             <h2 id="where-heading">Where Your Information Goes</h2>
             <p>
-              Contact-form submissions are recorded in a private Google Sheet hosted by
-              Google LLC, accessible only to Understory Collaborative. Newsletter
-              subscriptions are managed by our newsletter provider, Kit. These providers
+              Contact-form submissions are emailed to Understory Collaborative through our
+              email provider, Resend, and are not added to any mailing list. Newsletter
+              subscriptions are managed by our newsletter provider, MailerLite. These providers
               process your information on our behalf and are not permitted to use it for
               their own purposes.
             </p>

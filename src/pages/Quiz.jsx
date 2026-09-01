@@ -118,8 +118,8 @@ function Quiz() {
               <h2 id="fieldguide-heading">We wrote a field guide for this.</h2>
               <p className="whitepaper-title">{crisisType.whitePaper}</p>
               <p className="whitepaper-description">
-                Enter your email and we'll give you the full guide right here, and
-                send it to your inbox once you confirm. No spam, unsubscribe anytime.
+                Enter your email and we'll show you the full guide right here and
+                send a copy to your inbox. We won't add you to any list.
               </p>
               <FieldGuideForm fireType={crisisType.id} fireName={crisisType.name} />
             </div>
@@ -280,8 +280,7 @@ function FieldGuideForm({ fireType, fireName }) {
     return (
       <div className="fieldguide-success" role="status">
         <p className="fieldguide-success-message">
-          Your guide is ready. Check your inbox to confirm your subscription.
-          We'll email it to you too.
+          Your guide is ready. We've sent a copy to your inbox too.
         </p>
         <a className="btn btn-primary" href={pdfUrl} download>
           Download the Guide (PDF)
