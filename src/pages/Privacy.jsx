@@ -92,8 +92,9 @@ function Privacy() {
               </li>
             </ul>
             <p>
-              Office hours are sold through our business entity, Webs on the Webs, LLC, so that
-              name may appear on your receipt and card statement.
+              Understory Collaborative is a trade name (DBA) of Webs on the Webs, LLC.
+              Office-hours payments are processed under that company, so either name may appear
+              on your receipt and card statement.
             </p>
           </section>
 
