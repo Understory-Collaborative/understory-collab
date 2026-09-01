@@ -1,24 +1,29 @@
 /**
- * POST /api/field-guide — deliver the assessment field guide (Vercel Node function).
+ * Vercel Node serverless function: field-guide email capture (MailerLite).
  *
- * A visitor finishes the "What's On Fire?" assessment and enters their email to get the
- * matching field guide. Delivery is two ways, both of which only fulfil what they asked for:
- * the results screen reveals an instant download, and (if Resend is configured) we email the
- * link too.
+ * Flow: a visitor finishes the "What's On Fire?" assessment and enters their email to get the
+ * matching field guide. We add them to MailerLite (which sends the double opt-in confirmation
+ * when the account has double opt-in on), into the assessment group so a future sequence can
+ * target it, and, if a sender is configured, email them the guide link too. The front end also
+ * reveals an instant on-page download, so delivery is immediate AND arrives by email.
  *
- * We do NOT add them to any marketing list. Getting a guide is not a newsletter opt-in, so the
- * only list-growth path on the site is the double opt-in newsletter form. This is why the guide
- * no longer depends on MailerLite at all: a list outage can never block the guide.
+ * MailerLite authenticates every write with a secret token, so this must run server-side.
  *
  * Environment variables (set in Vercel, never committed):
- *   RESEND_API_KEY   — (optional) email the guide link. If unset, the instant download still works.
- *   FIELD_GUIDE_FROM — (optional) From address for the guide email on a Resend-verified domain,
- *                      e.g. "Understory Collaborative <contact@understorycollab.com>".
- *   SITE_URL         — (optional) canonical site origin for the absolute PDF link in the email;
- *                      falls back to the request's own host.
+ *   MAILERLITE_API_KEY — required to add the subscriber (see api/subscribe.js). Without it the
+ *                        signup is refused rather than silently dropped.
+ *   RESEND_API_KEY     — (optional) Resend API key to email the guide link. If unset, we skip
+ *                        the email; the opt-in email and instant download still work.
+ *   FIELD_GUIDE_FROM   — (optional) From address for the guide email, e.g.
+ *                        "Understory Collaborative <contact@understorycollab.com>"
+ *   SITE_URL           — (optional) canonical site origin for absolute PDF links in the email;
+ *                        falls back to the request's own host.
+ * The assessment group id is not secret and lives in api/subscribe.js (MAILERLITE_GROUPS).
  *
  * Privacy: never logs the email address; returns a generic error without echoing input.
  */
+
+import { addSubscriber, MAILERLITE_GROUPS } from './subscribe.js'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -65,8 +70,8 @@ async function emailGuide({ email, guideName, pdfHref }) {
       html:
         `<p>Thanks for taking the assessment. Here's your field guide:</p>` +
         `<p><a href="${pdfHref}">Download “${guideName}” (PDF)</a></p>` +
-        `<p>Read it, mark it up with what rang true and the one question you still have, ` +
-        `and bring that to office hours.</p>`,
+        `<p>We've also added you to our list — confirm the subscription email to stay on it, ` +
+        `and you can unsubscribe anytime.</p>`,
     }),
   }).catch(() => {}) // best-effort; never block the response on the email
 }
@@ -91,8 +96,24 @@ export default async function handler(req, res) {
   const guideName = GUIDES[fireType]
   const pdfPath = `/field-guides/${fireType}.pdf`
 
-  // Email the link as a best-effort copy; the instant on-page download is the front end's job.
-  // No list write happens here, so nothing to fail: a valid request always succeeds.
-  await emailGuide({ email, guideName, pdfHref: `${siteOrigin(req)}${pdfPath}` })
-  return res.status(200).json({ ok: true, pdf: pdfPath })
+  try {
+    // Add to the assessment group so a future sequence can target the assessment cohort. A
+    // returning address still gets the guide (MailerLite upserts). Fire-type granularity waits
+    // for the nurture build.
+    const result = await addSubscriber({
+      email,
+      groups: [MAILERLITE_GROUPS.assessment],
+    })
+    if (!result.configured) {
+      return res.status(503).json({ error: 'Could not process your request. Please try again.' })
+    }
+    if (!result.ok) {
+      return res.status(502).json({ error: 'Could not process your request. Please try again.' })
+    }
+    await emailGuide({ email, guideName, pdfHref: `${siteOrigin(req)}${pdfPath}` })
+    return res.status(200).json({ ok: true, pdf: pdfPath })
+  } catch {
+    // Do not leak internal detail or the email address.
+    return res.status(502).json({ error: 'Could not process your request. Please try again.' })
+  }
 }
