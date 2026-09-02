@@ -170,12 +170,12 @@ function Contact() {
                   announced when a network/server error occurs on submit. */}
               {status === 'error' && (
                 <div className="contact-form__alert" role="alert">
-                  Sorry, we couldn't send your message just now. Please try
-                  again, or email us directly at{' '}
+                  Something on our end kept this from sending. Please email us
+                  directly at{' '}
                   <a href="mailto:contact@understorycollab.com">
                     contact@understorycollab.com
-                  </a>
-                  .
+                  </a>{' '}
+                  and we'll pick it up from there.
                 </div>
               )}
 
