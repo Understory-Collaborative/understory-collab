@@ -70,8 +70,8 @@ async function emailGuide({ email, guideName, pdfHref }) {
       html:
         `<p>Thanks for taking the assessment. Here's your field guide:</p>` +
         `<p><a href="${pdfHref}">Download “${guideName}” (PDF)</a></p>` +
-        `<p>We've also added you to our list — confirm the subscription email to stay on it, ` +
-        `and you can unsubscribe anytime.</p>`,
+        `<p>We also sent a separate email to confirm your subscription. Confirm it to stay ` +
+        `on the list, and you can unsubscribe anytime.</p>`,
     }),
   }).catch(() => {}) // best-effort; never block the response on the email
 }
