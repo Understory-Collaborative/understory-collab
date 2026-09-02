@@ -44,12 +44,14 @@ No form needs a paid plan or a committed secret; form ids are public.
 
 | Form | Handler | Backend |
 |---|---|---|
-| Contact | `api/contact.js` | Kit form `9821838` (fields: name, business, message). Kit only *pings* on new subscribers; the message lives on the subscriber record |
-| Newsletter + field guide | `src/lib/kit.js`, `api/field-guide.js` | Kit form `9782548`. Field guide optionally emails via Resend if `RESEND_API_KEY` is set |
+| Contact | `api/contact.js` | Emails the message to `contact@understorycollab.com` via Resend. No list write; contacting us is not a newsletter opt-in |
+| Newsletter | `src/lib/subscribe.js`, `api/subscribe.js` | MailerLite (double opt-in). Signup source tagged via `MAILERLITE_GROUPS` |
+| Field guide | `api/field-guide.js` | Adds the email to MailerLite (assessment group, double opt-in) to capture the lead, and delivers the guide via an instant on-page download plus an optional Resend email |
 | Q&A | `api/questions.js` | Posts to a Google Form's `/formResponse` |
 
-Copy `.env.example` to `.env` for local overrides. The only optional env vars are for the
-field-guide email (Resend); the contact and Q&A forms need none.
+Copy `.env.example` to `.env` for local overrides. The newsletter and the field guide need
+`MAILERLITE_API_KEY`; the contact form and the field-guide email also need `RESEND_API_KEY`
+plus a verified from address (`CONTACT_NOTIFY_FROM` or `FIELD_GUIDE_FROM`); the Q&A form needs none.
 
 ## Design system & brand
 

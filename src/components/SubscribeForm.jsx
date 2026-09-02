@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { subscribe } from '../lib/subscribe'
+import { submitErrorMessage } from '../lib/formErrors'
 import './SubscribeForm.css'
 
 function SubscribeForm({ variant = 'default', heading, description }) {
@@ -22,16 +23,7 @@ function SubscribeForm({ variant = 'default', heading, description }) {
       setEmail('')
     } catch (error) {
       setStatus('error')
-      const raw = error?.message || ''
-      let friendly = 'Something went wrong. Please try again.'
-      if (/already/i.test(raw)) {
-        friendly = "You're already subscribed. Check your inbox."
-      } else if (/disabled|members/i.test(raw)) {
-        friendly = 'Subscriptions are currently unavailable.'
-      } else if (/email/i.test(raw)) {
-        friendly = 'Please enter a valid email address.'
-      }
-      setErrorMessage(friendly)
+      setErrorMessage(submitErrorMessage(error?.status, 'add you to the list'))
     }
   }
 
