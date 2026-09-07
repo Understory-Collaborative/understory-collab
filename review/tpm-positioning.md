@@ -35,14 +35,15 @@ Surfaced 2026-09-07 prepping a discovery call with a lead building internal TPM
 capability. It is the wedge ("leaves your team stronger instead of dependent") turned into
 an actual delivery model, and it is sharper than a two-part menu.
 
-**There is one offering: we lead delivery engagements.** The only variable is who holds the
-pen, and it is a slider, not a menu of two products.
+**There is one offering: we lead delivery engagements.** The only variable is who leads
+more, us or them. It is a slider we set together at the start and move over time, one
+offering rather than a menu of two products.
 
 | Slider position | Who leads | What it looks like |
 |---|---|---|
-| **Us-led** | UC holds the pen | We step in and lead delivery on a live engagement |
+| **Us-led** | Mostly UC | We step in and lead delivery on a live engagement |
 | **Mixed** | Shared, shifting | We lead alongside your people, who take more of it as they are ready |
-| **Them-led** | Your people hold the pen | We coach and backstop; they run it |
+| **Them-led** | Mostly your people | We coach and backstop; they run it |
 
 **The direction of travel is always toward the client.** Starting us-led is fine; the whole
 point is that our share shrinks as their capability grows. That is the "you no longer need
