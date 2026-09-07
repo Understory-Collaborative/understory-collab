@@ -29,6 +29,50 @@ cannot execute. UC is the discipline that sits across both.
 
 ---
 
+## The one offering, and the slider
+
+Surfaced 2026-09-07 prepping a discovery call with a lead building internal TPM
+capability. It is the wedge ("leaves your team stronger instead of dependent") turned into
+an actual delivery model, and it is sharper than a two-part menu.
+
+**There is one offering: we lead delivery engagements.** The only variable is who holds the
+pen, and it is a slider, not a menu of two products.
+
+| Slider position | Who leads | What it looks like |
+|---|---|---|
+| **Us-led** | UC holds the pen | We step in and lead delivery on a live engagement |
+| **Mixed** | Shared, shifting | We lead alongside your people, who take more of it as they are ready |
+| **Them-led** | Your people hold the pen | We coach and backstop; they run it |
+
+**The direction of travel is always toward the client.** Starting us-led is fine; the whole
+point is that our share shrinks as their capability grows. That is the "you no longer need
+us" soul made structural, and it is the built-in answer to the dependency fear before a
+buyer can raise it.
+
+Why this wins with the capability-building buyer:
+
+- **Not a choice they have to get right.** They are not picking "do it for us" or "teach
+  us." They set a starting point on one dial that is expected to move.
+- **It answers "you can't just send an email and expect anything to happen."** People take
+  the lead by leading real work with someone experienced next to them, not by decree. The
+  leading *is* the scaffolding.
+- **The differentiator does the work.** TPMs who are also educators is why the slider can
+  move at all: the teaching is built into the doing.
+
+**Scope stays at intake.** Which door, which capabilities, how deep, and where the slider
+starts are scoped per engagement, never a storefront menu (consistent with P2 and the
+responsibility-list section below).
+
+**Draft line, webs's phrasing, tune before use:**
+> We lead delivery engagements. At the start we might do most of the leading. As we go, we
+> build your people to take the reins, and eventually we fly off on our umbrella like Mary
+> Poppins.
+
+**Where it could go next (webs decides):** the home positioning band, an office-hours or
+Q&A framing, and a content post. Cleaner than anything currently on the site.
+
+---
+
 ## Blindspot to claim (internal fuel, never quoted on-site)
 
 The sharpest thing in the outside analysis was reading rivals by what they neglect: process,
