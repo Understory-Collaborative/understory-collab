@@ -9,6 +9,7 @@ import {
   PRESENTATION_ORDER,
   ITEM_INDEX,
   TOTAL_ITEMS,
+  LEVELS,
   scoreResponses,
   levelBand,
   metacognitionRead,
@@ -283,24 +284,42 @@ function TpmSelfCheck() {
             </div>
 
             {/* Text equivalent of the radar, for screen readers and print. */}
+            <p className="tsc-scale-legend">
+              Level runs low to high: {LEVELS.map((l) => l.label).join(', ')}.
+            </p>
             <table className="tsc-table">
               <caption>What the five delivery skills mean, and where you are, strongest first</caption>
               <thead>
-                <tr><th scope="col">Delivery skill</th><th scope="col">Strength</th></tr>
+                <tr><th scope="col">Delivery skill</th><th scope="col">Level</th></tr>
               </thead>
               <tbody>
                 {CRAFT_SKILLS
                   .map((s) => ({ id: s.id, name: s.name, def: s.def, level: score.craft[s.id] }))
                   .sort((a, b) => b.level - a.level)
-                  .map((s) => (
-                    <tr key={s.id}>
-                      <th scope="row">
-                        {s.name}
-                        <span className="tsc-craft-def">{s.def}</span>
-                      </th>
-                      <td>{levelBand(s.level).label}</td>
-                    </tr>
-                  ))}
+                  .map((s) => {
+                    const band = levelBand(s.level)
+                    return (
+                      <tr key={s.id}>
+                        <th scope="row">
+                          {s.name}
+                          <span className="tsc-craft-def">{s.def}</span>
+                        </th>
+                        <td>
+                          <span className="tsc-level">
+                            <span className="tsc-level-dots" aria-hidden="true">
+                              {LEVELS.map((lvl, i) => (
+                                <span key={lvl.id} className={`tsc-level-dot ${i <= band.index ? 'is-on' : ''}`} />
+                              ))}
+                            </span>
+                            <span className="tsc-level-label">
+                              {band.label}
+                              <span className="sr-only"> ({band.index + 1} of {LEVELS.length})</span>
+                            </span>
+                          </span>
+                        </td>
+                      </tr>
+                    )
+                  })}
               </tbody>
             </table>
 

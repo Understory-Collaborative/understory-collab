@@ -195,7 +195,21 @@
   margin-top: 0.25rem;
   max-width: 42ch;
 }
-.tsc-table td { vertical-align: top; white-space: nowrap; }
+.tsc-table td { vertical-align: top; }
+
+.tsc-scale-legend { font-size: 0.9rem; color: var(--text-muted); margin: 0 0 0.6rem; }
+
+.tsc-level { display: inline-flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
+.tsc-level-dots { display: inline-flex; gap: 3px; }
+.tsc-level-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-strong);
+  background: transparent;
+}
+.tsc-level-dot.is-on { background: var(--action); border-color: var(--action); }
+.tsc-level-label { font-size: 0.95rem; }
 
 /* Next + debrief ---------------------------------------------------------- */
 .tsc-next {

@@ -194,11 +194,18 @@ export function scoreResponses(responses) {
   return { competencies, metaMean, multiplier, craft }
 }
 
+// The ordered level scale, low to high. Used for the label and its position indicator.
+export const LEVELS = [
+  { id: 'emerging', label: 'Emerging' },
+  { id: 'solid', label: 'Solid' },
+  { id: 'strong', label: 'Strong' },
+]
+
 export function levelBand(level) {
-  if (level == null) return { id: 'none', label: 'Not yet' }
-  if (level >= 3.8) return { id: 'strong', label: 'Strong' }
-  if (level >= 2.8) return { id: 'solid', label: 'Solid' }
-  return { id: 'emerging', label: 'Emerging' }
+  if (level == null) return { id: 'none', label: 'Not yet', index: -1 }
+  if (level >= 3.8) return { ...LEVELS[2], index: 2 }
+  if (level >= 2.8) return { ...LEVELS[1], index: 1 }
+  return { ...LEVELS[0], index: 0 }
 }
 
 export function metacognitionRead(metaMean) {
