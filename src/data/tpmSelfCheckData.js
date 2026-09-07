@@ -87,11 +87,41 @@ export const METACOGNITION = {
 // The five delivery-craft skills (derived, not asked). `fedBy` lists the competencies that
 // feed each, drawn from the framework's dependency table.
 export const CRAFT_SKILLS = [
-  { id: 'change', name: 'Change control', short: 'Change', fedBy: ['conflict', 'comm'] },
-  { id: 'risk', name: 'Risk management', short: 'Risk', fedBy: ['collab', 'coord'] },
-  { id: 'financial', name: 'Financial management', short: 'Financial', fedBy: ['coord', 'goals'] },
-  { id: 'reporting', name: 'Stakeholder reporting', short: 'Reporting', fedBy: ['comm', 'conflict'] },
-  { id: 'value', name: 'Value articulation', short: 'Value', fedBy: ['comm', 'goals'] },
+  {
+    id: 'change',
+    name: 'Change control',
+    short: 'Change',
+    def: 'When the scope of the work shifts, you make the tradeoff clear and get it agreed before the team just absorbs it.',
+    fedBy: ['conflict', 'comm'],
+  },
+  {
+    id: 'risk',
+    name: 'Risk management',
+    short: 'Risk',
+    def: 'You spot what could derail the work early and act on it, rather than reacting once it has already hit.',
+    fedBy: ['collab', 'coord'],
+  },
+  {
+    id: 'financial',
+    name: 'Financial management',
+    short: 'Financial',
+    def: 'You track what the work costs and what the budget allows, and keep the two in line.',
+    fedBy: ['coord', 'goals'],
+  },
+  {
+    id: 'reporting',
+    name: 'Stakeholder reporting',
+    short: 'Reporting',
+    def: 'You keep the people who care about the work informed of the true state of it, the good and the bad.',
+    fedBy: ['comm', 'conflict'],
+  },
+  {
+    id: 'value',
+    name: 'Value articulation',
+    short: 'Value',
+    def: 'You can explain the worth of the work in the terms the client actually cares about.',
+    fedBy: ['comm', 'goals'],
+  },
 ]
 
 // Draft growth guidance per competency (webs to own the final wording).
@@ -100,7 +130,7 @@ export const GROWTH_ACTIONS = {
   collab: 'Before grinding solo, ask who holds the missing piece and bring them in. Say plainly when a call is yours to make versus the group’s.',
   comm: 'Write every update as three lines: what is true, what it means, what is next. Then check they actually got those three.',
   goals: 'Turn a fuzzy ask into one specific, measurable target before work starts, and give feedback against it while there is still time to act.',
-  coord: 'Map roles, handoffs, and sequence at the start, and keep the plan visible so coordination is proactive, not reactive.',
+  coord: 'Map roles, handoffs, and sequence at the start, and keep the plan visible so you set coordination up front instead of scrambling for it later.',
 }
 
 // All item ids, and a fixed shuffled presentation order so the underlying structure is not

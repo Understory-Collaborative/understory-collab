@@ -185,7 +185,17 @@
 .tsc-table th,
 .tsc-table td { text-align: left; padding: 0.55rem 0.5rem; border-bottom: 1px solid var(--border-subtle); }
 .tsc-table thead th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); }
-.tsc-table tbody th { font-weight: 600; }
+.tsc-table tbody th { font-weight: 600; vertical-align: top; padding-right: 1.25rem; }
+.tsc-craft-def {
+  display: block;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-top: 0.25rem;
+  max-width: 42ch;
+}
+.tsc-table td { vertical-align: top; white-space: nowrap; }
 
 /* Next + debrief ---------------------------------------------------------- */
 .tsc-next {

@@ -27,6 +27,13 @@ function loadSaved() {
   }
 }
 
+// Join a list with commas and a closing "and" (Oxford comma for three or more).
+function listWithAnd(items) {
+  if (items.length <= 1) return items.join('')
+  if (items.length === 2) return `${items[0]} and ${items[1]}`
+  return `${items.slice(0, -1).join(', ')}, and ${items[items.length - 1]}`
+}
+
 const compName = (id) => COMPETENCIES.find((c) => c.id === id)?.name ?? id
 const craftName = (id) => CRAFT_SKILLS.find((c) => c.id === id)?.name ?? id
 // How many craft skills each competency feeds (its leverage).
@@ -121,7 +128,7 @@ function TpmSelfCheck() {
     <div className="tsc-page">
       <PageMeta
         title="TPM self-check"
-        description="A private, unvalidated self-reflection for technical product managers. See where you are strong and where to grow. For development, not judgment. Your answers stay on your device."
+        description="A private, unvalidated self-reflection for technical product managers, showing where you are strong and where to grow. For your own development. Your answers stay on your device."
         noindex
       />
 
@@ -132,7 +139,7 @@ function TpmSelfCheck() {
         <div className="tsc-callout" role="note">
           <p className="tsc-callout-title">Start here</p>
           <ul>
-            <li><strong>This is a mirror, not a test.</strong> A working draft, grounded in research but not yet validated.</li>
+            <li><strong>This is a mirror to think with.</strong> A working draft, grounded in research and not yet validated.</li>
             <li><strong>It points you to where to grow.</strong> It is not pass/fail, and it never compares you to anyone else.</li>
             <li><strong>Your answers stay on your device.</strong> Nothing is sent anywhere.</li>
           </ul>
@@ -215,8 +222,8 @@ function TpmSelfCheck() {
         {complete && (
           <>
             <p className="tsc-result-frame">
-              A shape, not a score. It shows how your teamwork habits and self-awareness show
-              up across the five delivery skills. Check it against your real work.
+              This shows how your teamwork habits and self-awareness play out across the five
+              delivery skills. Treat it as a starting point, and check it against your real work.
             </p>
 
             <figure className="tsc-radar-figure">
@@ -264,7 +271,7 @@ function TpmSelfCheck() {
               <h3>Where to focus first</h3>
               <p>
                 <strong>{compName(focus.id)}.</strong> It feeds{' '}
-                {CRAFT_SKILLS.filter((s) => s.fedBy.includes(focus.id)).map((s) => s.name.toLowerCase()).join(', ')}
+                {listWithAnd(CRAFT_SKILLS.filter((s) => s.fedBy.includes(focus.id)).map((s) => s.name.toLowerCase()))}
                 , so growing it strengthens more than one skill at once.
               </p>
               <p className="tsc-focus-action">{GROWTH_ACTIONS[focus.id]}</p>
@@ -277,17 +284,20 @@ function TpmSelfCheck() {
 
             {/* Text equivalent of the radar, for screen readers and print. */}
             <table className="tsc-table">
-              <caption>Your delivery skills, strongest to most room to grow</caption>
+              <caption>What the five delivery skills mean, and where you are, strongest first</caption>
               <thead>
                 <tr><th scope="col">Delivery skill</th><th scope="col">Strength</th></tr>
               </thead>
               <tbody>
                 {CRAFT_SKILLS
-                  .map((s) => ({ id: s.id, name: s.name, level: score.craft[s.id] }))
+                  .map((s) => ({ id: s.id, name: s.name, def: s.def, level: score.craft[s.id] }))
                   .sort((a, b) => b.level - a.level)
                   .map((s) => (
                     <tr key={s.id}>
-                      <th scope="row">{s.name}</th>
+                      <th scope="row">
+                        {s.name}
+                        <span className="tsc-craft-def">{s.def}</span>
+                      </th>
                       <td>{levelBand(s.level).label}</td>
                     </tr>
                   ))}
