@@ -27,12 +27,22 @@ Move it toward **strengths-first and group-focused**:
 - **On the paid team tier this becomes team composition:** who pairs with whom, where the
   group is collectively strong, where the group (not the person) is thin.
 
-**One design tension to resolve at the workshop:** "here is who to team up with" needs more
-than one person's data. A single self-report cannot name a real teammate, so this framing
-pushes the tool from a solo self-check toward a group or cohort input (a team takes it, and
-the result maps complementary pairings). Decide how much of the free solo tool carries the
-strengths-and-community language versus how much of "who to team up with" lives in the team
-tier where the data actually exists.
+**How it works (webs, 2026-09-07): a profile, not more data.** The result is an archetype
+read off the person's own pattern, so one self-report is enough. Their strengths place them
+in a type, and the "team up with" is the complementary type. Example: a comms-forward TPM
+pairs with a task-forward TPM. No cohort or teammate data is needed; the complementarity
+comes from the archetype, not from other people's answers.
+
+Open for the workshop:
+- **The archetype set.** What are the types, and which competency or skill clusters define
+  each. A first sketch to react to, not settled: comms-forward (communication and handling
+  disagreement lead), task-forward (planning, coordination, and goals lead), and possibly a
+  third around adaptive problem solving (collaborative problem solving and metacognition
+  lead). webs owns the real set.
+- **The pairing map.** Which archetype complements which, and how to word the pairing so it
+  reads as "here is who strengthens you", not a deficit.
+- On the paid team tier, the same archetypes compose a team: who pairs with whom, and where
+  the group's mix is thin.
 
 ---
 
