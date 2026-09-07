@@ -128,16 +128,12 @@ function TpmSelfCheck() {
       <section className="tsc-intro" aria-labelledby="tsc-heading">
         <p className="tsc-eyebrow">Internal draft, not on the public site yet</p>
         <h1 id="tsc-heading">TPM self-check</h1>
-        <p className="tsc-lead">
-          Nineteen quick statements. At the end you get a picture of where your delivery
-          strengths are and the one place to focus next.
-        </p>
 
         <div className="tsc-callout" role="note">
           <p className="tsc-callout-title">Start here</p>
           <ul>
             <li><strong>This is a mirror, not a test.</strong> A working draft, grounded in research but not yet validated.</li>
-            <li><strong>It is for growth, not judgment.</strong> Nothing here ranks or grades you.</li>
+            <li><strong>It points you to where to grow.</strong> It is not pass/fail, and it never compares you to anyone else.</li>
             <li><strong>Your answers stay on your device.</strong> Nothing is sent anywhere.</li>
           </ul>
         </div>
