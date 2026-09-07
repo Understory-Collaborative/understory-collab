@@ -12,6 +12,30 @@ research contribution behind this lives with the dissertation in the friday repo
 
 ---
 
+## Workshop direction (2026-09-07): strengths and community, not deficit
+
+webs's steer before the weekend workshop. The current tool frames results as an individual
+improve-or-fix picture (a strongest skill, a "most room to grow", a "where to focus first").
+Move it toward **strengths-first and group-focused**:
+
+- **Lead with what the person brings**, not where they fall short.
+- **Reframe growth as teaming up, not solo remediation.** Instead of "go fix your weak area",
+  say "here is who to team up with, who complements you, who to learn alongside". A community
+  of practice, which fits UC's guide-not-hero soul and the teamwork basis of the instrument
+  (Stevens & Campion is about teams, so a team-composition read is truer to the source than
+  an individual deficit score).
+- **On the paid team tier this becomes team composition:** who pairs with whom, where the
+  group is collectively strong, where the group (not the person) is thin.
+
+**One design tension to resolve at the workshop:** "here is who to team up with" needs more
+than one person's data. A single self-report cannot name a real teammate, so this framing
+pushes the tool from a solo self-check toward a group or cohort input (a team takes it, and
+the result maps complementary pairings). Decide how much of the free solo tool carries the
+strengths-and-community language versus how much of "who to team up with" lives in the team
+tier where the data actually exists.
+
+---
+
 ## Why this exists
 
 To build TPM capability in a client's people (or to set the leadership slider on an
