@@ -9,6 +9,7 @@ import Privacy from './pages/Privacy'
 import Unsubscribe from './pages/Unsubscribe'
 import Accessibility from './pages/Accessibility'
 import Quiz from './pages/Quiz'
+import TpmSelfCheck from './pages/TpmSelfCheck'
 import OfferPage from './pages/OfferPage'
 import OfficeHours from './pages/OfficeHours'
 import Questions from './pages/Questions'
@@ -48,6 +49,9 @@ function App() {
             <Route path="office-hours" element={<OfficeHours />} />
             {/* Free async rung: public Q&A */}
             <Route path="questions" element={<Questions />} />
+            {/* Hidden internal draft: TPM competency self-check (noindex, not in nav). Pilot
+                tool for the assessment framework in review/tpm-competency-assessment.md. */}
+            <Route path="tpm-self-check" element={<TpmSelfCheck />} />
           </Route>
         </Routes>
       </Router>

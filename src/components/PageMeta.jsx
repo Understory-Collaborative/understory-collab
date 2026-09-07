@@ -35,7 +35,7 @@ function upsertLink(rel, href) {
   el.setAttribute('href', href)
 }
 
-function PageMeta({ title, description }) {
+function PageMeta({ title, description, noindex = false }) {
   const { pathname } = useLocation()
 
   useEffect(() => {
@@ -53,7 +53,17 @@ function PageMeta({ title, description }) {
     upsertMeta('twitter:title', 'name', fullTitle)
     upsertMeta('twitter:description', 'name', description)
     upsertLink('canonical', url)
-  }, [title, description, pathname])
+
+    // A hidden page asks crawlers to stay out. Set the robots tag while this page is
+    // mounted, then remove it on unmount so it never leaks onto an indexable route.
+    if (noindex) {
+      upsertMeta('robots', 'name', 'noindex, nofollow')
+      return () => {
+        const el = document.head.querySelector('meta[name="robots"]')
+        if (el) el.remove()
+      }
+    }
+  }, [title, description, pathname, noindex])
 
   return null
 }
