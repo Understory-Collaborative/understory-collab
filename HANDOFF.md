@@ -105,6 +105,8 @@ The **fixed-price audit** = the "honest assessment" every report describes (map 
 
 ## Status log
 
+**TPM self-check (new lead-gen asset, 2026-09-07).** A hidden, self-report reflection at `/tpm-self-check` (noindex, not in nav): 19 statements measuring the five teamwork competencies + a metacognition read, then a derived radar of the five delivery skills, a strongest/room-to-grow read, one focus recommendation, and a CTA to office hours. This is the free rung-1 taste; the **paid** depth is the full three-layer assessment (direct craft measurement, 360, real artifacts, observed work). Framework and rules of use in `review/tpm-competency-assessment.md`; research pointer in the friday repo. Built, hidden, and pending webs's review of the draft item wording and growth guidance. Not psychometrically validated (stamped so on the page).
+
 > Deploy: work lands on the session branch, then a PR into `preview` (merged) so the host builds the latest. PRs #29–#32 (2026-08-19) carried the font docs, a11y audit, olive palette, contact-form Kit switch, assessment rename, CTA de-dup, and design-system doc updates onto `preview`.
 
 **Q&A rung is live end to end.** The 401 was an unpublished form; publishing it fixed it. Submissions land in the Google Form. Product field kept; Stage field removed (SWL vibe-coder framing, not UC's audience).

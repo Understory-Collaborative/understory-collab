@@ -21,6 +21,42 @@ frameworks plus one we argue is missing.
 
 ---
 
+## Two tiers: free lead-gen, paid depth
+
+The assessment is UC's funnel, top to bottom.
+
+| Tier | What it is | Rung |
+|---|---|---|
+| **Free self-check** | A short, self-report reflection. Built at `/tpm-self-check` (hidden). Measures the five teamwork competencies and a metacognition read, then **derives** the five delivery-craft levels and shows a radar plus one place to focus. | Rung 1: free asset that pulls toward connect |
+| **Paid assessment** | The full three-layer instrument used properly: direct craft measurement, a 360, real delivery artifacts, observed work, and the validation track. For a person or a whole team. | "Work with me" |
+
+The free tool also demonstrates the method, which proves competence better than a claim
+(the brand's "samples prove it" rule). It never dead-ends: it closes on office hours and
+the paid depth.
+
+## The mechanic (free tier)
+
+An analogy, not a literal game: teamwork competencies **feed** the delivery skills, and
+metacognition **amplifies** how consistently those skills show up. So the free tool only
+asks about the competencies and metacognition; craft levels are computed:
+
+- `craft level = mean(feeding competencies) × metacognition amplifier` (amplifier maps a
+  1-5 metacognition mean onto ~0.85-1.15), clamped to 1-5.
+- Feeding edges (change control ← handling disagreement + communicating clearly; risk ←
+  solving problems together + planning and coordinating; financial ← planning and
+  coordinating + setting goals; reporting ← communicating clearly + handling disagreement;
+  value ← communicating clearly + setting goals).
+- Reverse-coded items are mixed in and inverted at scoring; the item order is shuffled so
+  the structure is not announced; no raw number is shown, only a shape and a plain-language
+  read. All item wording and growth guidance in `src/data/tpmSelfCheckData.js` is a draft
+  for webs to own.
+
+Deriving craft (rather than asking it directly) is a free-tier choice: it keeps the tool
+short and kills the single-item-per-construct problem. Direct craft measurement belongs to
+the paid tier.
+
+---
+
 ## The three-layer model
 
 Capability is not one list. It is three layers, and they sit under each other. The craft is
@@ -47,6 +83,11 @@ as their own higher-order factor rather than muddying the teamwork factors.
 ---
 
 ## The draft question set (illustrative item pool)
+
+> **Note:** this pool measures the craft skills *directly*, which is the **paid-tier**
+> direction. The built **free** self-check does not use these; it asks about competencies
+> and metacognition and derives craft (see "The mechanic" above). Kept here as the seed for
+> the paid instrument's direct-measurement items.
 
 **Response scale:** 5-point agreement (1 = strongly disagree, 5 = strongly agree). A Likert
 scale gives more information than the MAI's original true/false, which matters for any later

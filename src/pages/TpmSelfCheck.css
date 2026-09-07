@@ -2,7 +2,7 @@
    follows both themes automatically. */
 
 .tsc-page {
-  max-width: 760px;
+  max-width: 720px;
   margin: 0 auto;
   padding: 3rem 1.25rem 5rem;
   color: var(--text-primary);
@@ -38,22 +38,9 @@
   margin: 0 0 1.75rem;
 }
 
-.tsc-callout-title {
-  font-weight: 700;
-  margin: 0 0 0.6rem;
-}
-
-.tsc-callout ul {
-  margin: 0;
-  padding-left: 1.1rem;
-  display: grid;
-  gap: 0.5rem;
-}
-
-.tsc-callout li {
-  line-height: 1.45;
-  color: var(--text-secondary);
-}
+.tsc-callout-title { font-weight: 700; margin: 0 0 0.6rem; }
+.tsc-callout ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.5rem; }
+.tsc-callout li { line-height: 1.45; color: var(--text-secondary); }
 
 .tsc-scale-key {
   display: flex;
@@ -79,37 +66,10 @@
   transition: width 0.3s ease;
 }
 
-.tsc-progress-text {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin: 0.4rem 0 2rem;
-}
+.tsc-progress-text { font-size: 0.9rem; color: var(--text-muted); margin: 0.4rem 0 2rem; }
 
-/* Layers and items -------------------------------------------------------- */
-.tsc-layer {
-  margin-bottom: 2.5rem;
-}
-
-.tsc-layer-name {
-  font-size: 1.5rem;
-  margin: 0 0 0.35rem;
-  padding-bottom: 0.35rem;
-  border-bottom: 2px solid var(--border-accent);
-}
-
-.tsc-layer-blurb {
-  color: var(--text-secondary);
-  line-height: 1.45;
-  margin: 0 0 1.25rem;
-}
-
-.tsc-construct-name {
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin: 1.25rem 0 0.25rem;
-}
+/* Items ------------------------------------------------------------------- */
+.tsc-items { list-style: none; margin: 0; padding: 0; }
 
 .tsc-item {
   border: 0;
@@ -123,17 +83,11 @@
   justify-content: space-between;
 }
 
-.tsc-item-text {
-  flex: 1 1 320px;
-  line-height: 1.4;
-  padding: 0;
-}
+.tsc-item-text { flex: 1 1 300px; line-height: 1.4; padding: 0; }
+.tsc-item-num { color: var(--text-muted); font-variant-numeric: tabular-nums; }
 
 /* Scale ------------------------------------------------------------------- */
-.tsc-scale {
-  display: flex;
-  gap: 0.4rem;
-}
+.tsc-scale { display: flex; gap: 0.4rem; }
 
 .tsc-scale-option {
   width: 2.75rem;
@@ -149,9 +103,7 @@
   transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
-.tsc-scale-option:hover {
-  border-color: var(--border-accent);
-}
+.tsc-scale-option:hover { border-color: var(--border-accent); }
 
 .tsc-scale-option.is-checked {
   background: var(--action);
@@ -160,126 +112,100 @@
   font-weight: 700;
 }
 
-.tsc-scale-option:focus-within {
-  outline: 3px solid var(--focus-color);
-  outline-offset: 2px;
-}
-
-.tsc-scale-num {
-  font-size: 1rem;
-  line-height: 1;
-}
+.tsc-scale-option:focus-within { outline: 3px solid var(--focus-color); outline-offset: 2px; }
+.tsc-scale-num { font-size: 1rem; line-height: 1; }
 
 /* Actions ----------------------------------------------------------------- */
-.tsc-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin: 1rem 0 2.5rem;
-}
+.tsc-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.25rem 0 2.5rem; }
 
 /* Result ------------------------------------------------------------------ */
-.tsc-result {
-  scroll-margin-top: 1.5rem;
-  border-top: 2px solid var(--border-accent);
-  padding-top: 1.75rem;
-}
+.tsc-result { scroll-margin-top: 1.5rem; border-top: 2px solid var(--border-accent); padding-top: 1.75rem; }
+.tsc-result:focus { outline: none; }
+.tsc-result h2 { margin: 0 0 0.75rem; font-size: 1.6rem; }
+.tsc-result-note { color: var(--text-muted); margin: 0 0 0.75rem; }
+.tsc-result-frame { color: var(--text-secondary); line-height: 1.5; margin: 0 0 1.5rem; }
 
-.tsc-result:focus {
-  outline: none;
-}
+/* Radar ------------------------------------------------------------------- */
+.tsc-radar-figure { margin: 0 0 1.75rem; display: flex; justify-content: center; }
 
-.tsc-result h2 {
-  margin: 0 0 0.75rem;
-  font-size: 1.6rem;
+.tsc-radar { width: 100%; max-width: 360px; height: auto; overflow: visible; }
+.tsc-radar-ring { fill: none; stroke: var(--border-subtle); stroke-width: 1; }
+.tsc-radar-axis { stroke: var(--border-subtle); stroke-width: 1; }
+.tsc-radar-area {
+  fill: color-mix(in srgb, var(--action) 30%, transparent);
+  stroke: var(--action);
+  stroke-width: 2;
+  stroke-linejoin: round;
 }
+.tsc-radar-dot { fill: var(--action); }
+.tsc-radar-label { fill: var(--text-secondary); font-size: 0.72rem; font-weight: 600; }
 
-.tsc-result-note {
-  color: var(--text-muted);
-  margin: 0 0 0.75rem;
-}
+/* Reads ------------------------------------------------------------------- */
+.tsc-reads { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.75rem; }
 
-.tsc-result-frame {
-  color: var(--text-secondary);
-  line-height: 1.5;
-  margin: 0 0 1.75rem;
-}
-
-.tsc-profile {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.tsc-profile-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.4rem;
-}
-
-.tsc-profile-name {
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-.tsc-profile-score {
-  font-variant-numeric: tabular-nums;
-  color: var(--text-secondary);
-}
-
-.tsc-meter {
-  height: 12px;
-  background: var(--surface-hover);
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.tsc-meter-fill {
-  height: 100%;
-  background: var(--action);
-  border-radius: 999px;
-  transition: width 0.4s ease;
-}
-
-.tsc-profile-band {
-  margin: 0.5rem 0 0;
-  color: var(--text-secondary);
-  line-height: 1.4;
-  font-size: 0.95rem;
-}
-
-.tsc-debrief {
-  margin-top: 2.5rem;
-  padding: 1.25rem 1.5rem;
-  border: 1px dashed var(--border-default);
+.tsc-read {
+  flex: 1 1 200px;
+  border: 1px solid var(--border-default);
   border-radius: 10px;
+  padding: 1rem 1.25rem;
+  background: var(--surface-card);
 }
 
-.tsc-debrief h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1.05rem;
+.tsc-read-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 0.35rem;
 }
 
-.tsc-debrief p {
-  margin: 0;
-  color: var(--text-secondary);
-  line-height: 1.45;
+.tsc-read-value { font-size: 1.2rem; font-weight: 700; margin: 0; }
+/* A left rule carries the strong/grow distinction; the label carries it in text too. */
+.tsc-read--strong { border-left: 4px solid var(--action); }
+.tsc-read--grow { border-left: 4px solid var(--accent-warm, var(--border-strong)); }
+
+/* Focus + meta reads ------------------------------------------------------ */
+.tsc-focus,
+.tsc-meta-read { margin-bottom: 1.75rem; }
+.tsc-focus h3,
+.tsc-meta-read h3,
+.tsc-next h3,
+.tsc-debrief h3 { font-size: 1.1rem; margin: 0 0 0.5rem; }
+.tsc-focus p,
+.tsc-meta-read p { line-height: 1.5; color: var(--text-secondary); margin: 0 0 0.5rem; }
+.tsc-focus-action {
+  border-left: 3px solid var(--border-accent);
+  padding-left: 0.9rem;
+  color: var(--text-primary);
 }
 
-/* Print: drop the interactive chrome, keep the answers and profile ---------- */
+/* Table (text equivalent of the radar) ------------------------------------ */
+.tsc-table { width: 100%; border-collapse: collapse; margin: 0 0 2rem; }
+.tsc-table caption { text-align: left; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+.tsc-table th,
+.tsc-table td { text-align: left; padding: 0.55rem 0.5rem; border-bottom: 1px solid var(--border-subtle); }
+.tsc-table thead th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); }
+.tsc-table tbody th { font-weight: 600; }
+
+/* Next + debrief ---------------------------------------------------------- */
+.tsc-next {
+  border: 1px solid var(--border-accent);
+  border-radius: 10px;
+  background: var(--brand-tint);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.tsc-next p { color: var(--text-secondary); line-height: 1.5; margin: 0 0 1rem; }
+.tsc-next-alt { font-size: 0.95rem; }
+
+.tsc-debrief { padding: 1.25rem 1.5rem; border: 1px dashed var(--border-default); border-radius: 10px; }
+.tsc-debrief p { margin: 0; color: var(--text-secondary); line-height: 1.45; }
+
+/* Print ------------------------------------------------------------------- */
 @media print {
   .tsc-actions,
   .tsc-progress,
-  .tsc-progress-text {
-    display: none;
-  }
-
-  .tsc-page {
-    max-width: none;
-    color: #000;
-  }
-
-  .tsc-scale-option.is-checked {
-    outline: 2px solid #000;
-  }
+  .tsc-progress-text { display: none; }
+  .tsc-page { max-width: none; color: #000; }
+  .tsc-scale-option.is-checked { outline: 2px solid #000; }
 }
