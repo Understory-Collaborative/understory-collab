@@ -65,9 +65,9 @@ export const COMPETENCIES = [
     id: 'coord',
     name: 'Planning and coordinating',
     items: [
-      { id: 'n1', text: 'I keep roles, handoffs, and workload clear across the people involved.' },
-      { id: 'n2', text: 'I sequence the work so the right things happen in the right order.' },
-      { id: 'n3', text: 'Coordination on my projects often happens reactively, not by plan.', reverse: true },
+      { id: 'n1', text: 'I make sure work passes cleanly from one person to the next, so nothing drops in the gaps.' },
+      { id: 'n2', text: 'I make sure everyone knows who is responsible for what.' },
+      { id: 'n3', text: 'I tend to sort out coordination as we go rather than planning it up front.', reverse: true },
     ],
   },
 ]
@@ -80,7 +80,7 @@ export const METACOGNITION = {
     { id: 'x1', text: 'I regularly step back to check whether my approach is still working.' },
     { id: 'x2', text: 'When my approach stops working, I change it rather than push harder on it.' },
     { id: 'x3', text: 'I usually only see what I should have done differently in hindsight.', reverse: true },
-    { id: 'x4', text: 'I have a clear read on my own strengths and blind spots as a delivery lead.' },
+    { id: 'x4', text: 'I know my own strengths and blind spots as a delivery lead.' },
   ],
 }
 
@@ -98,7 +98,7 @@ export const CRAFT_SKILLS = [
 export const GROWTH_ACTIONS = {
   conflict: 'Name the disagreement out loud early, and separate the decision from the person. Rehearse the pushback before the meeting.',
   collab: 'Before grinding solo, ask who holds the missing piece and bring them in. Say plainly when a call is yours to make versus the group’s.',
-  comm: 'Write every update as three lines: what is true, what it means, what is next. Then check the reader took away those three.',
+  comm: 'Write every update as three lines: what is true, what it means, what is next. Then check they actually got those three.',
   goals: 'Turn a fuzzy ask into one specific, measurable target before work starts, and give feedback against it while there is still time to act.',
   coord: 'Map roles, handoffs, and sequence at the start, and keep the plan visible so coordination is proactive, not reactive.',
 }

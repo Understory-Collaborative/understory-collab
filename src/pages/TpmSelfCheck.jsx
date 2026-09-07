@@ -134,7 +134,7 @@ function TpmSelfCheck() {
         </p>
 
         <div className="tsc-callout" role="note">
-          <p className="tsc-callout-title">Read this first</p>
+          <p className="tsc-callout-title">Start here</p>
           <ul>
             <li><strong>This is a mirror, not a test.</strong> A working draft, grounded in research but not yet validated.</li>
             <li><strong>It is for growth, not judgment.</strong> Nothing here ranks or grades you.</li>
@@ -219,7 +219,7 @@ function TpmSelfCheck() {
         {complete && (
           <>
             <p className="tsc-result-frame">
-              A shape, not a score. It reads how your teamwork habits and self-awareness show
+              A shape, not a score. It shows how your teamwork habits and self-awareness show
               up across the five delivery skills. Check it against your real work.
             </p>
 
@@ -283,7 +283,7 @@ function TpmSelfCheck() {
             <table className="tsc-table">
               <caption>Your delivery skills, strongest to most room to grow</caption>
               <thead>
-                <tr><th scope="col">Delivery skill</th><th scope="col">Read</th></tr>
+                <tr><th scope="col">Delivery skill</th><th scope="col">Strength</th></tr>
               </thead>
               <tbody>
                 {CRAFT_SKILLS
