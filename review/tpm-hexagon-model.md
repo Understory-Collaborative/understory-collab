@@ -128,60 +128,76 @@ same as before.
 
 ---
 
-## Archetypes: the shape is the type
+## Archetypes: the recognizable people
 
-An archetype is read off the person's own hexagon, so one self-report is enough (the
-2026-09-07 workshop steer: a profile, not more data). The dominant region of the hexagon
-places the person; the complementary region names who strengthens them.
+An archetype earns a place because it is a person you would recognize the moment they walk
+into a standup, not because a cell in a pair-grid needs filling. The set below is built from
+how the skill-pairings actually manifest at work.
 
 **This whole set is a draft for webs to own.** Per the assessment doc, the archetype set is
-explicitly hers to decide. Below is a proposal built from the shape logic and the role
-thesis, not a settled answer. The role mappings especially are editorial characterizations
-webs should confirm or rewrite.
+explicitly hers, and the role mappings are editorial characterizations she should confirm or
+rewrite. The behavioral reads and the axis weights are illustrative starting points.
 
-### The draft archetype set
+### The geometry, read as behavior
 
-Arranged so opposite axes sit across the hexagon: tactical opposite strategic, technical
-opposite communication, creativity opposite leadership & collaboration.
+The hexagon's shape carries a real pattern: skills next to each other reinforce, skills
+across from each other fight.
 
-| Archetype | Spikes | Role flavor (draft) | The one-line read |
+- **Adjacent skills are natural allies.** They co-occur, so their people are common and
+  everyday. These make up the main roster.
+- **Opposite skills are in tension** (March's whole argument about exploration and
+  exploitation). Holding both is rare, so those people read as senior or unicorn. They make
+  up a separate, rarer tier.
+- **The pair is only the headline.** The rest of a person's shape flavors it, so nobody is
+  flattened to two words and nobody is homeless.
+
+### The everyday roster
+
+Each is a headline pair, the behavior it shows up as, the role flavor, the research anchor,
+and the complement who covers their weak region.
+
+| Archetype | Headline | Who this is at work | Role flavor | Anchor | Teams up with |
+|---|---|---|---|---|---|
+| **The Operator** | Tactical + Technical | Gets paged and fixes it. Hands in the system, stops the outage today. | senior engineer / tech lead | March exploitation; T-shaped depth | Navigator |
+| **The Firefighter** | Tactical + Creativity | Stops the bleeding today, and improvises when the standard path is blocked. | rescue TPM | March exploitation; Amabile | Navigator |
+| **The Architect** | Technical + Strategic | Designs the system to last. Deep tradeoffs and the long horizon in one head. | software architect | T-shaped; March exploration / Jaques | Conductor |
+| **The Visionary** | Creativity + Strategic | Reimagines where the product could go in three years, and sees a non-obvious path there. | innovation lead | Amabile; March exploration | Steward |
+| **The Navigator** | Strategic + Communication | Sees where the product must go, and sells the multi-year bet in plain terms. | product manager | March exploration; Stevens & Campion | Operator |
+| **The Conductor** | Communication + Leadership | Gets many teams moving together and keeps everyone knowing what is true. | program manager | Stevens & Campion | Architect |
+| **The Steward** | Tactical + Leadership | Rallies the team through the crunch and keeps everyone unblocked, day to day. | product owner / project manager | Stevens & Campion; March exploitation | Visionary |
+| **The Renaissance** | balanced, no spike | Native in all six. The whole shape the others are each a slice of. | the full TPM (the unicorn) | all six | any, to add depth |
+
+The Renaissance is the thesis made visible: the neighboring roles are each a spike off the
+same hexagon, and the rare balanced profile is the whole thing. It is also webs's own shape,
+which the TPM domain doc argues is a unicorn and a single point of failure until the
+capability is built into a team.
+
+Every axis is a headline in at least two archetypes, so no corner of the hexagon is starved.
+Tactical and strategic each headline three, which fits: they are the ambidexterity core the
+whole model turns on.
+
+### The rare tier: people who hold a tension
+
+When someone spikes two *opposite* axes, they are holding a contradiction most people cannot.
+These read as senior, and holding all six is the Renaissance.
+
+| Archetype | Tension | Who this is at work | Anchor |
 |---|---|---|---|
-| **The Firefighter** | Tactical + Creativity | rescue TPM | Stops the bleeding today, improvises when the standard path is blocked. |
-| **The Architect** | Technical + Strategic | software architect | Holds the long horizon and the deep technical tradeoffs in one head. |
-| **The Navigator** | Strategic + Communication | product manager | Sees where the product must go and makes the case for it in plain terms. |
-| **The Conductor** | Leadership & Collaboration + Communication | program manager | Gets many teams moving together and keeps everyone knowing what is true. |
-| **The Steward** | Tactical + Leadership & Collaboration | product owner / project manager | Keeps the team unblocked and the work moving, day to day. |
-| **The Renaissance** | balanced, no single spike | the full TPM (the unicorn) | Native in all six; the shape the others are each a slice of. |
+| **The Ambidextrous** | Tactical + Strategic | Stops the bleeding today without mortgaging the three-year plan. The senior TPM move. | March, organizational ambidexterity |
+| **The Translator** | Technical + Communication | Native in the code, and can make an exec care about the invisible work. | the native-fluency case in the TPM doc |
+| **The Catalyst** | Creativity + Leadership | Invents the wild idea and gets the team to actually commit to shipping it. | Amabile; team leadership |
 
-The Renaissance archetype is the thesis made visible: the neighboring roles are each a spike
-off the same hexagon, and the rare balanced profile is the whole thing. It is also webs's
-own shape, which the TPM domain doc already argues is a unicorn and a single point of
-failure until the capability is built into a team.
+### Assignment: nearest shape, not exact pair
 
-### Pairing (strengths-first, not deficit)
+A profile maps to the archetype whose shape it most resembles, not to whichever exact top-two
+it happens to have. So a Creativity + Strategic person lands on the Visionary even if their
+raw top-two is not a named pair, and we can report the strength of the match ("82% Visionary,
+leaning Architect"). This is what closes the coverage gap: nobody is ever told their pairing
+does not exist, because we never claim their raw top-two is a type.
 
-The complement is the archetype that spikes your low axes. The wording is "here is who
-strengthens you," never "go fix your weak area."
-
-| Archetype | Teams up with (draft) | Because |
-|---|---|---|
-| Firefighter | Architect | now-and-improvise meets long-horizon-and-deep-technical |
-| Navigator | Steward | strategy-and-story meets day-to-day execution |
-| Conductor | Architect | orchestration meets technical depth |
-| Renaissance | any | already balanced; pairs to add depth, not to fill a gap |
-
-On the paid team tier this same set composes a team: who pairs with whom, and where the
-group's mix is thin. That is the existing team-composition read, unchanged.
-
-### Assignment rule (open)
-
-How a shape becomes an archetype is a design decision still open:
-
-- **Dominant pair** (drafted above): the top two axes name the type. Richer, role-like, but
-  needs a tie rule and a "balanced" threshold for Renaissance.
-- **Dominant single axis**: simpler, fewer types, less role-like.
-
-**[webs decides]** which rule, and whether the archetype set is the six above or her own.
+**Open for webs:** whether the everyday roster is these seven, whether the rare tier stays a
+separate tier or its members become full archetypes, and the exact behavioral wording and
+role mappings.
 
 ---
 
