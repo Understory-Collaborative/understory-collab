@@ -125,6 +125,66 @@
 .tsc-result-note { color: var(--text-muted); margin: 0 0 0.75rem; }
 .tsc-result-frame { color: var(--text-secondary); line-height: 1.5; margin: 0 0 1.5rem; }
 
+/* Archetype result card --------------------------------------------------- */
+.tsc-archetype {
+  border: 1px solid var(--border-accent);
+  border-left: 4px solid var(--action);
+  border-radius: 12px;
+  background: var(--brand-tint);
+  padding: 1.5rem 1.5rem 1.6rem;
+  margin: 0 0 1.75rem;
+}
+.tsc-archetype-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 0.35rem;
+}
+.tsc-archetype-lean { text-transform: none; letter-spacing: 0; color: var(--accent-warm-text); }
+.tsc-archetype-name {
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0 0 0.35rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.tsc-rare-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-warm-text);
+  border: 1px solid var(--accent-warm-text);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+}
+.tsc-archetype-role {
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 0 0 0.9rem;
+}
+.tsc-archetype-read { font-size: 1.1rem; line-height: 1.5; color: var(--text-primary); margin: 0 0 1rem; }
+.tsc-archetype-pair { font-size: 0.95rem; line-height: 1.5; color: var(--text-secondary); margin: 0; }
+.tsc-archetype-pair-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-right: 0.15rem;
+}
+
+/* Derived product skills -------------------------------------------------- */
+.tsc-product { margin-bottom: 1.75rem; }
+.tsc-product h3 { font-size: 1.1rem; margin: 0 0 0.5rem; }
+.tsc-product-frame { color: var(--text-secondary); line-height: 1.5; margin: 0 0 1rem; }
+
 /* Radar ------------------------------------------------------------------- */
 .tsc-radar-figure { margin: 0 0 1.75rem; display: flex; justify-content: center; }
 

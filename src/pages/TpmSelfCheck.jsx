@@ -3,20 +3,21 @@ import { Link } from 'react-router-dom'
 import PageMeta from '../components/PageMeta'
 import {
   SCALE,
-  COMPETENCIES,
-  CRAFT_SKILLS,
-  GROWTH_ACTIONS,
+  AXES,
+  PRODUCT_SKILLS,
   PRESENTATION_ORDER,
   ITEM_INDEX,
   TOTAL_ITEMS,
   LEVELS,
   scoreResponses,
+  assignArchetype,
+  strongestAxes,
   levelBand,
   metacognitionRead,
 } from '../data/tpmSelfCheckData'
 import './TpmSelfCheck.css'
 
-const STORAGE_KEY = 'uc-tpm-self-check-v2'
+const STORAGE_KEY = 'uc-tpm-self-check-v3'
 
 function loadSaved() {
   try {
@@ -35,22 +36,19 @@ function listWithAnd(items) {
   return `${items.slice(0, -1).join(', ')}, and ${items[items.length - 1]}`
 }
 
-const compName = (id) => COMPETENCIES.find((c) => c.id === id)?.name ?? id
-const craftName = (id) => CRAFT_SKILLS.find((c) => c.id === id)?.name ?? id
-// How many craft skills each competency feeds (its leverage).
-const feedCount = (compId) => CRAFT_SKILLS.filter((s) => s.fedBy.includes(compId)).length
+const axisById = (id) => AXES.find((a) => a.id === id)
+const axisName = (id) => axisById(id)?.name ?? id
 
-// Radar geometry for the five craft skills.
-function radarPoints(levels, radius, cx, cy) {
-  const n = CRAFT_SKILLS.length
-  return CRAFT_SKILLS.map((skill, i) => {
+// Radar geometry for the six durable skills. Angle starts at top, goes clockwise.
+function radarPoints(axisLevels, radius, cx, cy) {
+  const n = AXES.length
+  return AXES.map((axis, i) => {
     const angle = -Math.PI / 2 + (i * 2 * Math.PI) / n
-    const level = levels[skill.id]
+    const level = axisLevels[axis.id]
     const r = level == null ? 0 : (level / 5) * radius
     return {
-      id: skill.id,
-      name: skill.name,
-      short: skill.short,
+      id: axis.id,
+      short: axis.short,
       axisX: cx + radius * Math.cos(angle),
       axisY: cy + radius * Math.sin(angle),
       x: cx + r * Math.cos(angle),
@@ -58,6 +56,15 @@ function radarPoints(levels, radius, cx, cy) {
       angle,
     }
   })
+}
+
+// Hexagon ring polygons at fractions of the radius, so the grid matches the shape.
+function ringPolygon(fraction, radius, cx, cy) {
+  const n = AXES.length
+  return AXES.map((_, i) => {
+    const angle = -Math.PI / 2 + (i * 2 * Math.PI) / n
+    return `${cx + fraction * radius * Math.cos(angle)},${cy + fraction * radius * Math.sin(angle)}`
+  }).join(' ')
 }
 
 function TpmSelfCheck() {
@@ -101,27 +108,20 @@ function TpmSelfCheck() {
 
   const score = scoreResponses(responses)
 
-  // Strongest and growth craft (only meaningful when complete).
-  let strongest = null
-  let growth = null
-  let focus = null
+  // Archetype and strengths (only meaningful when complete).
+  let match = null
+  let topAxes = []
   if (complete) {
-    const craftEntries = CRAFT_SKILLS.map((s) => ({ id: s.id, level: score.craft[s.id] }))
-    strongest = craftEntries.reduce((a, b) => (b.level > a.level ? b : a))
-    growth = craftEntries.reduce((a, b) => (b.level < a.level ? b : a))
-    // Highest-leverage competency to focus: low score, feeds many skills.
-    focus = COMPETENCIES.map((c) => ({
-      id: c.id,
-      deficit: (5 - score.competencies[c.id]) * feedCount(c.id),
-    })).reduce((a, b) => (b.deficit > a.deficit ? b : a))
+    match = assignArchetype(score.profile)
+    topAxes = strongestAxes(score.axes)
   }
 
   // Radar SVG dimensions.
-  const SIZE = 320
+  const SIZE = 300
   const CX = SIZE / 2
   const CY = SIZE / 2
-  const R = 100
-  const points = radarPoints(complete ? score.craft : {}, R, CX, CY)
+  const R = 96
+  const points = radarPoints(complete ? score.axes : {}, R, CX, CY)
   const polygon = points.map((p) => `${p.x},${p.y}`).join(' ')
   const rings = [0.25, 0.5, 0.75, 1]
 
@@ -129,7 +129,7 @@ function TpmSelfCheck() {
     <div className="tsc-page">
       <PageMeta
         title="TPM self-check"
-        description="A private, unvalidated self-reflection for technical product managers, showing where you are strong and where to grow. For your own development. Your answers stay on your device."
+        description="A private, unvalidated self-reflection for technical product managers. It maps your six durable skills and names the archetype your shape is closest to. For your own development. Your answers stay on your device."
         noindex
       />
 
@@ -140,8 +140,8 @@ function TpmSelfCheck() {
         <div className="tsc-callout" role="note">
           <p className="tsc-callout-title">Start here</p>
           <ul>
-            <li><strong>This is a mirror to think with.</strong> A working draft, grounded in research and not yet validated.</li>
-            <li><strong>It points you to where to grow.</strong> It is not pass/fail, and it never compares you to anyone else.</li>
+            <li><strong>Six durable skills, one shape.</strong> You answer for the six, and the shape of your hexagon names the archetype you are closest to.</li>
+            <li><strong>It leads with your strengths.</strong> It is not pass/fail, and it never compares you to anyone else. A working draft, grounded in research and not yet validated.</li>
             <li><strong>Your answers stay on your device.</strong> Nothing is sent anywhere.</li>
           </ul>
         </div>
@@ -204,38 +204,52 @@ function TpmSelfCheck() {
 
       <div className="tsc-actions">
         <button className="btn btn-primary btn-large" onClick={handleSeeResults} disabled={!complete}>
-          {complete ? 'See your map' : `Answer all ${TOTAL_ITEMS} to see your map`}
+          {complete ? 'See your shape' : `Answer all ${TOTAL_ITEMS} to see your shape`}
         </button>
         <button className="btn btn-secondary" onClick={() => window.print()}>Print</button>
         <button className="btn btn-secondary" onClick={handleReset} disabled={answeredCount === 0}>Clear</button>
       </div>
 
       <section className="tsc-result" aria-labelledby="tsc-result-heading" ref={resultRef} tabIndex={-1}>
-        <h2 id="tsc-result-heading">Your map</h2>
+        <h2 id="tsc-result-heading">Your shape</h2>
 
         {!complete && (
           <p className="tsc-result-note">
-            Answer all {TOTAL_ITEMS} statements and your map appears here: your five delivery
-            strengths, and where to focus next.
+            Answer all {TOTAL_ITEMS} statements and your hexagon appears here: your six durable
+            skills, the archetype your shape is closest to, and who complements you.
           </p>
         )}
 
         {complete && (
           <>
-            <p className="tsc-result-frame">
-              This shows how your teamwork habits and self-awareness play out across the five
-              delivery skills. Treat it as a starting point, and check it against your real work.
-            </p>
+            <div className="tsc-archetype">
+              <p className="tsc-archetype-label">
+                You are closest to
+                {match.leaning && match.secondary ? (
+                  <span className="tsc-archetype-lean">, leaning {match.secondary.name}</span>
+                ) : null}
+              </p>
+              <p className="tsc-archetype-name">
+                {match.primary.name}
+                {match.primary.rare && <span className="tsc-rare-tag">Rare</span>}
+              </p>
+              <p className="tsc-archetype-role">{match.primary.role}</p>
+              <p className="tsc-archetype-read">{match.primary.read}</p>
+              <p className="tsc-archetype-pair">
+                <span className="tsc-archetype-pair-label">Team up with</span>{' '}
+                <strong>{match.primary.complement}</strong>, who covers the skills you lean on least.
+              </p>
+            </div>
 
             <figure className="tsc-radar-figure">
               <svg
                 className="tsc-radar"
                 viewBox={`0 0 ${SIZE} ${SIZE}`}
                 role="img"
-                aria-label={`Delivery strengths. Strongest: ${craftName(strongest.id)}. Most room to grow: ${craftName(growth.id)}.`}
+                aria-label={`Your durable-skills hexagon. Strongest: ${axisName(topAxes[0])} and ${axisName(topAxes[1])}.`}
               >
                 {rings.map((ring) => (
-                  <circle key={ring} cx={CX} cy={CY} r={R * ring} className="tsc-radar-ring" />
+                  <polygon key={ring} points={ringPolygon(ring, R, CX, CY)} className="tsc-radar-ring" />
                 ))}
                 {points.map((p) => (
                   <line key={p.id} x1={CX} y1={CY} x2={p.axisX} y2={p.axisY} className="tsc-radar-axis" />
@@ -245,8 +259,8 @@ function TpmSelfCheck() {
                   <circle key={p.id} cx={p.x} cy={p.y} r={4} className="tsc-radar-dot" />
                 ))}
                 {points.map((p) => {
-                  const outX = CX + (R + 6) * Math.cos(p.angle)
-                  const outY = CY + (R + 6) * Math.sin(p.angle)
+                  const outX = CX + (R + 16) * Math.cos(p.angle)
+                  const outY = CY + (R + 16) * Math.sin(p.angle)
                   const anchor = Math.abs(outX - CX) < 12 ? 'middle' : outX > CX ? 'start' : 'end'
                   return (
                     <text key={p.id} x={outX} y={outY} textAnchor={anchor} className="tsc-radar-label" dominantBaseline="middle">
@@ -257,26 +271,11 @@ function TpmSelfCheck() {
               </svg>
             </figure>
 
-            <div className="tsc-reads">
-              <div className="tsc-read tsc-read--strong">
-                <p className="tsc-read-label">Strongest</p>
-                <p className="tsc-read-value">{craftName(strongest.id)}</p>
-              </div>
-              <div className="tsc-read tsc-read--grow">
-                <p className="tsc-read-label">Most room to grow</p>
-                <p className="tsc-read-value">{craftName(growth.id)}</p>
-              </div>
-            </div>
-
-            <div className="tsc-focus">
-              <h3>Where to focus first</h3>
-              <p>
-                <strong>{compName(focus.id)}.</strong> It feeds{' '}
-                {listWithAnd(CRAFT_SKILLS.filter((s) => s.fedBy.includes(focus.id)).map((s) => s.name.toLowerCase()))}
-                , so growing it strengthens more than one skill at once.
-              </p>
-              <p className="tsc-focus-action">{GROWTH_ACTIONS[focus.id]}</p>
-            </div>
+            <p className="tsc-result-frame">
+              Your shape names the archetype, not your job title. The two skills you scored
+              highest, <strong>{axisName(topAxes[0])}</strong> and <strong>{axisName(topAxes[1])}</strong>,
+              are what put you there. Treat it as a starting point, and check it against your real work.
+            </p>
 
             <div className="tsc-meta-read">
               <h3>How consistently it shows up</h3>
@@ -288,21 +287,21 @@ function TpmSelfCheck() {
               Level runs low to high: {LEVELS.map((l) => l.label).join(', ')}.
             </p>
             <table className="tsc-table">
-              <caption>What the five delivery skills mean, and where you are, strongest first</caption>
+              <caption>Your six durable skills, strongest first</caption>
               <thead>
-                <tr><th scope="col">Delivery skill</th><th scope="col">Level</th></tr>
+                <tr><th scope="col">Durable skill</th><th scope="col">Level</th></tr>
               </thead>
               <tbody>
-                {CRAFT_SKILLS
-                  .map((s) => ({ id: s.id, name: s.name, def: s.def, level: score.craft[s.id] }))
+                {AXES
+                  .map((a) => ({ id: a.id, name: a.name, def: a.blurb, level: score.axes[a.id] }))
                   .sort((a, b) => b.level - a.level)
-                  .map((s) => {
-                    const band = levelBand(s.level)
+                  .map((a) => {
+                    const band = levelBand(a.level)
                     return (
-                      <tr key={s.id}>
+                      <tr key={a.id}>
                         <th scope="row">
-                          {s.name}
-                          <span className="tsc-craft-def">{s.def}</span>
+                          {a.name}
+                          <span className="tsc-craft-def">{a.def}</span>
                         </th>
                         <td>
                           <span className="tsc-level">
@@ -323,12 +322,58 @@ function TpmSelfCheck() {
               </tbody>
             </table>
 
+            <div className="tsc-product">
+              <h3>What the six set you up for</h3>
+              <p className="tsc-product-frame">
+                The product skills below are not asked directly. They are what your durable
+                skills add up to, amplified by how consistently they show up.
+              </p>
+              <table className="tsc-table">
+                <caption>Product skills, built on the durable foundation</caption>
+                <thead>
+                  <tr><th scope="col">Product skill</th><th scope="col">Level</th></tr>
+                </thead>
+                <tbody>
+                  {PRODUCT_SKILLS
+                    .map((s) => ({ ...s, level: score.product[s.id] }))
+                    .sort((a, b) => b.level - a.level)
+                    .map((s) => {
+                      const band = levelBand(s.level)
+                      return (
+                        <tr key={s.id}>
+                          <th scope="row">
+                            {s.name}
+                            <span className="tsc-craft-def">
+                              {s.def} Built on {listWithAnd(s.fedBy.map((id) => axisName(id).toLowerCase()))}.
+                            </span>
+                          </th>
+                          <td>
+                            <span className="tsc-level">
+                              <span className="tsc-level-dots" aria-hidden="true">
+                                {LEVELS.map((lvl, i) => (
+                                  <span key={lvl.id} className={`tsc-level-dot ${i <= band.index ? 'is-on' : ''}`} />
+                                ))}
+                              </span>
+                              <span className="tsc-level-label">
+                                {band.label}
+                                <span className="sr-only"> ({band.index + 1} of {LEVELS.length})</span>
+                              </span>
+                            </span>
+                          </td>
+                        </tr>
+                      )
+                    })}
+                </tbody>
+              </table>
+            </div>
+
             <div className="tsc-next" aria-labelledby="tsc-next-heading">
               <h3 id="tsc-next-heading">Want the real picture?</h3>
               <p>
                 This is a self-report snapshot. The full assessment adds a 360 from the people
                 you work with, a look at your actual delivery artifacts, and time watching the
-                work in flight, for you or your whole team.
+                work in flight, for you or your whole team, where the archetypes become a
+                team-composition read: who pairs with whom, and where the group is thin.
               </p>
               <Link to="/office-hours" className="btn btn-primary">Talk it through at office hours</Link>
               <p className="tsc-next-alt">
@@ -340,7 +385,8 @@ function TpmSelfCheck() {
               <h3>For the pilot debrief</h3>
               <p>
                 Which statements were unclear, felt off, or did not fit the work you actually
-                do? Those are the items to fix. Print this and bring your notes.
+                do? Did the archetype match how you see yourself? Those are the notes to bring.
+                Print this and mark it up.
               </p>
             </div>
           </>
