@@ -196,10 +196,11 @@ raw top-two is not a named pair, and we can report the strength of the match ("8
 leaning Architect"). This is what closes the coverage gap: nobody is ever told their pairing
 does not exist, because we never claim their raw top-two is a type.
 
-**Decided:** the three tension types are full types in the roster, tagged **Rare** (webs,
-2026-09-14). **Open for webs:** the roster count (seven common plus three rare, or trim, for
-example merging Operator and Firefighter), the names (Captain replaced Ambidextrous), and the
-exact behavioral wording and role mappings.
+**Decided (webs, 2026-09-14):** the three tension types are full types in the roster, tagged
+**Rare**; the Tactical + Strategic type is **The Captain**. **Open for webs:** the roster
+count (seven common plus three rare, or trim, for example merging Operator and Firefighter,
+or bringing back a Prototyper for Technical + Creativity), and the exact behavioral wording
+and role mappings.
 
 ---
 
