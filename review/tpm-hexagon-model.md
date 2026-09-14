@@ -159,6 +159,7 @@ and the complement who covers their weak region.
 | Archetype | Headline | Who this is at work | Role flavor | Anchor | Teams up with |
 |---|---|---|---|---|---|
 | **The Operator** | Tactical + Technical | Gets paged and fixes it. Knows the system deep enough to stop the outage today. | senior engineer / tech lead | March exploitation; T-shaped depth | Navigator |
+| **The Prototyper** | Technical + Creativity | "Let me just build it and show you." Spikes a working prototype over a weekend to prove the idea is real. | creative technologist / founding engineer | T-shaped; Amabile | Conductor |
 | **The Firefighter** | Tactical + Creativity | Stops the bleeding today, and improvises when the standard path is blocked. | rescue TPM | March exploitation; Amabile | Navigator |
 | **The Architect** | Technical + Strategic | Designs the system to last. Deep tradeoffs and the long horizon in one head. | software architect | T-shaped; March exploration / Jaques | Conductor |
 | **The Visionary** | Creativity + Strategic | Reimagines where the product could go in three years, and sees a non-obvious path there. | innovation lead | Amabile; March exploration | Steward |
@@ -178,7 +179,8 @@ deep system knowledge; the Firefighter improvises a way through. Kept as two, no
 
 Every axis is a headline in at least two archetypes, so no corner of the hexagon is starved.
 Tactical and strategic each headline three, which fits: they are the ambidexterity core the
-whole model turns on.
+whole model turns on. With the Prototyper back, technical and creativity headline three as
+well.
 
 ### The rare types: holding a tension
 
@@ -200,11 +202,10 @@ raw top-two is not a named pair, and we can report the strength of the match ("8
 leaning Architect"). This is what closes the coverage gap: nobody is ever told their pairing
 does not exist, because we never claim their raw top-two is a type.
 
-**Decided (webs, 2026-09-14):** the three tension types are full types in the roster, tagged
-**Rare**; the Tactical + Strategic type is **The Captain**. **Open for webs:** the roster
-count (seven common plus three rare, or trim, for example merging Operator and Firefighter,
-or bringing back a Prototyper for Technical + Creativity), and the exact behavioral wording
-and role mappings.
+**Decided (webs, 2026-09-14):** eight common types plus three rare, tagged **Rare**; the
+Tactical + Strategic type is **The Captain**; Operator and Firefighter stay as sister
+archetypes; the Prototyper is in for Technical + Creativity. **Open for webs:** the exact
+behavioral wording and role mappings.
 
 ---
 
