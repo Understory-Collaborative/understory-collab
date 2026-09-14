@@ -158,7 +158,7 @@ and the complement who covers their weak region.
 
 | Archetype | Headline | Who this is at work | Role flavor | Anchor | Teams up with |
 |---|---|---|---|---|---|
-| **The Operator** | Tactical + Technical | Gets paged and fixes it. Hands in the system, stops the outage today. | senior engineer / tech lead | March exploitation; T-shaped depth | Navigator |
+| **The Operator** | Tactical + Technical | Gets paged and fixes it. Knows the system deep enough to stop the outage today. | senior engineer / tech lead | March exploitation; T-shaped depth | Navigator |
 | **The Firefighter** | Tactical + Creativity | Stops the bleeding today, and improvises when the standard path is blocked. | rescue TPM | March exploitation; Amabile | Navigator |
 | **The Architect** | Technical + Strategic | Designs the system to last. Deep tradeoffs and the long horizon in one head. | software architect | T-shaped; March exploration / Jaques | Conductor |
 | **The Visionary** | Creativity + Strategic | Reimagines where the product could go in three years, and sees a non-obvious path there. | innovation lead | Amabile; March exploration | Steward |
@@ -171,6 +171,10 @@ The Renaissance is the thesis made visible: the neighboring roles are each a spi
 same hexagon, and the rare balanced profile is the whole thing. It is also webs's own shape,
 which the TPM domain doc argues is a unicorn and a single point of failure until the
 capability is built into a team.
+
+Operator and Firefighter are **sister archetypes**: both are Tactical-forward crisis
+responders, coming at the same fire from opposite sides. The Operator resolves it through
+deep system knowledge; the Firefighter improvises a way through. Kept as two, not merged.
 
 Every axis is a headline in at least two archetypes, so no corner of the hexagon is starved.
 Tactical and strategic each headline three, which fits: they are the ambidexterity core the
