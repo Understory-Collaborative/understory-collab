@@ -146,8 +146,8 @@ across from each other fight.
 - **Adjacent skills are natural allies.** They co-occur, so their people are common and
   everyday. These make up the main roster.
 - **Opposite skills are in tension** (March's whole argument about exploration and
-  exploitation). Holding both is rare, so those people read as senior or unicorn. They make
-  up a separate, rarer tier.
+  exploitation). Holding both is rare, so those people read as senior. They are full types
+  you can be, just rarer ones, and the roster tags them as rare.
 - **The pair is only the headline.** The rest of a person's shape flavors it, so nobody is
   flattened to two words and nobody is homeless.
 
@@ -176,14 +176,15 @@ Every axis is a headline in at least two archetypes, so no corner of the hexagon
 Tactical and strategic each headline three, which fits: they are the ambidexterity core the
 whole model turns on.
 
-### The rare tier: people who hold a tension
+### The rare types: holding a tension
 
-When someone spikes two *opposite* axes, they are holding a contradiction most people cannot.
-These read as senior, and holding all six is the Renaissance.
+These are types you can be, just rarer ones. When someone spikes two *opposite* axes, they
+are holding a contradiction most people cannot, so they read as senior. Holding all six is
+the Renaissance. Each carries a **Rare** tag in the roster.
 
 | Archetype | Tension | Who this is at work | Anchor |
 |---|---|---|---|
-| **The Ambidextrous** | Tactical + Strategic | Stops the bleeding today without mortgaging the three-year plan. The senior TPM move. | March, organizational ambidexterity |
+| **The Captain** | Tactical + Strategic | Commands the crisis on deck and owns where the ship is headed over years, without trading one for the other. The senior TPM move. | March, organizational ambidexterity |
 | **The Translator** | Technical + Communication | Native in the code, and can make an exec care about the invisible work. | the native-fluency case in the TPM doc |
 | **The Catalyst** | Creativity + Leadership | Invents the wild idea and gets the team to actually commit to shipping it. | Amabile; team leadership |
 
@@ -195,9 +196,10 @@ raw top-two is not a named pair, and we can report the strength of the match ("8
 leaning Architect"). This is what closes the coverage gap: nobody is ever told their pairing
 does not exist, because we never claim their raw top-two is a type.
 
-**Open for webs:** whether the everyday roster is these seven, whether the rare tier stays a
-separate tier or its members become full archetypes, and the exact behavioral wording and
-role mappings.
+**Decided:** the three tension types are full types in the roster, tagged **Rare** (webs,
+2026-09-14). **Open for webs:** the roster count (seven common plus three rare, or trim, for
+example merging Operator and Firefighter), the names (Captain replaced Ambidextrous), and the
+exact behavioral wording and role mappings.
 
 ---
 
