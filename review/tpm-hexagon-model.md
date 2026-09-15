@@ -126,6 +126,9 @@ Deriving these instead of asking about them keeps the free tool short and avoids
 skill with a single question. Direct measurement of product skills belongs to the paid tier,
 same as before.
 
+The full arithmetic, from a single answer to the final archetype, with a worked example, is in
+`review/tpm-scoring-math.md`.
+
 ---
 
 ## Archetypes: the recognizable people
