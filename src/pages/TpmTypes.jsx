@@ -30,6 +30,7 @@ function TpmTypes() {
       <PageMeta
         title="The TPM types"
         description="Product owner, project manager, program manager, product manager, and software architect are all technical product managers, each leaning on a different pair of the same six durable skills. Explore the shapes."
+        noindex
       />
 
       <section className="page-hero" aria-labelledby="ttypes-heading">
@@ -37,11 +38,9 @@ function TpmTypes() {
           <h1 id="ttypes-heading">The TPM types</h1>
           <p className="page-hero-description">
             Product owner, project manager, program manager, product manager, and software
-            architect look like five different jobs. Underneath, they're one: a technical
-            product manager, each leaning on a different pair of the same six durable skills.
-            Those six make one shape, a hexagon, and every type is that shape with two points
-            pushed out. Find the one closest to yours, then see who covers the points you lean
-            on least.
+            architect read like five different jobs. They're one job done with different
+            strengths, and each is a technical product manager of a different kind. Find the
+            kind that fits you, and see who covers what you lean on least.
           </p>
           <Link to="/tpm-self-check" className="btn btn-primary btn-large">Take the self-check</Link>
         </div>
@@ -51,7 +50,7 @@ function TpmTypes() {
         <div className="section-container">
           <h2 id="ttypes-everyday-heading">Everyday</h2>
           <p className="ttypes-group-intro">
-            The eight common shapes, each with two neighboring skills pushed out.
+            The eight common types. Each leans on two strengths that tend to go together.
           </p>
           <ul className="ttypes-cards" role="list">
             {everyday.map((type) => <TypeCard key={type.id} type={type} />)}
@@ -63,8 +62,8 @@ function TpmTypes() {
         <div className="section-container">
           <h2 id="ttypes-rare-heading">Rare, holding a tension</h2>
           <p className="ttypes-group-intro">
-            These three spike two skills that sit across the hexagon from each other, so they
-            hold a genuine tension. Harder to find, and worth it.
+            These three combine two strengths that usually pull against each other. Rarer,
+            and stronger for it.
           </p>
           <ul className="ttypes-cards" role="list">
             {rare.map((type) => <TypeCard key={type.id} type={type} />)}
@@ -76,7 +75,8 @@ function TpmTypes() {
         <div className="section-container">
           <h2 id="ttypes-polymath-heading">The balanced whole</h2>
           <p className="ttypes-group-intro">
-            Not a spike at all. The full shape the others are each a slice of.
+            Strong across all six, not just two. The generalist the other types are each a
+            piece of.
           </p>
           <ul className="ttypes-cards" role="list">
             <TypeCard type={RENAISSANCE} />

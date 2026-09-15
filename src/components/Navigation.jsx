@@ -8,7 +8,6 @@ import './Navigation.css'
 // and Values are retired; the offerings now live on the homepage as Design/Build/Ship.
 const LINKS = [
   { to: '/assessment', label: 'Assessment' },
-  { to: '/tpm-self-check', label: 'TPM self-check' },
   { to: '/office-hours', label: 'Office hours' },
   { to: '/our-work', label: 'Our work' },
   { to: '/about', label: 'About' },

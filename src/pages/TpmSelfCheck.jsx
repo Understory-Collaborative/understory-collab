@@ -130,6 +130,7 @@ function TpmSelfCheck() {
       <PageMeta
         title="TPM self-check"
         description="An unvalidated self-reflection for technical product managers. It maps your six durable skills and names the archetype your shape is closest to. For your own development. Your answers stay on your device."
+        noindex
       />
 
       <section className="tsc-intro" aria-labelledby="tsc-heading">

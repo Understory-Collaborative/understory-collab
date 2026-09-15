@@ -51,6 +51,7 @@ function TpmTypeDetail() {
       <PageMeta
         title={type.name}
         description={`${type.name}: ${type.spikes}. ${type.read}`}
+        noindex
       />
 
       <section className="page-hero" aria-labelledby="ttype-heading">
@@ -95,12 +96,18 @@ function TpmTypeDetail() {
               <div>
                 <dt>Team up with</dt>
                 <dd>
-                  {complement ? (
-                    <Link to={`/tpm-types/${complement.id}`}>{type.complement}</Link>
+                  {type.balanced ? (
+                    "You don't have a weak side to cover, so pair with anyone. You're the one who adds the depth they're missing."
                   ) : (
-                    type.complement
+                    <>
+                      {complement ? (
+                        <Link to={`/tpm-types/${complement.id}`}>{type.complement}</Link>
+                      ) : (
+                        type.complement
+                      )}
+                      , who covers the skills you lean on least.
+                    </>
                   )}
-                  , who covers the skills you lean on least.
                 </dd>
               </div>
             </dl>
