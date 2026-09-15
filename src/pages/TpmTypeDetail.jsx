@@ -96,17 +96,12 @@ function TpmTypeDetail() {
               <div>
                 <dt>Team up with</dt>
                 <dd>
-                  {type.balanced ? (
-                    "You don't have a weak side to cover, so pair with anyone. You're the one who adds the depth they're missing."
+                  {complement ? (
+                    <Link to={`/tpm-types/${complement.id}`}>{type.complement}</Link>
+                  ) : type.balanced ? (
+                    'Anyone'
                   ) : (
-                    <>
-                      {complement ? (
-                        <Link to={`/tpm-types/${complement.id}`}>{type.complement}</Link>
-                      ) : (
-                        type.complement
-                      )}
-                      , who covers the skills you lean on least.
-                    </>
+                    type.complement
                   )}
                 </dd>
               </div>
