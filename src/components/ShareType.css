@@ -1,0 +1,85 @@
+/* Shareable "share your type" block. Built on the shared design tokens so it follows both
+   themes. The preview image and the action buttons sit side by side on wide screens and stack
+   on narrow ones. */
+
+.sharetype {
+  margin: var(--space-8) 0 0;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.sharetype-heading {
+  font-size: var(--text-xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-4);
+}
+
+.sharetype-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.sharetype-preview {
+  margin: 0;
+}
+
+/* The canvas is the source of the export but not the visible element; keep it in the DOM,
+   out of view, without display:none (which some browsers skip when painting). */
+.sharetype-canvas {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.sharetype-image {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+}
+
+.sharetype-loading {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.sharetype-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+/* Buttons fill the column so the group reads as one stacked control set. */
+.sharetype-actions .btn {
+  width: 100%;
+  text-align: center;
+}
+
+.sharetype-note {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-body);
+  margin: var(--space-2) 0 0;
+}
+
+@media (max-width: 768px) {
+  .sharetype-body {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  .sharetype-image {
+    max-width: 100%;
+  }
+  .sharetype-actions .btn {
+    width: auto;
+  }
+}

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import PageMeta from '../components/PageMeta'
+import ShareType from '../components/ShareType'
 import {
   SCALE,
   AXES,
@@ -282,6 +283,8 @@ function TpmSelfCheck() {
               highest, <strong>{axisName(topAxes[0])}</strong> and <strong>{axisName(topAxes[1])}</strong>,
               are what put you there. Treat it as a starting point, and check it against your real work.
             </p>
+
+            <ShareType type={match.primary} profile={score.profile} lead headingLevel={3} />
 
             <div className="tsc-meta-read">
               <h3>How consistently it shows up</h3>

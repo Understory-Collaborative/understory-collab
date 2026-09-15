@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import PageMeta from '../components/PageMeta'
 import HexRadar from '../components/HexRadar'
+import ShareType from '../components/ShareType'
 import { ARCHETYPES, RENAISSANCE, AXES } from '../data/tpmSelfCheckData'
 import './TpmTypeDetail.css'
 
@@ -78,7 +79,6 @@ function TpmTypeDetail() {
                 labels={AXIS_LABELS}
                 title={`${type.name}: durable-skills hexagon, spiking ${type.spikes}.`}
               />
-              <figcaption>Six durable skills. This type spikes {type.spikes}.</figcaption>
             </figure>
           </div>
 
@@ -107,6 +107,12 @@ function TpmTypeDetail() {
               </div>
             </dl>
           </div>
+        </div>
+      </section>
+
+      <section className="ttype-share" aria-labelledby={`sharetype-heading-${type.id}`}>
+        <div className="section-container">
+          <ShareType type={type} />
         </div>
       </section>
 

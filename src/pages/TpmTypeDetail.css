@@ -87,6 +87,19 @@
   line-height: var(--leading-body);
 }
 
+/* Share band */
+.ttype-share {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+}
+
+.ttype-share .sharetype {
+  margin: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
 /* Cross-links band */
 .ttype-more {
   padding: var(--space-16) 0;
