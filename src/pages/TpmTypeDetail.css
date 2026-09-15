@@ -1,0 +1,160 @@
+.ttype {
+  width: 100%;
+}
+
+.ttype-eyebrow {
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 var(--space-3);
+}
+
+.ttype-spikes {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  color: var(--brand-primary);
+  margin: 0 0 var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+/* Rare marker carries a text label, never color alone (WCAG 1.4.1). */
+.ttype-rare-tag {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--action-text);
+  background: var(--action);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+}
+
+/* Body: the shape and the facts side by side, stacking on narrow screens. */
+.ttype-body {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+}
+
+.ttype-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-12);
+  align-items: start;
+}
+
+.ttype-body h2 {
+  font-size: var(--text-xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-4);
+}
+
+.ttype-radar-figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.ttype-radar-figure figcaption {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  text-align: center;
+  max-width: 40ch;
+}
+
+.ttype-dl {
+  margin: 0;
+  display: grid;
+  gap: var(--space-5);
+}
+
+.ttype-dl dt {
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin: 0 0 var(--space-1);
+}
+
+.ttype-dl dd {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+}
+
+/* Cross-links band */
+.ttype-more {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+}
+
+.ttype-more h2 {
+  font-size: var(--text-xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-6);
+}
+
+.ttype-others {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-8);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+}
+
+.ttype-others-tag {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.ttype-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin: 0 0 var(--space-6);
+}
+
+.ttype-pager-link {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  text-decoration: none;
+  color: var(--brand-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-primary);
+}
+
+.ttype-pager-next { text-align: right; margin-left: auto; }
+.ttype-pager-link:hover { border-color: var(--border-accent); }
+.ttype-pager-link:hover .ttype-pager-name { text-decoration: underline; }
+
+.ttype-pager-dir {
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.ttype-pager-name { font-weight: var(--weight-semibold); }
+
+.ttype-browse { margin: 0; }
+
+@media (max-width: 768px) {
+  .ttype-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  .ttype-body,
+  .ttype-more {
+    padding: var(--space-12) 0;
+  }
+}

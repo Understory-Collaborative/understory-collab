@@ -129,12 +129,10 @@ function TpmSelfCheck() {
     <div className="tsc-page">
       <PageMeta
         title="TPM self-check"
-        description="A private, unvalidated self-reflection for technical product managers. It maps your six durable skills and names the archetype your shape is closest to. For your own development. Your answers stay on your device."
-        noindex
+        description="An unvalidated self-reflection for technical product managers. It maps your six durable skills and names the archetype your shape is closest to. For your own development. Your answers stay on your device."
       />
 
       <section className="tsc-intro" aria-labelledby="tsc-heading">
-        <p className="tsc-eyebrow">Internal draft, not on the public site yet</p>
         <h1 id="tsc-heading">TPM self-check</h1>
 
         <div className="tsc-callout" role="note">
@@ -145,6 +143,10 @@ function TpmSelfCheck() {
             <li><strong>Your answers stay on your device.</strong> Nothing is sent anywhere.</li>
           </ul>
         </div>
+
+        <p className="tsc-browse-types">
+          Want to see the shapes first? <Link to="/tpm-types">Browse all the types</Link>.
+        </p>
 
         <div className="tsc-scale-key" aria-hidden="true">
           <span>1 = strongly disagree</span>
@@ -226,11 +228,14 @@ function TpmSelfCheck() {
               <p className="tsc-archetype-label">
                 You are closest to
                 {match.leaning && match.secondary ? (
-                  <span className="tsc-archetype-lean">, leaning {match.secondary.name}</span>
+                  <span className="tsc-archetype-lean">
+                    , leaning{' '}
+                    <Link to={`/tpm-types/${match.secondary.id}`}>{match.secondary.name}</Link>
+                  </span>
                 ) : null}
               </p>
               <p className="tsc-archetype-name">
-                {match.primary.name}
+                <Link to={`/tpm-types/${match.primary.id}`}>{match.primary.name}</Link>
                 {match.primary.rare && <span className="tsc-rare-tag">Rare</span>}
               </p>
               <p className="tsc-archetype-role">{match.primary.role}</p>
@@ -378,15 +383,6 @@ function TpmSelfCheck() {
               <Link to="/office-hours" className="btn btn-primary">Talk it through at office hours</Link>
               <p className="tsc-next-alt">
                 Or <Link to="/questions">ask us a question for free</Link>.
-              </p>
-            </div>
-
-            <div className="tsc-debrief">
-              <h3>For the pilot debrief</h3>
-              <p>
-                Which statements were unclear, felt off, or did not fit the work you actually
-                do? Did the archetype match how you see yourself? Those are the notes to bring.
-                Print this and mark it up.
               </p>
             </div>
           </>

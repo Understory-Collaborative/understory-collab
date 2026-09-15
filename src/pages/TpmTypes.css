@@ -1,0 +1,102 @@
+.ttypes {
+  width: 100%;
+}
+
+/* Grouped bands alternate white / tint, matching the About and Our work rhythm. */
+.ttypes-group {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+}
+
+.ttypes-group--tint {
+  background-color: var(--bg-secondary);
+}
+
+.ttypes-group h2 {
+  font-size: var(--text-2xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.ttypes-group-intro {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  max-width: var(--layout-prose-max);
+  margin: 0 0 var(--space-8);
+}
+
+.ttypes-cards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+
+.ttypes-card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
+  background-color: var(--bg-primary);
+}
+
+/* On the tinted band the cards take the primary surface so they still read as cards. */
+.ttypes-group--tint .ttypes-card {
+  background-color: var(--bg-primary);
+}
+
+/* The whole card is the link target, so the hit area is large and predictable. */
+.ttypes-card-link {
+  display: block;
+  height: 100%;
+  padding: var(--space-6);
+  text-decoration: none;
+  color: inherit;
+  border-radius: var(--radius-card);
+}
+
+.ttypes-card-link:hover {
+  border-color: var(--border-accent);
+}
+
+.ttypes-card-link:hover .ttypes-card-name {
+  text-decoration: underline;
+}
+
+.ttypes-card-link:focus-visible {
+  outline: 3px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+.ttypes-card-name {
+  font-size: var(--text-lg);
+  color: var(--brand-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.ttypes-card-spikes {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-1);
+}
+
+.ttypes-card-role {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin: 0 0 var(--space-3);
+}
+
+.ttypes-card-read {
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .ttypes-group {
+    padding: var(--space-12) 0;
+  }
+}

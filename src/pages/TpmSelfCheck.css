@@ -9,13 +9,7 @@
 }
 
 /* Intro ------------------------------------------------------------------- */
-.tsc-eyebrow {
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin: 0 0 0.5rem;
-}
+.tsc-browse-types { font-size: 0.95rem; color: var(--text-secondary); margin: 0 0 1.5rem; }
 
 .tsc-intro h1 {
   margin: 0 0 0.75rem;
@@ -152,6 +146,13 @@
   flex-wrap: wrap;
   gap: 0.6rem;
 }
+/* The name and the leaning name link to their type pages; keep the heading weight and give
+   a clear underline-on-hover and focus ring so the link affordance is obvious. */
+.tsc-archetype-name a { color: inherit; text-decoration: none; }
+.tsc-archetype-name a:hover { text-decoration: underline; }
+.tsc-archetype-lean a { color: inherit; text-decoration: underline; }
+.tsc-archetype-name a:focus-visible,
+.tsc-archetype-lean a:focus-visible { outline: 3px solid var(--focus-color); outline-offset: 2px; border-radius: 4px; }
 .tsc-rare-tag {
   font-size: 0.68rem;
   font-weight: 700;
@@ -229,8 +230,7 @@
 .tsc-meta-read { margin-bottom: 1.75rem; }
 .tsc-focus h3,
 .tsc-meta-read h3,
-.tsc-next h3,
-.tsc-debrief h3 { font-size: 1.1rem; margin: 0 0 0.5rem; }
+.tsc-next h3 { font-size: 1.1rem; margin: 0 0 0.5rem; }
 .tsc-focus p,
 .tsc-meta-read p { line-height: 1.5; color: var(--text-secondary); margin: 0 0 0.5rem; }
 .tsc-focus-action {
@@ -281,9 +281,6 @@
 }
 .tsc-next p { color: var(--text-secondary); line-height: 1.5; margin: 0 0 1rem; }
 .tsc-next-alt { font-size: 0.95rem; }
-
-.tsc-debrief { padding: 1.25rem 1.5rem; border: 1px dashed var(--border-default); border-radius: 10px; }
-.tsc-debrief p { margin: 0; color: var(--text-secondary); line-height: 1.45; }
 
 /* Print ------------------------------------------------------------------- */
 @media print {

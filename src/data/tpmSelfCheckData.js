@@ -194,7 +194,7 @@ export const ARCHETYPES = [
 
 // The balanced whole. Assigned when a profile is nearly flat (no single region dominates).
 export const RENAISSANCE = {
-  id: 'renaissance', name: 'The Renaissance', role: 'The full TPM (the unicorn)',
+  id: 'polymath', name: 'The Polymath', role: 'The full TPM (the unicorn)',
   spikes: 'Balanced across all six', complement: 'Any, to add depth', balanced: true,
   read: 'Native in all six. The whole shape the others are each a slice of.',
   v: [0.85, 0.85, 0.85, 0.85, 0.85, 0.85],
@@ -276,12 +276,12 @@ export function scoreResponses(responses) {
   return { axes, metaMean, multiplier, product, profile }
 }
 
-// How flat a profile has to be (max minus min, on 0..1) to read as balanced (Renaissance).
+// How flat a profile has to be (max minus min, on 0..1) to read as balanced (Polymath).
 const BALANCED_SPREAD = 0.18
 
 // Assigns the archetype whose prototype shape the profile most resembles. Reads shape, not
 // level, so a uniformly-high profile still matches by its relative spikes. A nearly-flat
-// profile is the Renaissance. Returns { primary, secondary, leaning }.
+// profile is the Polymath. Returns { primary, secondary, leaning }.
 export function assignArchetype(profile) {
   const spread = Math.max(...profile) - Math.min(...profile)
   if (spread < BALANCED_SPREAD) {

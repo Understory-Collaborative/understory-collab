@@ -10,6 +10,8 @@ import Unsubscribe from './pages/Unsubscribe'
 import Accessibility from './pages/Accessibility'
 import Quiz from './pages/Quiz'
 import TpmSelfCheck from './pages/TpmSelfCheck'
+import TpmTypes from './pages/TpmTypes'
+import TpmTypeDetail from './pages/TpmTypeDetail'
 import OfferPage from './pages/OfferPage'
 import OfficeHours from './pages/OfficeHours'
 import Questions from './pages/Questions'
@@ -49,9 +51,12 @@ function App() {
             <Route path="office-hours" element={<OfficeHours />} />
             {/* Free async rung: public Q&A */}
             <Route path="questions" element={<Questions />} />
-            {/* Hidden internal draft: TPM competency self-check (noindex, not in nav). Pilot
-                tool for the assessment framework in review/tpm-competency-assessment.md. */}
+            {/* Consumer-facing TPM self-check: maps the six durable skills and names the
+                archetype the shape is closest to. Framework in review/tpm-hexagon-model.md. */}
             <Route path="tpm-self-check" element={<TpmSelfCheck />} />
+            {/* The archetype explorer: index of every type, plus a page per type. */}
+            <Route path="tpm-types" element={<TpmTypes />} />
+            <Route path="tpm-types/:slug" element={<TpmTypeDetail />} />
           </Route>
         </Routes>
       </Router>

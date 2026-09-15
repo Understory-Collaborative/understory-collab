@@ -1,0 +1,13 @@
+/* Durable-skills hexagon. Styled with the shared tokens so it follows both themes, and
+   mirrors the self-check radar's look (.tsc-radar-*). */
+.hex-radar { width: 100%; max-width: 340px; height: auto; overflow: visible; }
+.hex-radar-ring { fill: none; stroke: var(--border-subtle); stroke-width: 1; }
+.hex-radar-axis { stroke: var(--border-subtle); stroke-width: 1; }
+.hex-radar-area {
+  fill: color-mix(in srgb, var(--action) 30%, transparent);
+  stroke: var(--action);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+.hex-radar-dot { fill: var(--action); }
+.hex-radar-label { fill: var(--text-secondary); font-size: 0.72rem; font-weight: 600; }
