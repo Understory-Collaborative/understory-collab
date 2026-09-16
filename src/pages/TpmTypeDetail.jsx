@@ -52,7 +52,6 @@ function TpmTypeDetail() {
       <PageMeta
         title={type.name}
         description={`${type.name}: ${type.spikes}. ${type.read}`}
-        noindex
       />
 
       <section className="page-hero" aria-labelledby="ttype-heading">

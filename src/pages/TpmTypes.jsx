@@ -30,7 +30,6 @@ function TpmTypes() {
       <PageMeta
         title="The TPM types"
         description="Product owner, project manager, program manager, product manager, and software architect are all technical product managers, each leaning on a different pair of the same six durable skills. Explore the shapes."
-        noindex
       />
 
       <section className="page-hero" aria-labelledby="ttypes-heading">
