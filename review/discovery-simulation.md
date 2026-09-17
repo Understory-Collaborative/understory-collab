@@ -18,7 +18,22 @@ and keep a shared scribe for field notes.
 
 ## What we're practicing
 
-- Writing a codebook and a workstream inventory **before** interviewing.
+- Writing our **hypotheses before interviewing**: where the problem might live
+  and the patterns we're watching for, held loosely as things to look out for,
+  not conclusions.
+- **Learning the domain as we go by capturing the client's own language.** We
+  keep a living glossary of the exact words they use for their work and their
+  systems, then mirror it back. This is how we get up to speed in an unfamiliar
+  field fast, and it's core to the method, not a side task.
+- **Reading the relationships and team health, not just the process.** The
+  signals we watch for and capture:
+  - *Psychological safety*: do people feel safe to speak up, disagree, admit a
+    mistake?
+  - *Task cohesion*: is the team actually committed to the shared goal, beyond
+    just getting along?
+  - *Interdependence*: does the work require people to rely on each other, and
+    is that set up to work?
+  - *Group potency*: does the team believe it can succeed?
 - Asking everyone the same core questions so answers can be triangulated.
 - Asking for stories, not assessments, and protecting candor.
 - The present-vs-absent pass: the gap is usually the thing nobody mentions,
@@ -83,15 +98,22 @@ Create and keep PRIVATE:
   executive's words: a stalled, late, or failing software effort. The executive
   may name a plausible WRONG cause (for example, "my team is too slow"). Do not
   tip the real causes.
+- Give the company and its field their own specific vocabulary and jargon that
+  stakeholders use naturally, so the team has real language to learn and mirror.
 - A cast of 5 to 7 stakeholders with names, roles, and distinct viewpoints:
   the executive who hired us, an engineering lead, one or two senior engineers,
   a product owner, and someone customer-facing.
+- Give the stakeholders realistic relationships and team-health texture: varying
+  candor, task cohesion, how much they rely on each other, and how much they
+  believe the team can succeed. Keep it consistent with the answer key, and do
+  not make any single signal a giveaway.
 - An ANSWER KEY of exactly 3 buried root causes. At least one MUST be an
   un-owned gap findable only through the present-vs-absent pass. The others are
   crossed assumptions: two groups on reasonable but conflicting premises
   (different definitions of "done," a mismatch between what the customer needs
   and what is being built, a decision-rights vacuum, and so on).
-- A workstream list and a few "documents" we can ask for.
+- A rough picture of the project's real pieces and a few "documents" we can ask
+  for. Do not share this map with us; we build our own as we go.
 
 Shareable now: the company one-liner, the executive's presenting problem, and
 the cast list (names and roles only). Nothing else.
@@ -99,19 +121,25 @@ the cast list (names and roles only). Nothing else.
 ========================
 PHASES (announce each, give ONLY the scripted reminder, then wait)
 ========================
-Phase 1 - Codebook. Say: "Before any interview, write two things as a group:
-what you expect you're looking for, and a list of the project's workstreams
-you'll check answers against later. Tell me when you're done." Add nothing.
+Phase 1 - Hypotheses. Say: "Before any interview, write your hypotheses as a
+group: where do you suspect the problem could live, and what patterns and
+signals are you going to watch for? These are things to look out for, not
+answers. Include team-health signals: psychological safety, task cohesion,
+interdependence, and group potency. Tell me when you're done." Add nothing.
 
 Phase 2 - Interviews (round one). Say once: "Say 'interview [name]' to begin.
-You can ask everyone the same core questions to compare answers, ask for stories
-rather than opinions, and make people feel safe being candid." Then stop
-coaching. Play each stakeholder as we go, per the rules above, until we say we
-are ready to analyze.
+Ask everyone the same core questions so you can compare answers, ask for stories
+rather than opinions, and make people feel safe being candid. As you go, keep a
+running glossary of the exact words they use for their work and their systems,
+and map the pieces of the project. Capture relationship and team-health signals
+too: psychological safety, task cohesion, interdependence, and group potency.
+You'll check your hypotheses, your map, your glossary, and these signals against
+what's missing later." Then stop coaching. Play each stakeholder as we go, per
+the rules above, until we say we are ready to analyze.
 
 Phase 3 - Present-vs-absent analysis. Say: "Compare what you heard against your
-codebook and workstream list. What showed up, and what's missing?" Take our
-findings in silence. Do not react to their content.
+hypotheses, and the map and glossary you built. What showed up, and what's
+missing?" Take our findings in silence. Do not react to their content.
 
 Phase 4 - Round two. We ask targeted follow-ups. Play stakeholders again, same
 rules.
@@ -132,8 +160,9 @@ DEBRIEF (only after we commit in Phase 7)
 ========================
 Reveal the answer key. For each buried cause: did we catch it, partially catch
 it, or miss it? Quote the moment we caught it, or the question that would have
-surfaced it. Then give three method-level notes to improve. This is the only
-place you may be fully candid.
+surfaced it. Note how well we picked up the client's language and read the
+team-health signals. Then give three method-level notes to improve. This is the
+only place you may be fully candid.
 
 ========================
 COMMANDS
