@@ -1,0 +1,87 @@
+.blog {
+  width: 100%;
+}
+
+.blog-list-section {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-primary);
+}
+
+/* Post list — a stack of cards, each with an olive spine so the list scans as a
+   set of distinct entries rather than a run-on wall of text. */
+.blog-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-8);
+  max-width: var(--layout-prose-max);
+}
+
+.blog-card {
+  padding: var(--space-6) 0 var(--space-6) var(--space-6);
+  border-left: 3px solid var(--border-accent);
+}
+
+.blog-card-meta {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin: 0 0 var(--space-2);
+}
+
+.blog-card-title {
+  font-size: var(--text-xl);
+  line-height: var(--leading-tight);
+  font-weight: var(--weight-bold);
+  margin: 0 0 var(--space-3);
+}
+
+.blog-card-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.blog-card-title a:hover,
+.blog-card-title a:focus-visible {
+  text-decoration: underline;
+}
+
+.blog-card-excerpt {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  margin: 0 0 var(--space-4);
+  max-width: 60ch;
+}
+
+.blog-card-more {
+  display: inline-block;
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.blog-card-more:hover,
+.blog-card-more:focus-visible {
+  text-decoration: underline;
+}
+
+/* Empty state — plain and calm, never a broken-looking blank. */
+.blog-empty {
+  max-width: var(--layout-prose-max);
+  padding: var(--space-8) 0;
+}
+
+.blog-empty-lead {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.blog-empty-support {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  margin: 0;
+}
