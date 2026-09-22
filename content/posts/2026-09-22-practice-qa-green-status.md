@@ -1,8 +1,10 @@
 # Practice Q&A: when your VP wants a green status on a date you know won't hold
 
 - **Status:** started as practice from a mock office-hours question; webs decided on
-  2026-09-22 to publish it on the UC blog. The post file is
-  `2026-09-22-vp-wants-green-status.md`, and this file stays as the working notes.
+  2026-09-22 to publish it on the UC blog. webs published it
+  through the Google Drive pipeline, which synced it to `main` as
+  `2026-09-22-ask-understory.md`. That Drive Doc is the source of truth; this file stays as
+  the working notes.
 - **Format:** Understory Q&A, one question and webs's answer
 - **Date:** 2026-09-22
 - **Title:** "My VP wants me to call a late project green" (suggested, not yet confirmed by webs)
