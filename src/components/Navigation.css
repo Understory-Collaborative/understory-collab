@@ -193,6 +193,17 @@
   display: block;
 }
 
+/* An invisible bridge over the gap between the button and the menu. It belongs to the
+   menu, so the pointer never leaves the dropdown while crossing the gap. */
+.nav-dropdown-menu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: calc(0.35rem + 2px);
+}
+
 .nav-dropdown-link {
   display: block;
   padding: 0.5rem 0.75rem;
@@ -280,6 +291,10 @@
     border: none;
     box-shadow: none;
     background: transparent;
+  }
+
+  .nav-dropdown-menu::before {
+    display: none;
   }
 
   .nav-dropdown-link {
