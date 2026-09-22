@@ -15,6 +15,8 @@ import TpmTypeDetail from './pages/TpmTypeDetail'
 import OfferPage from './pages/OfferPage'
 import OfficeHours from './pages/OfficeHours'
 import Questions from './pages/Questions'
+import Blog from './pages/Blog'
+import BlogPost from './pages/BlogPost'
 import './App.css'
 
 function App() {
@@ -51,6 +53,10 @@ function App() {
             <Route path="office-hours" element={<OfficeHours />} />
             {/* Free async rung: public Q&A */}
             <Route path="questions" element={<Questions />} />
+            {/* Blog — index plus one page per post. Posts are markdown files in
+                content/posts, and drafts render (noindex) at their own URL for preview. */}
+            <Route path="blog" element={<Blog />} />
+            <Route path="blog/:slug" element={<BlogPost />} />
             {/* Consumer-facing TPM self-check: maps the six durable skills and names the
                 archetype the shape is closest to. Framework in review/tpm-hexagon-model.md. */}
             <Route path="tpm-self-check" element={<TpmSelfCheck />} />

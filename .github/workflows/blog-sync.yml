@@ -1,0 +1,54 @@
+name: Blog sync from Google Drive
+
+# Publishes the team's blog from Google Drive:
+#   Drafts folder    -> draft posts (previewable, noindex)
+#   Published folder -> live posts
+# See docs/blog-pipeline-setup.md for the one-time Google setup.
+#
+# Scheduled workflows only run from the default branch, so this takes effect once
+# merged. Use "Run workflow" (workflow_dispatch) to sync on demand.
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+# Never let two syncs run at once and race on the commit.
+concurrency:
+  group: blog-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Sync posts from Drive
+        env:
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+          DRIVE_DRAFTS_FOLDER_ID: ${{ vars.DRIVE_DRAFTS_FOLDER_ID }}
+          DRIVE_PUBLISHED_FOLDER_ID: ${{ vars.DRIVE_PUBLISHED_FOLDER_ID }}
+        run: node scripts/blog-sync.js
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "understory-blog-bot"
+          git config user.email "blog-bot@users.noreply.github.com"
+          if [ -n "$(git status --porcelain content/posts public/blog-assets)" ]; then
+            git add content/posts public/blog-assets
+            git commit -m "Sync blog posts from Google Drive"
+            git push
+          else
+            echo "No blog changes to publish."
+          fi

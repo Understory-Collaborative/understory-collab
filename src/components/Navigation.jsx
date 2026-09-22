@@ -11,6 +11,7 @@ const LINKS = [
   { to: '/tpm-self-check', label: 'TPM self-check' },
   { to: '/office-hours', label: 'Office hours' },
   { to: '/our-work', label: 'Our work' },
+  { to: '/blog', label: 'Blog' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ]

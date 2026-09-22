@@ -1,0 +1,134 @@
+.blog-post {
+  width: 100%;
+}
+
+.blog-post-meta {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin: 0 0 var(--space-3);
+}
+
+/* Draft banner — a warm callout so a preview is never mistaken for a live post.
+   Carries its meaning in text, not color alone. */
+.blog-post-draft-flag {
+  display: inline-block;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  background-color: var(--accent-warm-tint-strong);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-pill);
+  padding: var(--space-1, 0.25rem) var(--space-3);
+  margin: 0 0 var(--space-4);
+}
+
+/* Reading column — capped at the prose width for comfortable line length. */
+.blog-post-body-section {
+  padding: var(--space-12) 0 var(--space-16);
+  background-color: var(--bg-primary);
+}
+
+.blog-post-body {
+  max-width: var(--layout-prose-max);
+  margin: 0 auto;
+  padding: 0 var(--layout-gutter);
+  color: var(--text-secondary);
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+}
+
+.blog-post-body > * + * {
+  margin-top: var(--space-5);
+}
+
+.blog-post-body h2 {
+  font-size: var(--text-xl);
+  line-height: var(--leading-tight);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  margin-top: var(--space-10);
+}
+
+.blog-post-body h3 {
+  font-size: var(--text-lg);
+  line-height: var(--leading-tight);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin-top: var(--space-8);
+}
+
+.blog-post-body p {
+  margin: 0;
+}
+
+.blog-post-body a {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+.blog-post-body ul,
+.blog-post-body ol {
+  margin: 0;
+  padding-left: var(--space-6);
+}
+
+.blog-post-body li + li {
+  margin-top: var(--space-2);
+}
+
+.blog-post-body blockquote {
+  margin: 0;
+  padding: var(--space-2) 0 var(--space-2) var(--space-5);
+  border-left: 3px solid var(--border-accent);
+  color: var(--text-primary);
+  font-style: italic;
+}
+
+.blog-post-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-card);
+  display: block;
+}
+
+.blog-post-body code {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.9em;
+  background-color: var(--surface-card);
+  border-radius: var(--radius-control);
+  padding: 0.1em 0.35em;
+}
+
+.blog-post-body pre {
+  background-color: var(--surface-card);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+  overflow-x: auto;
+}
+
+.blog-post-body pre code {
+  background: none;
+  padding: 0;
+}
+
+.blog-post-body hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: var(--space-8) 0;
+}
+
+.blog-post-backrow {
+  padding-bottom: var(--space-16);
+}
+
+.blog-post-back {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.blog-post-back:hover,
+.blog-post-back:focus-visible {
+  text-decoration: underline;
+}
