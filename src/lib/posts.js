@@ -69,6 +69,13 @@ const posts = Object.entries(modules)
       date: data.date || '',
       excerpt: data.excerpt || '',
       author: data.author || '',
+      cover: data.cover || '',
+      category: data.category || '',
+      // Tags are stored as a comma-separated string in frontmatter.
+      tags: (data.tags || '')
+        .split(',')
+        .map((tag) => tag.trim())
+        .filter(Boolean),
       draft: data.draft === true,
       readingMinutes: readingMinutes(content),
       content,

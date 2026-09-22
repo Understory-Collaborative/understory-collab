@@ -6,6 +6,62 @@
   font-size: var(--text-sm);
   color: var(--text-muted);
   margin: 0 0 var(--space-3);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Category badge — text label, not color alone (WCAG 1.4.1). */
+.blog-post-category {
+  font-weight: var(--weight-semibold);
+  color: var(--text-on-act);
+  background-color: var(--surface-act);
+  border-radius: var(--radius-pill);
+  padding: 0.1em 0.6em;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: var(--text-xs, 0.75rem);
+}
+
+/* Cover image — full reading width, between the header and the body. */
+.blog-post-cover {
+  max-width: var(--layout-content-max);
+  margin: 0 auto;
+  padding: var(--space-8) var(--layout-gutter) 0;
+}
+
+.blog-post-cover img {
+  display: block;
+  width: 100%;
+  max-height: 460px;
+  object-fit: cover;
+  border-radius: var(--radius-panel);
+}
+
+/* Tag chips under the post body. */
+.blog-tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.blog-post-tags {
+  margin-top: var(--space-10);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-color);
+}
+
+.blog-tag {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  background-color: var(--brand-tint);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 0.1em 0.7em;
 }
 
 /* Draft banner — a warm callout so a preview is never mistaken for a live post.

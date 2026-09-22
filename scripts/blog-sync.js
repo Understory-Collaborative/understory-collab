@@ -202,6 +202,12 @@ async function run() {
 
   for (const { docs, draft } of groups) {
     for (const doc of docs) {
+      // A Doc whose name starts with "_" is a template or work in progress; it is
+      // never published. This is what keeps the Drafts-folder template off the site.
+      if (doc.name.trim().startsWith('_')) {
+        console.log(`skip   ${doc.name.trim()} (name starts with _)`)
+        continue
+      }
       seen.add(doc.id)
       const title = doc.name.trim()
       const slug = slugify(title) || doc.id
@@ -212,12 +218,43 @@ async function run() {
       markdown = await localizeImages(markdown, slug)
       markdown = markdown.trim()
 
+      // Labeled lines near the top of the Doc set metadata, then are removed from the
+      // body: "Excerpt:", "Category:", "Tags:" (comma separated). The label may be
+      // bold, so **Excerpt:** works too.
+      const takeLabel = (label) => {
+        const re = new RegExp(`^\\*{0,2}${label}\\*{0,2}:\\s*(.+?)\\s*$`, 'im')
+        const match = re.exec(markdown)
+        if (!match) return ''
+        markdown = markdown.replace(match[0], '').trim()
+        return match[1].replace(/[*_`]/g, '').trim()
+      }
+      const category = takeLabel('category')
+      const tags = takeLabel('tags')
+      const excerptExplicit = takeLabel('excerpt')
+
+      // Cover image: the first image that appears before the first section heading is
+      // lifted out to drive the card and post header, so a lead image becomes the
+      // cover while images deeper in the body stay inline.
+      let cover = ''
+      const firstHeading = markdown.search(/^#{2,3}\s/m)
+      const region = firstHeading === -1 ? markdown : markdown.slice(0, firstHeading)
+      const coverMatch = /!\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/.exec(region)
+      if (coverMatch) {
+        cover = coverMatch[1]
+        markdown = markdown.replace(coverMatch[0], '').trim()
+      }
+
+      const excerpt = excerptExplicit || deriveExcerpt(markdown)
+
       const frontmatter = buildFrontmatter({
         title,
         slug,
         date,
         author,
-        excerpt: deriveExcerpt(markdown),
+        excerpt,
+        cover,
+        category,
+        tags,
         draft,
         source: 'drive',
         driveId: doc.id,
