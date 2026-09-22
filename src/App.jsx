@@ -3,6 +3,7 @@ import { ThemeProvider } from './context/ThemeContext'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import About from './pages/About'
+import AuthorProfile from './pages/AuthorProfile'
 import OurWork from './pages/OurWork'
 import Contact from './pages/Contact'
 import Privacy from './pages/Privacy'
@@ -30,6 +31,7 @@ function App() {
             <Route path="advisory" element={<Navigate to="/" replace />} />
             <Route path="implementation" element={<Navigate to="/" replace />} />
             <Route path="about" element={<About />} />
+            <Route path="about/:slug" element={<AuthorProfile />} />
             {/* Values folded into About */}
             <Route path="values" element={<Navigate to="/about" replace />} />
             <Route path="our-work" element={<OurWork />} />
