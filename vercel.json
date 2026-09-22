@@ -1,8 +1,3 @@
 {
-  "rewrites": [
-    { "source": "/blog", "destination": "/blog/index.html" },
-    { "source": "/blog/:slug", "destination": "/blog/:slug/index.html" },
-    { "source": "/about/:slug", "destination": "/about/:slug/index.html" },
-    { "source": "/((?!assets/|api/).*)", "destination": "/index.html" }
-  ]
+  "framework": "astro"
 }

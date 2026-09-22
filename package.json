@@ -4,13 +4,17 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "dev:vite": "vite",
+    "build:vite": "node scripts/generate-sitemap.js && vite build && node scripts/prerender-meta.js",
     "sitemap": "node scripts/generate-sitemap.js",
-    "build": "node scripts/generate-sitemap.js && vite build && node scripts/prerender-meta.js",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "lint": "eslint ."
   },
   "dependencies": {
+    "@astrojs/react": "^7.0.0",
+    "astro": "^7.3.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-markdown": "^10.1.0",

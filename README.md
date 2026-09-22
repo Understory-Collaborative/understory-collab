@@ -31,7 +31,8 @@ The host builds from the **`preview`** branch. Work on a feature branch, open a 
 
 | Path | What it is |
 |---|---|
-| `src/pages/` | Routed pages (Home, About, OurWork, Contact, OfficeHours, Questions, Quiz/assessment, OfferPage, Apply, Privacy, Accessibility, Unsubscribe) |
+| `src/pages/` | Astro pages (the migration in `docs/astro-migration-plan.md` is under way; only the phase 0 spike lives here so far) |
+| `src/views/` | The React pages the Vite app routes to (Home, About, OurWork, Contact, OfficeHours, Questions, Quiz/assessment, OfferPage, Apply, Privacy, Accessibility, Unsubscribe). Each migration phase deletes the ones it ports. |
 | `src/components/` | Layout, Navigation, Footer, SubscribeForm |
 | `src/data/` | `quizData.js` (the "What's On Fire?" assessment), `offersData.js` |
 | `api/` | Serverless form handlers — see **Forms** below |

@@ -19,7 +19,7 @@ standalone surfaces link one file, `styles.css`.
 | Asset | Path | Notes |
 |---|---|---|
 | Logo (square badge + wordmark) | `assets/UC_Logo.png` | 500×500 PNG, no transparency (solid grass-green field). The only mark supplied. A transparent badge, a horizontal lockup, and an app icon are **missing** — flag for the brand owner. |
-| Color values | `tokens/colors.css` | Derived from the running site (`src/index.css`, `src/pages/Quiz.css`) and the logo. The severity ramp is a real product asset. Ramp steps the site never used are marked `(proposal)`. |
+| Color values | `tokens/colors.css` | Derived from the running site (`src/index.css`, `src/views/Quiz.css`) and the logo. The severity ramp is a real product asset. Ramp steps the site never used are marked `(proposal)`. |
 | Type | `tokens/fonts.css` | **No brand font files were supplied.** The logo's display lettering is not shipped as a webfont. The system sets Overpass (a redesigned grotesque, loaded from Google Fonts) for display and body, a deliberate brand choice rather than the logo's exact face. Self-hosting the woff2 is the production follow-up. |
 
 Anything not traceable to a source above is a considered proposal, labeled as such in the

@@ -80,6 +80,26 @@ Each phase lands as a PR onto a long-lived `astro` branch with a Vercel preview.
 | **4. Islands** | Contact, Questions, footer subscribe, then Assessment and TPM self-check. | Each form submits end to end on the preview. The self-check saves, prints, and exports its share card. |
 | **5. Cut over** | Delete React Router, PageMeta, `prerender-meta.js`, and the Vercel rewrites. Update docs. Merge to `main`. | The parity checklist passes on the preview. |
 
+## Phase 0 notes (2026-09-22)
+
+Built and checked locally; the Vercel preview is the remaining proof.
+
+| What | Where it stands |
+|---|---|
+| Astro 7 + `@astrojs/react` 7 | Installed. `npm run build` is now `astro build`; the old app still builds with `npm run build:vite` for side-by-side checks. |
+| No Vercel adapter | Static output only, so Vercel keeps treating `api/` as functions. The adapter would replace that folder, so leave it out unless a page ever needs a server. |
+| `vercel.json` | Sets `"framework": "astro"` and drops the SPA rewrites. The catch-all would have served the spike for every URL, and the blog rewrites point at files the prerender script no longer writes. Unported routes 404 on the preview until their phase lands. |
+| Old React pages | Moved from `src/pages/` to `src/views/`, since Astro treats `src/pages/` as routes. Each phase deletes the views it ports. |
+| Spike page | `src/pages/index.astro`, marked `noindex`. It loads `src/index.css`, mounts the footer `SubscribeForm` as a `client:visible` island, and runs a GET against `/api/subscribe`, which the function answers with a 405 without adding anyone. Phase 2 replaces it with Home. |
+| JavaScript on the spike | About 61 KB gzipped for the React runtime and the island, loaded only because the island is there. Today's app ships 166 KB gzipped on every page. |
+| Porting note | Astro drops a line break between text and an inline tag, as JSX does, so `submit\n<code>` renders as "submit<code>". Keep the space on the same line as the text, or use `{' '}`. |
+
+To finish phase 0, open the Vercel preview for this branch and check that:
+
+- [ ] The spike page loads with the site's fonts and colors.
+- [ ] The function check reads "Pass".
+- [ ] Submitting `test@localhost` in the form shows "Please check what you entered and try again."
+
 ## Risks
 
 | Risk | Why | Mitigation |
