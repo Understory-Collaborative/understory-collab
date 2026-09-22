@@ -6,8 +6,8 @@ author: "webs"
 excerpt: "This is a test of the UC Blog System."
 cover: "/blog-assets/this-is-a-test/image-1.jpeg"
 category: "Test"
-tags: "testing, some, thingsAuthor: webs"
-draft: true
+tags: "testing, some, things"
+draft: false
 source: "drive"
 driveId: "1sSyP3X78NaCdOVxGtdWpHV1BfCVHowIMCFK5WH6GJDc"
 updated: "2026-09-22"
