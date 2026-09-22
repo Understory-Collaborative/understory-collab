@@ -160,6 +160,27 @@ export function extractTitle(markdown) {
   return { title: heading.clean, subtitle, markdown: rest.trim() }
 }
 
+const LABELS = ['slug', 'author', 'subtitle', 'excerpt', 'category', 'tags']
+
+// Two labels can land on one line when they share a paragraph in the Doc, like
+// "Tags: scope, delivery**Author:** webs". On any line that starts with a label, break
+// before each later label so every label gets its own line.
+export function splitLabelLines(markdown) {
+  const names = LABELS.join('|')
+  const startsWithLabel = new RegExp(`^\\*{0,2}(${names})\\*{0,2}:`, 'i')
+  const laterLabel = new RegExp(`\\s*(\\*{0,2}(?:${names})\\*{0,2}:)`, 'gi')
+  return markdown
+    // Docs can export a soft line break as a vertical tab character.
+    .replaceAll(String.fromCharCode(11), '\n')
+    .split('\n')
+    .map((line) => {
+      if (!startsWithLabel.test(line)) return line
+      const first = line.match(startsWithLabel)[0]
+      return first + line.slice(first.length).replace(laterLabel, '\n\n$1')
+    })
+    .join('\n')
+}
+
 export function slugify(text) {
   return text
     .toLowerCase()
@@ -328,7 +349,7 @@ async function run() {
       seen.add(doc.id)
       const date = (doc.createdTime || '').slice(0, 10)
 
-      let markdown = (await docToMarkdown(drive, doc.id)).trim()
+      let markdown = splitLabelLines((await docToMarkdown(drive, doc.id)).trim())
 
       // Labeled lines near the top of the Doc set metadata, then are removed from the
       // body: "Slug:", "Author:", "Subtitle:", "Excerpt:", "Category:", "Tags:" (comma separated).
