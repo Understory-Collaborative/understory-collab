@@ -118,6 +118,9 @@ Do this signed in as the account that owns the `UC Blog` folder.
 To change the relay's code later, use **Deploy → Manage deployments → Edit → New
 version**, so the URL stays the same.
 
+Opening the web app URL in a browser shows a one-line note about the relay. That's
+expected; the relay only does its work when the Doc menu calls it.
+
 ### C. Add the menu to the template
 
 1. Open the `_TEMPLATE — make a copy` Doc and choose **Extensions → Apps Script**.

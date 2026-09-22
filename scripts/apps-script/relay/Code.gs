@@ -25,6 +25,14 @@ var WORKFLOW = 'blog-sync.yml';
 var REF = 'main';
 var COOLDOWN_SECONDS = 30;
 
+// Opening the relay's URL in a browser sends a GET. Answer it with a note instead of
+// an error, since the relay only does its work on POST from the Doc menu.
+function doGet() {
+  return ContentService.createTextOutput(
+    'This is the UC Blog relay. Use the UC Blog menu in a post Doc to preview or publish.'
+  );
+}
+
 function doPost(e) {
   try {
     var body = JSON.parse((e && e.postData && e.postData.contents) || '{}');
