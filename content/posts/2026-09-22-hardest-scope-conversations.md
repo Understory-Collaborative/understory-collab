@@ -7,7 +7,7 @@ excerpt: "Scope conversations are especially difficult when you don’t have any
 cover: "/blog-assets/hardest-scope-conversations/image-1.png"
 category: "handling scope"
 tags: "scope, journey mapping, handling stakeholdersAuthor: webs"
-draft: true
+draft: false
 source: "drive"
 driveId: "1o9WOjpm7oQK2rXncWGuhAuWVOJUOhng1VVGc8sR2Gmg"
 updated: "2026-09-22"
@@ -40,4 +40,4 @@ I was building a feature once when my stakeholder asked about the dashboard prog
 
 The best time to write your slices is at the start. The second best time is now. If the only record lives in DMs and side chats, you're going to have a bad time.
 
-If you're sitting on a scope conversation you're dreading, that's exactly the kind of thing to request in our [](https://www.google.com/url?q=https://understorycollab.com/questions&sa=D&source=editors&ust=1790118728067937&usg=AOvVaw0sEHVk5lJ8xanOeYrdFek3)[Q&A](https://www.google.com/url?q=https://understorycollab.com/questions&sa=D&source=editors&ust=1790118728068060&usg=AOvVaw2Tu6dv8lLwQh9n6RKcTje5), where we answer your questions on social media, or bring to [office hours](https://www.google.com/url?q=http://understorycollab.com/office-hours&sa=D&source=editors&ust=1790118728068264&usg=AOvVaw3yXULv836l5VoSjHghrUY-) and we'll work it live
+If you're sitting on a scope conversation you're dreading, that's exactly the kind of thing to request in our [](https://www.google.com/url?q=https://understorycollab.com/questions&sa=D&source=editors&ust=1790121710836342&usg=AOvVaw05DP_0QcQWAYsMUctZYrin)[Q&A](https://www.google.com/url?q=https://understorycollab.com/questions&sa=D&source=editors&ust=1790121710836456&usg=AOvVaw1eT0SXZjiy_gRjik-SgJLK), where we answer your questions on social media, or bring to [office hours](https://www.google.com/url?q=http://understorycollab.com/office-hours&sa=D&source=editors&ust=1790121710836656&usg=AOvVaw1V7rYlofl-vuJpR1dI-Ld5) and we'll work it live
