@@ -103,15 +103,27 @@ function startSync_(token) {
   );
 
   var code = response.getResponseCode();
+  // GitHub explains refusals in the response body; pass that along so the pop-up says
+  // what's wrong (for example, a token still waiting for org approval).
+  var detail = '';
+  try {
+    detail = JSON.parse(response.getContentText()).message || '';
+  } catch (error) {
+    detail = '';
+  }
+  var said = detail ? ' GitHub says: "' + detail + '"' : '';
   if (code === 204) {
     cache.put('recent-sync', '1', COOLDOWN_SECONDS);
     return { ok: true, message: 'Sync started.' };
   }
-  if (code === 401) return { ok: false, message: 'GitHub rejected the token. It may have expired.' };
+  if (code === 401) return { ok: false, message: 'GitHub rejected the token. It may have expired.' + said };
   if (code === 403 || code === 404) {
-    return { ok: false, message: 'GitHub refused the request (' + code + '). Check the token\'s repository access and Actions permission.' };
+    return {
+      ok: false,
+      message: 'GitHub refused the request (' + code + '). Check that the token is approved in the org and has Actions: Read and write.' + said,
+    };
   }
-  return { ok: false, message: 'GitHub returned ' + code + '.' };
+  return { ok: false, message: 'GitHub returned ' + code + '.' + said };
 }
 
 function reply_(ok, message, extra) {

@@ -143,6 +143,16 @@ expected; the relay only does its work when the Doc menu calls it.
 - **Docs made before the menu existed** don't have it. Make a fresh copy of the
   template and move the content over, or add the script to that Doc with step C.
 
+### If the menu says the sync didn't start
+
+The pop-up includes GitHub's own reason. The common ones:
+
+| Code | Usually means | Fix |
+|---|---|---|
+| 403 | The token is waiting for org approval, or Actions is read-only | Approve it under the org's **Settings → Personal access tokens → Pending requests**, and check **Actions: Read and write** on the token |
+| 404 | The token's resource owner or repository is wrong | Recreate it with **Understory-Collaborative** as the owner and `understory-collab` selected |
+| 401 | The token expired or was pasted wrong | Make a new token and replace `GITHUB_TOKEN` in the relay's Script properties |
+
 ### What the relay allows
 
 It only starts the blog sync. It refuses any Doc outside the Drafts and Published
