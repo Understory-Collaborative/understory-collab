@@ -22,10 +22,16 @@
 //
 // Run with --dry-run (or with no credentials) to log what would happen without
 // writing anything.
+//
+// What the author controls from inside the Doc:
+//   Title      the first Heading 1 (or Title-style line). Falls back to the Doc name.
+//   Subtitle   a Subtitle-style line, or a Heading 2 placed directly under the title.
+//   Slug:      a labeled line setting the URL. Falls back to the title, slugified.
+//   Excerpt:, Category:, Tags:   labeled lines, as before.
 
 import { readdirSync, readFileSync, writeFileSync, rmSync, mkdirSync } from 'node:fs'
 import { join, dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { google } from 'googleapis'
 import TurndownService from 'turndown'
 
@@ -42,8 +48,101 @@ const turndown = new TurndownService({
   codeBlockStyle: 'fenced',
   bulletListMarker: '-',
 })
+turndown.remove(['style', 'script'])
 
-function slugify(text) {
+// Google Docs' HTML export marks bold and italic with generated CSS classes
+// (`.c3{font-weight:700}`) instead of <b> and <i>, so Turndown drops them. This reads
+// the export's <style> block into a class -> { bold, italic } map before converting.
+let docClassStyles = new Map()
+
+function readClassStyles(html) {
+  const map = new Map()
+  const css = [...html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/gi)].map((m) => m[1]).join('\n')
+  for (const [, selectors, body] of css.matchAll(/([^{}]+)\{([^}]*)\}/g)) {
+    const bold = /font-weight:\s*(700|800|900|bold)/i.test(body)
+    const italic = /font-style:\s*italic/i.test(body)
+    if (!bold && !italic) continue
+    for (const selector of selectors.split(',')) {
+      const match = /^\s*\.([\w-]+)\s*$/.exec(selector)
+      if (match) map.set(match[1], { bold, italic })
+    }
+  }
+  return map
+}
+
+function spanEmphasis(node) {
+  let bold = false
+  let italic = false
+  for (const cls of (node.getAttribute('class') || '').split(/\s+/)) {
+    const style = docClassStyles.get(cls)
+    if (style?.bold) bold = true
+    if (style?.italic) italic = true
+  }
+  const inline = node.getAttribute('style') || ''
+  if (/font-weight:\s*(700|800|900|bold)/i.test(inline)) bold = true
+  if (/font-style:\s*italic/i.test(inline)) italic = true
+  return { bold, italic }
+}
+
+function insideHeading(node) {
+  for (let el = node.parentNode; el; el = el.parentNode) {
+    if (/^H[1-6]$/.test(el.nodeName)) return true
+  }
+  return false
+}
+
+turndown.addRule('docsEmphasis', {
+  filter: (node) =>
+    node.nodeName === 'SPAN' && !insideHeading(node) &&
+    (spanEmphasis(node).bold || spanEmphasis(node).italic),
+  replacement: (content, node) => {
+    const { bold, italic } = spanEmphasis(node)
+    // Keep surrounding spaces outside the markers, or markdown won't read them.
+    const lead = content.match(/^\s*/)[0]
+    const trail = content.match(/\s*$/)[0]
+    const inner = content.trim()
+    if (!inner) return content
+    const mark = (bold ? '**' : '') + (italic ? '_' : '')
+    const close = (italic ? '_' : '') + (bold ? '**' : '')
+    return `${lead}${mark}${inner}${close}${trail}`
+  },
+})
+
+// The Docs "Title" and "Subtitle" paragraph styles export as <p class="title"> and
+// <p class="subtitle">. Turn them into a heading 1 and a labeled line so they're found
+// the same way as a Heading 1 and a "Subtitle:" line.
+turndown.addRule('docsTitle', {
+  filter: (node) => node.nodeName === 'P' && /\btitle\b/.test(node.getAttribute('class') || ''),
+  replacement: (content) => `\n\n# ${content.replace(/[*_]/g, '').trim()}\n\n`,
+})
+turndown.addRule('docsSubtitle', {
+  filter: (node) => node.nodeName === 'P' && /\bsubtitle\b/.test(node.getAttribute('class') || ''),
+  replacement: (content) => `\n\nSubtitle: ${content.replace(/[*_]/g, '').trim()}\n\n`,
+})
+
+export function htmlToMarkdown(html) {
+  docClassStyles = readClassStyles(html)
+  return turndown.turndown(html)
+}
+
+// Pull the title and subtitle out of the body. The title is the first heading 1; a
+// heading 2 sitting directly under it, with nothing in between, is the subtitle.
+export function extractTitle(markdown) {
+  const match = /^#[ \t]+(.+?)[ \t#]*$/m.exec(markdown)
+  if (!match) return { title: '', subtitle: '', markdown }
+  const title = match[1].replace(/[*_]/g, '').trim()
+  let rest = markdown.slice(0, match.index) + markdown.slice(match.index + match[0].length)
+  let subtitle = ''
+  const after = markdown.slice(match.index + match[0].length)
+  const sub = /^\s*##[ \t]+(.+?)[ \t#]*$/m.exec(after)
+  if (sub && sub.index === 0) {
+    subtitle = sub[1].replace(/[*_]/g, '').trim()
+    rest = markdown.slice(0, match.index) + after.slice(sub[0].length)
+  }
+  return { title, subtitle, markdown: rest.trim() }
+}
+
+export function slugify(text) {
   return text
     .toLowerCase()
     .replace(/['"]/g, '')
@@ -147,7 +246,7 @@ async function docToMarkdown(drive, fileId) {
     { fileId, mimeType: 'text/html' },
     { responseType: 'text' },
   )
-  return turndown.turndown(res.data)
+  return htmlToMarkdown(res.data)
 }
 
 // Existing generated posts, keyed by driveId, so we can update in place and clean up.
@@ -209,18 +308,14 @@ async function run() {
         continue
       }
       seen.add(doc.id)
-      const title = doc.name.trim()
-      const slug = slugify(title) || doc.id
       const date = (doc.createdTime || '').slice(0, 10)
       const author = doc.owners?.[0]?.displayName || ''
 
-      let markdown = await docToMarkdown(drive, doc.id)
-      markdown = await localizeImages(markdown, slug)
-      markdown = markdown.trim()
+      let markdown = (await docToMarkdown(drive, doc.id)).trim()
 
       // Labeled lines near the top of the Doc set metadata, then are removed from the
-      // body: "Excerpt:", "Category:", "Tags:" (comma separated). The label may be
-      // bold, so **Excerpt:** works too.
+      // body: "Slug:", "Subtitle:", "Excerpt:", "Category:", "Tags:" (comma separated).
+      // The label may be bold, so **Excerpt:** works too.
       const takeLabel = (label) => {
         const re = new RegExp(`^\\*{0,2}${label}\\*{0,2}:\\s*(.+?)\\s*$`, 'im')
         const match = re.exec(markdown)
@@ -228,9 +323,19 @@ async function run() {
         markdown = markdown.replace(match[0], '').trim()
         return match[1].replace(/[*_`]/g, '').trim()
       }
+      const slugExplicit = takeLabel('slug')
+      const subtitleExplicit = takeLabel('subtitle')
       const category = takeLabel('category')
       const tags = takeLabel('tags')
       const excerptExplicit = takeLabel('excerpt')
+
+      const extracted = extractTitle(markdown)
+      markdown = extracted.markdown
+      const title = extracted.title || doc.name.trim()
+      const subtitle = subtitleExplicit || extracted.subtitle
+      const slug = slugify(slugExplicit) || slugify(title) || doc.id
+
+      markdown = (await localizeImages(markdown, slug)).trim()
 
       // Cover image: the first image that appears before the first section heading is
       // lifted out to drive the card and post header, so a lead image becomes the
@@ -248,6 +353,7 @@ async function run() {
 
       const frontmatter = buildFrontmatter({
         title,
+        subtitle,
         slug,
         date,
         author,
@@ -261,7 +367,16 @@ async function run() {
         updated: (doc.modifiedTime || '').slice(0, 10),
       })
 
-      const filename = managed.get(doc.id) || `${date || 'undated'}-${slug}.md`
+      // The filename follows the slug, so a changed slug renames the file and clears
+      // the old image folder instead of leaving a stale copy behind.
+      const filename = `${date || 'undated'}-${slug}.md`
+      const previous = managed.get(doc.id)
+      if (previous && previous !== filename) {
+        rmSync(join(POSTS_DIR, previous))
+        const oldSlug = previous.replace(/\.md$/, '').replace(/^\d{4}-\d{2}-\d{2}-/, '')
+        if (oldSlug !== slug) rmSync(join(ASSETS_DIR, oldSlug), { recursive: true, force: true })
+        console.log(`renamed ${previous} -> ${filename}`)
+      }
       writeFileSync(join(POSTS_DIR, filename), `${frontmatter}\n\n${markdown}\n`)
       console.log(`${draft ? 'draft ' : 'live  '} ${filename}`)
     }
@@ -278,7 +393,10 @@ async function run() {
   }
 }
 
-run().catch((error) => {
-  console.error('blog-sync failed:', error.message)
-  process.exit(1)
-})
+// Run only when invoked directly, so the converters above can be imported and tested.
+if (import.meta.url === pathToFileURL(process.argv[1] || '').href) {
+  run().catch((error) => {
+    console.error('blog-sync failed:', error.message)
+    process.exit(1)
+  })
+}

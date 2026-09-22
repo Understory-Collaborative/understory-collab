@@ -1,7 +1,7 @@
 // Blog post loader.
 //
 // A blog entry is a markdown file in /content/posts with a YAML frontmatter block
-// (title, date, slug, excerpt, author, draft). Files without frontmatter are treated
+// (title, subtitle, date, slug, excerpt, author, draft). Files without frontmatter are treated
 // as working notes and skipped, so a rough working doc can sit in the same folder as
 // a finished post without leaking onto the site. This is also what the Google Drive
 // publishing flow will write: markdown with frontmatter, one file per post.
@@ -66,6 +66,7 @@ const posts = Object.entries(modules)
     return {
       slug: data.slug || slugFromPath(path),
       title: data.title,
+      subtitle: data.subtitle || '',
       date: data.date || '',
       excerpt: data.excerpt || '',
       author: data.author || '',
