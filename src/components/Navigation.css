@@ -145,6 +145,83 @@
   outline-offset: 2px;
 }
 
+/* Assessments dropdown */
+.nav-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* The toggle is a button styled to match the other nav links. */
+.nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.nav-dropdown-caret {
+  transition: transform 0.2s;
+}
+
+.nav-dropdown-toggle[aria-expanded='true'] .nav-dropdown-caret {
+  transform: rotate(180deg);
+}
+
+/* Desktop: a popover under the toggle. */
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin: 0;
+  margin-top: 0.35rem;
+  padding: 0.35rem;
+  min-width: 210px;
+  list-style: none;
+  background-color: var(--nav-bg);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  box-shadow: var(--elevation-3, 0 8px 24px rgba(0, 0, 0, 0.28));
+  display: none;
+  z-index: 200;
+}
+
+.nav-dropdown-menu[data-open] {
+  display: block;
+}
+
+.nav-dropdown-link {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  border-radius: 6px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.nav-dropdown-link:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.nav-dropdown-link:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 2px;
+}
+
+.nav-dropdown-link.active {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 /* Mobile navigation: the links collapse behind the menu button and stack full width
    when opened, so the header no longer fills the screen. */
 @media (max-width: 768px) {
@@ -177,6 +254,35 @@
 
   /* Full-width rows with a ~44px tap target (WCAG 2.5.8 target size). */
   .nav-link {
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+
+  /* The dropdown expands inline within the stacked menu instead of as a popover. */
+  .nav-dropdown {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .nav-dropdown-toggle {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .nav-dropdown-menu {
+    position: static;
+    min-width: 0;
+    margin-top: 0.25rem;
+    padding: 0 0 0 0.75rem;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .nav-dropdown-link {
     padding: 0.75rem;
     font-size: 1rem;
   }

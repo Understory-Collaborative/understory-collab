@@ -1,20 +1,126 @@
-import { useState, useEffect } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
 import treeMark from '../assets/noun-tree-with-leaves-6402273.svg'
 import './Navigation.css'
 
-// Flat nav for the funnel IA. The old Services dropdown (Advisory/Implementation)
-// and Values are retired; the offerings now live on the homepage as Design/Build/Ship.
-const LINKS = [
-  { to: '/assessment', label: 'Assessment' },
+// The two ways in are grouped under one "Assessments" dropdown.
+const ASSESSMENT_LINKS = [
+  { to: '/assessment', label: "What's on fire" },
   { to: '/tpm-self-check', label: 'TPM self-check' },
+]
+
+// The remaining flat links. The old Services dropdown (Advisory/Implementation) and
+// Values are retired; the offerings now live on the homepage as Design/Build/Ship.
+const LINKS = [
   { to: '/office-hours', label: 'Office hours' },
   { to: '/our-work', label: 'Our work' },
   { to: '/blog', label: 'Blog' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ]
+
+// A disclosure dropdown for a group of nav links. On desktop it opens as a popover on
+// hover or click; on mobile it expands inline within the stacked menu. Escape closes
+// it and returns focus to the button, and a click outside closes it, so keyboard and
+// pointer users are never trapped.
+function NavDropdown({ label, items, onNavigate }) {
+  const [open, setOpen] = useState(false)
+  const containerRef = useRef(null)
+  const buttonRef = useRef(null)
+  const { pathname } = useLocation()
+  const menuId = 'nav-dropdown-assessments'
+
+  const isActive = items.some(
+    (item) => pathname === item.to || pathname.startsWith(`${item.to}/`),
+  )
+
+  useEffect(() => {
+    if (!open) return
+    const onPointerDown = (event) => {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        setOpen(false)
+      }
+    }
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setOpen(false)
+        buttonRef.current?.focus()
+      }
+    }
+    document.addEventListener('mousedown', onPointerDown)
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('mousedown', onPointerDown)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [open])
+
+  const handleSelect = () => {
+    setOpen(false)
+    onNavigate?.()
+  }
+
+  return (
+    <li
+      className="nav-dropdown"
+      ref={containerRef}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <button
+        ref={buttonRef}
+        type="button"
+        className={isActive ? 'nav-link nav-dropdown-toggle active' : 'nav-link nav-dropdown-toggle'}
+        aria-expanded={open}
+        aria-controls={menuId}
+        onClick={() => setOpen((prev) => !prev)}
+        onKeyDown={(event) => {
+          if (event.key === 'ArrowDown') {
+            event.preventDefault()
+            setOpen(true)
+          }
+        }}
+      >
+        {label}
+        <svg
+          className="nav-dropdown-caret"
+          aria-hidden="true"
+          width="12"
+          height="12"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+      <ul
+        id={menuId}
+        className="nav-dropdown-menu"
+        role="list"
+        data-open={open ? '' : undefined}
+      >
+        {items.map(({ to, label: itemLabel }) => (
+          <li key={to}>
+            <NavLink
+              to={to}
+              className={({ isActive: linkActive }) =>
+                linkActive ? 'nav-dropdown-link active' : 'nav-dropdown-link'
+              }
+              onClick={handleSelect}
+            >
+              {itemLabel}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+    </li>
+  )
+}
 
 function Navigation() {
   const { theme, toggleTheme } = useTheme()
@@ -52,6 +158,7 @@ function Navigation() {
         </Link>
 
         <ul className="nav-links" id="primary-nav" role="list" data-open={menuOpen ? '' : undefined}>
+          <NavDropdown label="Assessments" items={ASSESSMENT_LINKS} onNavigate={closeMenu} />
           {LINKS.map(({ to, label }) => (
             <li key={to}>
               <NavLink
