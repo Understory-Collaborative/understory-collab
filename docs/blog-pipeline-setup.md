@@ -171,6 +171,11 @@ do.
 
 ## Good to know
 
+- **Link previews** (LinkedIn, Slack, iMessage) use the post's title, excerpt, and cover
+  image. The build writes them into each post's page (`scripts/prerender-meta.js`), so a
+  post's preview updates on the deploy after the sync. LinkedIn caches previews; use its
+  Post Inspector to refresh one.
+
 - **The title comes from inside the Doc**, from its first Heading 1. The Doc name is
   only used when there is no Heading 1. Set the web address with a `Slug:` line;
   changing it later moves the post to the new address.
