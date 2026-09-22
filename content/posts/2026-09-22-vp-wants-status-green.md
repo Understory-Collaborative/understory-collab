@@ -1,18 +1,19 @@
 ---
 title: "Green in Name Only"
-subtitle: "My VP Wants Me to Call a Late Project Green"
-slug: "vp-wants-green-status"
+slug: "vp-wants-status-green"
 date: "2026-09-22"
 author: "webs"
 excerpt: "Green in name only writes that their VP wants them to report a green status despite the data showing the team won’t deliver on time."
-cover: "/blog-assets/vp-wants-green-status/image-1.png"
+cover: "/blog-assets/vp-wants-status-green/image-1.png"
 category: "Q&A"
 tags: "project status, late projects"
 draft: true
 source: "drive"
-driveId: "1EUEv-j0p-FRUBoQKASFHiOcqBgPAT6B4DFgTMKaEAEA"
+driveId: "1GWqFCBrflKjaBRldKV-e6tCnuKM7iVHsxUHC27U1omY"
 updated: "2026-09-22"
 ---
+
+## My VP Wants Me to Call a Late Project Green
 
 **Q:** I'm eight months into my first TPM job, at a warehouse software company. Our VP promised our biggest customer a November 15th launch on a sales call with no engineers present. The work needs three teams, and one of them is booked through December.
 
