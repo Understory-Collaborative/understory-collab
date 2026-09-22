@@ -31,6 +31,19 @@
   margin-bottom: var(--space-2);
 }
 
+.author-profile-type {
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+}
+
+.author-profile-type a {
+  color: var(--accent-color);
+  font-weight: var(--weight-semibold);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 /* Draft banner: meaning carried in text, not color alone. */
 .author-profile-draft-flag {
   display: inline-block;

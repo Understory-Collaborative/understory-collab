@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import PageMeta from '../components/PageMeta'
 import { getAuthorBySlug, findAuthor } from '../data/authors'
 import { getPublishedPosts, formatDate } from '../lib/posts'
+import { ARCHETYPES, RENAISSANCE } from '../data/tpmSelfCheckData'
 import './AuthorProfile.css'
 
 // An author's profile, linked from the byline on each of their posts. Lists the
@@ -31,6 +32,7 @@ function AuthorProfile() {
     )
   }
 
+  const tpmType = [...ARCHETYPES, RENAISSANCE].find((type) => type.id === author.tpmType)
   const posts = getPublishedPosts().filter(
     (post) => findAuthor(post.author)?.slug === author.slug,
   )
@@ -60,6 +62,12 @@ function AuthorProfile() {
             )}
             <h1 id="author-heading">{author.name}</h1>
             {author.role && <p className="page-hero-description">{author.role}</p>}
+            {tpmType && (
+              <p className="author-profile-type">
+                TPM type:{' '}
+                <Link to={`/tpm-types/${tpmType.id}`}>{tpmType.name}</Link>
+              </p>
+            )}
           </div>
         </div>
       </header>

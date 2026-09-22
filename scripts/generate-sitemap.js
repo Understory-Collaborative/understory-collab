@@ -10,6 +10,7 @@
 import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { AUTHORS } from '../src/data/authors.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const ORIGIN = (process.env.SITE_ORIGIN || 'https://understorycollab.com').replace(/\/$/, '')
@@ -77,6 +78,8 @@ function urlEntry(loc, lastmod) {
 
 const entries = [
   ...STATIC_ROUTES.map((route) => urlEntry(route)),
+  // Author profiles, once they're out of draft.
+  ...AUTHORS.filter((author) => !author.draft).map((author) => urlEntry(`/about/${author.slug}`)),
   ...publishedPosts().map((post) => urlEntry(`/blog/${post.slug}`, post.date)),
 ]
 
