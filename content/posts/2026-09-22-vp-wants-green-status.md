@@ -1,18 +1,9 @@
-# Practice Q&A: when your VP wants a green status on a date you know won't hold
-
-- **Status:** started as practice from a mock office-hours question; webs decided on
-  2026-09-22 to publish it on the UC blog. The post file is
-  `2026-09-22-vp-wants-green-status.md`, and this file stays as the working notes.
-- **Format:** Understory Q&A, one question and webs's answer
-- **Date:** 2026-09-22
-- **Title:** "My VP wants me to call a late project green" (suggested, not yet confirmed by webs)
-- **CTA:** the Q&A rung (https://understorycollab.com/questions) and office hours
-- **Excerpt:** open, to be written by webs
-- **Composite note:** open. The question is invented, so webs decides whether to add a line
-  saying it's a composite of situations she hears often.
-
-Answer below is webs's own, unedited.
-
+---
+title: My VP wants me to call a late project green
+slug: vp-wants-green-status
+date: 2026-09-22
+author: webs
+draft: true
 ---
 
 **Q:** I'm eight months into my first TPM job, at a warehouse software company. Our VP
