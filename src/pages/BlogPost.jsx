@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import PageMeta from '../components/PageMeta'
 import { getPostBySlug, formatDate } from '../lib/posts'
+import { findAuthor } from '../data/authors'
 import './BlogPost.css'
 
 // A heading 1 inside a post body would compete with the page title, so it renders as a
@@ -82,6 +83,7 @@ function BlogPost() {
   }
 
   const qa = splitQA(post.content)
+  const author = findAuthor(post.author)
 
   return (
     <div className="blog-post">
@@ -113,16 +115,20 @@ function BlogPost() {
               )}
               {post.date && <span aria-hidden="true"> · </span>}
               <span>{post.readingMinutes} min read</span>
-              {post.author && (
-                <>
-                  <span aria-hidden="true"> · </span>
-                  <span>{post.author}</span>
-                </>
-              )}
             </p>
             <h1 id="post-heading">{post.title}</h1>
             {post.subtitle && (
               <p className="page-hero-description blog-post-subtitle">{post.subtitle}</p>
+            )}
+            {post.author && (
+              <p className="blog-post-byline">
+                By{' '}
+                {author ? (
+                  <Link to={`/about/${author.slug}`}>{author.name}</Link>
+                ) : (
+                  post.author
+                )}
+              </p>
             )}
           </div>
         </header>

@@ -30,6 +30,19 @@ function NavDropdown({ label, items, onNavigate }) {
   const buttonRef = useRef(null)
   const { pathname } = useLocation()
   const menuId = 'nav-dropdown-assessments'
+  // Hover opens the menu, and leaving it closes after a short grace period, so a
+  // pointer moving diagonally from the button to a link doesn't lose the menu.
+  const closeTimer = useRef(null)
+  // True when the menu was just opened by hover, so the click that usually follows
+  // the hover keeps it open instead of toggling it straight back closed.
+  const openedByHover = useRef(false)
+
+  const cancelClose = () => {
+    clearTimeout(closeTimer.current)
+    closeTimer.current = null
+  }
+
+  useEffect(() => () => clearTimeout(closeTimer.current), [])
 
   const isActive = items.some(
     (item) => pathname === item.to || pathname.startsWith(`${item.to}/`),
@@ -57,6 +70,7 @@ function NavDropdown({ label, items, onNavigate }) {
   }, [open])
 
   const handleSelect = () => {
+    cancelClose()
     setOpen(false)
     onNavigate?.()
   }
@@ -65,8 +79,16 @@ function NavDropdown({ label, items, onNavigate }) {
     <li
       className="nav-dropdown"
       ref={containerRef}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onMouseEnter={() => {
+        cancelClose()
+        if (!open) openedByHover.current = true
+        setOpen(true)
+      }}
+      onMouseLeave={() => {
+        cancelClose()
+        openedByHover.current = false
+        closeTimer.current = setTimeout(() => setOpen(false), 300)
+      }}
     >
       <button
         ref={buttonRef}
@@ -74,7 +96,14 @@ function NavDropdown({ label, items, onNavigate }) {
         className={isActive ? 'nav-link nav-dropdown-toggle active' : 'nav-link nav-dropdown-toggle'}
         aria-expanded={open}
         aria-controls={menuId}
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={() => {
+          if (openedByHover.current) {
+            openedByHover.current = false
+            setOpen(true)
+            return
+          }
+          setOpen((prev) => !prev)
+        }}
         onKeyDown={(event) => {
           if (event.key === 'ArrowDown') {
             event.preventDefault()

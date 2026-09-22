@@ -25,6 +25,9 @@ but recommended.
 >
 > **Slug:** the-web-address-for-this-post (lowercase words joined by hyphens)
 >
+> **Author:** Your name as it appears on your profile, for example webs. Shows as
+> "By webs" under the title, linked to your profile page.
+>
 > **Excerpt:** One or two sentences summarizing the post. Aim for under 155
 > characters. This shows on the blog list and as the Google search description.
 >
@@ -61,4 +64,5 @@ but recommended.
 | `Tags:` line | Tag chips |
 | `Q:` and `A:` paragraphs | Question card and answer section |
 | Everything else | Post body |
-| _(automatic)_ | Date = Doc creation day; author = Doc owner |
+| `Author:` line | Byline, linked to `/about/<author>` when that person has a profile; the Doc owner is the fallback |
+| _(automatic)_ | Date = Doc creation day |

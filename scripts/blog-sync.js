@@ -27,6 +27,8 @@
 //   Title      the first Heading 1 (or Title-style line). Falls back to the Doc name.
 //   Subtitle   a Subtitle-style line, or a Heading 2 placed directly under the title.
 //   Slug:      a labeled line setting the URL. Falls back to the title, slugified.
+//   Author:    a labeled line naming the author, linked to their profile if they have
+//              one (src/data/authors.js). Falls back to the Doc owner's name.
 //   Excerpt:, Category:, Tags:   labeled lines, as before.
 
 import { readdirSync, readFileSync, writeFileSync, rmSync, mkdirSync } from 'node:fs'
@@ -325,12 +327,11 @@ async function run() {
       }
       seen.add(doc.id)
       const date = (doc.createdTime || '').slice(0, 10)
-      const author = doc.owners?.[0]?.displayName || ''
 
       let markdown = (await docToMarkdown(drive, doc.id)).trim()
 
       // Labeled lines near the top of the Doc set metadata, then are removed from the
-      // body: "Slug:", "Subtitle:", "Excerpt:", "Category:", "Tags:" (comma separated).
+      // body: "Slug:", "Author:", "Subtitle:", "Excerpt:", "Category:", "Tags:" (comma separated).
       // The label may be bold, so **Excerpt:** works too.
       const takeLabel = (label) => {
         const re = new RegExp(`^\\*{0,2}${label}\\*{0,2}:\\s*(.+?)\\s*$`, 'im')
@@ -340,6 +341,7 @@ async function run() {
         return match[1].replace(/[*_`]/g, '').trim()
       }
       const slugExplicit = takeLabel('slug')
+      const author = takeLabel('author') || doc.owners?.[0]?.displayName || ''
       const subtitleExplicit = takeLabel('subtitle')
       const category = takeLabel('category')
       const tags = takeLabel('tags')

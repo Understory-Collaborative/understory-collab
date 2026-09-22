@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import PageMeta from '../components/PageMeta'
 import { getPublishedPosts, formatDate } from '../lib/posts'
+import { findAuthor } from '../data/authors'
 import './Blog.css'
 
 // The blog index. Lists published posts newest first. When there are none yet it
@@ -63,6 +64,12 @@ function Blog() {
                         )}
                         {post.date && <span aria-hidden="true"> · </span>}
                         <span>{post.readingMinutes} min read</span>
+                        {post.author && (
+                          <>
+                            <span aria-hidden="true"> · </span>
+                            <span>By {findAuthor(post.author)?.name || post.author}</span>
+                          </>
+                        )}
                       </p>
                       <h3 className="blog-card-title">
                         <Link to={`/blog/${post.slug}`}>{post.title}</Link>

@@ -60,6 +60,25 @@
   font-weight: var(--weight-semibold);
 }
 
+/* Byline under the title, linking to the author's profile. */
+.blog-post-byline {
+  margin: var(--space-4) 0 0;
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+}
+
+.blog-post-byline a {
+  color: var(--accent-color);
+  font-weight: var(--weight-semibold);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.blog-post-hero--cover .blog-post-byline,
+.blog-post-hero--cover .blog-post-byline a {
+  color: var(--text-on-act);
+}
+
 /* Tag chips under the post body. */
 .blog-tags {
   list-style: none;
