@@ -49,6 +49,9 @@ function BlogPost() {
               </p>
             )}
             <p className="blog-post-meta">
+              {post.category && (
+                <span className="blog-post-category">{post.category}</span>
+              )}
               {post.date && (
                 <time dateTime={post.date}>{formatDate(post.date)}</time>
               )}
@@ -65,11 +68,27 @@ function BlogPost() {
           </div>
         </header>
 
+        {post.cover && (
+          <div className="blog-post-cover">
+            <img src={post.cover} alt="" />
+          </div>
+        )}
+
         <div className="blog-post-body-section">
           <div className="blog-post-body">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {post.content}
             </ReactMarkdown>
+
+            {post.tags.length > 0 && (
+              <ul className="blog-tags blog-post-tags" role="list">
+                {post.tags.map((tag) => (
+                  <li key={tag} className="blog-tag">
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </article>

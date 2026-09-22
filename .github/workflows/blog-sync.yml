@@ -5,12 +5,15 @@ name: Blog sync from Google Drive
 #   Published folder -> live posts
 # See docs/blog-pipeline-setup.md for the one-time Google setup.
 #
-# Scheduled workflows only run from the default branch, so this takes effect once
-# merged. Use "Run workflow" (workflow_dispatch) to sync on demand.
+# Runs once a day so published posts go live within a day on their own, and can be
+# triggered on demand ("Run workflow") whenever someone wants to see a draft preview
+# right away. Scheduled workflows only run from the default branch, so the daily run
+# takes effect once merged; the manual trigger works from any branch it is on.
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    # 12:00 UTC daily. Adjust to taste.
+    - cron: '0 12 * * *'
   workflow_dispatch:
 
 # Never let two syncs run at once and race on the commit.

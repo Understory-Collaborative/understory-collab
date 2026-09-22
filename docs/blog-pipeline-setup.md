@@ -10,9 +10,15 @@ Budget about 15 minutes. You do this once; after that, publishing is drag-and-dr
 | `UC Blog / Drafts` | Drop a Google Doc here. It becomes a **draft** post, viewable at a private link, hidden from the blog and search engines. |
 | `UC Blog / Published` | Move a Doc here. It goes **live** on the website. |
 
-A scheduled job checks both folders every 15 minutes, converts each Doc to a styled
-blog post, and publishes it. The Doc's name becomes the post title. Remove a Doc from
-both folders and its post comes down on the next run.
+A job converts each Doc into a styled blog post and publishes it. The Doc's name
+becomes the post title. Remove a Doc from both folders and its post comes down on the
+next run. It runs two ways:
+
+- **On demand** for previews. When someone wants to see a draft, trigger it (Actions
+  → **Blog sync from Google Drive** → **Run workflow**). The preview is ready a minute
+  or two later.
+- **Once a day** for publishing, so anything moved into Published goes live within a
+  day without anyone lifting a finger.
 
 ## What you set up (once)
 
@@ -67,13 +73,21 @@ test it right away: **Actions → Blog sync from Google Drive → Run workflow**
 ## Trying it out
 
 1. Put a short Google Doc in `Drafts`.
-2. Run the workflow (or wait for the schedule).
-3. The post appears at `/blog/<doc-name-as-slug>` as a draft (not listed, not indexed).
-4. Move the Doc to `Published` and run again. It goes live and shows up on `/blog`.
+2. Run the workflow (**Actions → Blog sync from Google Drive → Run workflow**).
+3. A minute later the post appears at `/blog/<doc-name-as-slug>` as a draft
+   (not listed, not indexed) so you can preview it.
+4. Move the Doc to `Published`. It goes live on the next run — trigger it manually to
+   see it now, or let the daily run publish it within a day.
 
 ## Good to know
 
 - **The Doc name is the post title.** Name your Docs deliberately.
+- **Start a post from the `_TEMPLATE` Doc** in the Drafts folder: right-click it,
+  choose **Make a copy**, and rename the copy to your headline. Any Doc whose name
+  starts with `_` is ignored by the sync, so the template itself never gets published.
+- **Set the summary with an `Excerpt:` line** at the top of the Doc. It becomes the
+  blog-list blurb and the search-engine description. Without one, the first paragraph
+  is used.
 - **The post date** is the day the Doc was created.
 - **Images** in the Doc are pulled in automatically. Complex layouts convert more
   roughly than plain text and headings; this is the part we will refine with a real
