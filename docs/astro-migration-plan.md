@@ -17,12 +17,12 @@ the live site over only when the parity checklist at the end passes.
 | Page content exists only after JavaScript runs. Google renders it; many other crawlers and AI search tools see an empty page. | Every page is real HTML at build time. |
 | Every page downloads the whole app: about 540 KB of JavaScript (166 KB gzipped). The build warns about it. | Pages with no interactive parts ship no JavaScript. Interactive parts load only on their own pages. |
 | Link previews need a post-build script (`scripts/prerender-meta.js`) and Vercel rewrites, and a mistyped post URL gets Vercel's plain 404. | Each page sets its own tags in its HTML. The script, the rewrites, and the 404 tradeoff all go away. |
-| The blog loader (`src/lib/posts.js`) parses frontmatter by hand. | Astro content collections read `content/posts` natively, with a schema that catches a bad field at build time. |
+| The blog loader (`src/lib/posts.js`) parses frontmatter by hand. | Astro content collections read `src/content/blog` natively, with a schema that catches a bad field at build time. |
 
 ## What stays the same
 
 - **The design system:** `design-system/tokens/`, `src/index.css`, and each page's CSS file carry over as they are.
-- **The Drive sync:** `scripts/blog-sync.js` keeps writing markdown to `content/posts`. The Docs menu, relay, and Action don't change.
+- **The Drive sync, mostly:** the Docs menu and relay don't change. Posts move to Astro's default folder, so the sync's output path changes (see phase 3).
 - **Forms and data:** the `api/` functions (contact, subscribe, field guide, questions) keep their endpoints. Needs confirming in phase 0; see Risks.
 - **Static extras:** `public/` (field guides, blog assets, `bedford/`, team photos) is copied as is.
 - **Data files:** `src/data/*.js` (quiz, TPM self-check, offers, authors) are plain JavaScript and import unchanged.
@@ -58,8 +58,8 @@ the live site over only when the parity checklist at the end passes.
 |---|---|---|---|
 | Layout (nav, footer, skip link) | Layout.jsx with React Router `<Outlet>` | `BaseLayout.astro` | S |
 | Page metadata | PageMeta.jsx sets tags after load | `<head>` props on `BaseLayout`; delete PageMeta | S |
-| Navigation | Dropdown, mobile menu, active link | Keep as a small React island, or rewrite as a plain script | M |
-| Theme | ThemeContext + inline script in `index.html` | Move the inline script into `BaseLayout`; the toggle becomes a small island or script | S |
+| Navigation | Dropdown, mobile menu, active link | Astro markup plus a small plain script (no React). Keep today's look, hover grace period, gap bridge, and keyboard behavior | M |
+| Theme | ThemeContext + inline script in `index.html` | Move the inline script into `BaseLayout`; the toggle becomes a small plain script (no React) | S |
 | Focus on route change | Layout moves focus to `<main>` after navigation | Not needed: every link is a full page load, and the browser resets focus | S |
 | Footer newsletter form | SubscribeForm.jsx | Island (`client:visible`) | S |
 | Redirects | `<Navigate>` routes in App.jsx | `redirects` in `astro.config.mjs` | S |
@@ -76,7 +76,7 @@ Each phase lands as a PR onto a long-lived `astro` branch with a Vercel preview.
 | **0. Spike** | Astro + `@astrojs/react` in the repo, one static page, one island, one `api/` call from the preview. | The preview deploys, the island works, and a form reaches its `api/` function. |
 | **1. Shell** | `BaseLayout`, nav, footer, theme, global CSS, redirects, 404. | Every page shell matches today's in both themes and at phone width. |
 | **2. Static pages** | Home, About, Our Work, Office Hours, Offers, TPM types, legal pages, author profiles. | Visual match with today, and View Source shows the page content and its own tags. |
-| **3. Blog** | Content collection on `content/posts`, blog index, post page with cover hero, Q&A layout, bylines. | Every current post renders the same, and link previews work without the prerender script. |
+| **3. Blog** | Move posts to `src/content/blog` and define the collection. Point `scripts/blog-sync.js` (`POSTS_DIR`) and the `git add` paths in `.github/workflows/blog-sync.yml` at the new folder. Blog index, post page with cover hero, Q&A layout, bylines. | Every current post renders the same, a Drive sync writes to the new folder, and link previews work without the prerender script. |
 | **4. Islands** | Contact, Questions, footer subscribe, then Assessment and TPM self-check. | Each form submits end to end on the preview. The self-check saves, prints, and exports its share card. |
 | **5. Cut over** | Delete React Router, PageMeta, `prerender-meta.js`, and the Vercel rewrites. Update docs. Merge to `main`. | The parity checklist passes on the preview. |
 
@@ -88,7 +88,7 @@ Each phase lands as a PR onto a long-lived `astro` branch with a Vercel preview.
 | Blog rendering differences | react-markdown and Astro's markdown differ on edge cases; the Q&A split and heading demotion are custom. | Port the Q&A split as a build-time step, and compare every current post side by side. |
 | Island bugs | Assessment and self-check hold a lot of state, and ShareType (on the self-check and every TPM type page) draws on a canvas. | Move them late, when the shell is stable; they keep their React code, so the change is in how they mount. |
 | URL changes | Any changed path breaks shared links and search results. | Keep every path the same. Carry the existing redirects over, and check the sitemap before and after. |
-| Drive sync timing | Posts sync to `main`, and the `astro` branch falls behind. | Merge `main` into `astro` at every phase. |
+| Drive sync timing | Posts sync to `main`'s `content/posts` until cut over, and the `astro` branch reads `src/content/blog`. | Merge `main` into `astro` at every phase and move any new posts across. Switch the sync's folder in the same merge as cut over, and don't run a sync during it. |
 
 ## Parity checklist (before cut over)
 
@@ -101,10 +101,13 @@ Each phase lands as a PR onto a long-lived `astro` branch with a Vercel preview.
 - [ ] Link previews on LinkedIn's Post Inspector show the right title and image for a post, a profile, and `/blog`.
 - [ ] Keyboard only: skip link, nav dropdown, forms, and the self-check work, with visible focus.
 - [ ] The sitemap lists the same URLs as before.
-- [ ] Pages with no interactive parts ship no JavaScript (check the network tab).
+- [ ] Pages with no interactive parts ship no JavaScript beyond the small nav and theme scripts (check the network tab).
+- [ ] A Drive sync after cut over writes to `src/content/blog` and the post appears.
 
-## Open questions for webs
+## Decisions (webs, 2026-09-22)
 
-1. Timing: start now, or after the current content push?
-2. Navigation: keep it as React, or rewrite it as a plain script so most pages ship no JavaScript at all?
-3. Blog URLs: keep `content/posts` where the Drive sync writes today (no sync change), or move to Astro's default `src/content`?
+| Question | Decision |
+|---|---|
+| Timing | Start now, in a new conversation. |
+| Navigation and theme toggle | Rewrite as plain scripts, so most pages ship no React at all, as long as the nav still looks and behaves exactly as it does today. |
+| Where posts live | Move to Astro's default, `src/content/blog`. The Drive sync and its Action change with it (phase 3). |
