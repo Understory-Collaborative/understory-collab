@@ -10,8 +10,8 @@ Budget about 15 minutes. You do this once; after that, publishing is drag-and-dr
 | `UC Blog / Drafts` | Drop a Google Doc here. It becomes a **draft** post, viewable at a private link, hidden from the blog and search engines. |
 | `UC Blog / Published` | Move a Doc here. It goes **live** on the website. |
 
-A job converts each Doc into a styled blog post and publishes it. The Doc's name
-becomes the post title. Remove a Doc from both folders and its post comes down on the
+A job converts each Doc into a styled blog post and publishes it. The first Heading 1
+in the Doc becomes the post title, and a `Slug:` line sets its web address. Remove a Doc from both folders and its post comes down on the
 next run. It runs two ways:
 
 - **On demand** for previews. When someone wants to see a draft, trigger it (Actions
@@ -81,9 +81,11 @@ test it right away: **Actions → Blog sync from Google Drive → Run workflow**
 
 ## Good to know
 
-- **The Doc name is the post title.** Name your Docs deliberately.
+- **The title comes from inside the Doc**, from its first Heading 1. The Doc name is
+  only used when there is no Heading 1. Set the web address with a `Slug:` line;
+  changing it later moves the post to the new address.
 - **Start a post from the `_TEMPLATE` Doc** in the Drafts folder: right-click it,
-  choose **Make a copy**, and rename the copy to your headline. Any Doc whose name
+  choose **Make a copy**, and name the copy so you can find it. Any Doc whose name
   starts with `_` is ignored by the sync, so the template itself never gets published.
 - **Set the summary with an `Excerpt:` line** at the top of the Doc. It becomes the
   blog-list blurb and the search-engine description. Without one, the first paragraph

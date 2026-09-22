@@ -24,19 +24,40 @@
   font-size: var(--text-xs, 0.75rem);
 }
 
-/* Cover image — full reading width, between the header and the body. */
-.blog-post-cover {
-  max-width: var(--layout-content-max);
-  margin: 0 auto;
-  padding: var(--space-8) var(--layout-gutter) 0;
+/* Cover image — replaces the vine texture as the hero background. A fixed deep-olive
+   scrim sits over the image in both themes so the light hero text keeps at least 4.5:1
+   contrast even over the image's brightest pixels (white over pure white under a 74%
+   scrim is about 7:1). The image is decorative; the title carries the meaning. */
+.page-hero.blog-post-hero--cover {
+  background-color: #161e06;
+  background-image:
+    linear-gradient(rgb(22 30 6 / 0.74), rgb(22 30 6 / 0.74)),
+    var(--post-cover);
+  background-size: cover;
+  background-position: center;
+  border-bottom: none;
+  padding: calc(var(--space-16) + var(--space-4)) 0 var(--space-16);
 }
 
-.blog-post-cover img {
-  display: block;
-  width: 100%;
-  max-height: 460px;
-  object-fit: cover;
-  border-radius: var(--radius-panel);
+.page-hero.blog-post-hero--cover::before {
+  display: none;
+}
+
+.blog-post-hero--cover h1,
+.blog-post-hero--cover .blog-post-subtitle {
+  color: var(--text-on-act);
+}
+
+.blog-post-hero--cover .blog-post-meta {
+  color: var(--text-on-act-muted);
+}
+
+.blog-post-hero--cover .blog-post-category {
+  border: 1px solid rgb(255 255 255 / 0.6);
+}
+
+.blog-post-subtitle {
+  font-weight: var(--weight-semibold);
 }
 
 /* Tag chips under the post body. */
@@ -47,12 +68,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
-}
-
-.blog-post-tags {
-  margin-top: var(--space-10);
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--border-color);
 }
 
 .blog-tag {
@@ -93,61 +108,71 @@
   line-height: var(--leading-body);
 }
 
-.blog-post-body > * + * {
-  margin-top: var(--space-5);
+/* Markdown output. Scoped to .blog-prose so these rules never reach the tag chips or
+   the Q&A labels. Every block gets a clear gap from the one before it. */
+.blog-prose > * {
+  margin: 0;
 }
 
-.blog-post-body h2 {
+.blog-prose > * + * {
+  margin-top: var(--space-6);
+}
+
+.blog-prose > h2 {
   font-size: var(--text-xl);
   line-height: var(--leading-tight);
   font-weight: var(--weight-bold);
   color: var(--text-primary);
-  margin-top: var(--space-10);
+  margin-top: var(--space-12);
 }
 
-.blog-post-body h3 {
+.blog-prose > h3 {
   font-size: var(--text-lg);
   line-height: var(--leading-tight);
   font-weight: var(--weight-semibold);
   color: var(--text-primary);
-  margin-top: var(--space-8);
+  margin-top: var(--space-12);
 }
 
-.blog-post-body p {
-  margin: 0;
+.blog-prose > h2:first-child,
+.blog-prose > h3:first-child {
+  margin-top: 0;
 }
 
-.blog-post-body a {
+.blog-prose strong {
+  color: var(--text-primary);
+  font-weight: var(--weight-bold);
+}
+
+.blog-prose a {
   color: var(--accent-color);
   text-decoration: underline;
 }
 
-.blog-post-body ul,
-.blog-post-body ol {
-  margin: 0;
+.blog-prose ul,
+.blog-prose ol {
   padding-left: var(--space-6);
 }
 
-.blog-post-body li + li {
+.blog-prose li + li {
   margin-top: var(--space-2);
 }
 
-.blog-post-body blockquote {
-  margin: 0;
+.blog-prose blockquote {
   padding: var(--space-2) 0 var(--space-2) var(--space-5);
   border-left: 3px solid var(--border-accent);
   color: var(--text-primary);
   font-style: italic;
 }
 
-.blog-post-body img {
+.blog-prose img {
   max-width: 100%;
   height: auto;
   border-radius: var(--radius-card);
   display: block;
 }
 
-.blog-post-body code {
+.blog-prose code {
   font-family: var(--font-mono, monospace);
   font-size: 0.9em;
   background-color: var(--surface-card);
@@ -155,22 +180,78 @@
   padding: 0.1em 0.35em;
 }
 
-.blog-post-body pre {
+.blog-prose pre {
   background-color: var(--surface-card);
   border-radius: var(--radius-card);
   padding: var(--space-4);
   overflow-x: auto;
 }
 
-.blog-post-body pre code {
+.blog-prose pre code {
   background: none;
   padding: 0;
 }
 
-.blog-post-body hr {
+.blog-prose hr {
   border: none;
   border-top: 1px solid var(--border-color);
-  margin: var(--space-8) 0;
+  margin: var(--space-12) 0;
+}
+
+.blog-post-body > * + * {
+  margin-top: var(--space-12);
+}
+
+/* Q&A posts — the reader's letter sits in a card, the answer follows as open prose,
+   and each section carries a text label rather than relying on the card alone. */
+.blog-qa-label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-color);
+  margin: 0 0 var(--space-4);
+}
+
+.blog-qa-question {
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-panel);
+  padding: var(--space-8);
+}
+
+.blog-qa-question .blog-prose {
+  color: var(--text-primary);
+}
+
+.blog-qa-signature {
+  margin: var(--space-6) 0 0;
+  font-style: italic;
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+
+.blog-qa-answer {
+  padding-top: var(--space-2);
+}
+
+/* Tag chips under the post body. */
+.blog-post-body .blog-post-tags {
+  margin-top: var(--space-12);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-color);
+  align-items: center;
+}
+
+.blog-post-tags .blog-tag {
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .blog-qa-question {
+    padding: var(--space-6) var(--space-5);
+  }
 }
 
 .blog-post-backrow {
@@ -187,4 +268,12 @@
 .blog-post-back:hover,
 .blog-post-back:focus-visible {
   text-decoration: underline;
+}
+
+/* Over a cover image the draft banner gets a solid cream fill in both themes, since
+   its usual translucent tint disappears into the photo. */
+.blog-post-hero--cover .blog-post-draft-flag {
+  background-color: #fbfaf0;
+  color: #1b2408;
+  border-color: #fbfaf0;
 }
