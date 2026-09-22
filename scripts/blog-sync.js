@@ -127,19 +127,35 @@ export function htmlToMarkdown(html) {
 
 // Pull the title and subtitle out of the body. The title is the first heading 1; a
 // heading 2 sitting directly under it, with nothing in between, is the subtitle.
+//
+// An image placed on the same line as the title in the Doc exports inside the heading,
+// so images are lifted out of both lines and put back at the top of the body, where the
+// cover-image step finds them.
+const INLINE_IMAGE = /!\[[^\]]*\]\([^)\s]+(?:\s+"[^"]*")?\)/g
+
+function splitHeading(text) {
+  const images = text.match(INLINE_IMAGE) || []
+  const clean = text.replace(INLINE_IMAGE, '').replace(/[*_]/g, '').trim()
+  return { clean, images }
+}
+
 export function extractTitle(markdown) {
   const match = /^#[ \t]+(.+?)[ \t#]*$/m.exec(markdown)
   if (!match) return { title: '', subtitle: '', markdown }
-  const title = match[1].replace(/[*_]/g, '').trim()
+  const heading = splitHeading(match[1])
+  const images = [...heading.images]
   let rest = markdown.slice(0, match.index) + markdown.slice(match.index + match[0].length)
   let subtitle = ''
   const after = markdown.slice(match.index + match[0].length)
   const sub = /^\s*##[ \t]+(.+?)[ \t#]*$/m.exec(after)
   if (sub && sub.index === 0) {
-    subtitle = sub[1].replace(/[*_]/g, '').trim()
+    const subHeading = splitHeading(sub[1])
+    subtitle = subHeading.clean
+    images.push(...subHeading.images)
     rest = markdown.slice(0, match.index) + after.slice(sub[0].length)
   }
-  return { title, subtitle, markdown: rest.trim() }
+  rest = [...images, rest.trim()].filter(Boolean).join('\n\n')
+  return { title: heading.clean, subtitle, markdown: rest.trim() }
 }
 
 export function slugify(text) {
