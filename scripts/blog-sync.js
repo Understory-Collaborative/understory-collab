@@ -202,6 +202,12 @@ async function run() {
 
   for (const { docs, draft } of groups) {
     for (const doc of docs) {
+      // A Doc whose name starts with "_" is a template or work in progress; it is
+      // never published. This is what keeps the Drafts-folder template off the site.
+      if (doc.name.trim().startsWith('_')) {
+        console.log(`skip   ${doc.name.trim()} (name starts with _)`)
+        continue
+      }
       seen.add(doc.id)
       const title = doc.name.trim()
       const slug = slugify(title) || doc.id
@@ -212,12 +218,24 @@ async function run() {
       markdown = await localizeImages(markdown, slug)
       markdown = markdown.trim()
 
+      // An author can set the summary explicitly with an "Excerpt:" line at the top
+      // of the Doc. It becomes the card blurb and the SEO meta description, then is
+      // removed from the body. Without one, the first paragraph is used.
+      const excerptLine = /^(?:\*{0,2})excerpt(?:\*{0,2}):\s*(.+?)\s*$/im.exec(markdown)
+      let excerpt
+      if (excerptLine) {
+        excerpt = excerptLine[1].replace(/[*_`]/g, '').trim()
+        markdown = markdown.replace(excerptLine[0], '').trim()
+      } else {
+        excerpt = deriveExcerpt(markdown)
+      }
+
       const frontmatter = buildFrontmatter({
         title,
         slug,
         date,
         author,
-        excerpt: deriveExcerpt(markdown),
+        excerpt,
         draft,
         source: 'drive',
         driveId: doc.id,

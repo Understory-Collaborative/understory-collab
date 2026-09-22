@@ -74,6 +74,12 @@ test it right away: **Actions → Blog sync from Google Drive → Run workflow**
 ## Good to know
 
 - **The Doc name is the post title.** Name your Docs deliberately.
+- **Start a post from the `_TEMPLATE` Doc** in the Drafts folder: right-click it,
+  choose **Make a copy**, and rename the copy to your headline. Any Doc whose name
+  starts with `_` is ignored by the sync, so the template itself never gets published.
+- **Set the summary with an `Excerpt:` line** at the top of the Doc. It becomes the
+  blog-list blurb and the search-engine description. Without one, the first paragraph
+  is used.
 - **The post date** is the day the Doc was created.
 - **Images** in the Doc are pulled in automatically. Complex layouts convert more
   roughly than plain text and headings; this is the part we will refine with a real
