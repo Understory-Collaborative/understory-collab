@@ -44,10 +44,13 @@ but recommended.
 >
 > ---
 >
-> **To preview:** keep your copy in **Drafts**, then run the sync (Actions → Blog
-> sync from Google Drive → Run workflow). Your preview link is ready a minute later.
-> **To publish:** move your copy into **Published**. It goes live within a day, or
-> right away if you run the sync.
+> **To preview:** keep your copy in **Drafts**, then choose **UC Blog → Preview now**
+> from the menu in this Doc. Your preview link is ready a minute or two later.
+> **To publish:** choose **UC Blog → Publish**. It moves this Doc into **Published** and
+> the post goes live a minute or two later.
+>
+> (Without the menu: run the sync from GitHub under Actions → Blog sync from Google
+> Drive → Run workflow, and move the Doc into **Published** by hand.)
 
 ---
 

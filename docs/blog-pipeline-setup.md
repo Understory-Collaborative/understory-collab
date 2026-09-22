@@ -70,6 +70,96 @@ In the GitHub repo, go to **Settings → Secrets and variables → Actions**:
 The sync runs on a schedule only after this code is merged to the main branch. To
 test it right away: **Actions → Blog sync from Google Drive → Run workflow**.
 
+## Run the sync from the Doc (optional)
+
+This adds a **UC Blog** menu inside each post Doc, with **Preview now** and **Publish**,
+so nobody has to open GitHub. It has two parts:
+
+- **The relay** (`scripts/apps-script/relay/`) is a small web app that holds the GitHub
+  token and starts the sync. It runs as the person who deploys it.
+- **The menu** (`scripts/apps-script/template-menu/`) lives in the `_TEMPLATE` Doc.
+  Copying a Doc copies its script, so every new post gets the menu. The menu only knows
+  the relay's address, never the token.
+
+### A. Make the GitHub token
+
+1. On GitHub, go to **Settings → Developer settings → Personal access tokens →
+   Fine-grained tokens → Generate new token**.
+2. Name it `uc-blog-relay`. Set **Resource owner** to `Understory-Collaborative`.
+3. Pick an expiration (a year at most) and put the renewal date on your calendar. When
+   it expires, the menu says "GitHub rejected the token."
+4. **Repository access:** Only select repositories → `understory-collab`.
+5. **Permissions → Repository permissions → Actions:** Read and write. Leave
+   everything else at No access.
+6. Generate it and copy it. If the organization requires approval for tokens, approve
+   it under **Organization settings → Personal access tokens → Pending requests**.
+
+### B. Set up the relay
+
+Do this signed in as the account that owns the `UC Blog` folder.
+
+1. Go to https://script.google.com and start a **New project**. Name it `UC Blog relay`.
+2. Replace everything in `Code.gs` with `scripts/apps-script/relay/Code.gs`.
+3. Open **Project Settings**, turn on **Show "appsscript.json" manifest file in
+   editor**, then replace `appsscript.json` with `scripts/apps-script/relay/appsscript.json`.
+4. Still in **Project Settings**, under **Script properties**, add:
+
+   | Property | Value |
+   |---|---|
+   | `GITHUB_TOKEN` | the token from step A |
+   | `DRIVE_DRAFTS_FOLDER_ID` | the Drafts folder ID (same as the GitHub variable) |
+   | `DRIVE_PUBLISHED_FOLDER_ID` | the Published folder ID (same as the GitHub variable) |
+
+5. **Deploy → New deployment →** type **Web app**. Set **Execute as: Me** and **Who has
+   access: Anyone with a Google account**. (If everyone who publishes uses one Google
+   Workspace domain, pick that domain instead.) Deploy, approve the permissions, and
+   copy the **Web app URL**.
+
+To change the relay's code later, use **Deploy → Manage deployments → Edit → New
+version**, so the URL stays the same.
+
+Opening the web app URL in a browser shows a one-line note about the relay. That's
+expected; the relay only does its work when the Doc menu calls it.
+
+### C. Add the menu to the template
+
+1. Open the `_TEMPLATE — make a copy` Doc and choose **Extensions → Apps Script**.
+2. Replace `Code.gs` with `scripts/apps-script/template-menu/Code.gs`, and paste the web
+   app URL from step B into `RELAY_URL` at the top.
+3. Show the manifest as in step B and replace `appsscript.json` with
+   `scripts/apps-script/template-menu/appsscript.json`.
+4. Save, then reload the Doc. The **UC Blog** menu appears next to **Help**. On the
+   template itself the menu only says to make a copy first.
+
+### Using the menu
+
+- **Preview now** starts the sync and shows the preview link. The page is ready a
+  minute or two later.
+- **Publish** asks you to confirm, moves the Doc into Published, and starts the sync.
+- **The first time** someone uses the menu, Google asks them to approve it. Because
+  the script is private, Google shows "Google hasn't verified this app"; choose
+  **Advanced → Go to UC Blog (unsafe)** to continue. It only reads the open Doc and
+  calls the relay.
+- **Docs made before the menu existed** don't have it. Make a fresh copy of the
+  template and move the content over, or add the script to that Doc with step C.
+
+### If the menu says the sync didn't start
+
+The pop-up includes GitHub's own reason. The common ones:
+
+| Code | Usually means | Fix |
+|---|---|---|
+| 403 | The token is waiting for org approval, or Actions is read-only | Approve it under the org's **Settings → Personal access tokens → Pending requests**, and check **Actions: Read and write** on the token |
+| 404 | The token's resource owner or repository is wrong | Recreate it with **Understory-Collaborative** as the owner and `understory-collab` selected |
+| 401 | The token expired or was pasted wrong | Make a new token and replace `GITHUB_TOKEN` in the relay's Script properties |
+
+### What the relay allows
+
+It only starts the blog sync. It refuses any Doc outside the Drafts and Published
+folders, and it starts at most one sync every 30 seconds. Anyone who has the relay's
+URL and a Google account can ask it to run the sync, which is the whole of what it can
+do.
+
 ## Trying it out
 
 1. Put a short Google Doc in `Drafts`.
