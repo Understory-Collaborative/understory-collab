@@ -42,27 +42,51 @@ function Blog() {
             <ul className="blog-list" role="list">
               {posts.map((post) => (
                 <li key={post.slug} className="blog-card">
-                  <article>
-                    <p className="blog-card-meta">
-                      {post.date && (
-                        <time dateTime={post.date}>{formatDate(post.date)}</time>
-                      )}
-                      {post.date && <span aria-hidden="true"> · </span>}
-                      <span>{post.readingMinutes} min read</span>
-                    </p>
-                    <h3 className="blog-card-title">
-                      <Link to={`/blog/${post.slug}`}>{post.title}</Link>
-                    </h3>
-                    {post.excerpt && (
-                      <p className="blog-card-excerpt">{post.excerpt}</p>
+                  <article className="blog-card-inner">
+                    {post.cover && (
+                      <Link
+                        to={`/blog/${post.slug}`}
+                        className="blog-card-cover"
+                        tabIndex={-1}
+                        aria-hidden="true"
+                      >
+                        <img src={post.cover} alt="" loading="lazy" />
+                      </Link>
                     )}
-                    <Link
-                      to={`/blog/${post.slug}`}
-                      className="blog-card-more"
-                      aria-label={`Read ${post.title}`}
-                    >
-                      Read more
-                    </Link>
+                    <div className="blog-card-text">
+                      <p className="blog-card-meta">
+                        {post.category && (
+                          <span className="blog-card-category">{post.category}</span>
+                        )}
+                        {post.date && (
+                          <time dateTime={post.date}>{formatDate(post.date)}</time>
+                        )}
+                        {post.date && <span aria-hidden="true"> · </span>}
+                        <span>{post.readingMinutes} min read</span>
+                      </p>
+                      <h3 className="blog-card-title">
+                        <Link to={`/blog/${post.slug}`}>{post.title}</Link>
+                      </h3>
+                      {post.excerpt && (
+                        <p className="blog-card-excerpt">{post.excerpt}</p>
+                      )}
+                      {post.tags.length > 0 && (
+                        <ul className="blog-tags" role="list">
+                          {post.tags.map((tag) => (
+                            <li key={tag} className="blog-tag">
+                              {tag}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      <Link
+                        to={`/blog/${post.slug}`}
+                        className="blog-card-more"
+                        aria-label={`Read ${post.title}`}
+                      >
+                        Read more
+                      </Link>
+                    </div>
                   </article>
                 </li>
               ))}

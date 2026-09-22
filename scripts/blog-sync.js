@@ -218,17 +218,33 @@ async function run() {
       markdown = await localizeImages(markdown, slug)
       markdown = markdown.trim()
 
-      // An author can set the summary explicitly with an "Excerpt:" line at the top
-      // of the Doc. It becomes the card blurb and the SEO meta description, then is
-      // removed from the body. Without one, the first paragraph is used.
-      const excerptLine = /^(?:\*{0,2})excerpt(?:\*{0,2}):\s*(.+?)\s*$/im.exec(markdown)
-      let excerpt
-      if (excerptLine) {
-        excerpt = excerptLine[1].replace(/[*_`]/g, '').trim()
-        markdown = markdown.replace(excerptLine[0], '').trim()
-      } else {
-        excerpt = deriveExcerpt(markdown)
+      // Labeled lines near the top of the Doc set metadata, then are removed from the
+      // body: "Excerpt:", "Category:", "Tags:" (comma separated). The label may be
+      // bold, so **Excerpt:** works too.
+      const takeLabel = (label) => {
+        const re = new RegExp(`^\\*{0,2}${label}\\*{0,2}:\\s*(.+?)\\s*$`, 'im')
+        const match = re.exec(markdown)
+        if (!match) return ''
+        markdown = markdown.replace(match[0], '').trim()
+        return match[1].replace(/[*_`]/g, '').trim()
       }
+      const category = takeLabel('category')
+      const tags = takeLabel('tags')
+      const excerptExplicit = takeLabel('excerpt')
+
+      // Cover image: the first image that appears before the first section heading is
+      // lifted out to drive the card and post header, so a lead image becomes the
+      // cover while images deeper in the body stay inline.
+      let cover = ''
+      const firstHeading = markdown.search(/^#{2,3}\s/m)
+      const region = firstHeading === -1 ? markdown : markdown.slice(0, firstHeading)
+      const coverMatch = /!\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/.exec(region)
+      if (coverMatch) {
+        cover = coverMatch[1]
+        markdown = markdown.replace(coverMatch[0], '').trim()
+      }
+
+      const excerpt = excerptExplicit || deriveExcerpt(markdown)
 
       const frontmatter = buildFrontmatter({
         title,
@@ -236,6 +252,9 @@ async function run() {
         date,
         author,
         excerpt,
+        cover,
+        category,
+        tags,
         draft,
         source: 'drive',
         driveId: doc.id,
