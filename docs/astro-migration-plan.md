@@ -102,6 +102,21 @@ webs checked the Vercel preview for `astro` on 2026-10-01, and phase 0 passes:
 
 Before phase 4, add the form keys (`MAILERLITE_API_KEY`, `RESEND_API_KEY`, and the sender addresses in `.env.example`) to Vercel's Preview environment, or the forms can't submit end to end on the preview. A Preview key writes to the real MailerLite list, so test with your own address.
 
+## Phase 1 notes (2026-10-01)
+
+| What | Where it stands |
+|---|---|
+| `BaseLayout.astro` | Sets every `<head>` tag at build time from `title`, `description`, `image`, `ogType`, and `noindex` props, so PageMeta isn't needed on Astro pages. Canonical URLs have no trailing slash. |
+| Nav | `Navigation.astro` plus a small plain script that Astro inlines. Screenshots match the old nav pixel for pixel in both themes at 1280px and 390px. The hover grace period, gap bridge, click after hover, ArrowDown, Escape, outside click, mobile menu, and `aria-current` all pass the same checks as the old nav. |
+| Theme | The inline script in `BaseLayout` sets the theme before first paint and saves it, as ThemeContext did. The toggle is part of the nav script. Both icons ship, and CSS shows the right one on first paint. |
+| Footer | `Footer.astro`, with `SubscribeForm` as a `client:visible` island. |
+| Skip link | Now an `<a href="#main-content">`, which works without JavaScript. It used to show a 3px strip at the top left, on the live site too; it now stays fully hidden until focused. |
+| Redirects | In `vercel.json` rather than `astro.config.mjs`. Vercel sends real 308 redirects, where Astro's static build writes meta-refresh pages. |
+| 404 | `src/pages/404.astro`, served with a 404 status. The copy is a draft for webs to edit. |
+| Home | `src/pages/index.astro` is a placeholder inside the shell until phase 2. Every other route 404s on the preview for now. |
+
+One tradeoff to decide before phase 4: the footer form is a React island, so every page loads React (about 60 KB compressed) once the footer scrolls into view. Rewriting that one form as a plain script, like the nav, would drop React from every page that has no other interactive part.
+
 ## Risks
 
 | Risk | Why | Mitigation |

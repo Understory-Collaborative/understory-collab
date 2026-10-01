@@ -1,5 +1,47 @@
 {
   "framework": "astro",
+  "redirects": [
+    {
+      "source": "/advisory",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/implementation",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/values",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/portfolios",
+      "destination": "/our-work",
+      "permanent": true
+    },
+    {
+      "source": "/newsletter",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/newsletter/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/quiz",
+      "destination": "/assessment",
+      "permanent": true
+    },
+    {
+      "source": "/apply",
+      "destination": "/contact",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
