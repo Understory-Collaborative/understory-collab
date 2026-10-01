@@ -1,7 +1,7 @@
 # Understory Collaborative — website
 
 Marketing site for Understory Collaborative, built as a React + Vite single-page app and
-deployed from the `preview` branch.
+deployed from the `main` branch.
 
 ## Stack
 
@@ -24,7 +24,7 @@ Run `npm run build` and `npm run lint` before every commit — both must pass.
 
 ## Deploy
 
-The live site builds from **`main`**. During the Astro migration, `preview` is the
+The live site builds from **`main`**. During the Astro migration, `astro` is the
 long-lived migration branch: each phase lands there as a PR, and only the cut over merges it
 into `main` (see `docs/astro-migration-plan.md`).
 
