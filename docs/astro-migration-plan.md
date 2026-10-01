@@ -82,7 +82,7 @@ Each phase lands as a PR onto a long-lived `astro` branch with a Vercel preview.
 
 ## Phase 0 notes (2026-09-22)
 
-Built and checked locally; the Vercel preview is the remaining proof.
+Built and checked locally, then confirmed on the Vercel preview.
 
 | What | Where it stands |
 |---|---|
@@ -94,11 +94,13 @@ Built and checked locally; the Vercel preview is the remaining proof.
 | JavaScript on the spike | About 61 KB gzipped for the React runtime and the island, loaded only because the island is there. Today's app ships 166 KB gzipped on every page. |
 | Porting note | Astro drops a line break between text and an inline tag, as JSX does, so `submit\n<code>` renders as "submit<code>". Keep the space on the same line as the text, or use `{' '}`. |
 
-To finish phase 0, open the Vercel preview for this branch and check that:
+webs checked the Vercel preview for `astro` on 2026-10-01, and phase 0 passes:
 
-- [ ] The spike page loads with the site's fonts and colors.
-- [ ] The function check reads "Pass".
-- [ ] Submitting `test@localhost` in the form shows "Please check what you entered and try again."
+- [x] The spike page loads with the site's fonts and colors.
+- [x] The function check reads "Pass".
+- [x] The form reaches `/api/subscribe`. A real address got a 503 "Subscriptions are currently unavailable", which the function returns when `MAILERLITE_API_KEY` is missing, so the key isn't set for Vercel's Preview environment.
+
+Before phase 4, add the form keys (`MAILERLITE_API_KEY`, `RESEND_API_KEY`, and the sender addresses in `.env.example`) to Vercel's Preview environment, or the forms can't submit end to end on the preview. A Preview key writes to the real MailerLite list, so test with your own address.
 
 ## Risks
 
