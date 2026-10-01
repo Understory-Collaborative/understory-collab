@@ -69,7 +69,7 @@ the live site over only when the parity checklist at the end passes.
 
 ## Phases
 
-Each phase lands as a PR onto a long-lived `astro` branch with a Vercel preview. The live site keeps running from `main` throughout.
+Each phase lands as a PR onto the long-lived `preview` branch with a Vercel preview. The live site keeps running from `main` throughout.
 
 | Phase | What | Done when |
 |---|---|---|
@@ -108,7 +108,7 @@ To finish phase 0, open the Vercel preview for this branch and check that:
 | Blog rendering differences | react-markdown and Astro's markdown differ on edge cases; the Q&A split and heading demotion are custom. | Port the Q&A split as a build-time step, and compare every current post side by side. |
 | Island bugs | Assessment and self-check hold a lot of state, and ShareType (on the self-check and every TPM type page) draws on a canvas. | Move them late, when the shell is stable; they keep their React code, so the change is in how they mount. |
 | URL changes | Any changed path breaks shared links and search results. | Keep every path the same. Carry the existing redirects over, and check the sitemap before and after. |
-| Drive sync timing | Posts sync to `main`'s `content/posts` until cut over, and the `astro` branch reads `src/content/blog`. | Merge `main` into `astro` at every phase and move any new posts across. Switch the sync's folder in the same merge as cut over, and don't run a sync during it. |
+| Drive sync timing | Posts sync to `main`'s `content/posts` until cut over, and the `preview` branch reads `src/content/blog`. | Merge `main` into `preview` at every phase and move any new posts across. Switch the sync's folder in the same merge as cut over, and don't run a sync during it. |
 
 ## Parity checklist (before cut over)
 
@@ -131,3 +131,4 @@ To finish phase 0, open the Vercel preview for this branch and check that:
 | Timing | Start now, in a new conversation. |
 | Navigation and theme toggle | Rewrite as plain scripts, so most pages ship no React at all, as long as the nav still looks and behaves exactly as it does today. |
 | Where posts live | Move to Astro's default, `src/content/blog`. The Drive sync and its Action change with it (phase 3). |
+| Migration branch (2026-10-01) | Use `preview` instead of a new `astro` branch. The live site builds from `main`, so `preview` is safe to merge phases into. |

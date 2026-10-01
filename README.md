@@ -24,8 +24,9 @@ Run `npm run build` and `npm run lint` before every commit — both must pass.
 
 ## Deploy
 
-The host builds from the **`preview`** branch. Work on a feature branch, open a PR into
-`preview`, and merge it; that is what goes live. `main` is not the deploy branch.
+The live site builds from **`main`**. During the Astro migration, `preview` is the
+long-lived migration branch: each phase lands there as a PR, and only the cut over merges it
+into `main` (see `docs/astro-migration-plan.md`).
 
 ## Layout
 
