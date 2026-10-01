@@ -89,7 +89,7 @@ Built and checked locally, then confirmed on the Vercel preview.
 | Astro 7 + `@astrojs/react` 7 | Installed. `npm run build` is now `astro build`; the old app still builds with `npm run build:vite` for side-by-side checks. |
 | No Vercel adapter | Static output only, so Vercel keeps treating `api/` as functions. The adapter would replace that folder, so leave it out unless a page ever needs a server. |
 | `vercel.json` | Sets `"framework": "astro"` and drops the SPA rewrites. The catch-all would have served the spike for every URL, and the blog rewrites point at files the prerender script no longer writes. Unported routes 404 on the preview until their phase lands. |
-| Old React pages | Moved from `src/pages/` to `src/views/`, since Astro treats `src/pages/` as routes. Each phase deletes the views it ports. |
+| Old React pages | Moved from `src/pages/` to `src/views/`, since Astro treats `src/pages/` as routes. They stay until cut over, so `npm run build:vite` can render the old site for side-by-side checks. Phase 5 deletes them with React Router. |
 | Spike page | `src/pages/index.astro`, marked `noindex`. It loads `src/index.css`, mounts the footer `SubscribeForm` as a `client:visible` island, and runs a GET against `/api/subscribe`, which the function answers with a 405 without adding anyone. Phase 2 replaces it with Home. |
 | JavaScript on the spike | About 61 KB gzipped for the React runtime and the island, loaded only because the island is there. Today's app ships 166 KB gzipped on every page. |
 | Porting note | Astro drops a line break between text and an inline tag, as JSX does, so `submit\n<code>` renders as "submit<code>". Keep the space on the same line as the text, or use `{' '}`. |
@@ -116,6 +116,19 @@ Before phase 4, add the form keys (`MAILERLITE_API_KEY`, `RESEND_API_KEY`, and t
 | Home | `src/pages/index.astro` is a placeholder inside the shell until phase 2. Every other route 404s on the preview for now. |
 
 One tradeoff to decide before phase 4: the footer form is a React island, so every page loads React (about 60 KB compressed) once the footer scrolls into view. Rewriting that one form as a plain script, like the nav, would drop React from every page that has no other interactive part.
+
+## Phase 2 notes (2026-10-01)
+
+| What | Where it stands |
+|---|---|
+| Pages | Home, About, Our Work, Office Hours, Accessibility, Privacy, Unsubscribe, the three offer pages, the author profile, the TPM types index, and all twelve type pages. 25 pages build. |
+| How | A script converted the JSX mechanically (`class`, `href`, image imports, and page metadata moved to `BaseLayout` props), so the copy is unchanged character for character. The four data-driven pages use `getStaticPaths` from `authors.js`, `offersData.js`, and `tpmSelfCheckData.js`. |
+| Content check | For all 24 routes, the rendered `<main>` HTML matches the old app's after normalizing attribute order and asset URLs, and so do the title, description, `og:title`, robots, and canonical path. |
+| Visual check | Screenshots of `<main>` in both themes at 1280px and 390px: 86 of 96 are pixel-identical. The other ten differ by 1 to 86 pixels of glyph edges on lines with links, with the same DOM and computed styles. |
+| `HexRadar` | Renders to static SVG at build time, with no JavaScript. |
+| `ShareType` | A `client:only` island, since it reads `window` while rendering. It also needed one fix: Astro imports images as objects, so the canvas got no logo until `ShareType.jsx` read the URL from `.src`. The share card now matches the old one pixel for pixel. Check any other React component that imports an image when it becomes an island. |
+| Unknown slugs | `/offers/x` used to redirect home, and unknown profiles and types showed their own "not found" text. All three now get the site 404 page. |
+| Author profile previews | The tags match `scripts/prerender-meta.js`, apart from `og:title`, which now includes the site name like every other page. |
 
 ## Risks
 
