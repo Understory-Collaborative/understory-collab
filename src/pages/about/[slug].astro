@@ -1,0 +1,89 @@
+---
+// An author's profile, linked from the byline on each of their posts. Lists the
+// author's published posts under the bio. One page per author in authors.js; an
+// unknown slug gets the site 404.
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { AUTHORS, findAuthor } from '../../data/authors'
+import { getPublishedPosts, formatDate } from '../../lib/posts'
+import { ARCHETYPES, RENAISSANCE } from '../../data/tpmSelfCheckData'
+import '../../views/AuthorProfile.css'
+
+export function getStaticPaths() {
+  return AUTHORS.map((author) => ({ params: { slug: author.slug }, props: { author } }))
+}
+
+const { author } = Astro.props
+const tpmType = [...ARCHETYPES, RENAISSANCE].find((type) => type.id === author.tpmType)
+const posts = getPublishedPosts().filter(
+  (post) => findAuthor(post.author)?.slug === author.slug,
+)
+---
+<BaseLayout
+  title={author.name}
+  description={author.bio[0] || `${author.name} at Understory Collaborative.`}
+  image={author.photo}
+  ogType="profile"
+  noindex={author.draft}
+>
+  <div class="author-profile">
+    <header class="page-hero" aria-labelledby="author-heading">
+      <div class="page-hero-content author-profile-hero">
+        <img
+          class="author-profile-photo"
+          src={author.photo}
+          alt={author.photoAlt}
+          width="720"
+          height="960"
+        />
+        <div>
+          {author.draft && (
+            <p class="author-profile-draft-flag" role="status">
+              Draft profile, not indexed
+            </p>
+          )}
+          <h1 id="author-heading">{author.name}</h1>
+          {author.role && <p class="page-hero-description">{author.role}</p>}
+          {tpmType && (
+            <p class="author-profile-type">
+              TPM type:{' '}
+              <a href={`/tpm-types/${tpmType.id}`}>{tpmType.name}</a>
+            </p>
+          )}
+        </div>
+      </div>
+    </header>
+
+    <section class="author-profile-body" aria-labelledby="author-bio-heading">
+      <div class="author-profile-column">
+        <h2 id="author-bio-heading">About {author.name}</h2>
+        {author.bio.length > 0 ? (
+          author.bio.map((paragraph) => <p>{paragraph}</p>)
+        ) : (
+          <p class="author-profile-placeholder">Bio coming soon.</p>
+        )}
+
+        {posts.length > 0 && (
+          <>
+            <h2 id="author-posts-heading">Posts by {author.name}</h2>
+            <ul class="author-profile-posts" role="list" aria-labelledby="author-posts-heading">
+              {posts.map((post) => (
+                <li>
+                  <a href={`/blog/${post.slug}`}>{post.title}</a>
+                  {post.date && (
+                    <time datetime={post.date}>{formatDate(post.date)}</time>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </div>
+    </section>
+
+    <section class="section-container author-profile-backrow">
+      <a href="/blog" class="author-profile-back">
+        &larr; Back to the blog
+      </a>
+    </section>
+  </div>
+</BaseLayout>

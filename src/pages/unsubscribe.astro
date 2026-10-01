@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import '../views/Unsubscribe.css'
+---
+<BaseLayout
+  title="Unsubscribe"
+  description="You can leave the Understory Collaborative newsletter at any time. Here's how."
+>
+  <div class="unsubscribe">
+    <section class="page-hero" aria-labelledby="unsubscribe-heading">
+      <div class="page-hero-content">
+        <h1 id="unsubscribe-heading">Unsubscribe</h1>
+        <p class="page-hero-description">
+          You can leave our newsletter at any time.
+        </p>
+      </div>
+    </section>
+
+    <section class="unsubscribe-body" aria-labelledby="unsubscribe-how-heading">
+      <div class="section-container">
+        <h2 id="unsubscribe-how-heading" class="unsubscribe-form__heading">
+          How to unsubscribe
+        </h2>
+        <p>
+          Every email we send has a one-click unsubscribe link at the bottom. Select it
+          and you are removed right away, with no account or password to remember.
+        </p>
+        <p>
+          If you cannot find an email from us, or you would rather we remove your address
+          for you, <a href="/contact">contact us</a> and we will take care of it.
+        </p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

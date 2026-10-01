@@ -1,17 +1,161 @@
 ---
-// Placeholder home page while the migration is under way (docs/astro-migration-plan.md).
-// It shows the phase 1 shell: nav, footer, theme, and skip link. Phase 2 replaces this
-// file with the real Home page.
 import BaseLayout from '../layouts/BaseLayout.astro'
+import seedIcon from '../assets/noun-seed-6474297.svg'
+import sproutIcon from '../assets/noun-sprout-7907397.svg'
+import treeStepIcon from '../assets/noun-tree-201654.svg'
+import ucLogo from '../assets/UC_Logo.png'
+import '../views/Home.css'
 ---
-<BaseLayout title="Astro migration preview" noindex>
-  <section class="page-hero">
-    <div class="page-hero-content">
-      <h1>Astro migration preview</h1>
-      <p class="page-hero-description">
-        This page stands in for Home while the site moves to Astro. The nav, footer, and theme
-        toggle around it are the new shell. Pages that haven't moved yet show the 404 page.
-      </p>
-    </div>
-  </section>
+<BaseLayout description="When a project is late, a team is stuck, or your tooling has gotten away from you, we've worked through it before. Start wherever you're stuck.">
+  <div class="home">
+    <section class="home-hero" aria-labelledby="hero-heading">
+      <div class="home-hero-content">
+        <div class="home-hero-text">
+          <h1 id="hero-heading" class="home-hero-title">
+            You aren't supposed to have all of this solved on your own.
+          </h1>
+          <p class="home-hero-description">
+            Whether the project is late, the team is stuck, or the tooling has
+            gotten away from you, we've worked through it before. Start wherever
+            you're stuck.
+          </p>
+        </div>
+        <div class="home-hero-logo">
+          <img src={ucLogo.src} alt="Understory Collaborative" />
+        </div>
+      </div>
+    </section>
+
+    <section class="offerings" aria-labelledby="offerings-heading">
+      <div class="section-container">
+        <p class="section-eyebrow">What we do</p>
+        <h2 id="offerings-heading">Where are you stuck?</h2>
+        <ul class="offering-list" role="list">
+          <li class="offering">
+            <h3 class="offering-label">Design</h3>
+            <p class="offering-problem">
+              The scope keeps shifting, and I can't say what the first iteration
+              even is.
+            </p>
+            <a href="/offers/design" class="offering-link">How Design works</a>
+          </li>
+          <li class="offering">
+            <h3 class="offering-label">Build</h3>
+            <p class="offering-problem">
+              My team keeps missing, and I need to know if it can be turned
+              around.
+            </p>
+            <a href="/offers/build" class="offering-link">How Build works</a>
+          </li>
+          <li class="offering">
+            <h3 class="offering-label">Ship</h3>
+            <p class="offering-problem">
+              We could be shipping more frequently and too much is still done
+              by hand.
+            </p>
+            <a href="/offers/ship" class="offering-link">How Ship works</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="positioning" aria-labelledby="positioning-heading">
+      <div class="section-container">
+        <div class="positioning-layout">
+          <div class="positioning-content">
+            <h2 id="positioning-heading">Most help is only half the job</h2>
+            <p>
+              You've probably hired both halves of this job before. One shop builds
+              exactly what you spec and never asks whether it's the right thing to build.
+              One advisor arrives with a deck full of opinions and has never opened your
+              codebase. Neither leaves you better off than when they showed up.
+            </p>
+            <p>
+              We do both halves, and then we leave. That's technical product management.
+              We help you decide what to build and in what order, we sit with the team
+              that builds it, and we go once your team can run it without us.
+            </p>
+          </div>
+          <aside class="office-hours-callout" aria-labelledby="office-hours-callout-heading">
+            <p class="section-eyebrow">Office hours</p>
+            <h3 id="office-hours-callout-heading">Do you have a specific question?</h3>
+            <p>
+              Thirty minutes with someone who's seen just about everything, for
+              the problem you can't take to your team or your boss.
+            </p>
+            <a href="/office-hours" class="btn btn-primary">See office hours</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="forest-health" aria-labelledby="forest-health-heading">
+      <div class="section-container">
+        <div class="forest-health-content">
+          <p class="section-eyebrow">Free self-assessment</p>
+          <h2 id="forest-health-heading">How Healthy Is Your Digital Forest?</h2>
+          <p>
+            Technical debt builds quietly, complexity grows, and a crisis can
+            arrive without warning. Knowing where your systems actually stand
+            is the first step toward changing it.
+          </p>
+          <p>
+            Our free assessment shows where your team is struggling, whether
+            one system is on fire or the whole canopy has become a firestorm,
+            and points to where we can help.
+          </p>
+          <a href="/assessment" class="btn btn-primary">Take the assessment</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-we-work" aria-labelledby="how-we-work-heading">
+      <div class="section-container">
+        <h2 id="how-we-work-heading">How we work</h2>
+        <ul class="work-grid" role="list">
+          <li class="work-step">
+            <img class="work-icon work-icon--seed" src={seedIcon.src} alt="" aria-hidden="true" />
+            <h3>Root</h3>
+            <p>
+              We begin by understanding your foundation. Through deep
+              discovery, we uncover the challenges, opportunities, and goals
+              that lie beneath the surface. This grounding ensures everything
+              we build has strong roots.
+            </p>
+          </li>
+          <li class="work-step">
+            <img class="work-icon work-icon--sprout" src={sproutIcon.src} alt="" aria-hidden="true" />
+            <h3>Rise</h3>
+            <p>
+              With a solid foundation, we begin building. Through
+              collaborative development and iterative refinement, your
+              solution takes shape. We work alongside your team, growing
+              together toward the outcome you defined.
+            </p>
+          </li>
+          <li class="work-step">
+            <img class="work-icon" src={treeStepIcon.src} alt="" aria-hidden="true" />
+            <h3>Flourish</h3>
+            <p>
+              We deliver solutions built to thrive. Beyond launch, we make sure
+              your team can maintain and evolve what we've built together. We
+              measure our work by whether your team can carry it forward without
+              us.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cta-section" aria-labelledby="cta-heading">
+      <div class="section-container">
+        <h2 id="cta-heading">Not sure which of these is you?</h2>
+        <p>
+          Tell us what's going on in your own words, and we'll set up a
+          conversation to work out the scope together.
+        </p>
+        <a href="/contact" class="btn btn-primary btn-large">Start a conversation</a>
+      </div>
+    </section>
+  </div>
 </BaseLayout>

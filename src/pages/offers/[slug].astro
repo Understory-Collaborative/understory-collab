@@ -1,0 +1,75 @@
+---
+// One offer page per bucket (Design / Build / Ship), built on the who / problem /
+// impact / proof structure from review/brand-offer-foundation.md. Data-driven from
+// offersData.js so all three share one template. An unknown slug gets the site 404.
+//
+// Price is intake-only (webs, 2026-08-19): the page describes the engagement shape
+// without a number, and scope is settled in conversation. The CTA invites a note
+// that opens that conversation.
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { offers } from '../../data/offersData'
+import '../../views/OfferPage.css'
+
+export function getStaticPaths() {
+  return offers.map((offer) => ({ params: { slug: offer.slug }, props: { offer } }))
+}
+
+const { offer } = Astro.props
+---
+<BaseLayout title={offer.name} description={offer.metaDescription}>
+  <div class="offer-page">
+    <section class="page-hero" aria-labelledby="offer-heading">
+      <div class="page-hero-content">
+        <p class="offer-eyebrow">{offer.selfSelect}</p>
+        <h1 id="offer-heading">{offer.name}</h1>
+      </div>
+    </section>
+
+    <section class="offer-body" aria-labelledby="offer-who-heading">
+      <div class="section-container offer-grid">
+        <div class="offer-block">
+          <h2 id="offer-who-heading">Who this is for</h2>
+          <p>{offer.whoFor}</p>
+        </div>
+
+        <div class="offer-block">
+          <h2>The problem</h2>
+          <blockquote class="offer-problem">{offer.problem}</blockquote>
+        </div>
+
+        <div class="offer-block">
+          <h2>What you walk away with</h2>
+          <p>{offer.impact}</p>
+        </div>
+
+        <div class="offer-block offer-risk">
+          <h2>The cost of doing nothing</h2>
+          <p>{offer.risk}</p>
+        </div>
+
+        <div class="offer-block">
+          <h2>Proof</h2>
+          <p>{offer.proof}</p>
+        </div>
+
+        <div class="offer-block offer-engagement">
+          <h2>How the engagement works</h2>
+          <p>{offer.engagement}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" aria-labelledby="offer-cta-heading">
+      <div class="section-container">
+        <h2 id="offer-cta-heading">Sound like your situation?</h2>
+        <p>
+          Drop us a note about what's going on. If it's a good match, we'll set up
+          a time to talk.
+        </p>
+        <a href={`/contact?door=${offer.slug}`} class="btn btn-primary btn-large">
+          Send us a note
+        </a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
