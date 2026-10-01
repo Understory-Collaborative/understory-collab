@@ -1,0 +1,259 @@
+---
+// Main navigation. Static markup with a small plain script for the Assessments dropdown,
+// the mobile menu, and the theme toggle, so pages with nothing else interactive load no
+// React. It ports Navigation.jsx and keeps its look and behavior: hover opens the
+// dropdown with a grace period on leave, Escape and an outside click close it, and
+// ArrowDown on the button opens it.
+import treeMark from '../assets/noun-tree-with-leaves-6402273.svg'
+import './Navigation.css'
+
+// The two ways in are grouped under one "Assessments" dropdown.
+const ASSESSMENT_LINKS = [
+  { to: '/assessment', label: "What's on fire" },
+  { to: '/tpm-self-check', label: 'TPM self-check' },
+]
+
+// The remaining flat links.
+const LINKS = [
+  { to: '/office-hours', label: 'Office hours' },
+  { to: '/our-work', label: 'Our work' },
+  { to: '/blog', label: 'Blog' },
+  { to: '/about', label: 'About' },
+  { to: '/contact', label: 'Contact' },
+]
+
+// Matches React Router's NavLink: a link is active on its own path and on any path
+// under it, so /blog/some-post marks Blog.
+const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/'
+const isActive = (to: string) => pathname === to || pathname.startsWith(`${to}/`)
+const dropdownActive = ASSESSMENT_LINKS.some(({ to }) => isActive(to))
+const menuId = 'nav-dropdown-assessments'
+---
+<header class="nav-header">
+  <nav class="nav-container" aria-label="Main navigation">
+    <a href="/" class="nav-logo-link" aria-label="Understory Collaborative home">
+      <span class="nav-logo" aria-hidden="true" style={`--mark: url(${treeMark.src})`}></span>
+      <span class="nav-wordmark">Understory Collaborative</span>
+    </a>
+
+    <ul class="nav-links" id="primary-nav" role="list">
+      <li class="nav-dropdown" data-nav-dropdown>
+        <button
+          type="button"
+          class:list={['nav-link', 'nav-dropdown-toggle', { active: dropdownActive }]}
+          aria-expanded="false"
+          aria-controls={menuId}
+        >
+          Assessments
+          <svg
+            class="nav-dropdown-caret"
+            aria-hidden="true"
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <ul id={menuId} class="nav-dropdown-menu" role="list">
+          {ASSESSMENT_LINKS.map(({ to, label }) => (
+            <li>
+              <a
+                href={to}
+                class:list={['nav-dropdown-link', { active: isActive(to) }]}
+                aria-current={isActive(to) ? 'page' : undefined}
+              >
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </li>
+      {LINKS.map(({ to, label }) => (
+        <li>
+          <a
+            href={to}
+            class:list={['nav-link', { active: isActive(to) }]}
+            aria-current={isActive(to) ? 'page' : undefined}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="nav-actions">
+      <button type="button" class="theme-toggle" aria-label="Switch theme">
+        <!-- Both icons ship; CSS shows the one for the current theme, so the right icon is
+             there on first paint. Light mode shows the moon, dark mode shows the sun. -->
+        <svg class="theme-icon-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="theme-icon-sun" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+      >
+        <svg class="nav-toggle-open" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg class="nav-toggle-close" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<style is:global>
+  /* Icon swaps the React version did by rendering one icon or the other. */
+  [data-theme='light'] .theme-icon-sun,
+  :root:not([data-theme='light']) .theme-icon-moon,
+  .nav-toggle[aria-expanded='false'] .nav-toggle-close,
+  .nav-toggle[aria-expanded='true'] .nav-toggle-open {
+    display: none;
+  }
+</style>
+
+<script>
+  // Theme toggle. The inline script in BaseLayout sets data-theme before first paint;
+  // this flips it and saves the choice, as ThemeContext did.
+  const themeToggle = document.querySelector<HTMLButtonElement>('.theme-toggle')
+  const currentTheme = () =>
+    document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'
+  const labelTheme = () => {
+    themeToggle?.setAttribute(
+      'aria-label',
+      `Switch to ${currentTheme() === 'light' ? 'dark' : 'light'} mode`,
+    )
+  }
+  labelTheme()
+  themeToggle?.addEventListener('click', () => {
+    const next = currentTheme() === 'light' ? 'dark' : 'light'
+    document.documentElement.setAttribute('data-theme', next)
+    try {
+      localStorage.setItem('theme', next)
+    } catch {
+      // Storage can be blocked; the theme still switches for this page.
+    }
+    labelTheme()
+  })
+
+  // Mobile menu. Desktop ignores it, since CSS always shows the links there.
+  const menuToggle = document.querySelector<HTMLButtonElement>('.nav-toggle')
+  const primaryNav = document.getElementById('primary-nav')
+  const setMenuOpen = (open: boolean) => {
+    menuToggle?.setAttribute('aria-expanded', String(open))
+    menuToggle?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu')
+    primaryNav?.toggleAttribute('data-open', open)
+  }
+  menuToggle?.addEventListener('click', () => {
+    setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true')
+  })
+  // Escape closes the mobile menu, so keyboard users are never trapped in it.
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menuToggle?.getAttribute('aria-expanded') === 'true') {
+      setMenuOpen(false)
+    }
+  })
+
+  // Assessments dropdown. On desktop it opens as a popover on hover or click; on mobile
+  // it expands inline within the stacked menu.
+  const dropdown = document.querySelector<HTMLLIElement>('[data-nav-dropdown]')
+  const button = dropdown?.querySelector<HTMLButtonElement>('.nav-dropdown-toggle')
+  const menu = dropdown?.querySelector<HTMLUListElement>('.nav-dropdown-menu')
+
+  if (dropdown && button && menu) {
+    let open = false
+    // Leaving the menu closes it after a short grace period, so a pointer moving
+    // diagonally from the button to a link doesn't lose the menu.
+    let closeTimer: ReturnType<typeof setTimeout> | undefined
+    // True when the menu was just opened by hover, so the click that usually follows
+    // the hover keeps it open instead of toggling it straight back closed.
+    let openedByHover = false
+
+    const cancelClose = () => {
+      clearTimeout(closeTimer)
+      closeTimer = undefined
+    }
+
+    const onPointerDown = (event: MouseEvent) => {
+      if (!dropdown.contains(event.target as Node)) setOpen(false)
+    }
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setOpen(false)
+        button.focus()
+      }
+    }
+
+    function setOpen(next: boolean) {
+      if (next === open) return
+      open = next
+      button!.setAttribute('aria-expanded', String(open))
+      menu!.toggleAttribute('data-open', open)
+      if (open) {
+        document.addEventListener('mousedown', onPointerDown)
+        document.addEventListener('keydown', onKeyDown)
+      } else {
+        document.removeEventListener('mousedown', onPointerDown)
+        document.removeEventListener('keydown', onKeyDown)
+      }
+    }
+
+    dropdown.addEventListener('mouseenter', () => {
+      cancelClose()
+      if (!open) openedByHover = true
+      setOpen(true)
+    })
+    dropdown.addEventListener('mouseleave', () => {
+      cancelClose()
+      openedByHover = false
+      closeTimer = setTimeout(() => setOpen(false), 300)
+    })
+    button.addEventListener('click', () => {
+      if (openedByHover) {
+        openedByHover = false
+        setOpen(true)
+        return
+      }
+      setOpen(!open)
+    })
+    button.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowDown') {
+        event.preventDefault()
+        setOpen(true)
+      }
+    })
+    menu.addEventListener('click', (event) => {
+      if ((event.target as Element).closest('a')) {
+        cancelClose()
+        setOpen(false)
+        setMenuOpen(false)
+      }
+    })
+  }
+</script>

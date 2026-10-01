@@ -1,0 +1,46 @@
+---
+// Site footer. Static markup, except the newsletter form, which stays a React island
+// and loads its JavaScript only when the footer scrolls into view.
+import SubscribeForm from './SubscribeForm.jsx'
+import './Footer.css'
+
+// Set at build time. The site rebuilds on every blog sync, so it rolls over in January.
+const currentYear = new Date().getFullYear()
+---
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-main">
+      <div class="footer-subscribe">
+        <SubscribeForm
+          client:visible
+          variant="footer"
+          heading="Stay Connected"
+          description="Get our newsletter in your inbox."
+        />
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <ul class="footer-links" role="list">
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/our-work">Our Work</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-contact">
+        <a href="mailto:contact@understorycollab.com">contact@understorycollab.com</a>
+      </div>
+
+      <div class="footer-bottom-links">
+        <a href="/accessibility" class="footer-accessibility">Accessibility Statement</a>
+        <a href="/privacy" class="footer-accessibility">Privacy Policy</a>
+        <a href="/unsubscribe" class="footer-accessibility">Unsubscribe</a>
+      </div>
+      <p class="footer-copyright">
+        &copy; {currentYear} Understory Collaborative. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
