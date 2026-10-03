@@ -23,8 +23,10 @@ shared scribe for intake notes.
   how steady has it been over several sprints? If no, which teams could take it, what are
   their velocities, how do they cover their areas today, and how are they structured?
 - **Reading velocity carefully.** Velocity is specific to one team's way of estimating, so
-  two teams' numbers can't be compared directly. Ask for several sprints of history, not one
-  number, and ask what got counted.
+  two teams' raw numbers can't be compared. Each team's velocity can still forecast how many
+  sprints the work would take *on that team*, and sprints can be compared across teams. For
+  that to hold, each team sizes the work in its own points. Ask for several sprints of
+  history, not one number, and ask what got counted.
 - **Checking the conditions the two weeks depend on:**
   - *Scope*: one product or initiative with one release goal, or several tangled together.
   - *People*: how many teams and stakeholders have to agree, and whether they can make the
@@ -161,7 +163,8 @@ DEBRIEF (only after we commit in Phase 6)
 Reveal the answer key and the right call. For each hidden condition: did we
 catch it, partially catch it, or miss it? Quote the moment we caught it, or the
 question that would have surfaced it. Say whether our call matched the right
-call and why. Note how well we read the velocity numbers. Then give three
+call and why. Note how well we read the velocity numbers, including whether we
+compared teams in forecast sprints rather than raw points. Then give three
 method-level notes to improve our pre-work list. This is the only place you may
 be fully candid.
 
