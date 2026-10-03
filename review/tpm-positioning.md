@@ -217,3 +217,76 @@ name the stake, skip the villain, one line to own, mechanics held.
   do this well") is the POV a rival can't copy. The concrete range span (market research,
   enablement, go-to-market to reading technical documentation and challenge reviews) is the
   triad in webs's words. Lands on the customer problem (behind project / stuck team).
+
+---
+
+## Problems we solve, by door (2026-10-03)
+
+Pulled from the four fire reports and from webs's past roles. Understory has had one pro
+bono client, who didn't act on the advice, so none of these come from understory
+engagements. All of them are problems webs or the team solved in W-2 roles or at earlier
+consultancies. The site can say "we've fixed this inside teams before" as long as stories
+don't name employers.
+
+**Build (the team keeps missing)**, from the fire reports:
+- One person knows how the system works, and every change waits on them.
+- You hired to catch up, and the new people slowed the team down further.
+- Your core team spends untracked hours reviewing a contract team's work.
+- Your best engineers are leaving, and they take the context with them.
+- QA carries far more work than anyone planned for.
+- People stopped raising problems because whoever raises one ends up owning the fix.
+- Leadership sees green dashboards while the team holds its breath on every deploy.
+
+**Ship (too much is done by hand)**, from the fire reports:
+- Releases need a checklist, a window, and a specific person on hand.
+- A big opportunity shows up, and the first reaction is anxiety because nobody trusts the
+  platform to handle it.
+
+**Design (what to build)**, from webs's past roles. The fire reports don't cover this door.
+- Stakeholders who built something similar before want to solve every problem in version
+  one. (New product: webs coached legacy stakeholders from a waterfall mindset to building
+  iteratively.)
+- Someone with a big vision is trying to eat the elephant all at once, and scope keeps
+  blowing up. (Late project.)
+- Decisions live in direct messages between two people, so there's nothing for the team to
+  follow and everyone keeps re-litigating. (Late project: webs ran one session where dev
+  managers, product owners, and product managers agreed what was in, what was out, and how
+  features ranked. That became the map for the work.)
+- The ambition and the timeline don't match, and nobody wants to say it. (Third project:
+  webs raised it early and often, and it finished on the timeline she gave.)
+- Executives keep stepping into the work. (Third project.)
+- Nobody can see what's been decided or where things stand without asking someone. (Third
+  project: webs's working document became the decision record and the status report as she
+  worked, with no extra documents or approvals, including for an outside vendor.)
+
+Framing note: tell the timeline story as "we tell you early when the plan and the date don't
+match," not as being right while executives were wrong.
+
+---
+
+## Sprint zero as the fixed-price rung (working idea, 2026-10-03)
+
+This gives `HANDOFF.md`'s fixed-price "sprint zero" rung a concrete shape. It's a fixed two
+weeks with the client's people: facilitated sessions that produce the roadmap, user journey
+slices, and a backlog ready for sprint one. If they want help building after that, the
+engagement continues on the slider.
+
+Proof: webs's last company repeatedly brought her into other teams' projects just to get
+them organized at the start.
+
+**How it avoids becoming a slide deck**
+- Everything lives in the client's tools (their tracker, their wiki), never a deck we own.
+- Their people do the work in the room; we facilitate. Their product owner writes the
+  backlog items with us beside them, so the slider starts at "mixed" on day one.
+- The decision record builds as we go, so decisions don't get re-litigated later.
+- "Done" means their team can start sprint one without us.
+- On the last day, their product owner leads sprint planning and we watch.
+
+**Open, webs decides**
+- The name. Calling it a "trial" frames it as a sample; it's a full deliverable at a small
+  price.
+- Whether a decision-maker's attendance is an intake condition. (Recommended: yes, since
+  the map won't hold if the person who can overrule it isn't in the room.)
+- Price, and the size limit a fixed two weeks can cover.
+- Comfort with clients who don't need us after sprint zero. That's the philosophy working,
+  and it means repeat work and referrals have to carry the business.
