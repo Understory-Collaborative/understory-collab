@@ -266,6 +266,10 @@ match," not as being right while executives were wrong.
 
 ## Sprint zero as the fixed-price rung (working idea, 2026-10-03)
 
+The working method now lives in the team's Google Drive: The Understory Collaborative >
+Understory Methods > 00 Index. This section keeps the positioning; the Drive docs are the
+source of truth for how we run it.
+
 This gives `HANDOFF.md`'s fixed-price "sprint zero" rung a concrete shape. It's a fixed two
 weeks with the client's people: facilitated sessions that produce the roadmap, user journey
 slices, and a backlog ready for sprint one. If they want help building after that, the
