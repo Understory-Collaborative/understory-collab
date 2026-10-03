@@ -282,7 +282,17 @@ them organized at the start.
 - "Done" means their team can start sprint one without us.
 - On the last day, their product owner leads sprint planning and we watch.
 
+**The three-question trip wire (webs, 2026-10-03)**
+When the team sizes and breaks down the work, it logs every big open question. At three,
+estimation stops, since the estimate would only be a guess. Each question gets an owner, a
+short investigation, and a date, and estimation resumes below three. This protects the
+sprint zero from producing a confident timeline built on unknowns. The same check runs at
+intake: a client who already carries three big unknowns needs the investigation before the
+two weeks, not during.
+
 **Open, webs decides**
+- What makes a question "big." Draft: its answer could change the size of the work a lot,
+  change how it gets built, or can only come from someone outside the room.
 - The name. Calling it a "trial" frames it as a sample; it's a full deliverable at a small
   price.
 - Whether a decision-maker's attendance is an intake condition. (Recommended: yes, since

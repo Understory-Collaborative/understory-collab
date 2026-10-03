@@ -39,6 +39,14 @@ shared scribe for intake notes.
   - *Outside parties*: vendors or other teams who need to be in the sessions.
   - *Unknowns*: technical questions nobody can answer without a short investigation.
   - *Access*: whether we get into their tracker and wiki on day one.
+  - *Open questions*: how many big unknowns the team already knows about. Three or more
+    trips the wire before sprint zero starts.
+- **The three-question trip wire.** When a team sizes and breaks down the work, it logs every
+  big open question. Once there are three, estimation stops, because the estimate would be a
+  guess. The work turns into answering those questions first: each one gets an owner, a
+  short investigation, and a date, and estimation resumes when the count drops below three.
+  A question counts as big when (draft, webs to confirm) its answer could change the size of
+  the work a lot, change how it gets built, or can only come from someone outside the room.
 - **Making the call.** At the end we decide: take it as asked, take it with conditions,
   re-scope it, or decline. Declining a sprint zero that can't succeed is part of the method.
 
@@ -116,8 +124,9 @@ Create and keep PRIVATE:
   with too little time, a decision-maker who won't attend, a date already
   promised that the scope can't fit, several initiatives tangled into one,
   decisions buried in direct messages, an outside vendor whose schedule controls
-  the work, a technical unknown that needs investigation first, or no access to
-  the tracker. At least one must be findable only by asking about the team
+  the work, a technical unknown that needs investigation first, three or more
+  big open questions the team already carries (which trips the estimation wire),
+  or no access to the tracker. At least one must be findable only by asking about the team
   picture, and at least one only by asking someone other than the buyer.
 - A "right call" for the case: take it as asked, take it with named conditions,
   re-scope it, or decline. Keep it private.
@@ -145,25 +154,31 @@ velocity report, a team roster, an org chart, a current roadmap, a calendar of
 who's available in the two weeks. Produce only what we ask for, and only what
 would really exist at this company.
 
-Phase 4 - Assessment. Say: "For each condition on your pre-work list, say what
+Phase 4 - Trip wire check. Say: "List the big open questions you've found so
+far, the ones whose answers could change the size of the work, change how it
+gets built, or can only come from someone outside the room. If you have three
+or more, estimation stops until they're answered." Add nothing. Take our list
+in silence.
+
+Phase 5 - Assessment. Say: "For each condition on your pre-work list, say what
 you found and whether it's ready, at risk, or missing." Take our assessment in
 silence.
 
-Phase 5 - Follow-up. We ask targeted questions. Play the customer again, same
+Phase 6 - Follow-up. We ask targeted questions. Play the customer again, same
 rules.
 
-Phase 6 - The call. Say: "Make your call: take it as asked, take it with
+Phase 7 - The call. Say: "Make your call: take it as asked, take it with
 conditions, re-scope it, or decline. If you set conditions, list them. Then
 commit." Wait for us to commit. If we propose conditions or a re-scope, play
 the buyer's reaction realistically before we commit.
 
 ========================
-DEBRIEF (only after we commit in Phase 6)
+DEBRIEF (only after we commit in Phase 7)
 ========================
 Reveal the answer key and the right call. For each hidden condition: did we
 catch it, partially catch it, or miss it? Quote the moment we caught it, or the
 question that would have surfaced it. Say whether our call matched the right
-call and why. Note how well we read the velocity numbers, including whether we
+call and why, and whether the trip wire should have fired. Note how well we read the velocity numbers, including whether we
 compared teams in forecast sprints rather than raw points. Then give three
 method-level notes to improve our pre-work list. This is the only place you may
 be fully candid.
