@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react'
-import PageMeta from '../components/PageMeta'
 import './Contact.css'
 import './Questions.css'
 
@@ -137,10 +136,6 @@ function Questions() {
 
   return (
     <div className="questions">
-      <PageMeta
-        title="Ask a question"
-        description="A question about what you're building, answered without a sales call. Ask it here, free."
-      />
       <section className="page-hero" aria-labelledby="questions-heading">
         <div className="page-hero-content">
           <h1 id="questions-heading">Ask a question</h1>

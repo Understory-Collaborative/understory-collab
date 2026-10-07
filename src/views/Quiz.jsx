@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
 import { quizQuestions, getCrisisType } from '../data/quizData'
-import PageMeta from '../components/PageMeta'
 import { submitErrorMessage } from '../lib/formErrors'
 import './Quiz.css'
 
@@ -66,10 +65,6 @@ function Quiz() {
   if (!quizStarted) {
     return (
       <div className="quiz-page">
-      <PageMeta
-        title="What's On Fire?"
-        description="A technical health self-assessment. Six questions about the state of your engineering organization, then a report on where you stand and what it means. Your answers stay on your device."
-      />
         <section className="quiz-intro" aria-labelledby="quiz-heading">
           <div className="quiz-intro-content">
             <h1 id="quiz-heading">What's On Fire?</h1>
@@ -96,10 +91,6 @@ function Quiz() {
   if (quizComplete && crisisType) {
     return (
       <div className="quiz-page">
-      <PageMeta
-        title="What's On Fire?"
-        description="A technical health self-assessment. Six questions about the state of your engineering organization, then a report on where you stand and what it means. Your answers stay on your device."
-      />
         <section className="quiz-result" aria-labelledby="result-heading">
           <div className="quiz-result-content">
             <p className="result-label">Your result</p>
@@ -157,10 +148,6 @@ function Quiz() {
 
   return (
     <div className="quiz-page">
-      <PageMeta
-        title="What's On Fire?"
-        description="A technical health self-assessment. Six questions about the state of your engineering organization, then a report on where you stand and what it means. Your answers stay on your device."
-      />
       <section className="quiz-active" aria-labelledby="question-heading">
         <div className="quiz-active-content">
           {/* Persistent page title for the active view so the heading order starts at h1

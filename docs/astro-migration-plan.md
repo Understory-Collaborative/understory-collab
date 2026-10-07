@@ -156,6 +156,23 @@ Until cut over, the sync keeps writing to `main`'s `content/posts`. When merging
 | Behavior check | Scripted runs in both builds with the `api/` calls intercepted: Contact's validation messages and focus, the door preselect, each form's request body to `/api/contact`, `/api/questions`, `/api/subscribe`, and `/api/field-guide`, the assessment's six steps, result, and focus, and the self-check's results, saved progress after a reload, print, and share card download all match. No console or hydration errors. |
 | Not checked | Real submissions. The Preview environment has no form keys (see "Phase 0 notes"), so a submit on the preview returns a 503. |
 
+## Phase 5 notes (2026-10-07)
+
+| What | Where it stands |
+|---|---|
+| Removed | The Vite app shell (`index.html`, `main.jsx`, `App.jsx`), React Router, `PageMeta`, `ThemeContext`, the React Layout, Navigation, and Footer, the thirteen page views that have Astro pages, the old post loader, `scripts/prerender-meta.js`, `vite.config.js`, and the `vite`, `@vitejs/plugin-react`, and `react-router-dom` packages. |
+| Kept | The four form views and their components, every page stylesheet in `src/views/`, and `App.css`, which `BaseLayout` imports. |
+| Regression check | Against a fresh build of `main` after the deletions: all 35 routes render the same HTML, every scripted form run matches, and the nav passes all 22 behavior checks. |
+| JavaScript | Pages with no form load none on first paint (the old site loaded 539 KB on every page). The footer signup loads React, about 187 KB before compression, once it scrolls into view; that's the tradeoff noted in "Phase 1 notes". |
+
+## Cut over
+
+1. Merge the phase 5 PR into `astro`.
+2. Check the preview for `astro` against the open items below.
+3. Open a PR from `astro` into `main`. Just before merging, merge `main` into it once more and move any new posts (see "Phase 3 notes").
+4. Don't move Docs in the Drive folders while the merge and deploy run.
+5. Merge. Vercel builds `main` with Astro, and the next Drive sync writes to `src/content/blog`.
+
 ## Risks
 
 | Risk | Why | Mitigation |
@@ -168,17 +185,19 @@ Until cut over, the sync keeps writing to `main`'s `content/posts`. When merging
 
 ## Parity checklist (before cut over)
 
-- [ ] Every route in the inventory loads on the preview, in light and dark, at desktop and 390px.
-- [ ] Every old redirect still redirects.
-- [ ] Contact, Questions, subscribe, and field guide submit, and the submissions arrive.
-- [ ] The assessment reaches a result and captures the email.
-- [ ] The TPM self-check saves progress, prints, and exports its share card.
-- [ ] Each blog post matches today's version: cover hero, subtitle, byline, Q&A layout, and tags.
-- [ ] Link previews on LinkedIn's Post Inspector show the right title and image for a post, a profile, and `/blog`.
-- [ ] Keyboard only: skip link, nav dropdown, forms, and the self-check work, with visible focus.
-- [ ] The sitemap lists the same URLs as before.
-- [ ] Pages with no interactive parts ship no JavaScript beyond the small nav and theme scripts (check the network tab).
-- [ ] A Drive sync after cut over writes to `src/content/blog` and the post appears.
+Checked locally against a build of `main` unless marked for webs. Items marked **webs** need the Vercel preview, production keys, or the live site.
+
+- [x] Every route in the inventory loads, in light and dark, at desktop and 390px. (Screenshots in phases 1 to 4; **webs** to spot-check on the preview.)
+- [ ] **webs, on the preview:** every old redirect still redirects (`/quiz`, `/apply`, `/advisory`, `/implementation`, `/values`, `/portfolios`, `/newsletter`). They're in `vercel.json`, so only Vercel can serve them.
+- [ ] **webs, after cut over:** Contact, Questions, subscribe, and field guide submit, and the submissions arrive. Locally, each form sends the same request body as `main`; the preview has no form keys.
+- [x] The assessment reaches a result and captures the email.
+- [x] The TPM self-check saves progress, prints, and exports its share card.
+- [x] Each blog post matches today's version: cover hero, subtitle, byline, Q&A layout, and tags.
+- [ ] **webs, after cut over:** link previews on LinkedIn's Post Inspector show the right title and image for a post, a profile, and `/blog`. The raw HTML already carries the same tags as `main`'s prerendered pages.
+- [x] Keyboard only: skip link, nav dropdown, forms, and the self-check work, with visible focus.
+- [x] The sitemap lists the same URLs as before.
+- [x] Pages with no interactive parts ship no JavaScript on load beyond the small nav and theme script. The footer form loads React once it scrolls into view.
+- [ ] **webs, after cut over:** a Drive sync writes to `src/content/blog` and the post appears.
 
 ## Decisions (webs, 2026-09-22)
 
