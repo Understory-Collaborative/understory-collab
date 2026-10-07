@@ -11,7 +11,9 @@ better. Sizes are relative (S, M, L), not time estimates.
 The primary buyer is the non-technical founder of a small company that already has
 development teams, whose product is late, buggy, or hard to read (decision P5 in
 `review/tpm-positioning.md`, 2026-10-08). studio w labs takes the founder before the team.
-Every workstream below writes for the Understory side of that line.
+Engineering leaders stay a second audience: UC has the technical depth for them, but the
+most benefit goes to a non-technical leader. Every workstream below writes for the
+Understory side of that line, founder first.
 
 ## How assistants pick what to recommend
 
