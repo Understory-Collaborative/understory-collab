@@ -12,6 +12,10 @@ export const AUTHORS = [
   {
     slug: 'webs',
     name: 'webs',
+    // The full name, from the bio, so search engines can match webs to her other work.
+    alternateName: 'Stephanie Weber',
+    // Profiles elsewhere, for the structured data's sameAs.
+    sameAs: ['https://www.linkedin.com/in/weberswords'],
     aliases: [],
     photo: '/team/webs.jpg',
     photoAlt: 'Portrait of webs',

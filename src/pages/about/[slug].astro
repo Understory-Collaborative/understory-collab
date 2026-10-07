@@ -7,6 +7,7 @@ import { AUTHORS, findAuthor } from '../../data/authors'
 import { getPublishedPosts } from '../../lib/blog.js'
 import { formatDate } from '../../lib/frontmatter.js'
 import { ARCHETYPES, RENAISSANCE } from '../../data/tpmSelfCheckData'
+import { personNode } from '../../lib/structuredData.js'
 import '../../views/AuthorProfile.css'
 
 export function getStaticPaths() {
@@ -15,6 +16,12 @@ export function getStaticPaths() {
 
 const { author } = Astro.props
 const tpmType = [...ARCHETYPES, RENAISSANCE].find((type) => type.id === author.tpmType)
+const site = Astro.site ?? new URL('https://understorycollab.com')
+const profile = {
+  '@type': 'ProfilePage',
+  url: new URL(`/about/${author.slug}`, site).href,
+  mainEntity: personNode(site, author),
+}
 const posts = (await getPublishedPosts()).filter(
   (post) => findAuthor(post.author)?.slug === author.slug,
 )
@@ -25,6 +32,7 @@ const posts = (await getPublishedPosts()).filter(
   image={author.photo}
   ogType="profile"
   noindex={author.draft}
+  structuredData={[profile]}
 >
   <div class="author-profile">
     <header class="page-hero" aria-labelledby="author-heading">

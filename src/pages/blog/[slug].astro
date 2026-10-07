@@ -12,6 +12,7 @@ import { getPosts } from '../../lib/blog.js'
 import { formatDate } from '../../lib/frontmatter.js'
 import { splitQA } from '../../lib/qa.js'
 import { findAuthor } from '../../data/authors'
+import { orgId, personId, personNode } from '../../lib/structuredData.js'
 import '../../views/BlogPost.css'
 
 export async function getStaticPaths() {
@@ -27,6 +28,22 @@ const description =
   post.subtitle ||
   'Field notes on technical product management from Understory Collaborative: scope, delivery, and keeping technical work healthy.'
 const site = Astro.site ?? new URL('https://understorycollab.com')
+const postUrl = new URL(`/blog/${post.slug}`, site).href
+const article = {
+  '@type': 'BlogPosting',
+  '@id': `${postUrl}#article`,
+  headline: post.title,
+  description,
+  url: postUrl,
+  mainEntityOfPage: postUrl,
+  ...(post.date && { datePublished: post.date }),
+  ...(post.cover && { image: new URL(post.cover, site).href }),
+  ...(post.tags.length && { keywords: post.tags.join(', ') }),
+  ...(author
+    ? { author: { '@id': personId(site, author) } }
+    : post.author && { author: { '@type': 'Person', name: post.author } }),
+  publisher: { '@id': orgId(site) },
+}
 ---
 <BaseLayout
   title={post.title}
@@ -34,6 +51,7 @@ const site = Astro.site ?? new URL('https://understorycollab.com')
   image={post.cover || undefined}
   ogType="article"
   noindex={post.draft}
+  structuredData={author ? [article, personNode(site, author)] : [article]}
 >
   <Fragment slot="head">
     {post.date && <meta property="article:published_time" content={post.date} />}
