@@ -20,6 +20,21 @@ An `llms.txt` file isn't on this list. It's a proposed standard, and as of this 
 major assistant has said it uses one to choose sources. It costs little, so it sits in
 workstream 7 as optional.
 
+## People search inside their niche
+
+webs, 2026-10-08: the problems underneath are much the same, but people search for help
+inside their own niche. A friend's manager, who finds and hires consultancies, needed help
+with what was a technology problem and searched for an "HR systems consultancy," not a
+technology one. A general page about late projects never meets that search.
+
+What this changes:
+
+| Workstream | Change |
+|---|---|
+| 1. Question research | Run every stem twice: once plain, once with a niche in front (`hr systems consultancy`, `edtech project late`, `healthcare software team`). Record which niche words buyers attach to which problems. |
+| 2. Tagline and description | The site-wide line stays general. The niche words go on the niche pages below, where they can be specific. |
+| 3. Page breakdown | Add one page per niche Understory can back with real work. Each answers "who can help with a [niche] technology project," names the niche's own systems and pressures, and links to the general posts for the shared problems. About already lists four industries (Legal, Policy & Compliance; Consumer Products & Services; Health & Safety; Education), which are the candidates. webs decides which have enough real proof to earn a page, and supplies it; nothing gets invented. |
+
 ---
 
 ## Workstreams
@@ -38,6 +53,8 @@ workstream 7 as optional.
 ---
 
 ## 1. Question research
+
+**Status:** round 1 is in `docs/question-bank.md` (2026-10-07, 55 questions from Quora). Round 2 needs webs at a browser for Google, Reddit, and TikTok.
 
 **Goal:** a bank of the real questions buyers ask, in their words, ranked by how often they
 show up. It feeds every other workstream: the tagline's wording, which pages to split, and
