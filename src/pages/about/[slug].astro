@@ -71,6 +71,19 @@ const posts = (await getPublishedPosts()).filter(
           <p class="author-profile-placeholder">Bio coming soon.</p>
         )}
 
+        {author.elsewhere?.length > 0 && (
+          <>
+            <p id="author-elsewhere-heading">Find {author.name} elsewhere:</p>
+            <ul class="author-profile-elsewhere" aria-labelledby="author-elsewhere-heading">
+              {author.elsewhere.map((link) => (
+                <li>
+                  <a href={link.url}>{link.name}</a>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+
         {posts.length > 0 && (
           <>
             <h2 id="author-posts-heading">Posts by {author.name}</h2>

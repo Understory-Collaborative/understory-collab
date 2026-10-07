@@ -41,7 +41,7 @@ export const AXES = [
     id: 'technical',
     name: 'Technical',
     short: 'Technical',
-    blurb: 'Understanding AI, APIs, and architecture decisions.',
+    blurb: 'Understanding ai, APIs, and architecture decisions.',
     anchor: 'Guest (1991), the T-shaped professional: a deep technical stem.',
     items: [
       { id: 'te1', text: 'I can weigh a technical architecture tradeoff and decide, without needing someone to translate it for me.' },

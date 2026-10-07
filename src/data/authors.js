@@ -14,8 +14,22 @@ export const AUTHORS = [
     name: 'webs',
     // The full name, from the bio, so search engines can match webs to her other work.
     alternateName: 'Stephanie Weber',
-    // Profiles elsewhere, for the structured data's sameAs.
-    sameAs: ['https://www.linkedin.com/in/weberswords'],
+    // Profiles elsewhere, for the structured data's sameAs: her personal profiles, then
+    // her pages on her other two sites. The same list is on those sites, from friday's
+    // entity sheet, so all three records read as one person.
+    sameAs: [
+      'https://www.linkedin.com/in/weberswords',
+      'https://www.tiktok.com/@webswebswebs',
+      'https://github.com/weberswords',
+      'https://www.thoughtworks.com/profiles/s/stephanie-weber',
+      'https://studiowlabs.com/about',
+      'https://theintelligenthoodlums.com/crew',
+    ],
+    // Her other sites, linked under the bio.
+    elsewhere: [
+      { name: 'studio w labs', url: 'https://studiowlabs.com' },
+      { name: 'The Intelligent Hoodlums', url: 'https://theintelligenthoodlums.com/crew' },
+    ],
     aliases: [],
     photo: '/team/webs.jpg',
     photoAlt: 'Portrait of webs',
@@ -25,7 +39,7 @@ export const AUTHORS = [
     tpmType: 'polymath',
     bio: [
       'webs (Stephanie Weber) is a technical product manager who gets stuck software teams moving again. She has more than twenty years across education and technology, and she\'s finishing a PhD at UNLV on how cross-functional software teams collaborate.',
-      'As a technical product manager, she introduced a product lifecycle that product and engineering adopted as their shared language. She built a system for engineering and product to talk about how confident they were in a ship date. She coached two VPs of Engineering through organization-wide changes, and she designed a phased rollout of AI tools for developers, QA engineers, and product people.',
+      'As a technical product manager, she introduced a product lifecycle that product and engineering adopted as their shared language. She built a system for engineering and product to talk about how confident they were in a ship date. She coached two VPs of Engineering through organization-wide changes, and she designed a phased rollout of ai tools for developers, QA engineers, and product people.',
       'She got there the long way. She spent ten years in the Clark County School District as a classroom teacher and digital learning coach, and co-founded The Intelligent Hoodlums, which runs professional learning for teachers. After a master\'s in educational leadership, and a couple of summers dealing at the World Series of Poker, she taught herself to code.',
       'At ThoughtWorks she worked across full-stack development, security, and infrastructure, including a rebuild of how an airline manages aircraft maintenance and a GDPR build for a global fashion brand. She holds everything she builds to the standard she studies: secure, accessible, and transparent by default.',
     ],

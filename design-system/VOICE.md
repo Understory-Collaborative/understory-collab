@@ -40,6 +40,7 @@ Copy mechanisms (specificity, curiosity, contrast, a testimonial) are good and w
 
 - Sentence case headings ("What we do"). Title case is a flagged exception.
 - Oxford comma. Lowercase "webs" and lowercase UI labels.
+- Lowercase "ai" everywhere except the start of a sentence, where "Ai" is fine. In many fonts a capital I and a lowercase l look the same, so "AI" reads as the name "Al" (friday `style/voice.md`, webs 2026-10-07).
 - The forest/fire metaphor lives in words, kept subtle. Never go literal (no flames, no parachutes).
 
 ---
