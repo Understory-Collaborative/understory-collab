@@ -148,9 +148,10 @@ sometimes rewrites a title, so the link is the record of the original.
    how to handle a client who keeps adding scope. That matches the champion who carries
    Understory in (`review/tpm-positioning.md`, decision P2), and the posts should speak to
    them as well as to the CTO.
-3. **Non-technical founders show up more than the positioning expects.** Three questions
-   come from founders who can't tell whether their developers are slow. webs to decide
-   whether that's an audience to write for.
+3. **Non-technical founders show up more than the positioning expected.** Three questions
+   come from founders who already have developers and can't tell whether they're slow.
+   webs decided on 2026-10-08 to make these founders Understory's primary buyer (decision
+   P5 in `review/tpm-positioning.md`), with studio w labs taking founders before the team.
 4. **Three clusters have no answer on the site:** estimates, telling the boss it's late, and
    tech debt that leadership ignores. Each is a strong first post, and estimates connects to
    the confidence score webs already built.
@@ -180,4 +181,5 @@ and `[niche] systems consultant` (see "People search inside their niche" in the 
 
 **Stems:** `my project is late`, `how do i tell my boss the project`, `why does my team keep
 missing`, `how to get my team to`, `our status is green but`, `why are software estimates`,
-`how to convince my manager tech debt`, `my developers are slow`
+`how to convince my manager tech debt`, `my developers are slow`, `how do i know if my dev team
+is good`, `non technical founder dev team`, `our agency missed the deadline`

@@ -6,6 +6,13 @@ better. Sizes are relative (S, M, L), not time estimates.
 
 ---
 
+## Who we're writing for
+
+The primary buyer is the non-technical founder of a small company that already has
+development teams, whose product is late, buggy, or hard to read (decision P5 in
+`review/tpm-positioning.md`, 2026-10-08). studio w labs takes the founder before the team.
+Every workstream below writes for the Understory side of that line.
+
 ## How assistants pick what to recommend
 
 | Signal | What it means for us | Where it stands |
@@ -76,11 +83,12 @@ anything.
 | Our own record | Read submissions to `/questions`, contact form messages, and notes from calls. | webs |
 | The assistants themselves | Ask ChatGPT, Claude, Perplexity, and Gemini a stem, then record the follow-up questions they suggest. | Claude or webs |
 
-**Starter stems** (first person, the way a worried leader types; webs to edit):
+**Starter stems** (first person, the way a worried founder or leader types; webs to edit):
 
 - `my project is late`, `how do i tell my boss the project`, `how to recover a late`
 - `why does my team keep missing`, `how to get my team to`, `my engineering team is`
 - `our status is green but`, `how to estimate when`, `what does a technical product manager`
+- `my developers are slow`, `how do i know if my dev team is good`, `non technical founder dev team`, `our agency missed the deadline`
 
 **Capture:** one file, `docs/question-bank.md`, using the capture template from
 `ask-question-capture.md` (verbatim question, source, times seen, answer material). Add a
