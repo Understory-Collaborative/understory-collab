@@ -7,7 +7,7 @@
 //
 // This script runs in a scheduled GitHub Action (see .github/workflows/blog-sync.yml).
 // It reads both folders through a Google service account, converts each Doc to
-// markdown with frontmatter, writes it into content/posts, and downloads any images
+// markdown with frontmatter, writes it into src/content/blog, and downloads any images
 // alongside. The Action then commits and pushes, which triggers a deploy.
 //
 // It only ever touches files it created (frontmatter `source: drive`), so a
@@ -38,7 +38,7 @@ import { google } from 'googleapis'
 import TurndownService from 'turndown'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const POSTS_DIR = join(root, 'content', 'posts')
+const POSTS_DIR = join(root, 'src', 'content', 'blog')
 const ASSETS_DIR = join(root, 'public', 'blog-assets')
 const ASSETS_URL_BASE = '/blog-assets'
 

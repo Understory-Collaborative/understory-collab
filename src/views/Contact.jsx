@@ -1,7 +1,5 @@
-import { useRef, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
 import { offers, getOffer } from '../data/offersData'
-import PageMeta from '../components/PageMeta'
 import './Contact.css'
 
 // Human-readable label for the "what's this about?" selection, sent as its own
@@ -57,13 +55,8 @@ function validate(values) {
 const FOCUS_ORDER = ['name', 'business', 'email', 'message']
 
 function Contact() {
-  const [searchParams] = useSearchParams()
-  // Preselect the topic when someone arrives from an offer page (/contact?door=design).
-  const doorParam = searchParams.get('door')
-  const initialTopic = getOffer(doorParam) ? doorParam : ''
-
   const [values, setValues] = useState({
-    topic: initialTopic,
+    topic: '',
     name: '',
     business: '',
     email: '',
@@ -71,6 +64,13 @@ function Contact() {
     hp_referral: '', // honeypot — neutral name so browser autofill won't populate it
   })
   const [errors, setErrors] = useState({})
+
+  // Preselect the topic when someone arrives from an offer page (/contact?door=design).
+  // Read after mount, since the page also renders on the server, where there is no URL.
+  useEffect(() => {
+    const door = new URLSearchParams(window.location.search).get('door')
+    if (getOffer(door)) setValues((prev) => ({ ...prev, topic: door }))
+  }, [])
   const [status, setStatus] = useState('idle') // idle | loading | success | error
 
   const refs = {
@@ -140,10 +140,6 @@ function Contact() {
 
   return (
     <div className="contact">
-      <PageMeta
-        title="Contact"
-        description="Tell us what you're working on. If it's a good match, we'll set up a time to talk."
-      />
       <section className="page-hero" aria-labelledby="contact-heading">
         <div className="page-hero-content">
           <h1 id="contact-heading">Tell us what you're working on</h1>
@@ -341,7 +337,7 @@ function Contact() {
 
               <p className="contact-privacy">
                 We use your details only to reply to you. See our{' '}
-                <Link to="/privacy">Privacy Policy</Link>.
+                <a href="/privacy">Privacy Policy</a>.
               </p>
 
               <button

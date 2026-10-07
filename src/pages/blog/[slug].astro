@@ -1,0 +1,127 @@
+---
+// A single blog post. Drafts render at their own URL for preview, but are marked
+// noindex so a preview never gets picked up by search engines before it is published.
+// An unknown slug gets the site 404.
+//
+// The markdown renders through BlogProse, the same react-markdown setup the old app
+// used, at build time with no client directive, so the HTML matches and no JavaScript
+// ships. The link preview tags match what scripts/prerender-meta.js wrote before.
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import BlogProse from '../../components/BlogProse.jsx'
+import { getPosts } from '../../lib/blog.js'
+import { formatDate } from '../../lib/frontmatter.js'
+import { splitQA } from '../../lib/qa.js'
+import { findAuthor } from '../../data/authors'
+import '../../views/BlogPost.css'
+
+export async function getStaticPaths() {
+  const posts = await getPosts()
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }))
+}
+
+const { post } = Astro.props
+const qa = splitQA(post.content)
+const author = findAuthor(post.author)
+const description =
+  post.excerpt ||
+  post.subtitle ||
+  'Field notes on technical product management from Understory Collaborative: scope, delivery, and keeping technical work healthy.'
+const site = Astro.site ?? new URL('https://understorycollab.com')
+---
+<BaseLayout
+  title={post.title}
+  description={description}
+  image={post.cover || undefined}
+  ogType="article"
+  noindex={post.draft}
+>
+  <Fragment slot="head">
+    {post.date && <meta property="article:published_time" content={post.date} />}
+    {author ? (
+      <meta property="article:author" content={new URL(`/about/${author.slug}`, site).href} />
+    ) : (
+      post.author && <meta name="author" content={post.author} />
+    )}
+    {post.tags.map((tag) => <meta property="article:tag" content={tag} />)}
+  </Fragment>
+
+  <div class="blog-post">
+    <article>
+      {/* A cover image replaces the vine texture as the hero background. */}
+      <header
+        class={post.cover ? 'page-hero blog-post-hero--cover' : 'page-hero'}
+        style={post.cover ? `--post-cover: url("${post.cover}");` : undefined}
+        aria-labelledby="post-heading"
+      >
+        <div class="page-hero-content">
+          {post.draft && (
+            <p class="blog-post-draft-flag" role="status">
+              Draft preview &mdash; not published or indexed
+            </p>
+          )}
+          <p class="blog-post-meta">
+            {post.category && (
+              <span class="blog-post-category">{post.category}</span>
+            )}
+            {post.date && (
+              <time datetime={post.date}>{formatDate(post.date)}</time>
+            )}
+            {post.date && <span aria-hidden="true"> · </span>}
+            <span>{post.readingMinutes} min read</span>
+          </p>
+          <h1 id="post-heading">{post.title}</h1>
+          {post.subtitle && (
+            <p class="page-hero-description blog-post-subtitle">{post.subtitle}</p>
+          )}
+          {post.author && (
+            <p class="blog-post-byline">
+              By{' '}
+              {author ? (
+                <a href={`/about/${author.slug}`}>{author.name}</a>
+              ) : (
+                post.author
+              )}
+            </p>
+          )}
+        </div>
+      </header>
+
+      <div class="blog-post-body-section">
+        <div class="blog-post-body">
+          {qa ? (
+            <>
+              {qa.intro && <BlogProse markdown={qa.intro} />}
+              <section class="blog-qa blog-qa-question" aria-labelledby="qa-question">
+                <h2 id="qa-question" class="blog-qa-label">The question</h2>
+                <BlogProse markdown={qa.question} />
+                {qa.signature && <p class="blog-qa-signature">{qa.signature}</p>}
+              </section>
+              <section class="blog-qa blog-qa-answer" aria-labelledby="qa-answer">
+                <h2 id="qa-answer" class="blog-qa-label">The answer</h2>
+                <BlogProse markdown={qa.answer} />
+              </section>
+            </>
+          ) : (
+            <BlogProse markdown={post.content} />
+          )}
+
+          {post.tags.length > 0 && (
+            <ul class="blog-tags blog-post-tags" role="list" aria-label="Tags">
+              {post.tags.map((tag) => (
+                <li class="blog-tag">
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+    </article>
+
+    <section class="section-container blog-post-backrow">
+      <a href="/blog" class="blog-post-back">
+        &larr; Back to the blog
+      </a>
+    </section>
+  </div>
+</BaseLayout>

@@ -32,6 +32,9 @@ const {
 } = Astro.props
 
 const fullTitle = title ? `${title} · ${SITE_NAME}` : SITE_NAME
+// Link previews show the page's own title, as scripts/prerender-meta.js did; the site
+// name already appears in og:site_name.
+const shareTitle = title ?? SITE_NAME
 // One canonical form per page, with no trailing slash except on the home page.
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/'
 const canonical = new URL(path, Astro.site).href
@@ -69,15 +72,16 @@ const imageUrl = new URL(image, Astro.site).href
 
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={SITE_NAME} />
-    <meta property="og:title" content={fullTitle} />
+    <meta property="og:title" content={shareTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={imageUrl} />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:title" content={shareTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
+    <!-- Page-specific tags, such as a post's article:* metadata. -->
     <slot name="head" />
   </head>
   <body>

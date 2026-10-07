@@ -14,10 +14,6 @@ import './ShareType.css'
 
 const AXIS_LABELS = AXES.map((a) => a.short)
 
-// Vite imports an image as a URL string; Astro imports it as an object with the URL in
-// `src`. Accept both while the site runs on either build.
-const LOGO_URL = typeof ucLogo === 'string' ? ucLogo : ucLogo.src
-
 // Canvas is authored in a 1080-unit square, then scaled up for a crisp export.
 const CARD = 1080
 const EXPORT_SCALE = 2
@@ -287,7 +283,8 @@ function ShareType({ type, profile = null, lead = false, headingLevel = 2 }) {
       const img = new Image()
       img.onload = () => resolve(img)
       img.onerror = () => resolve(null)
-      img.src = LOGO_URL
+      // Astro imports an image as an object with its URL in `src`.
+      img.src = ucLogo.src
     })
     // Draw only once the brand fonts are ready so the canvas uses Overpass, not a fallback.
     const fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()

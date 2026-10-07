@@ -1,0 +1,13 @@
+---
+// questions: the Questions page, still React, mounted as an island. It renders to HTML at
+// build time, so the copy is in the page before any JavaScript runs, then hydrates on
+// load so the form works. BaseLayout carries the page's head tags.
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Questions from '../views/Questions.jsx'
+---
+<BaseLayout
+  title="Ask a question"
+  description="A question about what you're building, answered without a sales call. Ask it here, free."
+>
+  <Questions client:load />
+</BaseLayout>
