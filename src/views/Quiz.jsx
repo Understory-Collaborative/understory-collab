@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
 import { quizQuestions, getCrisisType } from '../data/quizData'
 import PageMeta from '../components/PageMeta'
 import { submitErrorMessage } from '../lib/formErrors'
@@ -133,12 +132,12 @@ function Quiz() {
                 hours, thirty minutes with someone who's seen just about
                 everything.
               </p>
-              <Link to="/office-hours" className="btn btn-primary">
+              <a href="/office-hours" className="btn btn-primary">
                 See office hours
-              </Link>
+              </a>
               <p className="result-next-alt">
                 Not there yet?{' '}
-                <Link to="/questions">Ask us a question for free.</Link>
+                <a href="/questions">Ask us a question for free.</a>
               </p>
               <button
                 className="btn btn-secondary result-retake"

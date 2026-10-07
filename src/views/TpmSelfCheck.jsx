@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
 import PageMeta from '../components/PageMeta'
 import ShareType from '../components/ShareType'
 import {
@@ -69,20 +68,31 @@ function ringPolygon(fraction, radius, cx, cy) {
 }
 
 function TpmSelfCheck() {
-  const [responses, setResponses] = useState(loadSaved)
+  const [responses, setResponses] = useState({})
+  // Saved answers load after mount, since the page also renders on the server, where there
+  // is no localStorage. Saving waits until then, so the first render can't erase them.
+  const [loaded, setLoaded] = useState(false)
   const resultRef = useRef(null)
+
+  useEffect(() => {
+    // Reading browser storage after hydration is the one sync this effect exists for.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setResponses(loadSaved())
+    setLoaded(true)
+  }, [])
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
   useEffect(() => {
+    if (!loaded) return
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(responses))
     } catch {
       // No persistence in a private window or when storage is blocked; the page still works.
     }
-  }, [responses])
+  }, [responses, loaded])
 
   const answeredCount = PRESENTATION_ORDER.filter((id) => responses[id] != null).length
   const complete = answeredCount === TOTAL_ITEMS
@@ -146,7 +156,7 @@ function TpmSelfCheck() {
         </div>
 
         <p className="tsc-browse-types">
-          Want to see the shapes first? <Link to="/tpm-types">Browse all the types</Link>.
+          Want to see the shapes first? <a href="/tpm-types">Browse all the types</a>.
         </p>
 
         <div className="tsc-scale-key" aria-hidden="true">
@@ -231,12 +241,12 @@ function TpmSelfCheck() {
                 {match.leaning && match.secondary ? (
                   <span className="tsc-archetype-lean">
                     , leaning{' '}
-                    <Link to={`/tpm-types/${match.secondary.id}`}>{match.secondary.name}</Link>
+                    <a href={`/tpm-types/${match.secondary.id}`}>{match.secondary.name}</a>
                   </span>
                 ) : null}
               </p>
               <p className="tsc-archetype-name">
-                <Link to={`/tpm-types/${match.primary.id}`}>{match.primary.name}</Link>
+                <a href={`/tpm-types/${match.primary.id}`}>{match.primary.name}</a>
                 {match.primary.rare && <span className="tsc-rare-tag">Rare</span>}
               </p>
               <p className="tsc-archetype-role">{match.primary.role}</p>
@@ -383,9 +393,9 @@ function TpmSelfCheck() {
                 work in flight, for you or your whole team, where the archetypes become a
                 team-composition read: who pairs with whom, and where the group is thin.
               </p>
-              <Link to="/office-hours" className="btn btn-primary">Talk it through at office hours</Link>
+              <a href="/office-hours" className="btn btn-primary">Talk it through at office hours</a>
               <p className="tsc-next-alt">
-                Or <Link to="/questions">ask us a question for free</Link>.
+                Or <a href="/questions">ask us a question for free</a>.
               </p>
             </div>
           </>

@@ -32,7 +32,7 @@ into `main` (see `docs/astro-migration-plan.md`).
 
 | Path | What it is |
 |---|---|
-| `src/pages/` | Astro pages. The migration in `docs/astro-migration-plan.md` is under way; the static pages and the blog have moved, and the forms are next. |
+| `src/pages/` | Astro pages. The migration in `docs/astro-migration-plan.md` is under way; every page has moved, and cut over is next. |
 | `src/views/` | The React pages the Vite app routes to (Home, About, OurWork, Contact, OfficeHours, Questions, Quiz/assessment, OfferPage, Apply, Privacy, Accessibility, Unsubscribe). They stay until the migration's cut over, for side-by-side checks. |
 | `src/components/` | Layout, Navigation, Footer, SubscribeForm |
 | `src/data/` | `quizData.js` (the "What's On Fire?" assessment), `offersData.js` |

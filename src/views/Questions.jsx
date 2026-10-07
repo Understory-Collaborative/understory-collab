@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import PageMeta from '../components/PageMeta'
 import './Contact.css'
 import './Questions.css'
@@ -350,7 +349,7 @@ function Questions() {
 
             <p className="qa-consent">
               We keep you anonymous unless you tell us it's fine to use your
-              name. See our <Link to="/privacy">Privacy Policy</Link>.
+              name. See our <a href="/privacy">Privacy Policy</a>.
             </p>
 
             <button
@@ -379,7 +378,7 @@ function Questions() {
           <p>
             If it's about your own situation and you want to talk it through,
             bring it to office hours.{' '}
-            <Link to="/office-hours">See office hours</Link>.
+            <a href="/office-hours">See office hours</a>.
           </p>
         </div>
       </section>

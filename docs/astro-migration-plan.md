@@ -145,6 +145,17 @@ One tradeoff to decide before phase 4: the footer form is a React island, so eve
 
 Until cut over, the sync keeps writing to `main`'s `content/posts`. When merging `main` into `astro`, git follows the move for edited posts, but a new post lands in `content/posts`. After each merge, run `git mv -f content/posts/*.md src/content/blog/` if that folder exists.
 
+## Phase 4 notes (2026-10-07)
+
+| What | Where it stands |
+|---|---|
+| Pages | `/contact`, `/questions`, `/assessment`, and `/tpm-self-check` mount their existing React views as `client:load` islands. Each renders to HTML at build time, so the copy is in the page before JavaScript runs. Every route in the inventory is now on Astro. |
+| React Router | Removed from the four views and `PageMeta`: links are plain `<a>` tags, and `PageMeta` reads `window.location`. The old app still builds with them. |
+| Server-render fixes | Contact reads `?door=` after mount, since the server has no URL. The self-check loads saved answers after mount and only saves once they've loaded, so the server HTML and the first browser render agree and a first render can't erase saved progress. |
+| Content check | Against a build of `main`: the rendered HTML and initial form values match on all four pages, and on `/contact` with a valid and an invalid `?door=`. Screenshots in both themes at 1280px and 390px are pixel-identical. |
+| Behavior check | Scripted runs in both builds with the `api/` calls intercepted: Contact's validation messages and focus, the door preselect, each form's request body to `/api/contact`, `/api/questions`, `/api/subscribe`, and `/api/field-guide`, the assessment's six steps, result, and focus, and the self-check's results, saved progress after a reload, print, and share card download all match. No console or hydration errors. |
+| Not checked | Real submissions. The Preview environment has no form keys (see "Phase 0 notes"), so a submit on the preview returns a 503. |
+
 ## Risks
 
 | Risk | Why | Mitigation |

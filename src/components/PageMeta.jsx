@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
 
 // Per-page document metadata for this single-page app. React renders after the
 // static index.html <head>, so this component keeps the tab title, description,
@@ -35,10 +34,11 @@ function upsertLink(rel, href) {
   el.setAttribute('href', href)
 }
 
+// It reads the path from window.location rather than React Router, so it also runs inside
+// the Astro form islands, where BaseLayout has already written the same tags into the HTML.
 function PageMeta({ title, description, noindex = false }) {
-  const { pathname } = useLocation()
-
   useEffect(() => {
+    const { pathname } = window.location
     const fullTitle = title ? `${title} · ${SITE_NAME}` : SITE_NAME
     document.title = fullTitle
 
@@ -63,7 +63,7 @@ function PageMeta({ title, description, noindex = false }) {
         if (el) el.remove()
       }
     }
-  }, [title, description, pathname, noindex])
+  }, [title, description, noindex])
 
   return null
 }

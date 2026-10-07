@@ -1,0 +1,13 @@
+---
+// tpm-self-check: the TpmSelfCheck page, still React, mounted as an island. It renders to HTML at
+// build time, so the copy is in the page before any JavaScript runs, then hydrates on
+// load so the form works. BaseLayout carries the page's head tags.
+import BaseLayout from '../layouts/BaseLayout.astro'
+import TpmSelfCheck from '../views/TpmSelfCheck.jsx'
+---
+<BaseLayout
+  title="TPM self-check"
+  description="An unvalidated self-reflection for technical product managers. It maps your six durable skills and names the archetype your shape is closest to. For your own development. Your answers stay on your device."
+>
+  <TpmSelfCheck client:load />
+</BaseLayout>
