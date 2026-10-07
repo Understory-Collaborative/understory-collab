@@ -2,7 +2,7 @@
 //
 // These are the same three buckets the homepage names (Design = what to build, Build = how
 // to build it, Ship = how to ship it), each with the stuck-leader story it grew from:
-// Design = the delivery rescue, Build = the team turnaround, Ship = sane AI and cadence.
+// Design = the delivery rescue, Build = the team turnaround, Ship = sane ai and cadence.
 // Each renders through one template (OfferPage.jsx) on the who / problem / impact / proof
 // structure from review/brand-offer-foundation.md.
 //
@@ -86,13 +86,13 @@ export const offers = [
     id: 'ship',
     slug: 'ship',
     name: 'Ship',
-    descriptor: 'shipping more often, with AI that helps',
+    descriptor: 'shipping more often, with ai that helps',
     metaDescription:
-      'For a leader who wants AI to make their people better at the work. We put guardrails ' +
+      'For a leader who wants ai to make their people better at the work. We put guardrails ' +
       'around security, PII, and spend, and reach the people still refusing to touch it.',
-    selfSelect: "AI is loose in my org, and it's more risk and noise than help.",
+    selfSelect: "Ai is loose in my org, and it's more risk and noise than help.",
     whoFor:
-      'A leader who wants AI to make their people better at the work. Instead they have ' +
+      'A leader who wants ai to make their people better at the work. Instead they have ' +
       'finance shipping to production with unknown security and PII exposure, runaway token ' +
       'spend, a chunk of the org refusing to touch it, and inboxes full of five-paragraph ' +
       'slop and enormous documents about nothing.',

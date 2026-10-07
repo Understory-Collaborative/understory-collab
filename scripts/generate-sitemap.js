@@ -1,7 +1,7 @@
 // Build-time sitemap + robots generator.
 //
-// Writes public/sitemap.xml and public/robots.txt so search engines can discover
-// every public route, including each published blog post. Runs before `astro build`
+// Writes public/sitemap.xml, public/robots.txt, and public/llms.txt so search engines
+// and ai crawlers can discover every public route, including each published blog post. Runs before `astro build`
 // (see the build script in package.json); the generated files are copied into dist
 // with the rest of public/. Drafts are skipped, matching the site's own rules.
 //
@@ -94,16 +94,66 @@ ${entries.join('\n')}
 </urlset>
 `
 
+// Every ai bot is allowed in, and each is named so the choice is visible and easy to
+// reverse: training bots, then search bots, then bots that fetch a page a person asked
+// about. The policy is in friday's domains/content/llm-crawlability-plan.md.
+const AI_BOTS = [
+  'GPTBot',
+  'ClaudeBot',
+  'Google-Extended',
+  'OAI-SearchBot',
+  'Claude-SearchBot',
+  'PerplexityBot',
+  'ChatGPT-User',
+  'Claude-User',
+]
+
 const robots = `User-agent: *
 Allow: /
 
+${AI_BOTS.map((bot) => `User-agent: ${bot}\nAllow: /`).join('\n\n')}
+
 Sitemap: ${ORIGIN}/sitemap.xml
+`
+
+// llms.txt: a Markdown map of the site for language models (llmstxt.org). The summary
+// matches friday's entity sheet; offers and TPM types come from the same data as their pages.
+const llms = `# Understory Collaborative
+
+> Understory Collaborative is a software delivery consultancy that gets stalled teams moving again, with deep roots in edtech. We work with non-technical founders and business leaders who are building software with their own team or an agency, and with engineering leaders whose delivery has stalled. The team works from across the US.
+
+webs (Stephanie Weber) is a learning scientist and developer in Las Vegas. She runs studio w labs, co-founded Understory Collaborative, and co-founded The Intelligent Hoodlums with Mike Lang.
+
+## Start here
+
+- [Home](${ORIGIN}/): what we do and where to start
+- [About](${ORIGIN}/about): who we are and how we work
+- [Our work](${ORIGIN}/our-work): the problems we solve and the domains we work in
+- [webs](${ORIGIN}/about/webs): co-founder profile
+
+## Offers
+
+${offers.map((offer) => `- [${offer.name}](${ORIGIN}/offers/${offer.slug}): ${offer.metaDescription}`).join('\n')}
+
+## Free tools and help
+
+- [What's On Fire? assessment](${ORIGIN}/assessment): six questions on the state of your engineering organization, with a report
+- [Office hours](${ORIGIN}/office-hours): a thirty-minute call for fifty dollars
+- [Questions](${ORIGIN}/questions): ask a question about what you're building, answered free
+- [TPM self-check](${ORIGIN}/tpm-self-check): a self-reflection for technical product managers
+- [TPM types](${ORIGIN}/tpm-types): the technical product manager archetypes
+
+## Optional
+
+- [Blog](${ORIGIN}/blog): posts from the team
+- [Contact](${ORIGIN}/contact)
 `
 
 mkdirSync(PUBLIC_DIR, { recursive: true })
 writeFileSync(join(PUBLIC_DIR, 'sitemap.xml'), sitemap)
 writeFileSync(join(PUBLIC_DIR, 'robots.txt'), robots)
+writeFileSync(join(PUBLIC_DIR, 'llms.txt'), llms)
 
 console.log(
-  `Generated sitemap.xml (${entries.length} urls) and robots.txt for ${ORIGIN}`,
+  `Generated sitemap.xml (${entries.length} urls), robots.txt, and llms.txt for ${ORIGIN}`,
 )

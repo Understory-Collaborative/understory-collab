@@ -15,6 +15,7 @@ dist-ssr
 # Generated at build time by scripts/generate-sitemap.js
 public/sitemap.xml
 public/robots.txt
+public/llms.txt
 
 # Editor directories and files
 .vscode/*
