@@ -39,6 +39,8 @@ workstream 7 as optional.
 
 ## 1. Question research
 
+**Status:** round 1 is in `docs/question-bank.md` (2026-10-07, 55 questions from Quora). Round 2 needs webs at a browser for Google, Reddit, and TikTok.
+
 **Goal:** a bank of the real questions buyers ask, in their words, ranked by how often they
 show up. It feeds every other workstream: the tagline's wording, which pages to split, and
 which posts to write.
