@@ -1,7 +1,7 @@
 // Build-time sitemap + robots generator.
 //
 // Writes public/sitemap.xml and public/robots.txt so search engines can discover
-// every public route, including each published blog post. Runs before `vite build`
+// every public route, including each published blog post. Runs before `astro build`
 // (see the build script in package.json); the generated files are copied into dist
 // with the rest of public/. Drafts are skipped, matching the site's own rules.
 //
@@ -11,6 +11,8 @@ import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { AUTHORS } from '../src/data/authors.js'
+import { offers } from '../src/data/offersData.js'
+import { ARCHETYPES, RENAISSANCE } from '../src/data/tpmSelfCheckData.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const ORIGIN = (process.env.SITE_ORIGIN || 'https://understorycollab.com').replace(/\/$/, '')
@@ -78,6 +80,9 @@ function urlEntry(loc, lastmod) {
 
 const entries = [
   ...STATIC_ROUTES.map((route) => urlEntry(route)),
+  // One page per offer and per TPM type, from the same data the pages are built from.
+  ...offers.map((offer) => urlEntry(`/offers/${offer.slug}`)),
+  ...[...ARCHETYPES, RENAISSANCE].map((type) => urlEntry(`/tpm-types/${type.id}`)),
   // Author profiles, once they're out of draft.
   ...AUTHORS.filter((author) => !author.draft).map((author) => urlEntry(`/about/${author.slug}`)),
   ...publishedPosts().map((post) => urlEntry(`/blog/${post.slug}`, post.date)),

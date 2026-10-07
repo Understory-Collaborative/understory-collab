@@ -8,6 +8,7 @@ import Footer from '../components/Footer.astro'
 import '../index.css'
 import '../App.css'
 import '../components/Layout.css'
+import { siteGraph, toJsonLd, SITE_NAME, SITE_DESCRIPTION } from '../lib/structuredData.js'
 
 interface Props {
   // Omit on the home page to use the site name alone.
@@ -17,18 +18,18 @@ interface Props {
   image?: string
   ogType?: 'website' | 'article' | 'profile'
   noindex?: boolean
+  // Extra schema.org nodes for this page (a post, a profile), added to the site graph.
+  structuredData?: object[]
 }
 
-const SITE_NAME = 'Understory Collaborative'
-const DEFAULT_DESCRIPTION =
-  "When a project is late, a team is stuck, or your tooling has gotten away from you, we've worked through it before. Start wherever you're stuck."
 
 const {
   title,
-  description = DEFAULT_DESCRIPTION,
+  description = SITE_DESCRIPTION,
   image = '/og-image.png',
   ogType = 'website',
   noindex = false,
+  structuredData = [],
 } = Astro.props
 
 const fullTitle = title ? `${title} · ${SITE_NAME}` : SITE_NAME
@@ -39,6 +40,7 @@ const shareTitle = title ?? SITE_NAME
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/'
 const canonical = new URL(path, Astro.site).href
 const imageUrl = new URL(image, Astro.site).href
+const jsonLd = toJsonLd([...siteGraph(Astro.site!), ...structuredData])
 ---
 <!doctype html>
 <html lang="en">
@@ -81,6 +83,7 @@ const imageUrl = new URL(image, Astro.site).href
     <meta name="twitter:title" content={shareTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
+    <script type="application/ld+json" set:html={jsonLd} />
     <!-- Page-specific tags, such as a post's article:* metadata. -->
     <slot name="head" />
   </head>

@@ -12,6 +12,8 @@ export const AUTHORS = [
   {
     slug: 'webs',
     name: 'webs',
+    // The full name, from the bio, so search engines can match webs to her other work.
+    alternateName: 'Stephanie Weber',
     aliases: [],
     photo: '/team/webs.jpg',
     photoAlt: 'Portrait of webs',
