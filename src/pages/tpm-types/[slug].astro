@@ -1,0 +1,141 @@
+---
+// One page per archetype, generated from the everyday/rare roster plus the Polymath. The
+// archetype copy (name, spikes, role, read) is the source of truth in tpmSelfCheckData.js
+// and is shown, not rewritten. The point of the page is the cross-links: the complement to
+// team up with, and a hop to every other type. An unknown slug gets the site 404.
+//
+// HexRadar renders to static SVG at build time, with no JavaScript. ShareType reads
+// `window` while it renders and only works in the browser, so it mounts client-side only.
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import HexRadar from '../../components/HexRadar.jsx'
+import ShareType from '../../components/ShareType.jsx'
+import { ARCHETYPES, RENAISSANCE, AXES } from '../../data/tpmSelfCheckData'
+import '../../views/TpmTypeDetail.css'
+
+// The full roster in reading order: everyday and rare (as authored), then the balanced whole.
+const ROSTER = [...ARCHETYPES, RENAISSANCE]
+
+export function getStaticPaths() {
+  const roster = [...ARCHETYPES, RENAISSANCE]
+  return roster.map((type, index) => ({ params: { slug: type.id }, props: { index } }))
+}
+
+// Short axis labels in the fixed AXIS_ORDER, for the radar.
+const AXIS_LABELS = AXES.map((a) => a.short)
+
+// Resolve a complement name (e.g. "The Navigator") to its type, if it names a real one.
+// The Polymath's complement is open-ended ("Any, to add depth"), so it stays plain text.
+const byName = (name: string) => ROSTER.find((t) => t.name === name)
+
+const { index } = Astro.props
+const type = ROSTER[index]
+const complement = byName(type.complement)
+const others = ROSTER.filter((t) => t.id !== type.id)
+const prev = index > 0 ? ROSTER[index - 1] : null
+const next = index < ROSTER.length - 1 ? ROSTER[index + 1] : null
+---
+<BaseLayout title={type.name} description={`${type.name}: ${type.spikes}. ${type.read}`}>
+  <div class="ttype">
+      <section class="page-hero" aria-labelledby="ttype-heading">
+        <div class="page-hero-content">
+          <p class="ttype-eyebrow">
+            <a href="/tpm-types">The TPM types</a>
+          </p>
+          <h1 id="ttype-heading">{type.name}</h1>
+          <p class="ttype-spikes">
+            {type.spikes}
+            {type.rare && <span class="ttype-rare-tag">Rare</span>}
+          </p>
+          <p class="page-hero-description">{type.read}</p>
+        </div>
+      </section>
+
+      <section class="ttype-body" aria-labelledby="ttype-shape-heading">
+        <div class="section-container ttype-grid">
+          <div class="ttype-shape">
+            <h2 id="ttype-shape-heading">The shape</h2>
+            <figure class="ttype-radar-figure">
+              <HexRadar
+                v={type.v}
+                labels={AXIS_LABELS}
+                title={`${type.name}: durable-skills hexagon, spiking ${type.spikes}.`}
+              />
+            </figure>
+          </div>
+
+          <div class="ttype-facts">
+            <h2>At a glance</h2>
+            <dl class="ttype-dl">
+              <div>
+                <dt>Skills it spikes</dt>
+                <dd>{type.spikes}</dd>
+              </div>
+              <div>
+                <dt>Where you see it</dt>
+                <dd>{type.role}</dd>
+              </div>
+              <div>
+                <dt>Team up with</dt>
+                <dd>
+                  {complement ? (
+                    <a href={`/tpm-types/${complement.id}`}>{type.complement}</a>
+                  ) : type.balanced ? (
+                    'Anyone'
+                  ) : (
+                    type.complement
+                  )}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="ttype-share" aria-labelledby={`sharetype-heading-${type.id}`}>
+        <div class="section-container">
+          <ShareType client:only="react" type={type} />
+        </div>
+      </section>
+
+      <section class="ttype-more" aria-labelledby="ttype-more-heading">
+        <div class="section-container">
+          <h2 id="ttype-more-heading">Hop to another type</h2>
+          <ul class="ttype-others" role="list">
+            {others.map((t) => (
+              <li>
+                <a href={`/tpm-types/${t.id}`}>{t.name}</a>
+                {t.rare && <span class="ttype-others-tag"> (rare)</span>}
+              </li>
+            ))}
+          </ul>
+
+          <nav class="ttype-pager" aria-label="Previous and next type">
+            {prev ? (
+              <a href={`/tpm-types/${prev.id}`} class="ttype-pager-link ttype-pager-prev">
+                <span class="ttype-pager-dir">Previous</span>
+                <span class="ttype-pager-name">{prev.name}</span>
+              </a>
+            ) : <span />}
+            {next ? (
+              <a href={`/tpm-types/${next.id}`} class="ttype-pager-link ttype-pager-next">
+                <span class="ttype-pager-dir">Next</span>
+                <span class="ttype-pager-name">{next.name}</span>
+              </a>
+            ) : <span />}
+          </nav>
+
+          <p class="ttype-browse">
+            <a href="/tpm-types">Browse all types</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="cta-section" aria-labelledby="ttype-cta-heading">
+        <div class="section-container">
+          <h2 id="ttype-cta-heading">Is this your shape?</h2>
+          <p>The self-check maps your six durable skills and names the type you're closest to.</p>
+          <a href="/tpm-self-check" class="btn btn-primary btn-large">Take the self-check</a>
+        </div>
+      </section>
+  </div>
+</BaseLayout>

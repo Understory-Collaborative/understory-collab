@@ -1,0 +1,97 @@
+---
+// The page shell for every Astro page: <head> tags, skip link, nav, main, and footer.
+// It replaces the React Layout and PageMeta. Each page passes its own title and
+// description, so every tag is in the HTML at build time, where crawlers that never
+// run JavaScript can read it.
+import Navigation from '../components/Navigation.astro'
+import Footer from '../components/Footer.astro'
+import '../index.css'
+import '../App.css'
+import '../components/Layout.css'
+
+interface Props {
+  // Omit on the home page to use the site name alone.
+  title?: string
+  description?: string
+  // Absolute or root-relative image for link previews.
+  image?: string
+  ogType?: 'website' | 'article' | 'profile'
+  noindex?: boolean
+}
+
+const SITE_NAME = 'Understory Collaborative'
+const DEFAULT_DESCRIPTION =
+  "When a project is late, a team is stuck, or your tooling has gotten away from you, we've worked through it before. Start wherever you're stuck."
+
+const {
+  title,
+  description = DEFAULT_DESCRIPTION,
+  image = '/og-image.png',
+  ogType = 'website',
+  noindex = false,
+} = Astro.props
+
+const fullTitle = title ? `${title} · ${SITE_NAME}` : SITE_NAME
+// Link previews show the page's own title, as scripts/prerender-meta.js did; the site
+// name already appears in og:site_name.
+const shareTitle = title ?? SITE_NAME
+// One canonical form per page, with no trailing slash except on the home page.
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/'
+const canonical = new URL(path, Astro.site).href
+const imageUrl = new URL(image, Astro.site).href
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <!-- Set the theme before first paint so there is no light/dark flash.
+         Honors a saved choice, otherwise the visitor's system preference. -->
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          document.documentElement.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme);
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="theme-color" content="#1c2902" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f4f2e4" media="(prefers-color-scheme: light)" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:title" content={shareTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={shareTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <!-- Page-specific tags, such as a post's article:* metadata. -->
+    <slot name="head" />
+  </head>
+  <body>
+    <div class="layout">
+      <a class="skip-link" href="#main-content">Skip to main content</a>
+      <Navigation />
+      <main id="main-content" class="main-content" tabindex="-1">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>

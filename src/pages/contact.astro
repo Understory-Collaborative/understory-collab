@@ -1,0 +1,13 @@
+---
+// contact: the Contact page, still React, mounted as an island. It renders to HTML at
+// build time, so the copy is in the page before any JavaScript runs, then hydrates on
+// load so the form works. BaseLayout carries the page's head tags.
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Contact from '../views/Contact.jsx'
+---
+<BaseLayout
+  title="Contact"
+  description="Tell us what you're working on. If it's a good match, we'll set up a time to talk."
+>
+  <Contact client:load />
+</BaseLayout>

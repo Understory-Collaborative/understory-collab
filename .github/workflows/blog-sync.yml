@@ -48,8 +48,8 @@ jobs:
         run: |
           git config user.name "understory-blog-bot"
           git config user.email "blog-bot@users.noreply.github.com"
-          if [ -n "$(git status --porcelain content/posts public/blog-assets)" ]; then
-            git add content/posts public/blog-assets
+          if [ -n "$(git status --porcelain src/content/blog public/blog-assets)" ]; then
+            git add src/content/blog public/blog-assets
             git commit -m "Sync blog posts from Google Drive"
             git push
           else

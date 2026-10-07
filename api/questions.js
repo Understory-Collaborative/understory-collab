@@ -1,7 +1,7 @@
 /*
  * POST /api/questions — forwards a Q&A submission to webs's Google Form.
  *
- * The custom UI (src/pages/Questions.jsx) posts JSON here. This function maps the
+ * The custom UI (src/views/Questions.jsx) posts JSON here. This function maps the
  * fields to the Google Form's formResponse endpoint (form-urlencoded entry.<id>).
  * Submissions land in the form's Responses tab and its linked Sheet. No env var
  * and no Apps Script: the form id and field ids are public, they travel in the

@@ -1,11 +1,15 @@
 # Understory Collaborative — website
 
-Marketing site for Understory Collaborative, built as a React + Vite single-page app and
-deployed from the `preview` branch.
+Marketing site for Understory Collaborative, built with Astro as static pages, with React
+islands for the forms, and deployed from the `main` branch.
 
 ## Stack
 
-- **React 19** + **React Router 7**, built with **Vite 7**
+- **Astro 7**, static output. Each page is HTML at build time; pages with nothing
+  interactive ship no JavaScript beyond the small nav and theme script.
+- **React 19** for the islands: the four form pages, the footer signup, and the share card
+- **Blog** posts are a content collection in `src/content/blog`, written by the Google Drive
+  sync (`docs/blog-pipeline-setup.md`)
 - Plain CSS driven by a token-based design system (no CSS framework)
 - Serverless form handlers under `api/` (Vercel Node functions)
 - ESLint (flat config) for linting
@@ -14,8 +18,8 @@ deployed from the `preview` branch.
 
 ```bash
 npm install
-npm run dev      # local dev server (Vite)
-npm run build    # production build to dist/
+npm run dev      # local dev server (Astro)
+npm run build    # sitemap, then the production build to dist/
 npm run lint     # eslint
 npm run preview  # serve the production build locally
 ```
@@ -24,15 +28,19 @@ Run `npm run build` and `npm run lint` before every commit — both must pass.
 
 ## Deploy
 
-The host builds from the **`preview`** branch. Work on a feature branch, open a PR into
-`preview`, and merge it; that is what goes live. `main` is not the deploy branch.
+The live site builds from **`main`** on Vercel. The `api/` folder deploys as Vercel
+functions beside the static pages, which is why the build uses no Vercel adapter (see
+`docs/astro-migration-plan.md`).
 
 ## Layout
 
 | Path | What it is |
 |---|---|
-| `src/pages/` | Routed pages (Home, About, OurWork, Contact, OfficeHours, Questions, Quiz/assessment, OfferPage, Apply, Privacy, Accessibility, Unsubscribe) |
-| `src/components/` | Layout, Navigation, Footer, SubscribeForm |
+| `src/pages/` | Astro pages, one file per route, plus `404.astro` |
+| `src/layouts/BaseLayout.astro` | The shell: head tags, skip link, nav, footer, and the theme script |
+| `src/content/blog/` | Blog posts, one markdown file each. Files with no frontmatter are working notes and are skipped. |
+| `src/views/` | The four form pages as React components (Contact, Questions, Quiz for the assessment, TpmSelfCheck), mounted as islands, plus each page's stylesheet |
+| `src/components/` | Navigation and Footer (Astro), SubscribeForm, ShareType, HexRadar, BlogProse (React) |
 | `src/data/` | `quizData.js` (the "What's On Fire?" assessment), `offersData.js` |
 | `api/` | Serverless form handlers — see **Forms** below |
 | `design-system/` | Design tokens, component CSS, guidelines, and the `SKILL.md` / `README.md` spec. The site imports the token files directly; `design-system/styles.css` is a specimen aggregator, not used by the app |

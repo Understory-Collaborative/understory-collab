@@ -6,7 +6,8 @@
 
 .skip-link {
   position: absolute;
-  top: -40px;
+  top: 0;
+  transform: translateY(-100%);
   left: 0;
   background: var(--accent-color);
   color: white;
@@ -15,13 +16,17 @@
   font-weight: 600;
   font-size: 1rem;
   font-family: inherit;
+  /* Explicit so the Astro shell's <a> matches the old <button>, which used these by
+     default. */
+  line-height: normal;
+  text-decoration: none;
   border: none;
   border-radius: 0 0 8px 0;
   cursor: pointer;
 }
 
 .skip-link:focus {
-  top: 0;
+  transform: none;
   outline: 3px solid var(--focus-color);
   outline-offset: 2px;
 }

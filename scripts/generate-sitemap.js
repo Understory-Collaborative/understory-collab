@@ -14,7 +14,7 @@ import { AUTHORS } from '../src/data/authors.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const ORIGIN = (process.env.SITE_ORIGIN || 'https://understorycollab.com').replace(/\/$/, '')
-const POSTS_DIR = join(root, 'content', 'posts')
+const POSTS_DIR = join(root, 'src', 'content', 'blog')
 const PUBLIC_DIR = join(root, 'public')
 
 // Public marketing routes. Redirect-only and utility routes (unsubscribe, apply,

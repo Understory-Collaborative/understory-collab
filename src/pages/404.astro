@@ -1,0 +1,24 @@
+---
+// Site-wide not-found page. Vercel serves it for any URL with no page, replacing the
+// old app's catch-all. Copy follows the not-found states in BlogPost and AuthorProfile.
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+<BaseLayout title="Page not found" noindex>
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1>Page not found</h1>
+      <p class="page-hero-description">
+        We couldn&rsquo;t find that page. It may have moved, or the link may have a typo.
+      </p>
+    </div>
+  </section>
+  <section class="section-container not-found-actions">
+    <a href="/" class="btn btn-primary">Go to the homepage</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found-actions {
+    padding-block: var(--space-12);
+  }
+</style>

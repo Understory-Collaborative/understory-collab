@@ -283,7 +283,8 @@ function ShareType({ type, profile = null, lead = false, headingLevel = 2 }) {
       const img = new Image()
       img.onload = () => resolve(img)
       img.onerror = () => resolve(null)
-      img.src = ucLogo
+      // Astro imports an image as an object with its URL in `src`.
+      img.src = ucLogo.src
     })
     // Draw only once the brand fonts are ready so the canvas uses Overpass, not a fallback.
     const fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()

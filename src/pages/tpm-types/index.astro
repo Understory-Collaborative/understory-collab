@@ -1,0 +1,104 @@
+---
+// The archetype explorer. Lists every type grouped by kind (everyday, rare, and the
+// balanced whole), each card linking to its own page. Copy for the archetypes themselves
+// (name, spikes, role, read) is the source of truth in tpmSelfCheckData.js and is not
+// rewritten here.
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { ARCHETYPES, RENAISSANCE } from '../../data/tpmSelfCheckData'
+import '../../views/TpmTypes.css'
+
+const everyday = ARCHETYPES.filter((a) => !a.rare)
+const rare = ARCHETYPES.filter((a) => a.rare)
+---
+<BaseLayout
+  title="The TPM types"
+  description="Product owner, project manager, program manager, product manager, and software architect are all technical product managers, each leaning on a different pair of the same six durable skills. Explore the shapes."
+>
+  <div class="ttypes">
+      <section class="page-hero" aria-labelledby="ttypes-heading">
+        <div class="page-hero-content">
+          <h1 id="ttypes-heading">The TPM types</h1>
+          <p class="page-hero-description">
+            Product owner, project manager, program manager, product manager, and software
+            architect read like five different jobs. They're one job done with different
+            strengths, and each is a technical product manager of a different kind. Find the
+            kind that fits you, and see who covers what you lean on least.
+          </p>
+          <a href="/tpm-self-check" class="btn btn-primary btn-large">Take the self-check</a>
+        </div>
+      </section>
+
+      <section class="ttypes-group" aria-labelledby="ttypes-everyday-heading">
+        <div class="section-container">
+          <h2 id="ttypes-everyday-heading">Everyday</h2>
+          <p class="ttypes-group-intro">
+            The eight common types. Each leans on two strengths that tend to go together.
+          </p>
+          <ul class="ttypes-cards" role="list">
+            {everyday.map((type) => (
+            <li class="ttypes-card">
+              <a href={`/tpm-types/${type.id}`} class="ttypes-card-link">
+                <h3 class="ttypes-card-name">{type.name}</h3>
+                <p class="ttypes-card-spikes">{type.spikes}</p>
+                <p class="ttypes-card-role">{type.role}</p>
+                <p class="ttypes-card-read">{type.read}</p>
+              </a>
+            </li>
+          ))}
+          </ul>
+        </div>
+      </section>
+
+      <section class="ttypes-group ttypes-group--tint" aria-labelledby="ttypes-rare-heading">
+        <div class="section-container">
+          <h2 id="ttypes-rare-heading">Rare, holding a tension</h2>
+          <p class="ttypes-group-intro">
+            These three combine two strengths that usually pull against each other. Rarer,
+            and stronger for it.
+          </p>
+          <ul class="ttypes-cards" role="list">
+            {rare.map((type) => (
+            <li class="ttypes-card">
+              <a href={`/tpm-types/${type.id}`} class="ttypes-card-link">
+                <h3 class="ttypes-card-name">{type.name}</h3>
+                <p class="ttypes-card-spikes">{type.spikes}</p>
+                <p class="ttypes-card-role">{type.role}</p>
+                <p class="ttypes-card-read">{type.read}</p>
+              </a>
+            </li>
+          ))}
+          </ul>
+        </div>
+      </section>
+
+      <section class="ttypes-group" aria-labelledby="ttypes-polymath-heading">
+        <div class="section-container">
+          <h2 id="ttypes-polymath-heading">The balanced whole</h2>
+          <p class="ttypes-group-intro">
+            Strong across all six, not just two. The generalist the other types are each a
+            piece of.
+          </p>
+          <ul class="ttypes-cards" role="list">
+            {[RENAISSANCE].map((type) => (
+            <li class="ttypes-card">
+              <a href={`/tpm-types/${type.id}`} class="ttypes-card-link">
+                <h3 class="ttypes-card-name">{type.name}</h3>
+                <p class="ttypes-card-spikes">{type.spikes}</p>
+                <p class="ttypes-card-role">{type.role}</p>
+                <p class="ttypes-card-read">{type.read}</p>
+              </a>
+            </li>
+          ))}
+          </ul>
+        </div>
+      </section>
+
+      <section class="cta-section" aria-labelledby="ttypes-cta-heading">
+        <div class="section-container">
+          <h2 id="ttypes-cta-heading">Which shape is yours?</h2>
+          <p>The self-check maps your six durable skills and names the type you're closest to.</p>
+          <a href="/tpm-self-check" class="btn btn-primary btn-large">Take the self-check</a>
+        </div>
+      </section>
+  </div>
+</BaseLayout>

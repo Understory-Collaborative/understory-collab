@@ -1,0 +1,13 @@
+---
+// assessment: the Quiz page, still React, mounted as an island. It renders to HTML at
+// build time, so the copy is in the page before any JavaScript runs, then hydrates on
+// load so the form works. BaseLayout carries the page's head tags.
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Quiz from '../views/Quiz.jsx'
+---
+<BaseLayout
+  title="What's On Fire?"
+  description="A technical health self-assessment. Six questions about the state of your engineering organization, then a report on where you stand and what it means. Your answers stay on your device."
+>
+  <Quiz client:load />
+</BaseLayout>

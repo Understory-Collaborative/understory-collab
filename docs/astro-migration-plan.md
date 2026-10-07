@@ -80,29 +80,124 @@ Each phase lands as a PR onto a long-lived `astro` branch with a Vercel preview.
 | **4. Islands** | Contact, Questions, footer subscribe, then Assessment and TPM self-check. | Each form submits end to end on the preview. The self-check saves, prints, and exports its share card. |
 | **5. Cut over** | Delete React Router, PageMeta, `prerender-meta.js`, and the Vercel rewrites. Update docs. Merge to `main`. | The parity checklist passes on the preview. |
 
+## Phase 0 notes (2026-09-22)
+
+Built and checked locally, then confirmed on the Vercel preview.
+
+| What | Where it stands |
+|---|---|
+| Astro 7 + `@astrojs/react` 7 | Installed. `npm run build` is now `astro build`; the old app still builds with `npm run build:vite` for side-by-side checks. |
+| No Vercel adapter | Static output only, so Vercel keeps treating `api/` as functions. The adapter would replace that folder, so leave it out unless a page ever needs a server. |
+| `vercel.json` | Sets `"framework": "astro"` and drops the SPA rewrites. The catch-all would have served the spike for every URL, and the blog rewrites point at files the prerender script no longer writes. Unported routes 404 on the preview until their phase lands. |
+| Old React pages | Moved from `src/pages/` to `src/views/`, since Astro treats `src/pages/` as routes. They stay until cut over, so `npm run build:vite` can render the old site for side-by-side checks. Phase 5 deletes them with React Router. |
+| Spike page | `src/pages/index.astro`, marked `noindex`. It loads `src/index.css`, mounts the footer `SubscribeForm` as a `client:visible` island, and runs a GET against `/api/subscribe`, which the function answers with a 405 without adding anyone. Phase 2 replaces it with Home. |
+| JavaScript on the spike | About 61 KB gzipped for the React runtime and the island, loaded only because the island is there. Today's app ships 166 KB gzipped on every page. |
+| Porting note | Astro drops a line break between text and an inline tag, as JSX does, so `submit\n<code>` renders as "submit<code>". Keep the space on the same line as the text, or use `{' '}`. |
+
+webs checked the Vercel preview for `astro` on 2026-10-01, and phase 0 passes:
+
+- [x] The spike page loads with the site's fonts and colors.
+- [x] The function check reads "Pass".
+- [x] The form reaches `/api/subscribe`. A real address got a 503 "Subscriptions are currently unavailable", which the function returns when `MAILERLITE_API_KEY` is missing, so the key isn't set for Vercel's Preview environment.
+
+Before phase 4, add the form keys (`MAILERLITE_API_KEY`, `RESEND_API_KEY`, and the sender addresses in `.env.example`) to Vercel's Preview environment, or the forms can't submit end to end on the preview. A Preview key writes to the real MailerLite list, so test with your own address.
+
+## Phase 1 notes (2026-10-01)
+
+| What | Where it stands |
+|---|---|
+| `BaseLayout.astro` | Sets every `<head>` tag at build time from `title`, `description`, `image`, `ogType`, and `noindex` props, so PageMeta isn't needed on Astro pages. Canonical URLs have no trailing slash. |
+| Nav | `Navigation.astro` plus a small plain script that Astro inlines. Screenshots match the old nav pixel for pixel in both themes at 1280px and 390px. The hover grace period, gap bridge, click after hover, ArrowDown, Escape, outside click, mobile menu, and `aria-current` all pass the same checks as the old nav. |
+| Theme | The inline script in `BaseLayout` sets the theme before first paint and saves it, as ThemeContext did. The toggle is part of the nav script. Both icons ship, and CSS shows the right one on first paint. |
+| Footer | `Footer.astro`, with `SubscribeForm` as a `client:visible` island. |
+| Skip link | Now an `<a href="#main-content">`, which works without JavaScript. It used to show a 3px strip at the top left, on the live site too; it now stays fully hidden until focused. |
+| Redirects | In `vercel.json` rather than `astro.config.mjs`. Vercel sends real 308 redirects, where Astro's static build writes meta-refresh pages. |
+| 404 | `src/pages/404.astro`, served with a 404 status. The copy is a draft for webs to edit. |
+| Home | `src/pages/index.astro` is a placeholder inside the shell until phase 2. Every other route 404s on the preview for now. |
+
+One tradeoff to decide before phase 4: the footer form is a React island, so every page loads React (about 60 KB compressed) once the footer scrolls into view. Rewriting that one form as a plain script, like the nav, would drop React from every page that has no other interactive part.
+
+## Phase 2 notes (2026-10-01)
+
+| What | Where it stands |
+|---|---|
+| Pages | Home, About, Our Work, Office Hours, Accessibility, Privacy, Unsubscribe, the three offer pages, the author profile, the TPM types index, and all twelve type pages. 25 pages build. |
+| How | A script converted the JSX mechanically (`class`, `href`, image imports, and page metadata moved to `BaseLayout` props), so the copy is unchanged character for character. The four data-driven pages use `getStaticPaths` from `authors.js`, `offersData.js`, and `tpmSelfCheckData.js`. |
+| Content check | For all 24 routes, the rendered `<main>` HTML matches the old app's after normalizing attribute order and asset URLs, and so do the title, description, `og:title`, robots, and canonical path. |
+| Visual check | Screenshots of `<main>` in both themes at 1280px and 390px: 86 of 96 are pixel-identical. The other ten differ by 1 to 86 pixels of glyph edges on lines with links, with the same DOM and computed styles. |
+| `HexRadar` | Renders to static SVG at build time, with no JavaScript. |
+| `ShareType` | A `client:only` island, since it reads `window` while rendering. It also needed one fix: Astro imports images as objects, so the canvas got no logo until `ShareType.jsx` read the URL from `.src`. The share card now matches the old one pixel for pixel. Check any other React component that imports an image when it becomes an island. |
+| Unknown slugs | `/offers/x` used to redirect home, and unknown profiles and types showed their own "not found" text. All three now get the site 404 page. |
+| Author profile previews | The tags match `scripts/prerender-meta.js`, apart from `og:title`, which now includes the site name like every other page. |
+
+## Phase 3 notes (2026-10-07)
+
+| What | Where it stands |
+|---|---|
+| Posts | Moved from `content/posts` to `src/content/blog`, working notes included. `content/white-papers` stays where it is. |
+| Collection | `src/content.config.ts` defines `blog` with a schema: a missing title, a date that isn't `YYYY-MM-DD`, a slug with spaces or capitals, or a non-boolean `draft` fails the build and names the post. |
+| Why not Astro's YAML loader | The sync escapes markdown characters inside quoted values, so the current draft's title is `"\[Title: webs decides\]"`. YAML rejects `\[`, so one post would fail every build. The collection's loader uses the site's existing line parser (`src/lib/frontmatter.js`), which the old app, the collection, and the scripts now share. |
+| Markdown | Rendered by the same `react-markdown` setup as before (`BlogProse.jsx`), at build time with no JavaScript. That removes the rendering-differences risk below. The Q&A split moved to `src/lib/qa.js`. |
+| Content check | Against a build of `main`: the blog index, all five posts (including the Q&A post and the drafts), and the profile's post list render the same HTML. Screenshots of the index are pixel-identical; posts differ by 3 to 14 pixels of glyph edge on the byline link. |
+| Link previews | Each post's raw HTML carries the same tags `prerender-meta.js` writes on `main`: title, description, cover image, `og:type` article, published date, author, and tags. Link previews on `og:title` and `twitter:title` now use the page's own title on every page, as the prerender did. |
+| Sitemap | `npm run build` runs `scripts/generate-sitemap.js` before `astro build`. Its URLs and `robots.txt` match `main`'s. |
+| Drive sync | `scripts/blog-sync.js`, the sitemap and prerender scripts, and the Action's `git add` all point at `src/content/blog`. The Action runs from `main`, so the change takes effect at cut over. |
+
+Until cut over, the sync keeps writing to `main`'s `content/posts`. When merging `main` into `astro`, git follows the move for edited posts, but a new post lands in `content/posts`. After each merge, run `git mv -f content/posts/*.md src/content/blog/` if that folder exists.
+
+## Phase 4 notes (2026-10-07)
+
+| What | Where it stands |
+|---|---|
+| Pages | `/contact`, `/questions`, `/assessment`, and `/tpm-self-check` mount their existing React views as `client:load` islands. Each renders to HTML at build time, so the copy is in the page before JavaScript runs. Every route in the inventory is now on Astro. |
+| React Router | Removed from the four views and `PageMeta`: links are plain `<a>` tags, and `PageMeta` reads `window.location`. The old app still builds with them. |
+| Server-render fixes | Contact reads `?door=` after mount, since the server has no URL. The self-check loads saved answers after mount and only saves once they've loaded, so the server HTML and the first browser render agree and a first render can't erase saved progress. |
+| Content check | Against a build of `main`: the rendered HTML and initial form values match on all four pages, and on `/contact` with a valid and an invalid `?door=`. Screenshots in both themes at 1280px and 390px are pixel-identical. |
+| Behavior check | Scripted runs in both builds with the `api/` calls intercepted: Contact's validation messages and focus, the door preselect, each form's request body to `/api/contact`, `/api/questions`, `/api/subscribe`, and `/api/field-guide`, the assessment's six steps, result, and focus, and the self-check's results, saved progress after a reload, print, and share card download all match. No console or hydration errors. |
+| Not checked | Real submissions. The Preview environment has no form keys (see "Phase 0 notes"), so a submit on the preview returns a 503. |
+
+## Phase 5 notes (2026-10-07)
+
+| What | Where it stands |
+|---|---|
+| Removed | The Vite app shell (`index.html`, `main.jsx`, `App.jsx`), React Router, `PageMeta`, `ThemeContext`, the React Layout, Navigation, and Footer, the thirteen page views that have Astro pages, the old post loader, `scripts/prerender-meta.js`, `vite.config.js`, and the `vite`, `@vitejs/plugin-react`, and `react-router-dom` packages. |
+| Kept | The four form views and their components, every page stylesheet in `src/views/`, and `App.css`, which `BaseLayout` imports. |
+| Regression check | Against a fresh build of `main` after the deletions: all 35 routes render the same HTML, every scripted form run matches, and the nav passes all 22 behavior checks. |
+| JavaScript | Pages with no form load none on first paint (the old site loaded 539 KB on every page). The footer signup loads React, about 187 KB before compression, once it scrolls into view; that's the tradeoff noted in "Phase 1 notes". |
+
+## Cut over
+
+1. Merge the phase 5 PR into `astro`.
+2. Check the preview for `astro` against the open items below.
+3. Open a PR from `astro` into `main`. Just before merging, merge `main` into it once more and move any new posts (see "Phase 3 notes").
+4. Don't move Docs in the Drive folders while the merge and deploy run.
+5. Merge. Vercel builds `main` with Astro, and the next Drive sync writes to `src/content/blog`.
+
 ## Risks
 
 | Risk | Why | Mitigation |
 |---|---|---|
 | `api/` functions on Vercel | They deploy today as Vercel functions beside a static build. Astro should keep that, but it's the one piece this plan can't confirm from the repo alone. | Prove it in phase 0 before anything else moves. |
-| Blog rendering differences | react-markdown and Astro's markdown differ on edge cases; the Q&A split and heading demotion are custom. | Port the Q&A split as a build-time step, and compare every current post side by side. |
+| Blog rendering differences | react-markdown and Astro's markdown differ on edge cases; the Q&A split and heading demotion are custom. | Resolved in phase 3: posts render through the same react-markdown setup at build time. |
 | Island bugs | Assessment and self-check hold a lot of state, and ShareType (on the self-check and every TPM type page) draws on a canvas. | Move them late, when the shell is stable; they keep their React code, so the change is in how they mount. |
 | URL changes | Any changed path breaks shared links and search results. | Keep every path the same. Carry the existing redirects over, and check the sitemap before and after. |
 | Drive sync timing | Posts sync to `main`'s `content/posts` until cut over, and the `astro` branch reads `src/content/blog`. | Merge `main` into `astro` at every phase and move any new posts across. Switch the sync's folder in the same merge as cut over, and don't run a sync during it. |
 
 ## Parity checklist (before cut over)
 
-- [ ] Every route in the inventory loads on the preview, in light and dark, at desktop and 390px.
-- [ ] Every old redirect still redirects.
-- [ ] Contact, Questions, subscribe, and field guide submit, and the submissions arrive.
-- [ ] The assessment reaches a result and captures the email.
-- [ ] The TPM self-check saves progress, prints, and exports its share card.
-- [ ] Each blog post matches today's version: cover hero, subtitle, byline, Q&A layout, and tags.
-- [ ] Link previews on LinkedIn's Post Inspector show the right title and image for a post, a profile, and `/blog`.
-- [ ] Keyboard only: skip link, nav dropdown, forms, and the self-check work, with visible focus.
-- [ ] The sitemap lists the same URLs as before.
-- [ ] Pages with no interactive parts ship no JavaScript beyond the small nav and theme scripts (check the network tab).
-- [ ] A Drive sync after cut over writes to `src/content/blog` and the post appears.
+Checked locally against a build of `main` unless marked for webs. Items marked **webs** need the Vercel preview, production keys, or the live site.
+
+- [x] Every route in the inventory loads, in light and dark, at desktop and 390px. (Screenshots in phases 1 to 4; **webs** to spot-check on the preview.)
+- [ ] **webs, on the preview:** every old redirect still redirects (`/quiz`, `/apply`, `/advisory`, `/implementation`, `/values`, `/portfolios`, `/newsletter`). They're in `vercel.json`, so only Vercel can serve them.
+- [ ] **webs, after cut over:** Contact, Questions, subscribe, and field guide submit, and the submissions arrive. Locally, each form sends the same request body as `main`; the preview has no form keys.
+- [x] The assessment reaches a result and captures the email.
+- [x] The TPM self-check saves progress, prints, and exports its share card.
+- [x] Each blog post matches today's version: cover hero, subtitle, byline, Q&A layout, and tags.
+- [ ] **webs, after cut over:** link previews on LinkedIn's Post Inspector show the right title and image for a post, a profile, and `/blog`. The raw HTML already carries the same tags as `main`'s prerendered pages.
+- [x] Keyboard only: skip link, nav dropdown, forms, and the self-check work, with visible focus.
+- [x] The sitemap lists the same URLs as before.
+- [x] Pages with no interactive parts ship no JavaScript on load beyond the small nav and theme script. The footer form loads React once it scrolls into view.
+- [ ] **webs, after cut over:** a Drive sync writes to `src/content/blog` and the post appears.
 
 ## Decisions (webs, 2026-09-22)
 

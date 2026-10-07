@@ -172,8 +172,8 @@ do.
 ## Good to know
 
 - **Link previews** (LinkedIn, Slack, iMessage) use the post's title, excerpt, and cover
-  image. The build writes them into each post's page (`scripts/prerender-meta.js`), so a
-  post's preview updates on the deploy after the sync. LinkedIn caches previews; use its
+  image. Each post's page carries them in its HTML, so a post's preview updates on the
+  deploy after the sync. LinkedIn caches previews; use its
   Post Inspector to refresh one.
 
 - **The title comes from inside the Doc**, from its first Heading 1. The Doc name is
