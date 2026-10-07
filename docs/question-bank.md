@@ -174,6 +174,10 @@ Record each question with its source in the tables above, or in a new round sect
 - [ ] **TikTok** autocomplete, with the method in `ask-question-capture.md`.
 - [ ] **Our own record:** submissions to `/questions`, contact form messages, and call notes.
 
+**Niche versions:** run each stem again with a niche in front, such as `hr systems`,
+`edtech`, `healthcare software`, or `legal tech`, and add searches like `[niche] consultancy`
+and `[niche] systems consultant` (see "People search inside their niche" in the plan).
+
 **Stems:** `my project is late`, `how do i tell my boss the project`, `why does my team keep
 missing`, `how to get my team to`, `our status is green but`, `why are software estimates`,
 `how to convince my manager tech debt`, `my developers are slow`
