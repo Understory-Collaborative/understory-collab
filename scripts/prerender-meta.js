@@ -20,7 +20,7 @@ import { AUTHORS } from '../src/data/authors.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DIST = join(root, 'dist')
-const POSTS_DIR = join(root, 'content', 'posts')
+const POSTS_DIR = join(root, 'src', 'content', 'blog')
 const ORIGIN = (process.env.SITE_ORIGIN || 'https://understorycollab.com').replace(/\/$/, '')
 const SITE_NAME = 'Understory Collaborative'
 const DEFAULT_IMAGE = '/og-image.png'

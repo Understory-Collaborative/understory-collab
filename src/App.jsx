@@ -56,7 +56,7 @@ function App() {
             {/* Free async rung: public Q&A */}
             <Route path="questions" element={<Questions />} />
             {/* Blog — index plus one page per post. Posts are markdown files in
-                content/posts, and drafts render (noindex) at their own URL for preview. */}
+                src/content/blog, and drafts render (noindex) at their own URL for preview. */}
             <Route path="blog" element={<Blog />} />
             <Route path="blog/:slug" element={<BlogPost />} />
             {/* Consumer-facing TPM self-check: maps the six durable skills and names the

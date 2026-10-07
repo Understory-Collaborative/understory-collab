@@ -130,12 +130,27 @@ One tradeoff to decide before phase 4: the footer form is a React island, so eve
 | Unknown slugs | `/offers/x` used to redirect home, and unknown profiles and types showed their own "not found" text. All three now get the site 404 page. |
 | Author profile previews | The tags match `scripts/prerender-meta.js`, apart from `og:title`, which now includes the site name like every other page. |
 
+## Phase 3 notes (2026-10-07)
+
+| What | Where it stands |
+|---|---|
+| Posts | Moved from `content/posts` to `src/content/blog`, working notes included. `content/white-papers` stays where it is. |
+| Collection | `src/content.config.ts` defines `blog` with a schema: a missing title, a date that isn't `YYYY-MM-DD`, a slug with spaces or capitals, or a non-boolean `draft` fails the build and names the post. |
+| Why not Astro's YAML loader | The sync escapes markdown characters inside quoted values, so the current draft's title is `"\[Title: webs decides\]"`. YAML rejects `\[`, so one post would fail every build. The collection's loader uses the site's existing line parser (`src/lib/frontmatter.js`), which the old app, the collection, and the scripts now share. |
+| Markdown | Rendered by the same `react-markdown` setup as before (`BlogProse.jsx`), at build time with no JavaScript. That removes the rendering-differences risk below. The Q&A split moved to `src/lib/qa.js`. |
+| Content check | Against a build of `main`: the blog index, all five posts (including the Q&A post and the drafts), and the profile's post list render the same HTML. Screenshots of the index are pixel-identical; posts differ by 3 to 14 pixels of glyph edge on the byline link. |
+| Link previews | Each post's raw HTML carries the same tags `prerender-meta.js` writes on `main`: title, description, cover image, `og:type` article, published date, author, and tags. Link previews on `og:title` and `twitter:title` now use the page's own title on every page, as the prerender did. |
+| Sitemap | `npm run build` runs `scripts/generate-sitemap.js` before `astro build`. Its URLs and `robots.txt` match `main`'s. |
+| Drive sync | `scripts/blog-sync.js`, the sitemap and prerender scripts, and the Action's `git add` all point at `src/content/blog`. The Action runs from `main`, so the change takes effect at cut over. |
+
+Until cut over, the sync keeps writing to `main`'s `content/posts`. When merging `main` into `astro`, git follows the move for edited posts, but a new post lands in `content/posts`. After each merge, run `git mv -f content/posts/*.md src/content/blog/` if that folder exists.
+
 ## Risks
 
 | Risk | Why | Mitigation |
 |---|---|---|
 | `api/` functions on Vercel | They deploy today as Vercel functions beside a static build. Astro should keep that, but it's the one piece this plan can't confirm from the repo alone. | Prove it in phase 0 before anything else moves. |
-| Blog rendering differences | react-markdown and Astro's markdown differ on edge cases; the Q&A split and heading demotion are custom. | Port the Q&A split as a build-time step, and compare every current post side by side. |
+| Blog rendering differences | react-markdown and Astro's markdown differ on edge cases; the Q&A split and heading demotion are custom. | Resolved in phase 3: posts render through the same react-markdown setup at build time. |
 | Island bugs | Assessment and self-check hold a lot of state, and ShareType (on the self-check and every TPM type page) draws on a canvas. | Move them late, when the shell is stable; they keep their React code, so the change is in how they mount. |
 | URL changes | Any changed path breaks shared links and search results. | Keep every path the same. Carry the existing redirects over, and check the sitemap before and after. |
 | Drive sync timing | Posts sync to `main`'s `content/posts` until cut over, and the `astro` branch reads `src/content/blog`. | Merge `main` into `astro` at every phase and move any new posts across. Switch the sync's folder in the same merge as cut over, and don't run a sync during it. |
