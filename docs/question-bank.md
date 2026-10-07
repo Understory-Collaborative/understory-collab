@@ -33,6 +33,7 @@ sometimes rewrites a title, so the link is the record of the original.
 | Status says on track, but it isn't | 4 | PMs, Scrum practitioners | Yes: `/blog/cant-fix-a-delivery-by-changing-status` (and the draft Q&A) |
 | What a technical product manager does | 5 | People exploring the role | Partly: the TPM types, About |
 | Hiring outside help for a failing project | 2 | Managers who've been burned by consultants | No |
+| Non-technical leaders working with technical teams | 5 | Non-technical managers and leaders | No |
 
 ### Scope keeps growing
 
@@ -134,6 +135,23 @@ sometimes rewrites a title, so the link is the record of the original.
 | We hired expensive project consultants who have worked on a software program for 2 years. It's still incomplete, has lots of issues, and now my boss is passing it off to a colleague and I to fix. Am I being a whiner for being upset? | [Quora](https://www.quora.com/We-hired-expensive-project-consultants-who-have-worked-on-a-software-program-for-2-years-Its-still-incomplete-has-lots-of-issues-and-now-my-boss-is-passing-it-off-to-a-colleague-and-I-to-fix-Am-I-being-a-whiner-for) |
 | How do management consultants fail? | [Quora](https://www.quora.com/How-do-management-consultants-fail) |
 
+### Non-technical leaders working with technical teams
+
+Added 2026-10-08, testing webs's idea of helping non-technical leaders talk with the
+technical leaders in their organization.
+
+| Question (verbatim) | Source |
+|---|---|
+| What is the best way for non technical person to manage a team of technical people? | [Quora](https://www.quora.com/What-is-the-best-way-for-non-technical-person-to-manage-a-team-of-technical-people) |
+| As a non technical engineering leader, how can one gain the respect of engineers in the software engineering organization? | [Quora](https://www.quora.com/As-a-non-technical-engineering-leader-how-can-one-gain-the-respect-of-engineers-in-the-software-engineering-organization) |
+| What are the best practices for a non-technical person to communicate with developers? | [Quora](https://www.quora.com/What-are-the-best-practices-for-a-non-technical-person-to-communicate-with-developers) |
+| What technical concepts should all non-programmers (i.e. a manager) understand when working with programmer(s)? | [Quora](https://www.quora.com/What-technical-concepts-should-all-non-programmers-i-e-a-manager-understand-when-working-with-programmer-s) |
+| What exactly is a (non-technical) manager for in a software engineering team? | [Quora](https://www.quora.com/What-exactly-is-a-non-technical-manager-for-in-a-software-engineering-team) |
+
+The same question comes from the other side, too: engineers ask how to explain their work
+to non-engineers, for example
+"[How can engineers effectively communicate with non-engineers and explain their work in a way that is easy to understand?](https://www.quora.com/How-can-engineers-effectively-communicate-with-non-engineers-and-explain-their-work-in-a-way-that-is-easy-to-understand)"
+
 ---
 
 ## What round 1 shows
@@ -148,9 +166,10 @@ sometimes rewrites a title, so the link is the record of the original.
    how to handle a client who keeps adding scope. That matches the champion who carries
    Understory in (`review/tpm-positioning.md`, decision P2), and the posts should speak to
    them as well as to the CTO.
-3. **Non-technical founders show up more than the positioning expects.** Three questions
-   come from founders who can't tell whether their developers are slow. webs to decide
-   whether that's an audience to write for.
+3. **Non-technical founders show up more than the positioning expected.** Three questions
+   come from founders who already have developers and can't tell whether they're slow.
+   webs decided on 2026-10-08 to make these founders Understory's primary buyer (decision
+   P5 in `review/tpm-positioning.md`), with studio w labs taking founders before the team.
 4. **Three clusters have no answer on the site:** estimates, telling the boss it's late, and
    tech debt that leadership ignores. Each is a strong first post, and estimates connects to
    the confidence score webs already built.
@@ -180,4 +199,5 @@ and `[niche] systems consultant` (see "People search inside their niche" in the 
 
 **Stems:** `my project is late`, `how do i tell my boss the project`, `why does my team keep
 missing`, `how to get my team to`, `our status is green but`, `why are software estimates`,
-`how to convince my manager tech debt`, `my developers are slow`
+`how to convince my manager tech debt`, `my developers are slow`, `how do i know if my dev team
+is good`, `non technical founder dev team`, `our agency missed the deadline`
