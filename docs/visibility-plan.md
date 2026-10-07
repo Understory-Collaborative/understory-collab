@@ -8,12 +8,16 @@ better. Sizes are relative (S, M, L), not time estimates.
 
 ## Who we're writing for
 
-The primary buyer is the non-technical founder of a small company that already has
-development teams, whose product is late, buggy, or hard to read (decision P5 in
-`review/tpm-positioning.md`, 2026-10-08). studio w labs takes the founder before the team.
+The primary buyer is non-technical: founders of small companies that already have
+development teams, and leaders inside larger organizations whose work depends on a
+technical team (decision P5 in `review/tpm-positioning.md`, 2026-10-08). What they share is
+not being able to read what their technical team is telling them, so that's the site-wide
+message. Their situations differ, so each gets its own page: the founder owns the budget and
+the risk, while the leader works through a boss, an internal tech department, and often
+procurement. studio w labs takes the founder before the team.
 Engineering leaders stay a second audience: UC has the technical depth for them, but the
 most benefit goes to a non-technical leader. Every workstream below writes for the
-Understory side of that line, founder first.
+Understory side of that line.
 
 ## How assistants pick what to recommend
 
@@ -153,6 +157,16 @@ stay broad and link out.
 **Output:** a table of page, main question, sections that could stand alone, and a
 recommendation, for webs to decide on line by line. Likely candidates to look at first are
 the three offer pages, Office Hours, and About.
+
+**Audience pages:** one page for non-technical founders and one for non-technical leaders,
+each answering its own version of the shared problem and pointing to the right rung.
+
+**A possible offer (webs's idea, 2026-10-08):** help non-technical leaders work with the
+technical leaders in their organization. Five real questions in `docs/question-bank.md` ask
+for this ("What are the best practices for a non-technical person to communicate with
+developers?"), and engineers ask the mirror question. Askers say "communicate," "manage,"
+"understand," and "gain respect," not "confidence," so lead with what they'll be able to do.
+webs shapes it with the partners.
 
 **Open, for webs:** your notes on this process weren't in the repos either. The test above is
 the standard one-question-per-page method; point Claude to your notes if they add steps.
