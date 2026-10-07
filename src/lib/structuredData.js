@@ -7,6 +7,8 @@ export const SITE_NAME = 'Understory Collaborative'
 export const SITE_DESCRIPTION =
   "When a project is late, a team is stuck, or your tooling has gotten away from you, we've worked through it before. Start wherever you're stuck."
 const CONTACT_EMAIL = 'contact@understorycollab.com'
+// The company's profiles elsewhere, so search engines treat them and the site as one company.
+const ORG_SAME_AS = ['https://www.linkedin.com/company/understory-collaborative/']
 
 export const orgId = (site) => new URL('/#organization', site).href
 export const personId = (site, author) => new URL(`/about/${author.slug}#person`, site).href
@@ -21,6 +23,7 @@ export function siteGraph(site) {
       logo: new URL('/android-chrome-512x512.png', site).href,
       description: SITE_DESCRIPTION,
       email: CONTACT_EMAIL,
+      sameAs: ORG_SAME_AS,
     },
     {
       '@type': 'WebSite',
@@ -43,6 +46,7 @@ export function personNode(site, author) {
     image: new URL(author.photo, site).href,
     url: new URL(`/about/${author.slug}`, site).href,
     worksFor: { '@id': orgId(site) },
+    ...(author.sameAs?.length && { sameAs: author.sameAs }),
   }
 }
 

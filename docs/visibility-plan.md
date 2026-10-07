@@ -185,7 +185,7 @@ description from workstream 2 and link to a specific page, not only the home pag
 |---|---|---|
 | Google Search Console | webs | Verify the domain and submit the sitemap. It shows the searches the site appears for, which feed workstream 1. |
 | Bing Webmaster Tools | webs | Do the same here, since ChatGPT's search draws on Bing's results. |
-| `sameAs` links | webs sends, Claude adds | LinkedIn URLs for the company and for webs, added to the structured data. |
+| `sameAs` links | Claude | Done: the company's and webs's LinkedIn profiles are in the structured data. |
 | `llms.txt` | Claude | This is optional: a short markdown map of the site for tools that look for one. |
 
 ---
@@ -205,7 +205,7 @@ answers, and log whether Understory is mentioned or linked.
 
 ## Order of work
 
-1. Merge #122. webs sets up Search Console and Bing, and sends the LinkedIn URLs.
+1. Merge #122. webs sets up Search Console and Bing.
 2. First round of question research (1), and the named concepts inventory (5), in parallel.
 3. Tagline and description (2), and the page breakdown audit (3), drawing on round one.
 4. Answer-shaped posts (4) and mentions elsewhere (6), ongoing.
