@@ -12,6 +12,7 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { AUTHORS } from '../src/data/authors.js'
 import { offers } from '../src/data/offersData.js'
+import { blogCategories, findCategory } from '../src/data/blogCategories.js'
 import { ARCHETYPES, RENAISSANCE } from '../src/data/tpmSelfCheckData.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -68,7 +69,7 @@ function publishedPosts() {
     .map((file) => {
       const data = readFrontmatter(readFileSync(join(POSTS_DIR, file), 'utf8'))
       if (!data || !data.title || data.draft === true) return null
-      return { slug: data.slug || slugFromFile(file), date: data.date || '' }
+      return { slug: data.slug || slugFromFile(file), date: data.date || '', category: data.category || '' }
     })
     .filter(Boolean)
 }
@@ -86,6 +87,14 @@ const entries = [
   // Author profiles, once they're out of draft.
   ...AUTHORS.filter((author) => !author.draft).map((author) => urlEntry(`/about/${author.slug}`)),
   ...publishedPosts().map((post) => urlEntry(`/blog/${post.slug}`, post.date)),
+  // A category page exists only once a published post carries that category.
+  ...blogCategories
+    .filter((category) =>
+      publishedPosts().some((post) =>
+        post.category.split(',').some((label) => findCategory(label)?.slug === category.slug)
+      )
+    )
+    .map((category) => urlEntry(`/blog/category/${category.slug}`)),
 ]
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

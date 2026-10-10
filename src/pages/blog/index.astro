@@ -5,6 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import { getPublishedPosts } from '../../lib/blog.js'
 import { formatDate } from '../../lib/frontmatter.js'
 import { findAuthor } from '../../data/authors'
+import { postCategories } from '../../data/blogCategories.js'
 import '../../views/Blog.css'
 
 const posts = await getPublishedPosts()
@@ -48,8 +49,15 @@ const posts = await getPublishedPosts()
                     </div>
                   )}
                   <div class="blog-card-text">
-                    {post.category && (
-                      <p class="blog-card-category">{post.category}</p>
+                    {post.categories.length > 0 && (
+                      <p class="blog-card-category">
+                        {postCategories(post).map((category, index) => (
+                          <>
+                            {index > 0 && <span aria-hidden="true"> · </span>}
+                            {category.href ? <a href={category.href}>{category.label}</a> : category.label}
+                          </>
+                        ))}
+                      </p>
                     )}
                     {/* The title link stretches over the whole card, so the card is one
                         click target with one accessible name. */}

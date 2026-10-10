@@ -64,6 +64,14 @@
   margin: 0 0 var(--space-2);
 }
 
+.blog-card-category a {
+  /* Sits above the stretched title link, so the category stays its own click target. */
+  position: relative;
+  z-index: 1;
+  color: inherit;
+  text-underline-offset: 0.15em;
+}
+
 .blog-card-title {
   font-size: var(--text-xl);
   line-height: var(--leading-tight);
@@ -167,4 +175,9 @@
   font-size: var(--text-md);
   color: var(--text-secondary);
   margin: 0;
+}
+
+/* The offer link at the foot of a category page. */
+.blog-category-offer {
+  margin: var(--space-8, 2rem) 0 0;
 }

@@ -1,0 +1,90 @@
+---
+// One page per blog category (src/data/blogCategories.js): the leader's problem in their
+// own words, every published post that carries the category, and the offer that helps.
+// A category with no published posts gets no page. A published post's badge always has
+// a page to land on, since the post itself puts its category on one; only a draft preview
+// can link to a category page that doesn't exist yet.
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import { getPublishedPosts } from '../../../lib/blog.js'
+import { formatDate } from '../../../lib/frontmatter.js'
+import { findAuthor } from '../../../data/authors'
+import { blogCategories, findCategory } from '../../../data/blogCategories.js'
+import { getOffer } from '../../../data/offersData.js'
+import '../../../views/Blog.css'
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts()
+  return blogCategories
+    .map((category) => ({
+      category,
+      posts: posts.filter((post) =>
+        post.categories.some((label) => findCategory(label)?.slug === category.slug)
+      ),
+    }))
+    .filter(({ posts }) => posts.length > 0)
+    .map(({ category, posts }) => ({ params: { slug: category.slug }, props: { category, posts } }))
+}
+
+const { category, posts } = Astro.props
+const offer = getOffer(category.slug)
+---
+<BaseLayout
+  title={`${category.name} posts`}
+  description={category.line || `Posts from Understory Collaborative on ${category.name.toLowerCase()}.`}
+>
+  <div class="blog">
+    <section class="page-hero" aria-labelledby="category-heading">
+      <div class="page-hero-content">
+        <p class="section-eyebrow"><a href="/blog">Blog</a></p>
+        <h1 id="category-heading">{category.name}</h1>
+        {category.line && <p class="page-hero-description">&ldquo;{category.line}&rdquo;</p>}
+      </div>
+    </section>
+
+    <section class="blog-list-section" aria-labelledby="category-list-heading">
+      <div class="section-container">
+        <h2 id="category-list-heading" class="sr-only">{category.name} posts</h2>
+        <ul class="blog-list" role="list">
+          {posts.map((post) => (
+            <li class="blog-card">
+              <article class="blog-card-inner">
+                {post.cover && (
+                  <div class="blog-card-cover">
+                    <img src={post.cover} alt="" loading="lazy" />
+                  </div>
+                )}
+                <div class="blog-card-text">
+                  <h3 class="blog-card-title">
+                    <a href={`/blog/${post.slug}`}>{post.title}</a>
+                  </h3>
+                  {post.excerpt && <p class="blog-card-excerpt">{post.excerpt}</p>}
+                  <p class="blog-card-meta">
+                    {post.author && (
+                      <>
+                        <span>By {findAuthor(post.author)?.name || post.author}</span>
+                        <span aria-hidden="true">·</span>
+                      </>
+                    )}
+                    {post.date && (
+                      <>
+                        <time datetime={post.date}>{formatDate(post.date)}</time>
+                        <span aria-hidden="true">·</span>
+                      </>
+                    )}
+                    <span>{post.readingMinutes} min read</span>
+                  </p>
+                </div>
+              </article>
+            </li>
+          ))}
+        </ul>
+
+        {offer && (
+          <p class="blog-category-offer">
+            <a class="btn btn-primary" href={`/offers/${offer.slug}`}>See how we help: {offer.name}</a>
+          </p>
+        )}
+      </div>
+    </section>
+  </div>
+</BaseLayout>
