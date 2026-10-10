@@ -35,6 +35,9 @@ but recommended.
 >
 > **Tags:** comma, separated, keywords
 >
+> **Date:** _(optional)_ 2026-03-15. Only for a post first published somewhere else,
+> such as LinkedIn. Leave this line out and the post is dated the day you made the Doc.
+>
 > Write your post here. Use **Heading 2** and **Heading 3** for sections, **bold**,
 > _italics_, and links as normal, and drag images straight into the doc.
 >
@@ -68,4 +71,4 @@ but recommended.
 | `Q:` and `A:` paragraphs | Question card and answer section |
 | Everything else | Post body |
 | `Author:` line | Byline, linked to `/about/<author>` when that person has a profile; the Doc owner is the fallback |
-| _(automatic)_ | Date = Doc creation day |
+| `Date:` line (optional, YYYY-MM-DD) | Post date, to backdate a post first published elsewhere; the Doc creation day is the fallback |

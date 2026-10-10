@@ -2,11 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import '../views/OfficeHours.css'
 
-const BOOKING_URL = 'https://calendar.app.google/98a3uMFvjrRzfr7b6'
+// Zoom meeting registration: sign-ups are approved by hand, and each one answers a required
+// question. Office hours went free on 2026-10-10 (HANDOFF D3).
+const REGISTER_URL = 'https://us06web.zoom.us/meeting/register/UNoT1xY4QRmrZLNqtErjRw'
 ---
 <BaseLayout
   title="Office hours"
-  description="Thirty minutes with someone who's seen just about everything, for a problem you can't take to your team or your boss. Fifty dollars a seat."
+  description="Thirty minutes with someone who's seen just about everything, for a problem you can't take to your team or your boss. Free, Tuesdays at 8:30 am Pacific."
 >
   <div class="office-hours">
     <section class="page-hero" aria-labelledby="oh-heading">
@@ -17,17 +19,17 @@ const BOOKING_URL = 'https://calendar.app.google/98a3uMFvjrRzfr7b6'
           here.
         </p>
         <p class="page-hero-support">
-          Thirty minutes with someone who's seen just about everything. Fifty
-          dollars a seat.
+          Thirty minutes with someone who's seen just about everything. Free,
+          every Tuesday at 8:30 am Pacific.
         </p>
         <p class="oh-cta">
           <a
             class="btn btn-primary btn-large"
-            href={BOOKING_URL}
+            href={REGISTER_URL}
             target="_blank"
             rel="noopener noreferrer"
           >
-            Book a seat
+            Save a seat
             <span class="sr-only"> (opens in a new tab)</span>
           </a>
           <span class="oh-newtab" aria-hidden="true">Opens in a new tab</span>
@@ -39,10 +41,11 @@ const BOOKING_URL = 'https://calendar.app.google/98a3uMFvjrRzfr7b6'
       <div class="section-container">
         <h2 id="oh-who-heading">Who it's for</h2>
         <p>
-          The person closest to the work who wants to get better at it. A
-          product owner or technical product manager learning the job as they
-          go, or a leader who wants an outside opinion before committing to
-          anything bigger.
+          It's for a leader whose work depends on a technical team they can't
+          always read, or who wants an outside opinion before committing to
+          anything bigger. It's also for the person closest to the work who wants
+          to get better at it, like a product owner or technical product manager
+          learning the job as they go.
         </p>
       </div>
     </section>
@@ -51,25 +54,34 @@ const BOOKING_URL = 'https://calendar.app.google/98a3uMFvjrRzfr7b6'
       <div class="section-container">
         <h2 id="oh-bring-heading">What to bring</h2>
         <p>
-          Your field guide, marked up with what rang true and what you're still
-          unsure about, and the one question you most want answered. The prep
-          is what makes the time count.
+          Bring the one question you most want answered. You'll write it down
+          when you register, and it's what makes the time count.
+        </p>
+        <p>
+          Want something to think about before Tuesday? Take
+          <a href="/assessment">What's On Fire?</a>, six questions about the state
+          of your engineering organization. You'll get a report on where you
+          stand and a field guide to go with it.
         </p>
 
         <table class="oh-glance">
           <caption class="sr-only">Office hours at a glance</caption>
           <tbody>
             <tr>
+              <th scope="row">When</th>
+              <td>Tuesdays, 8:30 to 9 am Pacific</td>
+            </tr>
+            <tr>
               <th scope="row">Format</th>
-              <td>30 minutes, up to three people</td>
+              <td>A small group on Zoom</td>
             </tr>
             <tr>
               <th scope="row">Price</th>
-              <td>$50 a seat</td>
+              <td>Free</td>
             </tr>
             <tr>
               <th scope="row">Bring</th>
-              <td>Your marked-up field guide and one question</td>
+              <td>One question</td>
             </tr>
           </tbody>
         </table>
@@ -78,7 +90,7 @@ const BOOKING_URL = 'https://calendar.app.google/98a3uMFvjrRzfr7b6'
 
     <section class="oh-section oh-fallback" aria-labelledby="oh-fallback-heading">
       <div class="section-container">
-        <h2 id="oh-fallback-heading">Not ready to book?</h2>
+        <h2 id="oh-fallback-heading">Can't make Tuesdays?</h2>
         <p>
           Ask a question for free, and we'll answer it on the blog and on
           socials. <a href="/questions">Ask a question</a>.

@@ -14,7 +14,7 @@
 // Paste the relay's web app URL here (Deploy → Manage deployments → Web app URL).
 var RELAY_URL = 'PASTE_RELAY_WEB_APP_URL_HERE';
 var SITE_URL = 'https://understorycollab.com';
-var LABELS = ['slug', 'author', 'subtitle', 'excerpt', 'category', 'tags'];
+var LABELS = ['slug', 'author', 'subtitle', 'excerpt', 'category', 'tags', 'date'];
 
 function onOpen() {
   DocumentApp.getUi()

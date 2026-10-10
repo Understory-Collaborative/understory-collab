@@ -185,7 +185,9 @@ do.
 - **Set the summary with an `Excerpt:` line** at the top of the Doc. It becomes the
   blog-list blurb and the search-engine description. Without one, the first paragraph
   is used.
-- **The post date** is the day the Doc was created.
+- **The post date** is the day the Doc was created. To backdate a post that first ran
+  somewhere else, such as LinkedIn, add a `Date:` line with the original date, written
+  YYYY-MM-DD.
 - **Images** in the Doc are pulled in automatically. Complex layouts convert more
   roughly than plain text and headings; this is the part we will refine with a real
   post in hand.
