@@ -30,6 +30,8 @@
 //   Author:    a labeled line naming the author, linked to their profile if they have
 //              one (src/data/authors.js). Falls back to the Doc owner's name.
 //   Excerpt:, Category:, Tags:   labeled lines, as before.
+//   Date:      optional, YYYY-MM-DD, to backdate a post first published elsewhere.
+//              Falls back to the day the Doc was created.
 
 import { readdirSync, readFileSync, writeFileSync, rmSync, mkdirSync } from 'node:fs'
 import { join, dirname } from 'node:path'
@@ -160,7 +162,7 @@ export function extractTitle(markdown) {
   return { title: heading.clean, subtitle, markdown: rest.trim() }
 }
 
-const LABELS = ['slug', 'author', 'subtitle', 'excerpt', 'category', 'tags']
+const LABELS = ['slug', 'author', 'subtitle', 'excerpt', 'category', 'tags', 'date']
 
 // Two labels can land on one line when they share a paragraph in the Doc, like
 // "Tags: scope, delivery**Author:** webs". On any line that starts with a label, break
@@ -179,6 +181,13 @@ export function splitLabelLines(markdown) {
       return first + line.slice(first.length).replace(laterLabel, '\n\n$1')
     })
     .join('\n')
+}
+
+// True for a real calendar date written as YYYY-MM-DD, so "2026-02-30" is rejected.
+function isValidDate(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false
+  const parsed = new Date(`${value}T00:00:00Z`)
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value
 }
 
 export function slugify(text) {
@@ -347,8 +356,6 @@ async function run() {
         continue
       }
       seen.add(doc.id)
-      const date = (doc.createdTime || '').slice(0, 10)
-
       let markdown = splitLabelLines((await docToMarkdown(drive, doc.id)).trim())
 
       // Labeled lines near the top of the Doc set metadata, then are removed from the
@@ -367,6 +374,14 @@ async function run() {
       const category = takeLabel('category')
       const tags = takeLabel('tags')
       const excerptExplicit = takeLabel('excerpt')
+      // "Date:" backdates a post, such as one first published elsewhere. It must be a
+      // real YYYY-MM-DD date; anything else is ignored and the Doc's creation day is used.
+      const dateExplicit = takeLabel('date')
+      const createdDate = (doc.createdTime || '').slice(0, 10)
+      const date = isValidDate(dateExplicit) ? dateExplicit : createdDate
+      if (dateExplicit && date !== dateExplicit) {
+        console.warn(`warn   ${doc.name.trim()}: ignoring Date "${dateExplicit}" (use YYYY-MM-DD)`)
+      }
 
       const extracted = extractTitle(markdown)
       markdown = extracted.markdown
