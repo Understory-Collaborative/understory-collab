@@ -7,7 +7,7 @@ excerpt: "If you keep hearing that your project is 90% done, these are the quest
 cover: "/blog-assets/90-percent-done/image-1.png"
 category: "Design, Build"
 tags: "90% done, delivery, estimates, micromanaging, non-technical leaders, questions to ask"
-draft: true
+draft: false
 source: "drive"
 driveId: "1AWU8lKHLvu4idUoz1CyPfw5TQ-sYw2KakpG7KJhbaP0"
 updated: "2026-10-10"
@@ -27,9 +27,9 @@ Start from the assumption that people are doing their best. It's possible someon
 
 I'm going to harp on this one until I harp on it into the ground. Most projects start with a few people agreeing on what they want to build, and then the plan goes one of two ways. Someone writes a _War and Peace_ document that covers everything you could imagine, often a three-year plan for what everyone thinks is a three-month feature, or the decisions live in direct messages and private chats. Either way, there's no single source of truth. The happy medium sits somewhere between documentation that only lives in private messages and a freaking Wikipedia's worth of information.
 
-Most teams know the software development lifecycle well. What's often missing is the whole path from "we think we want to build this" all the way out the door. That path has so many handoffs that it gets brittle and fragile, and that's where things fall apart. You get the project that's 90% done for six weeks in a row, arguments over RAG status, and requests to build RACIs. RAG stands for red, amber, green: red means the project is really off track, yellow means it's starting to slip, and green means it's on track for its target date. RACI stands for responsible, accountable, consulted, and informed, and [I hate them](https://www.google.com/url?q=https://www.linkedin.com/pulse/why-i-hate-racis-understory-collaborative-og28c&sa=D&source=editors&ust=1791659794571665&usg=AOvVaw1N8ldSUmOOiQDivsBvaW1j).
+Most teams know the software development lifecycle well. What's often missing is the whole path from "we think we want to build this" all the way out the door. That path has so many handoffs that it gets brittle and fragile, and that's where things fall apart. You get the project that's 90% done for six weeks in a row, arguments over RAG status, and requests to build RACIs. RAG stands for red, amber, green: red means the project is really off track, yellow means it's starting to slip, and green means it's on track for its target date. RACI stands for responsible, accountable, consulted, and informed, and [I hate them](https://www.google.com/url?q=https://understorycollab.com/blog/why-i-hate-racis&sa=D&source=editors&ust=1791660639953001&usg=AOvVaw0luO6OmzlwYMTyxeQg0HHJ).
 
-When I came into one of these projects, the first thing I did was get everyone in a room to agree on what done looks like. We started from what users should be able to do once the work is complete and worked backward into [user journey slices](https://www.google.com/url?q=https://understorycollab.com/blog/hardest-scope-conversations&sa=D&source=editors&ust=1791659794572194&usg=AOvVaw0L01nTngXrUy55174Xwemh). Those slices became a contract for what the project would deliver. From there, the team could estimate, and we could report accurately on what was feasible.
+When I came into one of these projects, the first thing I did was get everyone in a room to agree on what done looks like. We started from what users should be able to do once the work is complete and worked backward into [user journey slices](https://www.google.com/url?q=https://understorycollab.com/blog/hardest-scope-conversations&sa=D&source=editors&ust=1791660639953562&usg=AOvVaw2FzEgzozlP71SB8uTfm5Qg). Those slices became a contract for what the project would deliver. From there, the team could estimate, and we could report accurately on what was feasible.
 
 ## What to do on Monday
 
@@ -55,8 +55,8 @@ You don't need to ask every question, only the ones that matter. Most of them fa
 
 ### What's behind the number?
 
--   **"I've noticed we've been at 90% for the last couple of meetings. Can we dig into how you're getting that number?"** For more on how to get them to speak about confidence accurately, check out [our post on confidence score](https://www.google.com/url?q=https://understorycollab.com/blog/cant-fix-a-delivery-by-changing-status&sa=D&source=editors&ust=1791659794576548&usg=AOvVaw1JRK3_KmCOsvrR44UX2daY).
--   **"Of what's left, which piece is the biggest?"** Often there’s “cleanup” that needs to be done toward the end of a project. However, little cleanup tasks can turn into a junk drawer for everything the team has been meaning to get to. We need to make sure there are boundaries on what’s included.
+-   **"I've noticed we've been at 90% for the last couple of meetings. Can we dig into how you're getting that number?"** For more on how to get them to speak about confidence accurately, check out [our post on confidence score](https://www.google.com/url?q=https://understorycollab.com/blog/cant-fix-a-delivery-by-changing-status&sa=D&source=editors&ust=1791660639958604&usg=AOvVaw3MZKr4a8YXladUT9UYr6W5).
+-   **"Of what's left, which piece is the biggest?"** The last 10% is rarely split evenly. Asking which piece is biggest shows you where the remaining time and risk sit, and sometimes the answer is a piece everyone called small. “Cleanup” is a common one: it can turn into a junk drawer for everything the team has been meaning to get to, so make sure there are boundaries on what’s included.
 -   **"Have we been keeping track of why the date keeps moving?"**  
     Sometimes not even the team realizes they’re letting the date slip. That’s why it’s important to document new challenges that arise or even just the pattern of confidence percentage and how it fluctuates or remains static.
 
@@ -74,7 +74,7 @@ You don't need to ask every question, only the ones that matter. Most of them fa
 -   **"What's been taking up most of your week? If you need help, I can find someone."**  
     The person closest to the work usually knows exactly where their time goes, and it isn't always this project. On-call work or side requests can quietly eat days every week. Offering help up front makes it safe to say so.
 -   **"What are we waiting on, and is it blocking development?"**  
-    Some blockers sit outside the team, like paperwork, system access, or another team's approval, and teams often assume chasing them isn't their job. Once you know what's in the way, you can get it to the person who owns it.  
+    Some blockers sit outside the team, like paperwork, system access, or another team's approval. Teams often assume everything is their job, so chasing those down eats the time they'd otherwise spend writing code. Once you know what's in the way, you can get it to the person who owns it and give the team that time back.  
     
 
 There's one warning that comes with "I can find someone." Adding people to a late project usually makes it later. Fred Brooks wrote about this in _The Mythical Man-Month_: new people have to be trained, and the person training them falls further behind in the meantime. This close to a date, it's often better to eat the cost, borrow someone from another team for a narrow task, and make sure the estimate counts the time that's already going elsewhere.
@@ -93,4 +93,4 @@ This is where we are worth hiring. We know which questions to ask, and we know w
 
 You can't outsource that to ai, either. When you're in the room, you can't pause and say, "Let me ask ChatGPT what I should ask next."
 
-If you're hearing 90% right now (for the third time), bring it to us. [Ask us a specific question](https://www.google.com/url?q=https://understorycollab.com/questions&sa=D&source=editors&ust=1791659794583120&usg=AOvVaw16STNk0k_PJyct75xz5Ywf), and we'll answer it on the blog. You can also come to [office hours](https://www.google.com/url?q=https://understorycollab.com/office-hours&sa=D&source=editors&ust=1791659794583337&usg=AOvVaw3pKf6OVDcTLLkHr_HzJWPE), free every Tuesday at 8:30 am Pacific, and talk it through with us and a small group. If you want to discuss your specific situation one-on-one, [spend an hour with webs](https://www.google.com/url?q=https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1NIiaBOVxZFrQNbFcRtSEPsDZz3KN1BIYWSAWcJEOYiM9m2HTqOr_O6I-PXU1n6juo2xwI6cX4&sa=D&source=editors&ust=1791659794583817&usg=AOvVaw03p-hQKwvSSf9J5E8MnRji).
+If you're hearing 90% right now (for the third time), bring it to us. [Ask us a specific question](https://www.google.com/url?q=https://understorycollab.com/questions&sa=D&source=editors&ust=1791660639966622&usg=AOvVaw2uRmL8sk7L_2CWG_aA248G), and we'll answer it on the blog. You can also come to [office hours](https://www.google.com/url?q=https://understorycollab.com/office-hours&sa=D&source=editors&ust=1791660639966870&usg=AOvVaw3icfnyDDdoCXvqg8CHbsQY), free every Tuesday at 8:30 am Pacific, and talk it through with us and a small group. If you want to discuss your specific situation one-on-one, [spend an hour with webs](https://www.google.com/url?q=https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1NIiaBOVxZFrQNbFcRtSEPsDZz3KN1BIYWSAWcJEOYiM9m2HTqOr_O6I-PXU1n6juo2xwI6cX4&sa=D&source=editors&ust=1791660639967332&usg=AOvVaw1ntSfHIxyP_eCG5h7u5ECu).
