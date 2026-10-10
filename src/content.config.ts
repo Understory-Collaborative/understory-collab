@@ -27,6 +27,8 @@ const blog = defineCollection({
         id: data.slug || slugFromPath(file),
         file,
         tags: splitTags(data.tags),
+        // "Category:" can name more than one, comma separated (src/data/blogCategories.js).
+        categories: splitTags(data.category),
         readingMinutes: readingMinutes(content),
         content,
       })
@@ -51,6 +53,7 @@ const blog = defineCollection({
     cover: z.string().default(''),
     category: z.string().default(''),
     tags: z.array(z.string()),
+    categories: z.array(z.string()),
     draft: z.boolean().default(false),
     readingMinutes: z.number(),
     content: z.string(),

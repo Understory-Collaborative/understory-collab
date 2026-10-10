@@ -12,6 +12,7 @@ import { getPosts } from '../../lib/blog.js'
 import { formatDate } from '../../lib/frontmatter.js'
 import { splitQA } from '../../lib/qa.js'
 import { findAuthor } from '../../data/authors'
+import { postCategories } from '../../data/blogCategories.js'
 import { orgId, personId, personNode } from '../../lib/structuredData.js'
 import '../../views/BlogPost.css'
 
@@ -78,8 +79,12 @@ const article = {
             </p>
           )}
           <p class="blog-post-meta">
-            {post.category && (
-              <span class="blog-post-category">{post.category}</span>
+            {postCategories(post).map((category) =>
+              category.href ? (
+                <a class="blog-post-category" href={category.href}>{category.label}</a>
+              ) : (
+                <span class="blog-post-category">{category.label}</span>
+              )
             )}
             {post.date && (
               <time datetime={post.date}>{formatDate(post.date)}</time>
