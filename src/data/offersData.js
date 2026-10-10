@@ -7,8 +7,8 @@
 // structure from review/brand-offer-foundation.md.
 //
 // Decided with webs (2026-08-19): names are Design / Build / Ship; price is intake-only
-// (no public number on these pages — the $50 office hours is the only customer-facing
-// price, per HANDOFF D3). The `engagement` field describes the shape without a number, and
+// (no public number on these pages, per HANDOFF D3; office hours, the one public price, went
+// free on 2026-10-10). The `engagement` field describes the shape without a number, and
 // scope is settled with the client in conversation, not quoted from a form (VOICE.md selling rule).
 //
 // `selfSelect` lines are reader-voice hooks. The proof stories are webs's, kept general
