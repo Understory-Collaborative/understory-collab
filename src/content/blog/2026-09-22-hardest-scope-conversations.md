@@ -5,12 +5,12 @@ date: "2026-09-22"
 author: "webs"
 excerpt: "Scope conversations are especially difficult when you don’t have any documentation to point back to."
 cover: "/blog-assets/hardest-scope-conversations/image-1.png"
-category: "handling scope"
+category: "DESIGN, BUILD"
 tags: "scope, journey mapping, handling stakeholders"
 draft: false
 source: "drive"
 driveId: "1o9WOjpm7oQK2rXncWGuhAuWVOJUOhng1VVGc8sR2Gmg"
-updated: "2026-09-22"
+updated: "2026-10-10"
 ---
 
 ## The best time to journey map
@@ -40,4 +40,4 @@ I was building a feature once when my stakeholder asked about the dashboard prog
 
 The best time to write your slices is at the start. The second best time is now. If the only record lives in DMs and side chats, you're going to have a bad time.
 
-If you're sitting on a scope conversation you're dreading, that's exactly the kind of thing to request in our [](https://www.google.com/url?q=https://understorycollab.com/questions&sa=D&source=editors&ust=1791656860620956&usg=AOvVaw3N3qJWyBqwAR1d0ngGt5-t)[Q&A](https://www.google.com/url?q=https://understorycollab.com/questions&sa=D&source=editors&ust=1791656860621048&usg=AOvVaw2fJxtJnuKggDtFD_DXWbHq), where we answer your questions on social media, or bring to [office hours](https://www.google.com/url?q=http://understorycollab.com/office-hours&sa=D&source=editors&ust=1791656860621178&usg=AOvVaw1mSO_tfd6uBmUBDaP5zF0E) and we'll work it live
+If you're sitting on a scope conversation you're dreading, that's exactly the kind of thing to request in our [](https://www.google.com/url?q=https://understorycollab.com/questions&sa=D&source=editors&ust=1791657874153278&usg=AOvVaw0AngGrqJFQJdkPQbrOSgK5)[Q&A](https://www.google.com/url?q=https://understorycollab.com/questions&sa=D&source=editors&ust=1791657874153424&usg=AOvVaw3AC5Q8r6hz1bp1tI0tPuYF), where we answer your questions on social media, or bring to [office hours](https://www.google.com/url?q=http://understorycollab.com/office-hours&sa=D&source=editors&ust=1791657874153743&usg=AOvVaw2y_HeYzyiF5YDgs-53CVR-) and we'll work it live

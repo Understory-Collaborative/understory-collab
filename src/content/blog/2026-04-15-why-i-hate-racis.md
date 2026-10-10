@@ -7,7 +7,7 @@ excerpt: "You don’t have to build a RACI chart. If you do it will probably nev
 cover: "/blog-assets/why-i-hate-racis/image-1.png"
 category: "Coordination"
 tags: "RACI, roles, cross-functional teams, decision making"
-draft: true
+draft: false
 source: "drive"
 driveId: "1j_KhDy_pXE0Qit2M_fwVMD9hBTM8_AJlWcDBnoV13Hc"
 updated: "2026-10-10"

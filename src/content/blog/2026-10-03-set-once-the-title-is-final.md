@@ -5,11 +5,11 @@ date: "2026-10-03"
 author: "webs"
 excerpt: "When you know the shape of someone's thinking, you can tailor the conversation, and the whole team can row in the same direction."
 category: "\[webs decides\]"
-tags: "\[webs decides\]"
+tags: "BUILD"
 draft: true
 source: "drive"
 driveId: "16nl4vsN0Btv8LqKdDjBWsEhhERz_khPZhciTz9Sszbg"
-updated: "2026-10-03"
+updated: "2026-10-10"
 ---
 
 I remember being in a meeting with a product manager, and we were talking about tradeoffs. She said, "I'm going to push for everything, even though I know it's too much. It's my job to push for more than you can deliver, and your job to push back." To that, I ask, why? We're both knowledgeable, skilled professionals. Why can't we work in the same direction to deliver value for the business and our customers instead of expending energy arguing?
@@ -81,4 +81,4 @@ _\[Open: new first sentence for the conclusion.\]_ That's one of the benefits o
 
 I think practicing empathy and understanding of your counterpart, and working together toward a common goal, fosters a better working environment, and it makes us better humans.
 
-Take the [TPM self-check](https://www.google.com/url?q=https://understorycollab.com/tpm-self-check&sa=D&source=editors&ust=1791656856163733&usg=AOvVaw1pI5XZYgNSbZ0cyDYM9Ond), then compare shapes with your team. It's a mirror to think with: a working draft grounded in research, and not yet validated.
+Take the [TPM self-check](https://www.google.com/url?q=https://understorycollab.com/tpm-self-check&sa=D&source=editors&ust=1791657871743095&usg=AOvVaw0uXJOHKFYLjifEs1nIUnmx), then compare shapes with your team. It's a mirror to think with: a working draft grounded in research, and not yet validated.
