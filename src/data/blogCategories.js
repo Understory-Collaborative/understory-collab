@@ -11,8 +11,14 @@ export const blogCategories = [
   { slug: 'design', name: 'Design', line: selfSelect('design') },
   { slug: 'build', name: 'Build', line: selfSelect('build') },
   // Ship covers shipping software: automation, better process, and ai running amok in an
-  // org. The Ship offer page's line speaks only to ai, so this one waits on webs.
-  { slug: 'ship', name: 'Ship', line: '' },
+  // org. The Ship offer page's line speaks only to ai, so this line is webs's own (2026-10-10).
+  {
+    slug: 'ship',
+    name: 'Ship',
+    line:
+      'Why does it take so long to get a fix out into production? Why does it take 100 ' +
+      'approvals to get a feature to my customers?',
+  },
 ]
 
 export function findCategory(label) {
