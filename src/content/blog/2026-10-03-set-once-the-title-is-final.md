@@ -81,4 +81,4 @@ _\[Open: new first sentence for the conclusion.\]_ That's one of the benefits o
 
 I think practicing empathy and understanding of your counterpart, and working together toward a common goal, fosters a better working environment, and it makes us better humans.
 
-Take the [TPM self-check](https://www.google.com/url?q=https://understorycollab.com/tpm-self-check&sa=D&source=editors&ust=1791657871743095&usg=AOvVaw0uXJOHKFYLjifEs1nIUnmx), then compare shapes with your team. It's a mirror to think with: a working draft grounded in research, and not yet validated.
+Take the [TPM self-check](https://www.google.com/url?q=https://understorycollab.com/tpm-self-check&sa=D&source=editors&ust=1791659664549746&usg=AOvVaw0NJsEADtHa7o0RQGG5Y180), then compare shapes with your team. It's a mirror to think with: a working draft grounded in research, and not yet validated.

@@ -5,7 +5,7 @@ date: "2026-04-15"
 author: "webs"
 excerpt: "You don’t have to build a RACI chart. If you do it will probably never get looked at again, but there’s a better way."
 cover: "/blog-assets/why-i-hate-racis/image-1.png"
-category: "Coordination"
+category: "DESIGN, BUILD, SHIP"
 tags: "RACI, roles, cross-functional teams, decision making"
 draft: false
 source: "drive"
