@@ -1,0 +1,100 @@
+---
+// start: the landing page for links said out loud in Understory's TikToks. Viewers reach
+// it through understorycollab.com/tiktok, which vercel.json redirects here with
+// utm_source=tiktok so the visits are tagged. It's marked noindex, and it's left out of
+// STATIC_ROUTES in scripts/generate-sitemap.js, so it stays out of search and the sitemap.
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const links = [
+  {
+    href: '/office-hours',
+    label: 'Free office hours',
+    detail:
+      'Bring a problem with your technical team to a small group on Zoom, every Tuesday at 8:30 am Pacific. It costs nothing.',
+  },
+  {
+    href: '/blog/90-percent-done',
+    label: 'The project is 90% done for six weeks in a row',
+    detail:
+      'Our latest article gives you the questions to ask when you keep hearing that the project is almost done.',
+  },
+  {
+    href: '/questions',
+    label: 'Send us your question',
+    detail:
+      'Ask about what your team is building. We answer questions on the blog, so yours could become the next post.',
+  },
+]
+---
+<BaseLayout
+  title="Start here"
+  description="Free office hours, the latest article, and a place to send your question to Understory."
+  noindex
+>
+  <section class="page-hero" aria-labelledby="start-heading">
+    <div class="page-hero-content">
+      <h1 id="start-heading">Start here</h1>
+      <p class="page-hero-description">
+        You found us on TikTok, so here are three places to go next.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-container start-links">
+    <ul class="start-list">
+      {links.map((link) => (
+        <li class="start-item">
+          <h2 class="start-item-title">
+            <a href={link.href}>{link.label}</a>
+          </h2>
+          <p class="start-item-detail">{link.detail}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .start-links {
+    padding-block: var(--space-12);
+  }
+
+  .start-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-6);
+    max-width: var(--layout-prose-max);
+  }
+
+  .start-item {
+    padding: var(--space-6);
+    background-color: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-control);
+  }
+
+  .start-item-title {
+    font-size: var(--text-xl);
+    line-height: var(--leading-tight);
+    margin: 0 0 var(--space-2);
+  }
+
+  .start-item-title a {
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+
+  .start-item-title a:hover {
+    text-decoration-thickness: 3px;
+  }
+
+  .start-item-detail {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: var(--leading-body);
+  }
+</style>

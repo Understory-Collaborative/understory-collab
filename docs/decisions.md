@@ -8,6 +8,17 @@ The full system design and the phased build plan live in
 
 ---
 
+## 2026-10-11, understorycollab.com/tiktok sends TikTok viewers to Understory
+
+We added understorycollab.com/tiktok so Understory's product-design TikToks send viewers
+straight to Understory, with visits tagged utm_source=tiktok. The address is a temporary
+redirect in `vercel.json` to `/start?utm_source=tiktok&utm_medium=social`, and `/start` is a
+noindex landing page with three links: free office hours, the latest article, and the
+questions page. Videos aimed at a leader with a team say this address, and videos aimed at
+someone building it themselves keep saying studiowlabs.com/tiktok.
+
+---
+
 ## 2026-08-23 — ESP chosen: MailerLite (capture now, nurture built later)
 
 **MailerLite is the ESP.** The decision moved through two candidates in one sitting: EcoSend was
