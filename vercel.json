@@ -2,6 +2,11 @@
   "framework": "astro",
   "redirects": [
     {
+      "source": "/tiktok",
+      "destination": "/start?utm_source=tiktok&utm_medium=social",
+      "permanent": false
+    },
+    {
       "source": "/advisory",
       "destination": "/",
       "permanent": true
