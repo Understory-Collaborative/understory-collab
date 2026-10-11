@@ -8,6 +8,10 @@ The full system design and the phased build plan live in
 
 ---
 
+## 2026-10-11 Vercel Web Analytics added
+
+We added Vercel Web Analytics on 2026-10-11 so the team can see visits by referrer, such as LinkedIn and TikTok, and whether social posts bring people to the site. It is cookieless and collects no personal data, so the site needs no cookie banner. It starts collecting only after someone turns it on in the Analytics tab of the Vercel project.
+
 ## 2026-10-11, understorycollab.com/tiktok sends TikTok viewers to Understory
 
 We added understorycollab.com/tiktok so Understory's product-design TikToks send viewers
