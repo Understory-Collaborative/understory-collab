@@ -147,7 +147,7 @@ ${offers.map((offer) => `- [${offer.name}](${ORIGIN}/offers/${offer.slug}): ${of
 ## Free tools and help
 
 - [What's On Fire? assessment](${ORIGIN}/assessment): six questions on the state of your engineering organization, with a report
-- [Office hours](${ORIGIN}/office-hours): a thirty-minute call for fifty dollars
+- [Office hours](${ORIGIN}/office-hours): a free weekly group session on Zoom, Tuesdays at 8:30 am Pacific, for a question about what you're building
 - [Questions](${ORIGIN}/questions): ask a question about what you're building, answered free
 - [TPM self-check](${ORIGIN}/tpm-self-check): a self-reflection for technical product managers
 - [TPM types](${ORIGIN}/tpm-types): the technical product manager archetypes
