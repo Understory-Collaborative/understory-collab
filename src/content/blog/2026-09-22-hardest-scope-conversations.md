@@ -40,4 +40,4 @@ I was building a feature once when my stakeholder asked about the dashboard prog
 
 The best time to write your slices is at the start. The second best time is now. If the only record lives in DMs and side chats, you're going to have a bad time.
 
-If you're sitting on a scope conversation you're dreading, that's exactly the kind of thing to request in our [](https://www.google.com/url?q=https://understorycollab.com/questions&sa=D&source=editors&ust=1791840863176571&usg=AOvVaw1FaAI5rv5D9MSayymU1fm0)[Q&A](https://www.google.com/url?q=https://understorycollab.com/questions&sa=D&source=editors&ust=1791840863176659&usg=AOvVaw0XaNtlIICN6ESpUpvG4com), where we answer your questions on social media, or bring to [office hours](https://www.google.com/url?q=http://understorycollab.com/office-hours&sa=D&source=editors&ust=1791840863176774&usg=AOvVaw2PfQBkWffhX0XAUCTEsUJX) and we'll work it live
+If you're sitting on a scope conversation you're dreading, that's exactly the kind of thing to request in our [Q&A](/questions), where we answer your questions on social media, or bring to [office hours](/office-hours) and we'll work it live
