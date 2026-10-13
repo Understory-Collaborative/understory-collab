@@ -124,6 +124,39 @@ turndown.addRule('docsSubtitle', {
   replacement: (content) => `\n\nSubtitle: ${content.replace(/[*_]/g, '').trim()}\n\n`,
 })
 
+// Google Docs' HTML export wraps every link in a redirect,
+// `https://www.google.com/url?q=<target>&sa=D&source=editors&ust=...&usg=...`. Unwrap it
+// to the real target, and make links to our own site relative, the way the site's pages
+// link to each other.
+const SITE_HOST = /^(www\.)?understorycollab\.com$/i
+
+export function cleanHref(href) {
+  let target = href
+  try {
+    const url = new URL(href)
+    if (/^(www\.)?google\.com$/i.test(url.hostname) && url.pathname === '/url') {
+      target = url.searchParams.get('q') || href
+    }
+  } catch {
+    return href
+  }
+  try {
+    const url = new URL(target)
+    if (SITE_HOST.test(url.hostname)) target = `${url.pathname}${url.search}${url.hash}`
+  } catch {
+    // Not an absolute URL; keep it as is.
+  }
+  // Markdown ends a link at the first unescaped ')', so encode parentheses.
+  return target.replace(/\(/g, '%28').replace(/\)/g, '%29')
+}
+
+turndown.addRule('docsLink', {
+  filter: (node) => node.nodeName === 'A' && node.getAttribute('href'),
+  // Docs sometimes leaves an empty link beside the real one; drop it.
+  replacement: (content, node) =>
+    content.trim() ? `[${content}](${cleanHref(node.getAttribute('href'))})` : content,
+})
+
 export function htmlToMarkdown(html) {
   docClassStyles = readClassStyles(html)
   return turndown.turndown(html)
