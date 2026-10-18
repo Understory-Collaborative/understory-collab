@@ -11,10 +11,10 @@
 
 .author-profile-photo {
   flex: 0 0 auto;
-  width: 180px;
-  height: 180px;
+  /* Large enough for the hedcut's dots and lines to read. */
+  width: 240px;
+  height: 240px;
   object-fit: cover;
-  object-position: center 30%;
   border-radius: 50%;
   border: 4px solid var(--bg-primary);
   box-shadow: var(--elevation-2, 0 4px 12px rgba(0, 0, 0, 0.15));
@@ -84,6 +84,19 @@
 
 .author-profile-links .lucide-icon {
   flex: 0 0 auto;
+}
+
+/* Overpass carries extra space below its letters, so a centered label rides high next to
+   its icon. Trimming the label to its cap height and baseline centers the letters
+   themselves; the padding above makes up the height. */
+.author-profile-links span {
+  text-box: trim-both cap alphabetic;
+}
+
+@supports (text-box: trim-both cap alphabetic) {
+  .author-profile-links a {
+    padding-block: calc(var(--space-1) + 3px);
+  }
 }
 
 /* Draft banner: meaning carried in text, not color alone. */
@@ -186,7 +199,7 @@
   }
 
   .author-profile-photo {
-    width: 140px;
-    height: 140px;
+    width: 160px;
+    height: 160px;
   }
 }

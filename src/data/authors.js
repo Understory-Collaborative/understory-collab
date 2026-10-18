@@ -7,8 +7,16 @@
 //
 // `draft: true` keeps a profile out of search (noindex) and shows a draft banner,
 // the same way draft posts work, until the bio is written.
+//
+// Profiles come from two places. Most come from Google Drive: each person fills in a copy
+// of the profile template Doc, and scripts/profile-sync.js writes them into
+// team.generated.js. The few below are typed in by hand, from before the sync existed.
+// When a person publishes a Drive profile with the same slug, it replaces their hand-entered
+// one, which can then be deleted from this file.
 
-export const AUTHORS = [
+import { DRIVE_PROFILES } from './team.generated.js'
+
+export const HAND_AUTHORS = [
   {
     slug: 'webs',
     name: 'webs',
@@ -32,8 +40,8 @@ export const AUTHORS = [
       { name: 'The Intelligent Hoodlums', url: 'https://theintelligenthoodlums.com/crew' },
     ],
     aliases: [],
-    photo: '/team/webs.jpg',
-    photoAlt: 'Portrait of webs',
+    photo: '/team/webs.webp',
+    photoAlt: 'Hedcut portrait of webs in glasses, drawn in stipple and line',
     role: 'Co-founder',
     // Id from the TPM self-check roster (src/data/tpmSelfCheckData.js); links to
     // /tpm-types/<id>.
@@ -47,6 +55,22 @@ export const AUTHORS = [
     draft: false,
   },
 ]
+
+// Every profile, published before drafts so bylines find the live one. A draft that
+// would take a slug already live (someone redoing their page) previews at
+// /about/<slug>-preview instead, so the live page stays up while they edit.
+function mergeProfiles() {
+  const published = DRIVE_PROFILES.filter((profile) => !profile.draft)
+  const liveSlugs = new Set(published.map((profile) => profile.slug))
+  const hand = HAND_AUTHORS.filter((author) => !liveSlugs.has(author.slug))
+  for (const author of hand) if (!author.draft) liveSlugs.add(author.slug)
+  const drafts = DRIVE_PROFILES.filter((profile) => profile.draft).map((profile) =>
+    liveSlugs.has(profile.slug) ? { ...profile, slug: `${profile.slug}-preview` } : profile,
+  )
+  return [...published, ...hand, ...drafts]
+}
+
+export const AUTHORS = mergeProfiles()
 
 export function findAuthor(name) {
   if (!name) return null

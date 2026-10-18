@@ -45,6 +45,11 @@
       "source": "/apply",
       "destination": "/contact",
       "permanent": true
+    },
+    {
+      "source": "/webs",
+      "destination": "/about/webs",
+      "permanent": false
     }
   ],
   "headers": [
