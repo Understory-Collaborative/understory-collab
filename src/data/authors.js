@@ -32,8 +32,8 @@ export const AUTHORS = [
       { name: 'The Intelligent Hoodlums', url: 'https://theintelligenthoodlums.com/crew' },
     ],
     aliases: [],
-    photo: '/team/webs.jpg',
-    photoAlt: 'Portrait of webs',
+    photo: '/team/webs.webp',
+    photoAlt: 'Hedcut portrait of webs in glasses, drawn in stipple and line',
     role: 'Co-founder',
     // Id from the TPM self-check roster (src/data/tpmSelfCheckData.js); links to
     // /tpm-types/<id>.
