@@ -86,6 +86,19 @@
   flex: 0 0 auto;
 }
 
+/* Overpass carries extra space below its letters, so a centered label rides high next to
+   its icon. Trimming the label to its cap height and baseline centers the letters
+   themselves; the padding above makes up the height. */
+.author-profile-links span {
+  text-box: trim-both cap alphabetic;
+}
+
+@supports (text-box: trim-both cap alphabetic) {
+  .author-profile-links a {
+    padding-block: calc(var(--space-1) + 3px);
+  }
+}
+
 /* Draft banner: meaning carried in text, not color alone. */
 .author-profile-draft-flag {
   display: inline-block;

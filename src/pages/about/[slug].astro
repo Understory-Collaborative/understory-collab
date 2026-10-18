@@ -67,7 +67,7 @@ const posts = (await getPublishedPosts()).filter(
                 <li>
                   <a href={link.url}>
                     <LucideIcon name={linkIcon(link.url)} />
-                    {link.name}
+                    <span>{link.name}</span>
                   </a>
                 </li>
               ))}
