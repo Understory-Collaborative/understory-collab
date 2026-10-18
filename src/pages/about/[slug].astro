@@ -8,6 +8,7 @@ import { getPublishedPosts } from '../../lib/blog.js'
 import { formatDate } from '../../lib/frontmatter.js'
 import { ARCHETYPES, RENAISSANCE } from '../../data/tpmSelfCheckData'
 import { personNode } from '../../lib/structuredData.js'
+import LucideIcon from '../../components/LucideIcon.astro'
 import '../../views/AuthorProfile.css'
 
 export function getStaticPaths() {
@@ -22,6 +23,8 @@ const profile = {
   url: new URL(`/about/${author.slug}`, site).href,
   mainEntity: personNode(site, author),
 }
+// A LinkedIn address gets the LinkedIn icon; every other link is a website.
+const linkIcon = (url) => (new URL(url).hostname.endsWith('linkedin.com') ? 'linkedin' : 'globe')
 const posts = (await getPublishedPosts()).filter(
   (post) => findAuthor(post.author)?.slug === author.slug,
 )
@@ -62,7 +65,10 @@ const posts = (await getPublishedPosts()).filter(
             <ul class="author-profile-links" aria-label={`${author.name}'s links`}>
               {author.elsewhere.map((link) => (
                 <li>
-                  <a href={link.url}>{link.name}</a>
+                  <a href={link.url}>
+                    <LucideIcon name={linkIcon(link.url)} />
+                    {link.name}
+                  </a>
                 </li>
               ))}
             </ul>

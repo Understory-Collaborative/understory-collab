@@ -44,35 +44,46 @@
   text-underline-offset: 0.15em;
 }
 
-/* The person's links, stacked as full-width buttons under the TPM type like a
-   linktree, so someone who scans a badge at an event can tap straight through. */
+/* The person's links, a row of small secondary-style links under the TPM type, so
+   someone who scans a badge at an event can tap straight through. Each pairs a Lucide
+   icon with its label. */
 .author-profile-links {
   list-style: none;
   display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  width: min(100%, 360px);
-  margin: var(--space-5) 0 0;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-4) 0 0;
   padding: 0;
 }
 
 .author-profile-links a {
-  display: block;
-  padding: var(--space-3) var(--space-5);
-  border: 2px solid var(--accent-color);
-  border-radius: var(--radius-pill);
-  background-color: var(--bg-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--accent-color);
+  border-radius: var(--radius-control);
   color: var(--accent-color);
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
-  text-align: center;
+  line-height: var(--leading-tight);
   text-decoration: none;
+  transition: background-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
 }
 
-.author-profile-links a:hover,
-.author-profile-links a:focus-visible {
+.author-profile-links a:hover {
   background-color: var(--accent-color);
-  color: var(--bg-primary);
+  color: var(--text-on-brand);
+}
+
+.author-profile-links a:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.author-profile-links .lucide-icon {
+  flex: 0 0 auto;
 }
 
 /* Draft banner: meaning carried in text, not color alone. */
@@ -172,11 +183,6 @@
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-5);
-  }
-
-  .author-profile-hero > div,
-  .author-profile-links {
-    width: 100%;
   }
 
   .author-profile-photo {

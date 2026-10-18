@@ -42,8 +42,8 @@ recommended.
 > Polymath. Shows under your role, linked to that type's page. Take the self-check at
 > understorycollab.com/tpm-self-check.
 >
-> **Links:** One link per line, the button text, then a `|`, then the web address. They
-> show as a stack of buttons under your TPM type, in this order. Put the one you most
+> **Links:** One link per line, the link text, then a `|`, then the web address. They
+> show as a row of small links with icons under your TPM type, in this order. Put the one you most
 > want people to tap first.
 > LinkedIn | https://www.linkedin.com/in/your-name
 > My website | https://example.com
@@ -64,7 +64,7 @@ recommended.
 | `Full name:` line | Search engines only (`alternateName`) | Optional |
 | `Role:` line | Line under the name | Optional |
 | `TPM type:` line | "TPM type:" line, linked to `/tpm-types/<id>` | Optional |
-| `Links:` lines | Stack of buttons under the TPM type; also tells search engines these profiles are the same person (`sameAs`) | At least one |
+| `Links:` lines | Row of small icon links under the TPM type, a LinkedIn icon for LinkedIn and a globe for everything else; also tells search engines these profiles are the same person (`sameAs`) | At least one |
 | Paragraphs under the `Bio` heading | "About _name_" section | Optional; the page says "Bio coming soon" without it |
 | Nothing | "Posts by _name_" list, filled in from blog posts whose `Author:` matches | Automatic |
 
