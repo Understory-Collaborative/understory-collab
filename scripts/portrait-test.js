@@ -76,7 +76,8 @@ export async function generatePortrait(photo, styleExample) {
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     body: JSON.stringify({
       contents: [{ role: 'user', parts }],
-      generationConfig: { responseModalities: ['TEXT', 'IMAGE'] },
+      // Square, to match the round crop on the profile page. The prompt alone doesn't hold it.
+      generationConfig: { responseModalities: ['TEXT', 'IMAGE'], imageConfig: { aspectRatio: '1:1' } },
     }),
   })
   const body = await response.json()
