@@ -61,7 +61,7 @@ export function personNode(site, author) {
     ...(author.alternateName && { alternateName: author.alternateName }),
     ...(author.role && { jobTitle: author.role }),
     ...(author.bio?.[0] && { description: author.bio[0] }),
-    image: new URL(author.photo, site).href,
+    ...(author.photo && { image: new URL(author.photo, site).href }),
     url: new URL(`/about/${author.slug}`, site).href,
     worksFor: { '@id': orgId(site) },
     ...(author.sameAs?.length && { sameAs: author.sameAs }),

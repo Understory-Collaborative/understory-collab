@@ -1,6 +1,6 @@
-// A test of hedcut profile portraits made by Google's Gemini image model on Vertex AI,
-// before it goes into the profile sync. It sends one photo with the house style written
-// out, and optionally a style example image, and saves what comes back.
+// Hedcut profile portraits, drawn by Google's Gemini image model on Vertex AI. The profile
+// sync (scripts/profile-sync.js) calls this for each person; run it directly to try one
+// photo. It sends the photo with the house style written out, and saves what comes back.
 //
 // It signs in as a Google service account, not with an API key, the way Google
 // recommends. That's the same service account the blog sync uses, with the Vertex AI
@@ -11,7 +11,7 @@
 //   gcloud's application default credentials, from `gcloud auth application-default login`
 //
 // Run, with Node 20 or later (the .env.local flag is only needed if you keep settings there):
-//   node --env-file=.env.local scripts/portrait-test.js <photo> <output.png> [style example]
+//   node --env-file=.env.local scripts/portrait.js <photo> <output.png> [style example]
 //
 // Optional settings: GOOGLE_CLOUD_PROJECT (defaults to the credentials' project),
 // GOOGLE_CLOUD_LOCATION (defaults to global), and GEMINI_IMAGE_MODEL (default below). A
@@ -20,6 +20,7 @@
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { extname } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { GoogleAuth } from 'google-auth-library'
 import { keepOneAccent } from './portrait-accent.js'
 
@@ -45,14 +46,19 @@ Technique:
 
 Composition: head and shoulders, facing the viewer, centered, square, plain cream background, with the clothing fading out toward the bottom edge.`
 
-function inlineImage(path) {
+// An image for the request: a file path, or { data, mimeType } already in memory.
+function inlineImage(image) {
+  if (typeof image !== 'string') {
+    return { inline_data: { mime_type: image.mimeType, data: Buffer.from(image.data).toString('base64') } }
+  }
   const type = { '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp' }[
-    extname(path).toLowerCase()
+    extname(image).toLowerCase()
   ]
-  if (!type) throw new Error(`unsupported image type: ${path}`)
-  return { inline_data: { mime_type: type, data: readFileSync(path).toString('base64') } }
+  if (!type) throw new Error(`unsupported image type: ${image}`)
+  return { inline_data: { mime_type: type, data: readFileSync(image).toString('base64') } }
 }
 
+// The photo and style example are each a file path or { data, mimeType }.
 export async function generatePortrait(photo, styleExample) {
   const auth = new GoogleAuth({
     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
@@ -94,20 +100,23 @@ export async function generatePortrait(photo, styleExample) {
   return Buffer.from((image.inlineData || image.inline_data).data, 'base64')
 }
 
-const [photo, output, styleExample] = process.argv.slice(2)
-if (!photo || !output) {
-  console.error('usage: node scripts/portrait-test.js <photo> <output.png> [style example]')
-  process.exit(1)
-}
-try {
-  // The model doesn't always stop at one color accent, so code enforces it afterward.
-  const { image, accentHue, repainted } = await keepOneAccent(await generatePortrait(photo, styleExample))
-  writeFileSync(output, image)
-  console.log(
-    `wrote ${output} with ${MODEL}${styleExample ? ', using the style example' : ''}; ` +
-      `accent hue ${accentHue ?? 'none'}, ${repainted} pixels repainted olive`,
-  )
-} catch (error) {
-  console.error(error.message)
-  process.exit(1)
+// Run only when invoked directly, so the profile sync can import generatePortrait.
+if (import.meta.url === pathToFileURL(process.argv[1] || '').href) {
+  const [photo, output, styleExample] = process.argv.slice(2)
+  if (!photo || !output) {
+    console.error('usage: node scripts/portrait.js <photo> <output.png> [style example]')
+    process.exit(1)
+  }
+  try {
+    // The model doesn't always stop at one color accent, so code enforces it afterward.
+    const { image, accentHue, repainted } = await keepOneAccent(await generatePortrait(photo, styleExample))
+    writeFileSync(output, image)
+    console.log(
+      `wrote ${output} with ${MODEL}${styleExample ? ', using the style example' : ''}; ` +
+        `accent hue ${accentHue ?? 'none'}, ${repainted} pixels repainted olive`,
+    )
+  } catch (error) {
+    console.error(error.message)
+    process.exit(1)
+  }
 }

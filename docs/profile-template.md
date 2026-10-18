@@ -5,13 +5,14 @@ This is the source for the `_TEMPLATE (make a copy)` Google Doc in `UC Team / Dr
 Each UC person makes their own profile page, `/about/<slug>`, by copying that Doc. The
 layout follows webs's page at https://understorycollab.com/about/webs, top to bottom.
 
-The sync that reads these Docs isn't built yet. Until it is, profiles are still typed
-into `src/data/authors.js`, and this file is the plan for what the Doc asks for.
+`scripts/profile-sync.js` reads these Docs and builds the pages; the setup and how it
+runs are at the end of this file. Profiles typed into `src/data/authors.js` by hand still
+work, and a published Drive profile with the same slug replaces the hand-entered one.
 
 A profile needs a **photo**, a **name**, a **slug**, and at least one **link**. A
 **role**, a **TPM type**, and a **bio** are optional but recommended.
 
-The photo is redrawn as a hedcut portrait by `scripts/portrait-test.js` (Gemini on
+The photo is redrawn as a hedcut portrait by `scripts/portrait.js` (Gemini on
 Vertex AI, then `scripts/portrait-accent.js` to keep one signature color). The person
 approves it by looking at their draft page and then moving the Doc to Published. Its alt
 text is written for them, as "Hedcut portrait of <name>", so the Doc doesn't ask for one.
@@ -92,3 +93,35 @@ text is written for them, as "Hedcut portrait of <name>", so the Doc doesn't ask
 | webs's extra profiles (TikTok, GitHub, Thoughtworks) | They move into her Doc as links, so they show on her page too, and `authors.js` stops holding them. |
 | Short links | Each person also gets `/<slug>`, redirecting to `/about/<slug>`. The sync refuses slugs that clash with a real page, like `/start`. |
 | The portrait | A hedcut in olive ink on cream, with one signature item allowed to keep its color. |
+
+## How the sync runs
+
+`.github/workflows/profile-sync.yml` runs `scripts/profile-sync.js` once a day at 12:30
+UTC, and on demand from **Actions → Profile sync from Google Drive → Run workflow**. For
+each Doc in `UC Team / Drafts` and `UC Team / Published` (skipping names that start with
+`_`, like the template), it:
+
+1. Reads the labeled lines, the Heading 1 name, the links, and the bio.
+2. Sends the first image to Gemini on Vertex AI to be redrawn as a hedcut
+   (`scripts/portrait.js`), then keeps only one signature color (`scripts/portrait-accent.js`).
+   It only redraws when the photo changes, so a re-run costs nothing.
+3. Writes every profile into `src/data/team.generated.js` and each portrait into
+   `public/team/<slug>-<hash>.webp`, then adds a `/<slug>` short link in `vercel.json`
+   for each published profile.
+
+A draft previews at `/about/<slug>`, or at `/about/<slug>-preview` when that slug is
+already live, so a person redoing their page keeps the live one up while they edit.
+
+## One-time setup
+
+It shares the blog's Google setup (`docs/blog-pipeline-setup.md`): the same service
+account and the same `GOOGLE_SERVICE_ACCOUNT_KEY` secret. On top of that:
+
+| Step | Where |
+|---|---|
+| Turn on the Vertex AI API, with billing on | Google Cloud console, the blog's project |
+| Give the blog's service account the **Agent Platform User** role (`roles/aiplatform.user`, formerly Vertex AI User) | IAM & Admin → IAM → **Grant access**, since the account isn't listed until it has a role |
+| Make `UC Team` with `Drafts` and `Published`, and share `UC Team` with the service account as **Viewer** | Google Drive |
+| Add `DRIVE_TEAM_DRAFTS_FOLDER_ID` and `DRIVE_TEAM_PUBLISHED_FOLDER_ID` as repository variables | GitHub → Settings → Secrets and variables → Actions → Variables |
+
+All four were done on 2026-10-18.

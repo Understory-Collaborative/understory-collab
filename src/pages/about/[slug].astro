@@ -32,7 +32,7 @@ const posts = (await getPublishedPosts()).filter(
 <BaseLayout
   title={author.name}
   description={author.bio[0] || `${author.name} at Understory Collaborative.`}
-  image={author.photo}
+  image={author.photo || undefined}
   ogType="profile"
   noindex={author.draft}
   structuredData={[profile]}
@@ -40,13 +40,15 @@ const posts = (await getPublishedPosts()).filter(
   <div class="author-profile">
     <header class="page-hero" aria-labelledby="author-heading">
       <div class="page-hero-content author-profile-hero">
-        <img
-          class="author-profile-photo"
-          src={author.photo}
-          alt={author.photoAlt}
-          width="960"
-          height="960"
-        />
+        {author.photo && (
+          <img
+            class="author-profile-photo"
+            src={author.photo}
+            alt={author.photoAlt}
+            width="960"
+            height="960"
+          />
+        )}
         <div>
           {author.draft && (
             <p class="author-profile-draft-flag" role="status">

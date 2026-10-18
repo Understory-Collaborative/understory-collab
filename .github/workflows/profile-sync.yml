@@ -1,0 +1,57 @@
+name: Profile sync from Google Drive
+
+# Builds UC member profile pages from Google Drive:
+#   UC Team / Drafts    -> draft profiles (previewable, noindex)
+#   UC Team / Published -> live profiles, each with a /<slug> short link
+# Each person's photo is redrawn as a hedcut portrait by Gemini on Vertex AI.
+# See docs/profile-template.md for the Doc and docs/blog-pipeline-setup.md for the Google
+# setup it shares with the blog.
+#
+# Runs once a day so published profiles go live on their own, and can be run on demand
+# ("Run workflow") when someone wants to see their draft right away.
+
+on:
+  schedule:
+    # 12:30 UTC daily, half an hour after the blog sync.
+    - cron: '30 12 * * *'
+  workflow_dispatch:
+
+# Shares the blog sync's group, so the two never push at the same time.
+concurrency:
+  group: blog-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Sync profiles from Drive
+        env:
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+          DRIVE_TEAM_DRAFTS_FOLDER_ID: ${{ vars.DRIVE_TEAM_DRAFTS_FOLDER_ID }}
+          DRIVE_TEAM_PUBLISHED_FOLDER_ID: ${{ vars.DRIVE_TEAM_PUBLISHED_FOLDER_ID }}
+        run: node scripts/profile-sync.js
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "understory-blog-bot"
+          git config user.email "blog-bot@users.noreply.github.com"
+          if [ -n "$(git status --porcelain src/data/team.generated.js public/team vercel.json)" ]; then
+            git add src/data/team.generated.js public/team vercel.json
+            git commit -m "Sync profiles from Google Drive"
+            git push
+          else
+            echo "No profile changes to publish."
+          fi
