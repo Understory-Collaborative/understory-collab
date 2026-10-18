@@ -128,8 +128,16 @@ should sit somewhere on that arc, not invent a competing structure.
 
 ## Iconography
 
-- **System.** No icon set is in use yet; the only glyph in the live UI is the theme toggle.
-  Pick a single light-stroke set (a **proposal** — e.g. Lucide) and record the choice here.
+- **System.** [Lucide](https://lucide.dev) (ISC license), chosen by webs on 2026-10-18.
+  Draw icons at 16px with `stroke="currentColor"` and a stroke width of 1.75, so they take
+  the color of the text beside them.
+- **How to add one.** Copy the icon's SVG children from lucide.dev into
+  `src/components/LucideIcon.astro`, with the Lucide version it came from. The site inlines
+  the few icons it uses instead of installing the package.
+- **Brand logos.** Lucide 1.x has no brand logos. The LinkedIn icon is Lucide's own retired
+  one (lucide-static 0.460.0), kept because it matches the set's stroke style.
+- **Never icon alone.** Every icon sits beside a text label, or the control carries an
+  accessible name. The icon itself is `aria-hidden`.
 - **The mark is not an icon.** Use `assets/UC_Logo.png`, never a look-alike leaf glyph.
 
 ## Products and surfaces

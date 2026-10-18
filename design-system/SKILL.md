@@ -34,7 +34,7 @@ few questions, and act as an expert designer who outputs HTML artifacts or produ
   danger / info), soft olive tints.
 - **Type:** Overpass (display + body), loaded from Google Fonts. Headings
   bold/extrabold, sentence case, 1rem base, 1.6 body line height.
-- **Icons:** none in use yet; pick one light-stroke set if needed (proposal).
+- **Icons:** Lucide, 16px, stroke 1.75, `currentColor`, always beside a text label (see the README's Iconography section).
 - **Feel:** soft olive-tinted shadows (reserved for hover; site is mostly flat), 8px
   control radius, calm eased motion, no spring.
 
