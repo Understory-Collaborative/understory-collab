@@ -109,6 +109,8 @@ Do this signed in as the account that owns the `UC Blog` folder.
    | `GITHUB_TOKEN` | the token from step A |
    | `DRIVE_DRAFTS_FOLDER_ID` | the Drafts folder ID (same as the GitHub variable) |
    | `DRIVE_PUBLISHED_FOLDER_ID` | the Published folder ID (same as the GitHub variable) |
+   | `DRIVE_TEAM_DRAFTS_FOLDER_ID` | _(for profiles)_ the UC Team / Drafts folder ID |
+   | `DRIVE_TEAM_PUBLISHED_FOLDER_ID` | _(for profiles)_ the UC Team / Published folder ID |
 
 5. **Deploy → New deployment →** type **Web app**. Set **Execute as: Me** and **Who has
    access: Anyone with a Google account**. (If everyone who publishes uses one Google
@@ -155,7 +157,8 @@ The pop-up includes GitHub's own reason. The common ones:
 
 ### What the relay allows
 
-It only starts the blog sync. It refuses any Doc outside the Drafts and Published
+It only starts the blog sync, or the profile sync for a Doc in the UC Team folders
+(`docs/profile-template.md`, "Preview from the Doc"). It refuses any Doc outside those
 folders, and it starts at most one sync every 30 seconds. Anyone who has the relay's
 URL and a Google account can ask it to run the sync, which is the whole of what it can
 do.

@@ -60,7 +60,10 @@ export function takeLabel(markdown, label) {
   const pattern = new RegExp(`^\\*{0,2}${label}\\*{0,2}:\\*{0,2}\\s*(.*?)\\s*$`, 'im')
   const match = pattern.exec(markdown)
   if (!match) return { value: '', markdown }
-  const value = match[1].replace(/[*_`]/g, '').replace(/\(optional\)/i, '').trim()
+  let value = match[1].replace(/[*_`]/g, '').replace(/\(optional\)/i, '').trim()
+  // The template's hint text starts with "Your", like "Your title at UC". A line still
+  // carrying it hasn't been filled in.
+  if (/^your\b/i.test(value)) value = ''
   return { value, markdown: markdown.replace(match[0], '') }
 }
 
@@ -201,7 +204,8 @@ async function readProfile(drive, doc) {
   const { title } = extractTitle(markdown)
   const name = title.trim()
   if (!name || PLACEHOLDER_NAME.test(name)) return { skip: 'no name yet (the Heading 1 is still the placeholder)' }
-  const slug = slugify(fields.slug) || slugify(name)
+  // The slug is the first word of its line; the template's hint text can follow it.
+  const slug = slugify(fields.slug.split(/[\s(]/)[0]) || slugify(name)
   if (!slug || slug === 'your-name') return { skip: 'no slug yet' }
 
   const tpmType = findTpmType(fields['tpm type'])
@@ -217,7 +221,7 @@ async function readProfile(drive, doc) {
       slug,
       name,
       ...(fields['full name'] && { alternateName: fields['full name'] }),
-      ...(fields.role && !/^your title/i.test(fields.role) && { role: fields.role }),
+      ...(fields.role && { role: fields.role }),
       ...(tpmType && { tpmType: tpmType.id }),
       elsewhere: links,
       sameAs: links.map((link) => link.url),
