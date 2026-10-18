@@ -1,21 +1,29 @@
-// A test of hedcut profile portraits made by Google's Gemini image model, before it goes
-// into the profile sync. It sends one photo with the house style written out, and
-// optionally a style example image, and saves what comes back.
+// A test of hedcut profile portraits made by Google's Gemini image model on Vertex AI,
+// before it goes into the profile sync. It sends one photo with the house style written
+// out, and optionally a style example image, and saves what comes back.
 //
-// Put the key in .env.local (git ignores it):
-//   GEMINI_API_KEY=your-key
-// Then run, with Node 20 or later:
+// It signs in as a Google service account, not with an API key, the way Google
+// recommends. That's the same service account the blog sync uses, with the Vertex AI
+// User role added. It looks for credentials in this order:
+//   GOOGLE_SERVICE_ACCOUNT_KEY      the service account JSON, as a string (what GitHub
+//                                   Actions has)
+//   GOOGLE_APPLICATION_CREDENTIALS  a path to the service account's JSON key file
+//   gcloud's application default credentials, from `gcloud auth application-default login`
+//
+// Run, with Node 20 or later (the .env.local flag is only needed if you keep settings there):
 //   node --env-file=.env.local scripts/portrait-test.js <photo> <output.png> [style example]
 //
-// GEMINI_IMAGE_MODEL picks the model; the default is below. A style example helps the look
-// but can leak the example person's features into the portrait, so compare runs with and
-// without one.
+// Optional settings: GOOGLE_CLOUD_PROJECT (defaults to the credentials' project),
+// GOOGLE_CLOUD_LOCATION (defaults to global), and GEMINI_IMAGE_MODEL (default below). A
+// style example helps the look but can leak the example person's features into the
+// portrait, so compare runs with and without one.
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { extname } from 'node:path'
+import { GoogleAuth } from 'google-auth-library'
 
 const MODEL = process.env.GEMINI_IMAGE_MODEL || 'gemini-2.5-flash-image'
-const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`
+const LOCATION = process.env.GOOGLE_CLOUD_LOCATION || 'global'
 
 // The house style: a hedcut, a stipple-and-hatching portrait engraving. The colors are
 // design-system tokens (design-system/tokens/colors.css). webs approved this recipe on
@@ -44,8 +52,16 @@ function inlineImage(path) {
 }
 
 export async function generatePortrait(photo, styleExample) {
-  const key = process.env.GEMINI_API_KEY
-  if (!key) throw new Error('GEMINI_API_KEY is not set (put it in .env.local)')
+  const auth = new GoogleAuth({
+    scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+    ...(process.env.GOOGLE_SERVICE_ACCOUNT_KEY && {
+      credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY),
+    }),
+  })
+  const project = process.env.GOOGLE_CLOUD_PROJECT || (await auth.getProjectId())
+  const host = LOCATION === 'global' ? 'aiplatform.googleapis.com' : `${LOCATION}-aiplatform.googleapis.com`
+  const endpoint = `https://${host}/v1/projects/${project}/locations/${LOCATION}/publishers/google/models/${MODEL}:generateContent`
+  const { token } = await (await auth.getClient()).getAccessToken()
 
   const parts = [{ text: STYLE_PROMPT }, inlineImage(photo)]
   if (styleExample) {
@@ -55,13 +71,16 @@ export async function generatePortrait(photo, styleExample) {
     parts.push(inlineImage(styleExample))
   }
 
-  const response = await fetch(ENDPOINT, {
+  const response = await fetch(endpoint, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
-    body: JSON.stringify({ contents: [{ parts }] }),
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    body: JSON.stringify({
+      contents: [{ role: 'user', parts }],
+      generationConfig: { responseModalities: ['TEXT', 'IMAGE'] },
+    }),
   })
   const body = await response.json()
-  if (!response.ok) throw new Error(`Gemini returned ${response.status}: ${body.error?.message || 'no message'}`)
+  if (!response.ok) throw new Error(`Vertex AI returned ${response.status}: ${body.error?.message || 'no message'}`)
 
   const returned = body.candidates?.[0]?.content?.parts || []
   const image = returned.find((part) => part.inlineData || part.inline_data)
@@ -74,7 +93,7 @@ export async function generatePortrait(photo, styleExample) {
 
 const [photo, output, styleExample] = process.argv.slice(2)
 if (!photo || !output) {
-  console.error('usage: node --env-file=.env.local scripts/portrait-test.js <photo> <output.png> [style example]')
+  console.error('usage: node scripts/portrait-test.js <photo> <output.png> [style example]')
   process.exit(1)
 }
 try {
