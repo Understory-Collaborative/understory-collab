@@ -60,13 +60,13 @@ function inlineImage(image) {
 
 // The photo and style example are each a file path or { data, mimeType }.
 export async function generatePortrait(photo, styleExample) {
+  const credentials = process.env.GOOGLE_SERVICE_ACCOUNT_KEY && JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY)
   const auth = new GoogleAuth({
     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-    ...(process.env.GOOGLE_SERVICE_ACCOUNT_KEY && {
-      credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY),
-    }),
+    ...(credentials && { credentials }),
   })
-  const project = process.env.GOOGLE_CLOUD_PROJECT || (await auth.getProjectId())
+  // A key passed as text doesn't tell the library its project, but the key names it.
+  const project = process.env.GOOGLE_CLOUD_PROJECT || credentials?.project_id || (await auth.getProjectId())
   const host = LOCATION === 'global' ? 'aiplatform.googleapis.com' : `${LOCATION}-aiplatform.googleapis.com`
   const endpoint = `https://${host}/v1/projects/${project}/locations/${LOCATION}/publishers/google/models/${MODEL}:generateContent`
   const { token } = await (await auth.getClient()).getAccessToken()
