@@ -42,7 +42,7 @@ recommended.
 > Polymath. Shows under your role, linked to that type's page. Take the self-check at
 > understorycollab.com/tpm-self-check.
 >
-> **Links:** One link per line, the button text, then a `|`, then the web address. They
+> **Links:** One link per line, the link text, then a `|`, then the web address. They
 > show as a row of small links with icons under your TPM type, in this order. Put the one you most
 > want people to tap first.
 > LinkedIn | https://www.linkedin.com/in/your-name
