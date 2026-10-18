@@ -21,19 +21,21 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { extname } from 'node:path'
 import { GoogleAuth } from 'google-auth-library'
+import { keepOneAccent } from './portrait-accent.js'
 
 const MODEL = process.env.GEMINI_IMAGE_MODEL || 'gemini-2.5-flash-image'
 const LOCATION = process.env.GOOGLE_CLOUD_LOCATION || 'global'
 
 // The house style: a hedcut, a stipple-and-hatching portrait engraving. The colors are
 // design-system tokens (design-system/tokens/colors.css). webs approved this recipe on
-// 2026-10-18 from a test in the Gemini app.
+// 2026-10-18 from a test in the Gemini app, and chose to keep one signature color accent.
 export const STYLE_PROMPT = `Redraw the person in this photo as a hedcut portrait: a stipple-and-hatching engraving in the style of a newspaper portrait drawing.
 
 Likeness comes first. Keep this exact person recognizable: the same face shape, eyes, nose, mouth, eyebrows, hairstyle, glasses, and expression. Do not make them younger, thinner, or more conventionally attractive, and do not change their gender presentation.
 
 Technique:
-- One ink color, deep olive (#1c2902), on warm cream paper (#f3e8cc). No other colors, no gray wash, no flat fills.
+- One ink color, deep olive (#1c2902), on warm cream paper (#f3e8cc), with no gray wash and no flat fills.
+- One exception: if the person wears one strongly colored signature item, such as red glasses, keep that one item in its own color, drawn with the same stippling and lines. Only one item gets color. Lips, skin, eyes, hair, and clothing always stay olive, even if they're colorful in the photo. If nothing stands out, use olive only.
 - Skin is shaded only with stipple dots that follow the curves of the face in rows, small and sparse in the light, larger and denser in shadow. Leave the brightest highlights as bare paper.
 - Hair is drawn with fine engraved lines that follow the direction the hair grows.
 - Clothing is drawn with parallel or crossed hatching lines that follow the fabric.
@@ -98,8 +100,13 @@ if (!photo || !output) {
   process.exit(1)
 }
 try {
-  writeFileSync(output, await generatePortrait(photo, styleExample))
-  console.log(`wrote ${output} with ${MODEL}${styleExample ? ', using the style example' : ''}`)
+  // The model doesn't always stop at one color accent, so code enforces it afterward.
+  const { image, accentHue, repainted } = await keepOneAccent(await generatePortrait(photo, styleExample))
+  writeFileSync(output, image)
+  console.log(
+    `wrote ${output} with ${MODEL}${styleExample ? ', using the style example' : ''}; ` +
+      `accent hue ${accentHue ?? 'none'}, ${repainted} pixels repainted olive`,
+  )
 } catch (error) {
   console.error(error.message)
   process.exit(1)
