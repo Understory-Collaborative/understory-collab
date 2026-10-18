@@ -25,8 +25,9 @@ export const AUTHORS = [
       'https://studiowlabs.com/about',
       'https://theintelligenthoodlums.com/crew',
     ],
-    // Her other sites, linked under the bio.
+    // Her links, shown under the TPM type at the top of the profile.
     elsewhere: [
+      { name: 'LinkedIn', url: 'https://www.linkedin.com/in/weberswords' },
       { name: 'studio w labs', url: 'https://studiowlabs.com' },
       { name: 'The Intelligent Hoodlums', url: 'https://theintelligenthoodlums.com/crew' },
     ],

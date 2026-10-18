@@ -58,6 +58,15 @@ const posts = (await getPublishedPosts()).filter(
               <a href={`/tpm-types/${tpmType.id}`}>{tpmType.name}</a>
             </p>
           )}
+          {author.elsewhere?.length > 0 && (
+            <ul class="author-profile-links" aria-label={`${author.name}'s links`}>
+              {author.elsewhere.map((link) => (
+                <li>
+                  <a href={link.url}>{link.name}</a>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </header>
@@ -69,19 +78,6 @@ const posts = (await getPublishedPosts()).filter(
           author.bio.map((paragraph) => <p>{paragraph}</p>)
         ) : (
           <p class="author-profile-placeholder">Bio coming soon.</p>
-        )}
-
-        {author.elsewhere?.length > 0 && (
-          <>
-            <p id="author-elsewhere-heading">Find {author.name} elsewhere:</p>
-            <ul class="author-profile-elsewhere" aria-labelledby="author-elsewhere-heading">
-              {author.elsewhere.map((link) => (
-                <li>
-                  <a href={link.url}>{link.name}</a>
-                </li>
-              ))}
-            </ul>
-          </>
         )}
 
         {posts.length > 0 && (
