@@ -49,7 +49,7 @@ export const DRIVE_PROFILES = [
       "At ThoughtWorks she worked across full-stack development, security, and infrastructure, including a rebuild of how an airline manages aircraft maintenance and a GDPR build for a global fashion brand. She holds everything she builds to the standard she studies: secure, accessible, and transparent by default."
     ],
     "driveId": "16fA2TGw1NxeON-AYA3Xb2kIBXBbkiZTyzbE1BrGZEOs",
-    "updated": "2026-10-18",
+    "updated": "2026-10-19",
     "photo": "/team/webs-b4bead205f2a.webp",
     "photoAlt": "Hedcut portrait of webs",
     "photoHash": "b4bead205f2a",
