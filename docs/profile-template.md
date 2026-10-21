@@ -112,6 +112,41 @@ each Doc in `UC Team / Drafts` and `UC Team / Published` (skipping names that st
 A draft previews at `/about/<slug>`, or at `/about/<slug>-preview` when that slug is
 already live, so a person redoing their page keeps the live one up while they edit.
 
+## Preview from the Doc
+
+The template carries a **UC Profile** menu with **Preview now** and **Publish**, so
+teammates don't need GitHub or a day's wait. It's the blog's menu idea
+(`docs/blog-pipeline-setup.md`, "Run the sync from the Doc") pointed at the profile sync,
+through the same relay:
+
+- **The relay** (`scripts/apps-script/relay/`) starts the profile sync for a Doc in the
+  UC Team folders and the blog sync for a Doc in the UC Blog folders, and refuses any
+  other Doc.
+- **The menu** (`scripts/apps-script/profile-menu/`) lives in the profile `_TEMPLATE`
+  Doc, so every copy gets it. It shows the preview link, `/about/<slug>`, or
+  `/about/<slug>-preview` when that slug is already live.
+
+To set it up, once:
+
+1. **Update the relay.** Open the `UC Blog relay` project at https://script.google.com.
+   Replace `Code.gs` with `scripts/apps-script/relay/Code.gs`. Under **Project Settings
+   → Script properties**, add `DRIVE_TEAM_DRAFTS_FOLDER_ID` and
+   `DRIVE_TEAM_PUBLISHED_FOLDER_ID`, the same values as the GitHub variables. Then
+   choose **Deploy → Manage deployments → Edit → New version**, so the address stays
+   the same. The GitHub token already covers the profile workflow.
+2. **Add the menu to the template.** Open `_TEMPLATE (make a copy)` in `UC Team /
+   Drafts` and choose **Extensions → Apps Script**. Replace `Code.gs` with
+   `scripts/apps-script/profile-menu/Code.gs`, and paste the relay's web app URL into
+   `RELAY_URL` at the top, the same address the UC Blog menu uses. Turn on **Show
+   "appsscript.json" manifest file in editor** under **Project Settings**, and replace
+   `appsscript.json` with `scripts/apps-script/profile-menu/appsscript.json`. Save and
+   reload the Doc; the **UC Profile** menu appears next to **Help**.
+
+The first time someone uses the menu, Google asks them to approve it and shows "Google
+hasn't verified this app", the same as the blog menu; choose **Advanced → Go to UC
+Profile (unsafe)**. It only reads the open Doc and calls the relay. A Doc copied before
+the menu was added doesn't have it; add the script to that Doc with step 2.
+
 ## One-time setup
 
 It shares the blog's Google setup (`docs/blog-pipeline-setup.md`): the same service
