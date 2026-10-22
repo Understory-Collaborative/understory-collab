@@ -53,6 +53,6 @@ export const DRIVE_PROFILES = [
     "photo": "/team/webs-b4bead205f2a.webp",
     "photoAlt": "Hedcut portrait of webs",
     "photoHash": "b4bead205f2a",
-    "draft": true
+    "draft": false
   }
 ]
