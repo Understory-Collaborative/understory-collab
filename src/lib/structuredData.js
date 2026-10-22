@@ -27,7 +27,8 @@ export const personId = (site, author) =>
 
 // Founders named on the Organization record. webs only, until the other members decide
 // whether they're listed as founders or members.
-const FOUNDERS = [getAuthorBySlug('webs')]
+// A founder whose profile is taken down drops off rather than breaking the build.
+const FOUNDERS = [getAuthorBySlug('webs')].filter(Boolean)
 
 export function siteGraph(site) {
   return [

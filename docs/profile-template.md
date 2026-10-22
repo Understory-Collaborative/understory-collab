@@ -52,6 +52,10 @@ text is written for them, as "Hedcut portrait of <name>", so the Doc doesn't ask
 > Polymath. Shows under your role, linked to that type's page. Take the self-check at
 > understorycollab.com/tpm-self-check.
 >
+> **Use my photo as is:** _(optional)_ Write yes to show your photo exactly as you
+> pasted it, cropped to a circle, instead of redrawing it as a hedcut. Use this if you've
+> retouched your own portrait or have one an artist drew. Delete the yes to switch back.
+>
 > **Links:** One link per line: the link text, then a |, then the web address. They
 > show as a row of small links with icons under your TPM type, in this order, so put the
 > one you most want people to tap first.
@@ -62,11 +66,11 @@ text is written for them, as "Hedcut portrait of <name>", so the Doc doesn't ask
 >
 > ---
 >
-> **To check your page:** keep your copy in **UC Team / Drafts**. Your preview page, with
-> your hedcut portrait, shows at a private link. If you don't like the portrait, swap in a
-> different photo and it gets redrawn.
-> **To publish:** move your copy into **UC Team / Published**. Moving it there is how you
-> approve your portrait.
+> **To check your page:** keep your copy in **UC Team / Drafts**. Choose **UC Profile**,
+> then **Preview now**, and your preview link appears; the page is ready a few minutes
+> later. If you don't like the portrait, swap in a different photo and preview again.
+> **To publish:** choose **UC Profile**, then **Publish**, or move your copy into **UC Team
+> / Published**. Moving it there is how you approve your portrait.
 
 ---
 
@@ -80,9 +84,24 @@ text is written for them, as "Hedcut portrait of <name>", so the Doc doesn't ask
 | `Full name:` line | Search engines only (`alternateName`) | Optional |
 | `Role:` line | Line under the name | Optional |
 | `TPM type:` line | "TPM type:" line, linked to `/tpm-types/<id>` | Optional |
+| `Use my photo as is:` line | `yes` shows the photo as pasted, cropped to a square near the top, instead of a hedcut; its alt text is "Portrait of _name_" | Optional |
 | `Links:` lines | Row of small icon links under the TPM type, a LinkedIn icon for LinkedIn and a globe for everything else; also tells search engines these profiles are the same person (`sameAs`) | At least one |
 | Paragraphs under the `Bio` heading | "About _name_" section | Optional; the page says "Bio coming soon" without it |
 | Nothing | "Posts by _name_" list, filled in from blog posts whose `Author:` matches | Automatic |
+
+## A profile's lifecycle
+
+| To | Do this | What happens |
+|---|---|---|
+| Start a profile | Copy the template into `UC Team / Drafts`, fill it in, and choose **UC Profile → Preview now** | A draft page at `/about/<slug>`, noindex, with the portrait drawn once |
+| Publish it | **UC Profile → Publish**, or move the Doc to `UC Team / Published` | The page goes live, with a `/<slug>` short link |
+| Edit a live profile | Edit the Doc in `Published`, then **UC Profile → Preview now**, or wait for the daily run | The change goes **straight live**; there's no preview step for a published Doc. The portrait isn't redrawn unless the photo changed. |
+| Change the photo | Paste the new photo in place of the old one | A new portrait is drawn; the old file is removed |
+| Re-copy the Doc (to get the menu, say) | Copy it, keep the same photo, and remove the old Doc from both folders | The portrait is reused, not redrawn, because it's matched by photo |
+| Take a profile down | Move the Doc out of both `Drafts` and `Published` (into `UC Team` itself, say), or trash it | The next sync removes the page, its portrait, and its short link. The menu can't start this run, since the relay only acts on Docs in the two folders, so it waits for the daily run or a manual one. |
+
+Moving a published Doc back to `Drafts` doesn't take the page down: it keeps the page up
+at the same address as a noindex draft.
 
 ## Decisions (webs, 2026-10-18)
 
