@@ -53,7 +53,7 @@ const DRY_RUN = process.argv.includes('--dry-run') || !process.env.GOOGLE_SERVIC
 const PLACEHOLDER_NAME = /^your name/i
 const PLACEHOLDER_LINK = /your-name|example\.com/i
 
-const LABELS = ['slug', 'full name', 'role', 'tpm type', 'links']
+const LABELS = ['slug', 'full name', 'role', 'tpm type', 'use my photo as is', 'links']
 
 // Pull a labeled line ("Slug: webs", maybe bold) out of the markdown. Returns the value
 // and the markdown without that line.
@@ -143,6 +143,18 @@ async function normalizePhoto(photo) {
   return { mimeType: 'image/jpeg', data }
 }
 
+// A square cut from a photo for the round portrait: full width, starting 30% of the way
+// down the spare height, so a head-and-shoulders shot keeps the top of the head. (Sharp's
+// "most interesting part" crop goes for busy detail, like lettering on a shirt.)
+async function headAndShouldersSquare(data) {
+  const oriented = await sharp(data).rotate().toBuffer()
+  const { width, height } = await sharp(oriented).metadata()
+  const side = Math.min(width, height)
+  return sharp(oriented)
+    .extract({ left: Math.round((width - side) / 2), top: Math.round((height - side) * 0.3), width: side, height: side })
+    .toBuffer()
+}
+
 // The profiles the last run wrote, so this run can reuse their portraits and clean up.
 function previousProfiles() {
   if (!existsSync(GENERATED_FILE)) return []
@@ -197,7 +209,7 @@ async function readProfile(drive, doc) {
   const photo = await firstImage(markdown)
 
   const fields = {}
-  for (const label of ['slug', 'full name', 'role', 'tpm type']) {
+  for (const label of ['slug', 'full name', 'role', 'tpm type', 'use my photo as is']) {
     const taken = takeLabel(markdown, label)
     fields[label] = taken.value
     markdown = taken.markdown
@@ -217,6 +229,9 @@ async function readProfile(drive, doc) {
 
   return {
     photo,
+    // "Use my photo as is: yes" skips the hedcut, for someone who has retouched their own
+    // portrait or brought one an artist drew.
+    photoAsIs: /^(yes|y|true)\b/i.test(fields['use my photo as is']),
     warnings,
     profile: {
       slug,
@@ -239,17 +254,23 @@ async function readProfile(drive, doc) {
 // a fresh copy of the template (to get its menu, say) and keep their photo; that copy
 // shouldn't redraw a portrait they already approved. Returns { photo, photoHash }, or {}
 // when there's no usable photo.
-async function portraitFor(profile, photo, previousList) {
+//
+// With asIs, the photo is used as pasted instead: cropped to a square around its most
+// interesting part, but not redrawn. Its file name ends in "-photo", so switching between
+// the two never reuses the wrong one.
+export async function portraitFor(profile, photo, previousList, asIs) {
   if (!photo) return {}
   const photoHash = createHash('sha256').update(photo.data).digest('hex').slice(0, 12)
-  const file = `${profile.slug}-${photoHash}.webp`
-  const drawn = previousList.some((old) => old.photo === `/team/${file}`)
-  if (drawn && existsSync(join(TEAM_DIR, file))) return { photo: `/team/${file}`, photoHash }
+  const file = `${profile.slug}-${photoHash}${asIs ? '-photo' : ''}.webp`
+  const made = previousList.some((old) => old.photo === `/team/${file}`)
+  if (made && existsSync(join(TEAM_DIR, file))) return { photo: `/team/${file}`, photoHash }
   if (DRY_RUN) return { photo: `/team/${file}`, photoHash }
-  const { image } = await keepOneAccent(await generatePortrait(await normalizePhoto(photo)))
+  const image = asIs
+    ? await headAndShouldersSquare(photo.data)
+    : (await keepOneAccent(await generatePortrait(await normalizePhoto(photo)))).image
   // Encoding fresh pixels drops the photo's metadata, including any location.
   await sharp(image).resize(PORTRAIT_SIZE, PORTRAIT_SIZE).webp({ quality: 88 }).toFile(join(TEAM_DIR, file))
-  console.log(`drew   portrait for ${profile.slug}`)
+  console.log(`${asIs ? 'used   photo as is' : 'drew   portrait'} for ${profile.slug}`)
   return { photo: `/team/${file}`, photoHash }
 }
 
@@ -289,7 +310,7 @@ async function run() {
   const taken = new Set()
   const ordered = [...byDoc.values()].sort((a, b) => Number(a.draft) - Number(b.draft))
   for (const entry of ordered) {
-    const { profile, photo, draft, docName } = entry
+    const { profile, photo, photoAsIs, draft, docName } = entry
     if (taken.has(`${profile.slug}:${draft}`)) {
       console.warn(`warn   ${docName}: another ${draft ? 'draft' : 'published'} profile already uses "${profile.slug}"; skipped`)
       continue
@@ -297,7 +318,7 @@ async function run() {
     taken.add(`${profile.slug}:${draft}`)
     let portrait = {}
     try {
-      portrait = await portraitFor(profile, photo, [...previous.values()])
+      portrait = await portraitFor(profile, photo, [...previous.values()], photoAsIs)
     } catch (error) {
       console.warn(`warn   ${docName}: couldn't draw the portrait (${error.message})`)
       const last = previous.get(profile.driveId)
@@ -306,7 +327,11 @@ async function run() {
     if (!portrait.photo) console.warn(`warn   ${docName}: no photo yet`)
     profiles.push({
       ...profile,
-      ...(portrait.photo && { photo: portrait.photo, photoAlt: `Hedcut portrait of ${profile.name}`, photoHash: portrait.photoHash }),
+      ...(portrait.photo && {
+        photo: portrait.photo,
+        photoAlt: `${photoAsIs ? 'Portrait' : 'Hedcut portrait'} of ${profile.name}`,
+        photoHash: portrait.photoHash,
+      }),
       draft,
     })
     console.log(`${draft ? 'draft ' : 'live  '} ${profile.slug} (${docName})`)
