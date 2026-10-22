@@ -13,7 +13,8 @@
 // pushes, which triggers a deploy.
 //
 // A portrait is drawn only when a person's photo changes: each profile records its
-// photo's hash, so a re-run reuses the portrait it already has. Portraits are saved as
+// photo's hash, so a re-run, or a fresh copy of their Doc with the same photo, reuses the
+// portrait already drawn. Portraits are saved as
 // public/team/<slug>-<hash>.webp, so a new photo gets a new file and a synced portrait
 // never overwrites a hand-made one.
 //
@@ -233,18 +234,19 @@ async function readProfile(drive, doc) {
   }
 }
 
-// The portrait for a profile: reuse the last one when the photo hasn't changed, otherwise
-// draw a new one. Returns { photo, photoHash } or {} when there's no usable photo.
-async function portraitFor(profile, photo, previous) {
+// The portrait for a profile: reuse one already drawn from the same photo for the same
+// slug, otherwise draw a new one. It's matched by photo, not by Doc, because people make
+// a fresh copy of the template (to get its menu, say) and keep their photo; that copy
+// shouldn't redraw a portrait they already approved. Returns { photo, photoHash }, or {}
+// when there's no usable photo.
+async function portraitFor(profile, photo, previousList) {
   if (!photo) return {}
   const photoHash = createHash('sha256').update(photo.data).digest('hex').slice(0, 12)
   const file = `${profile.slug}-${photoHash}.webp`
-  if (previous?.photoHash === photoHash && previous.photo === `/team/${file}` && existsSync(join(TEAM_DIR, file))) {
-    return { photo: previous.photo, photoHash }
-  }
+  const drawn = previousList.some((old) => old.photo === `/team/${file}`)
+  if (drawn && existsSync(join(TEAM_DIR, file))) return { photo: `/team/${file}`, photoHash }
   if (DRY_RUN) return { photo: `/team/${file}`, photoHash }
-  const drawn = await generatePortrait(await normalizePhoto(photo))
-  const { image } = await keepOneAccent(drawn)
+  const { image } = await keepOneAccent(await generatePortrait(await normalizePhoto(photo)))
   // Encoding fresh pixels drops the photo's metadata, including any location.
   await sharp(image).resize(PORTRAIT_SIZE, PORTRAIT_SIZE).webp({ quality: 88 }).toFile(join(TEAM_DIR, file))
   console.log(`drew   portrait for ${profile.slug}`)
@@ -295,7 +297,7 @@ async function run() {
     taken.add(`${profile.slug}:${draft}`)
     let portrait = {}
     try {
-      portrait = await portraitFor(profile, photo, previous.get(profile.driveId))
+      portrait = await portraitFor(profile, photo, [...previous.values()])
     } catch (error) {
       console.warn(`warn   ${docName}: couldn't draw the portrait (${error.message})`)
       const last = previous.get(profile.driveId)
