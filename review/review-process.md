@@ -175,6 +175,6 @@ Use this format for each consolidated finding:
 
 | File | Purpose |
 |---|---|
-| `review/personas.md` | Four target client personas |
-| `review/case-study-template.md` | Template for writing case studies |
+| Drive: Business / Marketing / Marketing personas | Four target client personas |
+| Drive: Business / Marketing / Case study template | Template for writing case studies |
 | `review/review-process.md` | This document — group charters, workflow, approval process |

@@ -3,6 +3,11 @@
 Marketing site for Understory Collaborative, built with Astro as static pages, with React
 islands for the forms, and deployed from the `main` branch.
 
+This repo is public, so it holds only the website and the tools that build it. Business
+documents, such as positioning, offers, personas, marketing plans, and business decisions,
+live in the shared Understory Drive folder, under **Business**:
+https://drive.google.com/drive/folders/1rkTWHS1z3wm6Dxs43Pv2ReoRkGZYECK-
+
 ## Stack
 
 - **Astro 7**, static output. Each page is HTML at build time; pages with nothing

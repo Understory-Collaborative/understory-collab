@@ -4,7 +4,7 @@
 // to build it, Ship = how to ship it), each with the stuck-leader story it grew from:
 // Design = the delivery rescue, Build = the team turnaround, Ship = sane ai and cadence.
 // Each renders through one template (OfferPage.jsx) on the who / problem / impact / proof
-// structure from review/brand-offer-foundation.md.
+// structure from Drive: Business / Strategy / Brand and offer foundation.
 //
 // Decided with webs (2026-08-19): names are Design / Build / Ship; price is intake-only
 // (no public number on these pages, per HANDOFF D3; office hours, the one public price, went

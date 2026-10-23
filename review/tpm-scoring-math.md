@@ -1,7 +1,7 @@
 # How the self-check scores work
 
 The scoring reference for the TPM self-check. It traces every number from a single answer to
-the final archetype. Companion to `review/tpm-hexagon-model.md` (the model) and
+the final archetype. Companion to Drive: Business / Offers / The TPM hexagon (the model) and
 `src/data/tpmSelfCheckData.js` (the code that does exactly this).
 
 The worked example at the bottom uses one real run, so every formula here has a number you

@@ -140,7 +140,7 @@ Each result shows:
 2. What the signals mean (reframing their answers back to them)
 3. A CTA: "We wrote a field guide for this." — email capture for the corresponding white paper
 
-See `review/crisis-types-and-white-papers.md` for full crisis type descriptions and white paper outlines.
+See Drive: Business / Offers / Crisis types and white papers for full crisis type descriptions and white paper outlines.
 
 ---
 

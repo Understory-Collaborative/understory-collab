@@ -5,7 +5,7 @@
 // show up. From the six it DERIVES the product skills (roadmaps, financials, market, value,
 // go to market), and it reads the person's hexagon SHAPE to name an archetype.
 //
-// Model and rationale live at review/tpm-hexagon-model.md; research pointer in the friday
+// Model and rationale live at Drive: Business / Offers / The TPM hexagon; research pointer in the friday
 // repo at research/dissertation/applied-tpm-assessment.md. Research anchors per axis:
 // March (1991) exploration/exploitation; Jaques time-span of discretion; Guest (1991)
 // T-shaped; Amabile (1988) componential creativity; Stevens & Campion (1994) teamwork KSAs;
