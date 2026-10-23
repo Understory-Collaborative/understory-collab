@@ -1,10 +1,13 @@
 # Decisions log
 
-Internal record of tooling and process decisions, so we don't re-litigate them
+Internal record of website and tooling decisions, so we don't re-litigate them
 and so we remember why we chose what we chose. Newest first.
 
-The full system design and the phased build plan live in
-`docs/messaging-system-plan.md`. Start there to resume this work.
+Business decisions live in the Decisions doc in the shared Understory Drive folder,
+under Business:
+https://docs.google.com/document/d/1WB7g8fUZUk5Gz6WBP0nL6rA9EuLYFmR2YvKBlCUtYgs/edit
+The full messaging system design and its phased build plan are in the Messaging and
+audience system plan doc, under Business / Marketing. Start there to resume this work.
 
 ---
 
@@ -18,8 +21,8 @@ We added understorycollab.com/tiktok so Understory's product-design TikToks send
 straight to Understory, with visits tagged utm_source=tiktok. The address is a temporary
 redirect in `vercel.json` to `/start?utm_source=tiktok&utm_medium=social`, and `/start` is a
 noindex landing page with three links: free office hours, the latest article, and the
-questions page. Videos aimed at a leader with a team say this address, and videos aimed at
-someone building it themselves keep saying studiowlabs.com/tiktok.
+questions page. Which videos say this address is a business decision, logged in the Drive
+Decisions doc.
 
 ---
 
@@ -91,27 +94,19 @@ Kit.
 
 ---
 
-## 2026-08-20 — ESP, and the lead model
+## 2026-08-20 — ESP, and the lead data model
 
 **ESP: Buttondown, chosen.** Markdown-first, indie, cheap, clean API, pro-privacy
 stance. It handles only the send + nurture + unsubscribe; the blog stays owned in
 the website repo. Confirm current pricing and values live before wiring (sandbox
 egress is blocked, so we could not verify from here).
 
-**A lead can belong to more than one business.** Someone might be a fit for UC and
-SWL at once. So the model is a many-to-many tag, not a single owner: a `contacts`
-(lead) record links to zero or more businesses (`teams`) through a join table. This
-replaces the earlier "add a teamId column to contacts" idea.
-
-**Lead vs prospect (definitions we'll use):**
-
-- **Lead** — a raw inbound contact who just raised a hand (filled the form, took the
-  assessment). Not yet qualified. You don't yet know if they're a fit.
-- **Prospect** — a lead you've qualified: you've made contact and believe there's a
-  real potential deal. Actively pursuing.
-- These describe the **relationship** (the `contacts.role` field). The **deal** itself
-  is an `engagement`, whose `status` runs lead to committed to active to done. So a
-  person is a lead/prospect; the specific job is an engagement in the pipeline.
+**Leads are many-to-many with businesses.** A `contacts` (lead) record links to zero
+or more businesses (`teams`) through a join table. This replaces the earlier "add a
+teamId column to contacts" idea. Lead vs prospect is stored in `contacts.role`, and the
+deal is an `engagement` whose `status` runs lead to committed to active to done. The
+definitions of lead and prospect, and why a lead can belong to more than one business,
+are in the Drive Decisions doc.
 
 ---
 
@@ -130,18 +125,9 @@ owned, no third-party connector. "Not accessible to the whole team right now" is
 build-status detail on Tide (multi-user access not shipped yet), not a reason to
 move off it. Open: see Tide's data model / write API to design the intake integration.
 
-**Substack: ruled out for UC** on values and morals grounds. They platform nazis,
-and the team does not want to use them. This sets a broader criterion: **a vendor's
-values are a real filter for UC**, not only its features.
-
-**New criteria this adds to the tool choice:**
-
-- **Low or no added cost.** webs is cost-conscious. Favor genuine free tiers; do
-  not stack subscriptions.
-- **Data ownership, no silent vanish.** The blog and list must be exportable and
-  must not be able to disappear without warning. Strong case for owning the blog
-  in the website repo itself (versioned in git, deploys on Vercel, cannot poof),
-  with a replaceable ESP handling only the send + unsubscribe.
+Substack was ruled out the same day on values grounds, which added three filters to
+every tool choice: the vendor's values, low or no added cost, and data ownership. Those
+are in the Drive Decisions doc.
 
 ---
 
