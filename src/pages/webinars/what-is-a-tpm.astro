@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import transcript from '../../data/webinars/what-is-a-tpm-transcript.json'
+import '../../views/Webinar.css'
+
+// The page for webinar episode 1, the replay and the podcast together. It stays noindex and
+// out of the sitemap and nav while it's a preview for the team. To launch it, remove
+// `noindex`, add '/webinars/what-is-a-tpm' to STATIC_ROUTES in scripts/generate-sitemap.js,
+// and link it from wherever the series is listed.
+
+// The unlisted YouTube video's ID, the part after "v=" in its link. Empty until it's uploaded.
+const YOUTUBE_ID = ''
+// Podcast apps, once the feed is live: { name: 'Apple Podcasts', url: 'https://…' }.
+const LISTEN: { name: string; url: string }[] = []
+
+// Chapter times are in the replay, from the friday build (tools/video/webinar.py).
+const CHAPTERS = [
+  { at: 0, title: 'Welcome' },
+  { at: 62, title: 'Meet the panel' },
+  { at: 411, title: 'What makes a TPM different from a PM?' },
+  { at: 966, title: 'Does AI make TPMs more productive?' },
+  { at: 1450, title: 'The one thing never to hand off to AI' },
+  { at: 1638, title: 'Do you need a TPM? Advice for non-technical leaders' },
+  { at: 2170, title: 'The self-check and office hours' },
+]
+
+const clock = (seconds: number) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`
+const missing = [!YOUTUBE_ID && 'the video', LISTEN.length === 0 && 'the podcast links'].filter(Boolean)
+---
+<BaseLayout
+  title="What Is a TPM, and Why Does the Job Feel Harder Than Ever?"
+  description="Understory Collaborative's first webinar: what it actually means to be a technical product manager, and why the job feels harder right now."
+  noindex
+>
+  <div class="webinar">
+    <section class="page-hero" aria-labelledby="webinar-heading">
+      <div class="page-hero-content">
+        <p class="webinar-eyebrow">Webinar, episode 1</p>
+        <h1 id="webinar-heading">What Is a TPM, and Why Does the Job Feel Harder Than Ever?</h1>
+        <p class="page-hero-lead">
+          The panel talks about what it actually means to be a technical product
+          manager, and why the job feels harder right now.
+        </p>
+        <p class="page-hero-support">
+          Recorded October 22, 2026. Danielle Christophe hosts, with Al, Jess Kern,
+          and <a href="/about/webs">webs</a>.
+        </p>
+      </div>
+    </section>
+
+    {missing.length > 0 && (
+      <section class="webinar-section" aria-label="Preview note">
+        <div class="section-container">
+          <p class="webinar-preview">
+            This page is a preview for the team. It's hidden from search and isn't
+            linked from anywhere yet. Still to add: {missing.join(' and ')}.
+          </p>
+        </div>
+      </section>
+    )}
+
+    <section class="webinar-section" aria-labelledby="watch-heading">
+      <div class="section-container">
+        <h2 id="watch-heading">Watch</h2>
+        {YOUTUBE_ID ? (
+          <div class="webinar-video">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}`}
+              title="What Is a TPM, and Why Does the Job Feel Harder Than Ever? (video)"
+              loading="lazy"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        ) : (
+          <div class="webinar-video webinar-video-empty">
+            <p>The video goes here once it's uploaded.</p>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <section class="webinar-section" aria-labelledby="listen-heading">
+      <div class="section-container">
+        <h2 id="listen-heading">Listen</h2>
+        {LISTEN.length > 0 ? (
+          <ul class="webinar-listen">
+            {LISTEN.map((app) => (
+              <li><a href={app.url} target="_blank" rel="noopener noreferrer">{app.name}<span class="sr-only"> (opens in a new tab)</span></a></li>
+            ))}
+          </ul>
+        ) : (
+          <p>The episode is coming to podcast apps as the Understory Collaborative podcast.</p>
+        )}
+      </div>
+    </section>
+
+    <section class="webinar-section" aria-labelledby="chapters-heading">
+      <div class="section-container">
+        <h2 id="chapters-heading">Chapters</h2>
+        <ol class="webinar-chapters">
+          {CHAPTERS.map((chapter) => (
+            <li>
+              {YOUTUBE_ID ? (
+                <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=${chapter.at}s`}>
+                  <span class="webinar-time">{clock(chapter.at)}</span> {chapter.title}
+                </a>
+              ) : (
+                <><span class="webinar-time">{clock(chapter.at)}</span> {chapter.title}</>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="webinar-section" aria-labelledby="next-heading">
+      <div class="section-container">
+        <h2 id="next-heading">Does your team need a TPM?</h2>
+        <p>Take the TPM self-check, or bring your question to office hours.</p>
+        <p class="webinar-cta">
+          <a class="btn btn-primary" href="/tpm-self-check">Take the self-check</a>
+          <a class="btn btn-secondary" href="/office-hours">Book office hours</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="webinar-section" aria-labelledby="transcript-heading">
+      <div class="section-container">
+        <h2 id="transcript-heading">Transcript</h2>
+        <details class="webinar-transcript">
+          <summary>Read the full transcript</summary>
+          {transcript.map((turn) => (
+            <p>
+              <strong>{turn.speaker}</strong>
+              <span class="webinar-time">{clock(turn.at)}</span>
+              {turn.text}
+            </p>
+          ))}
+        </details>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

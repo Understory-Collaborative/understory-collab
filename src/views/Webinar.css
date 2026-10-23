@@ -1,0 +1,101 @@
+/* A webinar episode page: the replay, the podcast, chapters, and the transcript.
+   Same quiet structure as office hours: hierarchy and whitespace carry the page. */
+
+.webinar-eyebrow {
+  margin-bottom: var(--space-3);
+  color: var(--accent-warm-text);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.02em;
+}
+
+.webinar-section {
+  padding-block: clamp(var(--space-6), 4vw, var(--space-12));
+}
+
+.webinar-section h2 {
+  margin-bottom: var(--space-4);
+}
+
+.webinar-section p {
+  max-width: 62ch;
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+}
+
+.webinar-preview {
+  padding: var(--space-4);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-control);
+}
+
+.webinar-video {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: 960px;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--surface-card);
+}
+
+.webinar-video iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.webinar-video-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--border-default);
+}
+
+.webinar-listen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  padding: 0;
+  list-style: none;
+}
+
+.webinar-chapters {
+  padding-left: 0;
+  list-style: none;
+  max-width: 40rem;
+}
+
+.webinar-chapters li {
+  padding-block: var(--space-2);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.webinar-time {
+  display: inline-block;
+  min-width: 3.5rem;
+  margin-right: var(--space-2);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.webinar-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.webinar-transcript summary {
+  cursor: pointer;
+  color: var(--text-primary);
+  font-weight: var(--weight-medium);
+}
+
+.webinar-transcript p {
+  margin-top: var(--space-4);
+}
+
+.webinar-transcript strong {
+  margin-right: var(--space-2);
+  color: var(--text-primary);
+}
