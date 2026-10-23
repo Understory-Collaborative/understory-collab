@@ -14,7 +14,7 @@ export const SITE_DESCRIPTION =
 // homepage's opening line, which never says what Understory does. No city: the team works
 // from across the US.
 const ORG_DESCRIPTION =
-  'Understory Collaborative is a software delivery consultancy that gets stalled teams moving again, with deep roots in edtech.'
+  'Understory Collaborative is a software delivery consultancy that gets stalled teams moving again.'
 const CONTACT_EMAIL = 'contact@understorycollab.com'
 // The company's profiles elsewhere, so search engines treat them and the site as one company.
 const ORG_SAME_AS = ['https://www.linkedin.com/company/understory-collaborative/']

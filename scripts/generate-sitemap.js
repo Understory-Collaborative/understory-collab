@@ -129,7 +129,7 @@ Sitemap: ${ORIGIN}/sitemap.xml
 // matches friday's entity sheet; offers and TPM types come from the same data as their pages.
 const llms = `# Understory Collaborative
 
-> Understory Collaborative is a software delivery consultancy that gets stalled teams moving again, with deep roots in edtech. We work with non-technical founders and business leaders who are building software with their own team or an agency, and with engineering leaders whose delivery has stalled. The team works from across the US.
+> Understory Collaborative is a software delivery consultancy that gets stalled teams moving again. We work with non-technical founders and business leaders who are building software with their own team or an agency, and with engineering leaders whose delivery has stalled. The team works from across the US.
 
 webs (Stephanie Weber) is a learning scientist and developer in Las Vegas. She runs studio w labs, co-founded Understory Collaborative, and co-founded The Intelligent Hoodlums with Mike Lang.
 

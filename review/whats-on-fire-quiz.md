@@ -6,7 +6,7 @@ A 6-question multiple choice quiz that helps engineering and technology leaders 
 
 **Voice:** Peer-to-peer. Like a seasoned CTO friend asking you honest questions over coffee. Not a vendor checklist.
 
-**Target audience:** CTOs, VPs of Engineering, technical founders, heads of platform. Maps primarily to our "Technical Tom" persona.
+**Target audience:** CTOs, VPs of Engineering, technical founders, heads of platform. This predates the 2026-10-08 buyer decision (non-technical founders and leaders first, engineering leaders second), and the personas are being rebuilt.
 
 ---
 

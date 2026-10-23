@@ -11,8 +11,8 @@
 // T-shaped; Amabile (1988) componential creativity; Stevens & Campion (1994) teamwork KSAs;
 // Schraw & Dennison (1994) metacognition.
 //
-// All item wording, archetype copy, and growth guidance below is a DRAFT for webs to own,
-// not final copy.
+// The archetype names and roles are final as published (webs, 2026-10-23). Item wording and
+// growth guidance can still be tuned.
 
 export const SCALE = [
   { value: 1, label: 'Strongly disagree' },
