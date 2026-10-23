@@ -6,8 +6,8 @@ and so we remember why we chose what we chose. Newest first.
 Business decisions live in the Decisions doc in the shared Understory Drive folder,
 under Business:
 https://docs.google.com/document/d/1WB7g8fUZUk5Gz6WBP0nL6rA9EuLYFmR2YvKBlCUtYgs/edit
-The full messaging system design and its phased build plan are in the Messaging and
-audience system plan doc, under Business / Marketing. Start there to resume this work.
+How the site routes messages and signups today is in the "Where messages and signups
+go" doc, under Business / Marketing. The older messaging system plan is archived.
 
 ---
 

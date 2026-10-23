@@ -14,11 +14,11 @@ This document defines the three review groups, their responsibilities, the revie
 Evaluate the website through the lens of Understory's brand identity and the four target personas. Ensure every page communicates the right message to the right audience and drives toward meaningful engagement.
 
 **Responsibilities:**
-- Audit all page copy against the personas (see `personas.md`)
+- Audit all page copy against the personas (see the Marketing personas doc in Drive: Business / Marketing, being rebuilt around the non-technical buyer)
 - Evaluate whether CTAs are compelling and appropriately placed for each persona
 - Assess brand consistency: voice, tone, visual identity, and the Root-Rise-Flourish narrative
 - Identify gaps in content (missing proof points, unclear differentiators, weak value propositions)
-- Review case studies (using `case-study-template.md`) for persuasiveness and persona alignment
+- Review case studies (using the Case study template doc in Drive: Business / Marketing) for persuasiveness and persona alignment
 - Recommend new content: blog topics, case study subjects, landing page concepts
 
 **Deliverable:** Marketing Review Report — a page-by-page assessment with specific recommendations, each tagged to the persona(s) it serves.
@@ -50,7 +50,7 @@ Evaluate the website's structure, flow, and usability to ensure it guides each p
 **Focus:** Experiencing the website as a prospective client
 
 **Charter:**
-Each member adopts one of the four personas from `personas.md` and walks through the website as that person. Document the experience honestly — what builds confidence, what raises doubts, and what's missing.
+Each member adopts one of the four personas from the Marketing personas doc in Drive and walks through the website as that person. Document the experience honestly — what builds confidence, what raises doubts, and what's missing.
 
 **Responsibilities:**
 - Each reviewer adopts a specific persona (ensure all four are covered)
