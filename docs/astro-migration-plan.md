@@ -24,7 +24,7 @@ the live site over only when the parity checklist at the end passes.
 - **The design system:** `design-system/tokens/`, `src/index.css`, and each page's CSS file carry over as they are.
 - **The Drive sync, mostly:** the Docs menu and relay don't change. Posts move to Astro's default folder, so the sync's output path changes (see phase 3).
 - **Forms and data:** the `api/` functions (contact, subscribe, field guide, questions) keep their endpoints. Needs confirming in phase 0; see Risks.
-- **Static extras:** `public/` (field guides, blog assets, `bedford/`, team photos) is copied as is.
+- **Static extras:** `public/` (field guides, blog assets, team photos) is copied as is.
 - **Data files:** `src/data/*.js` (quiz, TPM self-check, offers, authors) are plain JavaScript and import unchanged.
 
 ---
