@@ -2,7 +2,6 @@
 // One page per Between the Seams episode: the audio, the video, chapters, the episode's next
 // step, and the full transcript. Built from src/data/podcastData.js, the same list as the feed.
 // Chapter and transcript times are in the audio, and clicking one plays the episode from there.
-// Noindexed until the team launches the podcast section.
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { show, episodes, audioUrl } from '../../data/podcastData.js'
 import ListenBadges from '../../components/ListenBadges.astro'
@@ -22,7 +21,7 @@ const day = new Date(episode.date).toLocaleDateString('en-US', { month: 'long', 
 // The end card's question is the heading; its button names the step.
 const ctaQuestion = episode.cta[0].slice(0, episode.cta[0].indexOf('?') + 1)
 ---
-<BaseLayout title={episode.title} description={episode.description} image={episode.image} noindex>
+<BaseLayout title={episode.title} description={episode.description} image={episode.image}>
   <div class="podcast">
     <section class="page-hero" aria-labelledby="episode-heading">
       <div class="page-hero-content">
