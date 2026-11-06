@@ -2,11 +2,11 @@
 // feed at /podcast/feed.xml, which Apple Podcasts, Spotify, and other apps read.
 //
 // The audio lives in the site's Vercel Blob store, not in this repo: each episode is about
-// 35 MB, and the Hobby plan caps a deployment's uploaded files at 100 MB. Upload each MP3 to
-// the store under between-the-seams/, then put the store's public base URL in AUDIO_BASE.
+// 35 MB, and every one would add to each deployment's upload. Upload each new MP3 to the
+// store's top level as episode-N.mp3, and set its file name below.
 // An episode's guid never changes once it's published, or apps list it twice.
 
-export const AUDIO_BASE = 'https://REPLACE-WITH-BLOB-STORE.public.blob.vercel-storage.com/between-the-seams'
+export const AUDIO_BASE = 'https://ixsgbg8or7dc2kec.public.blob.vercel-storage.com'
 
 export const show = {
   title: 'Between the Seams',
