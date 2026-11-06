@@ -76,3 +76,110 @@
 .podcast-office-hours {
   margin-top: var(--space-8);
 }
+
+/* Episode pages */
+
+.podcast-eyebrow {
+  margin-bottom: var(--space-3);
+  color: var(--accent-warm-text);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.02em;
+}
+
+.podcast-section {
+  padding-block: clamp(var(--space-6), 4vw, var(--space-12));
+}
+
+.podcast-section h2 {
+  margin-bottom: var(--space-4);
+}
+
+.podcast-section p {
+  max-width: 62ch;
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+}
+
+.podcast-section audio {
+  width: 100%;
+  max-width: 40rem;
+}
+
+.podcast-video {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: 960px;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--surface-card);
+}
+
+.podcast-video iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.podcast-chapter-list {
+  padding-left: 0;
+  list-style: none;
+  max-width: 40rem;
+}
+
+.podcast-chapter-list li {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.podcast-seek {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: var(--space-2) 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.podcast-seek:hover {
+  text-decoration: underline;
+}
+
+.podcast-seek:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.podcast-time {
+  display: inline-block;
+  min-width: 3.5rem;
+  margin-right: var(--space-2);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.podcast-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.podcast-transcript summary {
+  cursor: pointer;
+  color: var(--text-primary);
+  font-weight: var(--weight-medium);
+}
+
+.podcast-transcript p {
+  margin-top: var(--space-4);
+}
+
+.podcast-transcript strong {
+  margin-right: var(--space-2);
+  color: var(--text-primary);
+}
+
+.podcast-transcript .podcast-seek {
+  padding: 0;
+}

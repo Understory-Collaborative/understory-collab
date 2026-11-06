@@ -2,7 +2,7 @@
 // Between the Seams: every episode with a player, its notes, and its chapters. The same
 // data builds the RSS feed at /podcast/feed.xml. Noindexed until the team launches it.
 import BaseLayout from '../../layouts/BaseLayout.astro'
-import { show, episodes, audioUrl } from '../../data/podcastData.js'
+import { show, episodes, audioUrl, episodePath } from '../../data/podcastData.js'
 import '../../views/Podcast.css'
 
 const day = (iso) =>
@@ -34,7 +34,7 @@ const minutes = (seconds) => `${Math.round(seconds / 60)} minutes`
         {episodes.map((episode) => (
           <article class="podcast-episode" id={`episode-${episode.number}`} aria-labelledby={`episode-${episode.number}-title`}>
             <p class="podcast-meta">{`Episode ${episode.number} · ${day(episode.date)} · ${minutes(episode.seconds)}`}</p>
-            <h2 id={`episode-${episode.number}-title`}>{episode.title}</h2>
+            <h2 id={`episode-${episode.number}-title`}><a href={episodePath(episode)}>{episode.title}</a></h2>
             <audio controls preload="none" src={audioUrl(episode)}>
               <a href={audioUrl(episode)}>Download the episode</a>
             </audio>
@@ -42,7 +42,7 @@ const minutes = (seconds) => `${Math.round(seconds / 60)} minutes`
             <p>
               {episode.cta[0]} <a href={episode.cta[1]}>{episode.cta[1].replace('https://', '')}</a>
             </p>
-            {episode.youtube && <p><a href={episode.youtube}>Watch the video on YouTube</a></p>}
+            <p><a href={episodePath(episode)}>Watch, read the transcript, and jump to a chapter</a></p>
             <details>
               <summary>Chapters</summary>
               <ol class="podcast-chapters">

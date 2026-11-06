@@ -1,0 +1,121 @@
+---
+// One page per Between the Seams episode: the audio, the video, chapters, the episode's next
+// step, and the full transcript. Built from src/data/podcastData.js, the same list as the feed.
+// Chapter and transcript times are in the audio, and clicking one plays the episode from there.
+// Noindexed until the team launches the podcast section.
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { show, episodes, audioUrl } from '../../data/podcastData.js'
+import '../../views/Podcast.css'
+
+export function getStaticPaths() {
+  return episodes.map((episode) => ({ params: { slug: episode.slug }, props: { episode } }))
+}
+
+const { episode } = Astro.props
+const transcripts = import.meta.glob('../../data/podcast/*-transcript.json', { eager: true, import: 'default' })
+const transcript = transcripts[`../../data/podcast/episode-${episode.number}-transcript.json`] as { speaker: string; at: number; text: string }[]
+
+const seconds = (stamp: string) => stamp.split(':').reduce((total, part) => total * 60 + Number(part), 0)
+const clock = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
+const day = new Date(episode.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'America/Los_Angeles' })
+// The end card's question is the heading; its button names the step.
+const ctaQuestion = episode.cta[0].slice(0, episode.cta[0].indexOf('?') + 1)
+---
+<BaseLayout title={episode.title} description={episode.description} image={episode.image} noindex>
+  <div class="podcast">
+    <section class="page-hero" aria-labelledby="episode-heading">
+      <div class="page-hero-content">
+        <p class="podcast-eyebrow"><a href="/podcast">{show.title}</a>, episode {episode.number}</p>
+        <h1 id="episode-heading">{episode.title}</h1>
+        <p class="page-hero-support">{episode.description}</p>
+        <p class="podcast-meta">{`Recorded ${day} · ${Math.round(episode.seconds / 60)} minutes`}</p>
+      </div>
+    </section>
+
+    <section class="podcast-section" aria-labelledby="listen-heading">
+      <div class="section-container">
+        <h2 id="listen-heading">Listen</h2>
+        <audio id="episode-audio" controls preload="none" src={audioUrl(episode)}>
+          <a href={audioUrl(episode)}>Download the episode</a>
+        </audio>
+        <p class="podcast-feed">
+          To listen in a podcast app, add the feed: <a href="/podcast/feed.xml">understorycollab.com/podcast/feed.xml</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="podcast-section" aria-labelledby="watch-heading">
+      <div class="section-container">
+        <h2 id="watch-heading">Watch</h2>
+        {episode.videoId ? (
+          <div class="podcast-video">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${episode.videoId}`}
+              title={`${episode.title} (video)`}
+              loading="lazy"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        ) : (
+          <p>The video is coming to YouTube.</p>
+        )}
+      </div>
+    </section>
+
+    <section class="podcast-section" aria-labelledby="chapters-heading">
+      <div class="section-container">
+        <h2 id="chapters-heading">Chapters</h2>
+        <ol class="podcast-chapter-list">
+          {episode.chapters.map(([at, name]) => (
+            <li>
+              <button type="button" class="podcast-seek" data-seek={seconds(at)}>
+                <span class="podcast-time">{at}</span> {name}
+              </button>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="podcast-section" aria-labelledby="next-heading">
+      <div class="section-container">
+        <h2 id="next-heading">{ctaQuestion}</h2>
+        <p class="podcast-cta">
+          <a class="btn btn-primary" href={episode.cta[1].replace('https://understorycollab.com', '')}>{episode.ctaLabel}</a>
+          <a class="btn btn-secondary" href="/office-hours">Book free office hours</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="podcast-section" aria-labelledby="transcript-heading">
+      <div class="section-container">
+        <h2 id="transcript-heading">Transcript</h2>
+        <details class="podcast-transcript">
+          <summary>Read the full transcript</summary>
+          {transcript.map((turn) => (
+            <p>
+              <strong>{turn.speaker}</strong>
+              <button type="button" class="podcast-seek podcast-time" data-seek={turn.at} aria-label={`Play from ${clock(turn.at)}`}>{clock(turn.at)}</button>
+              {turn.text}
+            </p>
+          ))}
+        </details>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  // A chapter or transcript time plays the episode from that point.
+  const audio = document.getElementById('episode-audio') as HTMLAudioElement | null
+  document.querySelectorAll<HTMLButtonElement>('[data-seek]').forEach((button) => {
+    button.addEventListener('click', () => {
+      if (!audio) return
+      audio.currentTime = Number(button.dataset.seek)
+      audio.play()
+      audio.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    })
+  })
+</script>

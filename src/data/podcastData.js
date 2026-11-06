@@ -29,13 +29,17 @@ export const show = {
 export const episodes = [
   {
     number: 2,
+    slug: 'where-projects-break-down',
+    // The YouTube video's ID, the part after "v=" in its link. null shows a placeholder.
+    videoId: null,
+    image: '/podcast/episode-2.png',
+    ctaLabel: 'Take the quiz',
     guid: 'understorycollab.com/podcast/between-the-seams/2',
     title: 'Where Do Projects Actually Break Down: Inside Teams or Between Them?',
     date: '2026-11-05T20:17:00Z',
     file: 'episode-2.mp3',
     bytes: 36528521,
     seconds: 2283,
-    youtube: null,
     description:
       'This is Understory Collaborative\'s second webinar, and episode 2 of Between the Seams. Danielle Christophe hosts Jess Kern and webs for a conversation about where projects get stuck: inside one team, or in the handoffs between teams. Jess\'s quick test is to ask who owns the problem. "If you get a name, it\'s inside a team. If you get a meeting, it\'s a seam." From there, the panel covers why "who owns this?" so often goes unanswered, whether ai is helping or hurting handoffs, and one habit that keeps them from breaking.',
     cta: ["Want to know the state of your engineering team? Take the What's On Fire? quiz.", 'https://understorycollab.com/assessment'],
@@ -54,13 +58,16 @@ export const episodes = [
   },
   {
     number: 1,
+    slug: 'what-is-a-tpm',
+    videoId: null,
+    image: '/podcast/episode-1.png',
+    ctaLabel: 'Take the self-check',
     guid: 'understorycollab.com/podcast/between-the-seams/1',
     title: 'What Is a TPM, and Why Does the Job Feel Harder Than Ever?',
     date: '2026-10-22T23:13:00Z',
     file: 'episode-1.mp3',
     bytes: 35378441,
     seconds: 2211,
-    youtube: 'https://www.youtube.com/watch?v=EUg-o2iFFi0',
     description:
       'This is Understory Collaborative\'s first webinar, and episode 1 of Between the Seams. Danielle Christophe hosts Al, Jess Kern, and webs for a conversation about what a technical product manager does, how the job differs from a PM\'s, and why it feels harder right now. For leaders deciding whether to hire one, Al\'s advice is that they "need to have the humility to hire someone that has the ability to tell them no." The panel also covers whether ai makes TPMs more productive, and the one thing never to hand off to it.',
     cta: ['Which kind of TPM are you? Take the TPM self-check.', 'https://understorycollab.com/tpm-self-check'],
@@ -75,6 +82,8 @@ export const episodes = [
     ],
   },
 ]
+
+export const episodePath = (episode) => `/podcast/${episode.slug}`
 
 export const audioUrl = (episode) => `${AUDIO_BASE}/${episode.file}`
 

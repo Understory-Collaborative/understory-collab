@@ -1,0 +1,222 @@
+[
+ {
+  "speaker": "Danielle",
+  "at": 0,
+  "text": "Welcome, and thank you for being here. This is the second in a series from Understory Collaborative, where we focus on technical product management and how the role is evolving. Today, we are asking where projects actually break down, inside teams or between them? Especially since TPMs often live right in those gaps. But, before we get started, let's review what we talked… what we mean when we are talking about technical product management. I am going to pass it to the newly doctored dr. webs."
+ },
+ {
+  "speaker": "webs",
+  "at": 37,
+  "text": "Thanks, Danielle. I am now dr. webs. Little bit of background about me. I started in the classroom, and then taught myself to code. I worked as a developer at ThoughtWorks. across the full stack, I did security infrastructure before moving into technical product management, and I just defended my dissertation yesterday, and, and officially have the title of dr. webs, so, Thank you for getting us started. Yeah, what is a TPM? I think, in a sentence, A TPM pays attention to the handoffs. between teams and vendors, between departments, because that's where most projects are most fragile. So, a handoff can be anywhere that, that work passes from one person to another, one team to another, or even one system to another."
+ },
+ {
+  "speaker": "Danielle",
+  "at": 89,
+  "text": "And I think that is a really great overarching way of looking at it. Jess, anything to add?"
+ },
+ {
+  "speaker": "Jess",
+  "at": 97,
+  "text": "No, I think that, that pretty well sums it up. Hi, I'm, I'm Jess, and if you remember me from last time, basically every job I've ever had comes down to that one question we kind of always deal with as TPMs. Can you trust where this data is going? I started out leading an audit team handling HIPAA-protected records for law firms, and then spent 13 years in EdTech owning integrations, so single sign-on, rostering, and LMS connections. And, the way I define the role, very much like webs, right? TPMs own the seams between the systems, teams, and data. That's where the risk lives, and that's what today is all about."
+ },
+ {
+  "speaker": "Danielle",
+  "at": 135,
+  "text": "Wonderful. And, since I did not introduce myself as the host, who knew? I'm Danielle. I am a product experience designer, and, as… as we speak about, TPMs, I will be trying to, contribute A little bit around how experience design and service design and systems thinking are crucial to that role and don't necessarily, get integrated into the conversation. So… When we're talking about seams… how… how are we… how are we looking at that? How can you tell whether the problem… a problem, a particular, organization is having is… happening… if the problem is happening inside the team or between the team? How… how are we assessing that? Jess."
+ },
+ {
+  "speaker": "Jess",
+  "at": 196,
+  "text": "We all have those, dreaded status meetings, right? Where you're doing the green, yellow, red, orange, magenta, like any chartreuse. I've heard that one thrown out before, too. But, yep. If every team's status is green, and the customer is still broken. your problem is usually in that seam, right? The classic example, in integrations work, the product team says they're part works, so they've done the requirement gathering, they've passed that off, the partner says that their part works, the district has it configured correctly, and everyone, is telling the truth, but, you still have kiddos that can't log in, right? No one has done that full end-to-end piece, because if it, If one piece breaks, and we haven't checked between the seams, we don't have someone actually owning that, that's usually where you can tell that's why it's happening. I usually use 3 quick tests, asking who owns it. If you get a name, it's inside a team. If you get a meeting, it's a seam. If you ask, where the time went, it's in the work, it's inside the team. If it's in the waiting, right, or if it's in handoffs, we're talking about a team again, you need someone managing that. Ask who found it, right? So if, QA testing catches it. inside the team. If the customer is the one who's catching it, and you're seeing that pattern happen over and over again. nobody's testing that connection end-to-end, and that's usually where, where I see it. Show up the most, the most often. webs, what, what has your experience been like?"
+ },
+ {
+  "speaker": "webs",
+  "at": 300,
+  "text": "I've definitely been in a meeting where… the color is chartreuse, and everyone wants to get out of there. Although there are those, also those meetings where it's, like, the third or fourth one in a row where you hear it's 90% done. And I think in that case, a tool that I like to use is a confidence score. So, if you're digging more into trying to figure out if it's Inside the team, or between teams, or some other in-between? asking a team for a confidence score. So, with a confidence score, the way I use that tool is, you start at 100%, and you ask the team, you know, deduct points for each of these categories. I'll usually cover scope clarity, technical complexity and unknowns. requirements, stability, dependencies, and then capacity and priority. So, if it ends up being dependencies, then it's probably a between situation. If you're getting things like, Capacity, technical complexity, and unknowns, those are usually within the team, so it's something difficult they're working through. scope clarity, requirement stability, then that might be between the product side of the house and the technical side of the house, the development team. So that's more of a between-teams indicator as well. And then I think it gets to a lot of the things you were talking about too, Jess, where you're, you're finding out if… It is… you're waiting on things, or is it that you're grappling with something that's particularly difficult? I think another place to look at the within teams, is actually something that my dissertation looked at. So, my dissertation was about collaboration and communication and cross-functional. software development teams, and, one of the things I was observing was the way that teams talk with one another. So, really looking at how teams are talking with each other, are they… Are they just… agreeing and building on, where there's no pushback to different ideas? Are they only pushing back and not actually building on one another's ideas or explaining thinking? Or ideally, when you are listening to them have conversations. Are they giving pushback, but also offering alternatives, and building on one another's ideas so that they can get to that… that shared solution that resolves the problem? That's another place to look is at how teams talk if you're thinking that the problem might be within a team. But if a team's… Talking well and getting to solutions, then likely the problem isn't within the team."
+ },
+ {
+  "speaker": "Danielle",
+  "at": 453,
+  "text": "I think both of you are really bringing up really good, methodologies for assessing where the breaks are happening, where the problems and the frictions are occurring. Something that I like to do in my work as well. Depending upon, the client, especially if the client is looking to. create some kind of change management within their organization is mapping the systems. Like, who does what, when, where, and how? And then, like, I know… Our team has an aversion to RACIs, but, like, they can be useful."
+ },
+ {
+  "speaker": "webs",
+  "at": 497,
+  "text": "I mean, I won't put that on everybody. I have an aversion to these. I don't want to speak for the whole team with my RACI hatred."
+ },
+ {
+  "speaker": "Jess",
+  "at": 506,
+  "text": "When it's used well, right?"
+ },
+ {
+  "speaker": "Danielle",
+  "at": 507,
+  "text": "It's like."
+ },
+ {
+  "speaker": "Jess",
+  "at": 508,
+  "text": "Like, when it's used well, there's a place for it."
+ },
+ {
+  "speaker": "Danielle",
+  "at": 510,
+  "text": "There's a place for it, right?"
+ },
+ {
+  "speaker": "Jess",
+  "at": 512,
+  "text": "300 lines long."
+ },
+ {
+  "speaker": "Danielle",
+  "at": 514,
+  "text": "That's a problem. It should be a very, very simple document, and, you know, it's an addendum to a well-thought-out and well-mapped system. So, using all three of the tools that we've talked about really kind of helps If you find yourself within an organization where things are not quite working. Oftentimes, when we're looking at organizations, we say, oh, this particular, team is at fault, or another team is at fault. And so, I'm wondering, where do seams fail most? Is it between engineering teams, between systems and vendors, or between business and the builder?"
+ },
+ {
+  "speaker": "Jess",
+  "at": 562,
+  "text": "I'm gonna kick it to, like, dr. webs. Do you want to start first, or am I going first here on this?"
+ },
+ {
+  "speaker": "webs",
+  "at": 566,
+  "text": "I mean, I… I can start first. And unfortunately, it's… the answer's gonna be, it depends. I've seen it, not to be consultancy with my language, but I've seen it happen in all of those places, and I think your point, Danielle, brings up something interesting. The idea that sometimes the… Place where it can fail is… within the systems of the organization building the product, right? So, we do see it where, product management maybe doesn't have clear expectations for what they're asking to be built, or they… there is a miscommunication in, vocabulary sometimes, where Two… two people are using the same words, but they're… they have different internal definitions for those words. That's why I think it's so important to have, like, one centralized place where you're communicating those things and writing them out, maybe not quite as heavy as, like, a PRD, a product requirements document. Which is not to say I'm not anti-PRD. I think PRDs are good for larger organizations. But if you're talking about a smaller or medium-sized organization, PRDs are often a bit heavy-handed. So I think that there's that within the organization breakdown that can happen, and then, as Jess's examples kind of pointed out, there can also be that between the company and the customer, there's a bit of a breakdown in what the customer actually needs to solve their problem versus what the company thinks the customer's problem is. And then in a third arena, there's communication between the company building the thing and maybe a third-party vendor that they're working with in order to build the thing, because then you can have these very long feedback cycles a lot of the time. I know one situation that I had been in very early in a project, I had asked for access to the third-party vendor's system, because I knew that it was going to be a challenge to, get across the line what we were trying to build, and we needed to have access so we could have those really fast feedback loops. And they pushed back and said, no, you don't need that. We'll be available whenever you need us in order to test something. And then, like clockwork, as predicted, when it came time to actually test something, they weren't available. And even when they were available, there was a lot of stumbling over how to test the thing, how to set it up, how to give us feedback, and so it made those feedback cycles really long. And so, yeah, those kind of three places, any of those could be a source of the problem, and you just have to kind of know how to methodically and systematically go investigating to ask these questions to figure out and pinpoint where that problem is."
+ },
+ {
+  "speaker": "Danielle",
+  "at": 734,
+  "text": "Yeah, I think you bring up a really good point around assessment, and that… an assessment being… a really crucial and important skill for a TPM to have. Being able… being curious, And tenacious. And, Like, adept at looking at… and looking at and pinpointing points of friction and maybe even cultural differences between teams, because, you know, what is priority for business may not necessarily be priority for developers. Jess, did you want to add anything?"
+ },
+ {
+  "speaker": "Jess",
+  "at": 780,
+  "text": "I agree with webs, right? So the, sorry, like, you, you covered most of them. The, seems to show up in systems and vendors, but the very first place that they usually start is between the business and the builders, right? So that translation piece between potential vision, product management, here's what's going to land in the market, we think it's going to solve this problem. And now, translated over to builders, you can have incredibly smart people on both sides of that equation who just miss each other. They are in the room, you've got the entire, maybe you call it a swarm, right? That entire team is gathered, right? And… they are missing each other. You… you are missing that translator, micro, person who can go from, here's the vision, and here's how we're actually going to break that down, potentially do a spike, scope it, and here's how… what we can deliver, and on what time. Is that still going to meet the business need, right? And then. you start. Hitting all of those pieces, where if there's an additional vendor there, or is there, You know, when an integration breaks, it often looks technical. from the outside, or from someone who's not used to taking a look at it. When you tend to trace it back, though, you usually find it's a business decision that never became a technical requirement or a technical constraint that the business never heard of. And so these two teams needed that extra layer that was making sure communication was happening back and forth."
+ },
+ {
+  "speaker": "Danielle",
+  "at": 875,
+  "text": "I think that's a… that's a really good way of, describing it, and looking at it, and what I find really interesting is that, we can look at the seams. And we've talked about the seams, and where those, those failures can happen. But also, we haven't necessarily talked about, what happens within a team when a problem happens. You know, if you're in a room full of smart people, why is it that When the question of, who owns this? Comes up, it often goes unanswered. Jess."
+ },
+ {
+  "speaker": "Jess",
+  "at": 914,
+  "text": "Wonderful. So I think that is, kind of, if we were talking about, like, one of those habits that keeps it from breaking is making sure as you are doing that, that walkthrough and mapping the systems, and the different places in between and the handoffs, that you're putting one name on every handoff. It's not just a team, it's not a meeting. You've got one person who is taking the lead on making sure that no matter what. This handoff is happening correctly, and at the end, we are testing it end-to-end, all the way through from the customer's experience, when they very first start, all the way through to what we believe should be happening, and it should be seamless for them."
+ },
+ {
+  "speaker": "Danielle",
+  "at": 955,
+  "text": "I definitely agree with that, and I also think that there's something to be said around The fact that… Sometimes there's pushback around assigning a task to people. there is a tendency, I think, in really fast-paced organizations to be like, oh, well, you know, everybody's going to jump in, and everyone's going to, you know, be responsible for this thing, and The challenge is changing that attitude and saying, oh. you know, assigning a task to a particular person does not mean rigidity. It actually gives you a lot more flexibility to experiment and to understand where the product is going, where the service is going, where the experience is going, because you have one point of, one source of knowledge, basically. webs… dr. webs, is there anything you'd like to add?"
+ },
+ {
+  "speaker": "webs",
+  "at": 1017,
+  "text": "Yeah, one of… like, it is amazing to me how far you can go, especially if you're in a new organization, with the question… or with the statement. Question and statement. Question. Who's going to own this? Statement. If everybody owns it, nobody owns it. So, that became… One of the very, like, low-hanging fruit ways of helping to improve processes overall is asking that question, like, who's going to own this? It's great that we have these action items. If no one person is taking responsibility, and that doesn't… this is one of the, like, things that I felt like was drilled into me at ThoughtWorks, was… owning a thing doesn't mean you, first person, handle solving that problem. It means you are responsible for the outcome getting across the line. And I would often, also whenever I would say, who's going to own this. Also add, remember, owning it doesn't mean you do the work. Owning it means you own making sure the work gets done. And so I think that is a place where, or a means of being able to make sure that both someone gets assigned to it so that the thing gets done and someone's held accountable, but also letting them know that it doesn't mean you have to go tippy-type your fingies on the keys and, like, write the code, it means you just get that Across the line. That's what you're… that's the piece that you're responsible for."
+ },
+ {
+  "speaker": "Danielle",
+  "at": 1101,
+  "text": "I think Jess, looked like she might have something to say. Am I… am I mistaken?"
+ },
+ {
+  "speaker": "Jess",
+  "at": 1107,
+  "text": "No, you are… you are correct. So I've also found, you can do this not even just for, like, the large projects, right? You can take any type of workstream, or as you break that epic down into smaller features, and you just bake it in as a practice and a framework that the team gets used to. And I find… developers, like, overall, they tend to love that piece of it once they get used to it, because they're like, oh, I get to kind of lead, and I can be… potentially a little creative, or I can say. I can voice something in a way that I normally don't think I would have if I was just picking up a story and working on it, right? And it also encourages that inter-team dynamic that I love seeing, where you start to see them recognize that they can each lead in different ways, on different pieces, and it can still be a very collaborative, Results, in the end."
+ },
+ {
+  "speaker": "webs",
+  "at": 1158,
+  "text": "I hate a RACI, but I like the spirit of the RACI. Right? Because the spirit of the RACI is exactly that. There should be a system for who owns things. That's the spirit of what a RACI's trying to do, is that we don't have to reinvent and reassign new people every time, because we've already done the upfront work of knowing who's responsible for each step of the process. I think where it kind of falls apart often is the arguing over the definition of responsible and accountable, and getting stuck in the minutiae instead of thinking about the spirit of things, which is… and… It also has to do with the… health of the organization in terms of psychological safety, task cohesion, group potency, but that's a whole other talk that I could do at another time. but… the spirit of the RACI is correct. Like, if you had a system for this, we wouldn't have to ask who's responsible, who's going to own this thing. Because I think Jess is right about, like, it doesn't always have to be, like, the big project level. It can be little tasks from day to day that you're trying to get done, and just making sure that those things have owners, so they don't just… languish somewhere in some weird, limbo world, and then nobody goes back to address them, nobody checks in to make sure that they actually got done, and then they never get done, and nothing changes."
+ },
+ {
+  "speaker": "Jess",
+  "at": 1241,
+  "text": "Can I ask a question? So, kind of tied back to some of your research, and if we go, zoom in from the organization level to the team level, what's the easiest change a team could make tomorrow to talk better together?"
+ },
+ {
+  "speaker": "webs",
+  "at": 1255,
+  "text": "That's a really good question. I would say… I mean, first, it's helpful to observe and know where you start from, so just listening to your own talk can sometimes start a feedback loop of recognizing places where, are you… I would say the biggest question that's probably going to give the most Bang for your buck, so to speak, is… Are you… Are you building towards something through curiosity? Asking and answering? Or are you digging your heels in and through judgment. So, are you saying, nope, I am planting my flag, this is where I stand on this thing, I'm not budging? Or are you inviting, people to question? Are you explaining your reasoning and your rationale? Questioning and answering is what I saw with the teams that I studied, was how they communicated most often, through clarification. there are many teams, and in my own experience, I find that it tends to be the norm where developers will turn everything into a debate. And debate is, I'm planting my flag, I'm not… and I'm trying to win an argument. So reframing from winning an argument to building consensus toward an answer by interrogating the solutions that people are putting up. Because ideally, a team wants to hold their ideas very loosely. And one of the things that actually came up yesterday when I was talking to my committee was, you know, what are the practices that would enable a team to hold their ideas loosely? I don't have an answer for that. But, just awareness, I would say, is the first step, is knowing what is your team like? How do you communicate with one another? Is it more debate? That back and forth, trying to convince the other side, or are we being curious and trying to build toward a consensus for a solid solution?"
+ },
+ {
+  "speaker": "Danielle",
+  "at": 1375,
+  "text": "I think what's really interesting about this conversation is that we are talking about technical product management as a practice that is not just centered in the team. That is a project that looks at The team dynamic, as well as the inter… inter-team dynamics. And then also, we're… a technical product manager is also looking at, you know. the culture, for lack of a better word, around information sharing, around idea generation, around producing, Work, and whether or not those… the culture is actually feeding a system that allows for success. And I think that that is something that, we don't necessarily, speak about, like, it's a latent skill that is not necessarily spoken about really explicitly. And within that, because we always have to talk about ai, right? Because ai is the thing that is on the tip of everybody's tongue. When we're talking about working with inside of teams, and then, you know, talking about handoffs between teams. Where does ai fit into that? Is it speeding up the work inside of teams? Or… and is it helping or hurting? The handoffs between teams."
+ },
+ {
+  "speaker": "Jess",
+  "at": 1472,
+  "text": "I would say both, right? And that's… that's the problem. Ai makes more work arrive at that handoff or seam point faster, which just means that the seam takes more load. So if you have an individual that is potentially, trying to cover that, and maybe that isn't their, area of expertise, that can… that can create, More friction than expected. I think where it can help, right, is potentially documenting interfaces, summarizing what changed. It can pick up some of that, those paperwork pieces, right? That no one wants to be, you know, the note-taker in the meeting? Not a problem. We have ai for that now. However, we still need to verify ai captured everything correctly, right? I know I, myself, sometimes can have a little bit of a dry humor. Ai is not capturing that very well in the meeting, right? But even though it was actually a tool that the team responded really well to, and it got us through something and to a better place in the meeting. The way that came across on a note, whew, I would not want that to be the only thing that got recorded. So… where… where ai can hurt, right? It's that judgment piece. We need to always make sure that, as the human in the loop, we are retaining that as team. Ai, it can't own a decision about who's accountable when data moves between systems. When I built a rostering integration solution that connected to over 100 student information systems in a year, the speed came from clear ownership at every handoff, not from typing faster. Doesn't mean it was perfect, but it did mean that all of that got covered, and it was able to launch in the market, and it's successful, this day. dr. webs. where has ai, Help, hurt, boon, bust. Where do you fall?"
+ },
+ {
+  "speaker": "webs",
+  "at": 1590,
+  "text": "So, I think… Your first point about the, the documentation, it can help when it comes to documentation. I'd add one caveat to that, which is, There's definitely a phenomena that I've observed about people using ai to create these lengthy documents. And it's a boost to their ego to create these complex documents, and even… it can even be impressive to their leadership, these lengthy documents, but when you actually dig into said documents, they're overly wordy for no particular benefit. And can often lead to more confusion. So… Yes, ai can help with the documentation, because it can type a lot faster than a human can, it doesn't have, like, fat finger keys and spell things wrong, and that kind of a thing. And also, if we're not being intentional about the feedback loop of how we're editing and revising those documents. they can be more confusion than support. So I think that's one piece. I'm gonna go in a slightly different direction. Going back to my research study, I actually had one team that used ai and one that didn't. Something that was really fascinating about the team that did use ai was… As compared to the team that didn't, was that they had a lot more of what we call cumulative talk, where they were adding on and agreeing. So they did their initial draft with… Claude for the task that they were trying to accomplish, and then essentially went back and forth saying, yeah, that's pretty good, that's fine, kind of reviewing Claude's output. And so that's where, whereas the other team that didn't use ai had a lot more cycles between one another of ideation, where they were building, they were throwing out ideas, building on those ideas, going through clarification cycles to better understand one another's ideas. And that leads me to the point of we need to be intentional about what we might be sacrificing in order to gain that speed. Because we know that when teams do that, those collaboration cycles, you're also building that muscle within the team of working together and building what we call a shared mental model. When you build that shared mental model, that team then works faster in the future, because they've done the work of refining how they work with one another. When a team is bouncing ideas, or just, like. reviewing or verifying the output of ai, they're not working through… it's like… it's like exercise, right? If you go to the gym repeatedly, you're gonna get a stronger core, you're gonna have stronger biceps, and all this. If you're not actually doing that work, then those muscles start to atrophy, and you're not… you're not building them. It's not even just that they're atrophying, but, like, you're also not actively building those muscles, and so when you get especially more to the frontier of ideas. you haven't been exercising those muscles, so you're gonna have a hard time. You can't just jump up off the couch and bench press 315. Like, it takes work to work up to that. And it builds a stronger team when you have that… those cycles of ideation and clarification. So I think we need to be intentional about really considering what's being lost if we're always relying on ai and not And not spending that time as a team, because it's… those cycles build up the strength of that team, when… when we're… they're having those conversations. So that… that would be another place where I think we need to be thoughtful about the use of ai and still working together to build team skills and team cohesion."
+ },
+ {
+  "speaker": "Danielle",
+  "at": 1816,
+  "text": "That's… that's really… really thoughtful. webs, that's really, that's really interesting, and it leads me back to our, original… premise, and, more importantly, what this… this video series is about, like, technical product management. And, I'm gonna ask this last question of you both, What is the role of a technical product manager? When… when they see… That there's something going on between the seams, or something happening within a team."
+ },
+ {
+  "speaker": "webs",
+  "at": 1858,
+  "text": "I see the role of a technical product manager. When you see that there is, first of all. Being the expert on recognizing where things break down, and figuring out Recognizing things are breaking down, knowing where the things are breaking down, being able to quickly figure out where things are breaking down, and then knowing what to do to… fix it, basically. Or who to go to, or what message to communicate, because I think part of being a technical product manager is not just knowing the technical part of where things break down. But also understanding how to communicate that in such a way that you're not panicking stakeholders, that you're, you're not, like. making… throwing the team under the bus, that you're still supporting good culture with your messaging. I think that is… a really skilled technical product manager can do those things. You are sort of the sea captain that keeps everybody calm in the midst of a storm. So that's how I see what a TPM does when things do break down."
+ },
+ {
+  "speaker": "Jess",
+  "at": 1926,
+  "text": "Yeah, that… that very much fits, right? A TPM, they're… the steps you're going through, like, you're… you're naming it the… that potential gap, in between the seams. You're assigning an owner, you're making it visible, you translate, right? That's a big part of your role. You're escalating early when needed, right? But that means, bringing it to leadership with options, not just the problem. Right? That is what that TPM is doing for you, and then they're closing the loop. I think it's also really important to kind of call out what TPMs aren't doing. Right? They… they are… that role is not for taking over another team's work, it's not, waiting until the gap becomes someone's emergency, right? Or escalating without a recommendation. The TPM job isn't to fix every gap, it's to make sure every gap, everyone knows it's there. it's got an owner, we're calling it out. Sometimes that owner might be yourself, sometimes it might be someone else on the team, right? But either way, we all know who it is, and you're making it visible before it becomes a slip. you're closing the loop at the connection, because two teams saying done doesn't really mean the handoff works, right? We need to make sure we are testing it, end-to-end."
+ },
+ {
+  "speaker": "Danielle",
+  "at": 1998,
+  "text": "No, those are really, really great answers, and I lied. It's not the last question. This is the last question. One habit that keeps the seams from breaking."
+ },
+ {
+  "speaker": "webs",
+  "at": 2010,
+  "text": "Okay, it's not one habit, but I think… Knowing where the project stands, Agreeing on… what we're building. And then building that path together, Covers, like, 90-95% of problems?"
+ },
+ {
+  "speaker": "Jess",
+  "at": 2027,
+  "text": "you're like a broken record at this point, but I think that one habit, right, that keeps the seams from breaking, testing the connection, not just the pieces, right? And that's just a drumbeat, a mantra that you've got going with the team, so that that's playing through their mind as well, right? They're sleeping, that tiny little voice is saying that, test the connection all the way through. By the time they're getting to work that morning, they're like, I've gotten this over the line, we can go ahead and close out this feature, this epic. But, I'm gonna make sure that I've talked to my buddy over here, and we are testing it all the way through, because I know it touches something that he's been working on as well. And we know this because that gap was already named, right? And we've been exercising those muscles, so I know that guy. I know his dog, we like to sing music, right? There's some type of psychological safety, we can relate to each other, and all of a sudden, that makes us work better."
+ },
+ {
+  "speaker": "Danielle",
+  "at": 2080,
+  "text": "I think that's a great answer. I think that the conversation today has been really great because it's outlined how important it is for a TPM to be observant and vocal at the same time, and also highlights also the way that highlights the way that TPMs work at various levels, not only on the individual level, but at the team, and then at the intra-team level, and as well as the executive level. Like, a TPM has to have The skills to be able to implement the information that they are gathering, in the moments, that, matter most, and also to be able to identify when those, those opportunities present themselves webs."
+ },
+ {
+  "speaker": "webs",
+  "at": 2133,
+  "text": "I kind of want to know from you, from a service design perspective."
+ },
+ {
+  "speaker": "Danielle",
+  "at": 2137,
+  "text": "Yeah."
+ },
+ {
+  "speaker": "webs",
+  "at": 2137,
+  "text": "From a user experience perspective, what's the one habit? That you would say keeps things from breaking down at the seams?"
+ },
+ {
+  "speaker": "Danielle",
+  "at": 2144,
+  "text": "I think that being really aware of the system overall, I think that a TPM has to have, a really close understanding of handoff points of all of the teams. Not only your team, you need to understand what all… what the other teams are working with as well. That's how you know whether or not the system is healthy. If one team is struggling and your team is not struggling, but your output is dependent on the team. That is… your output is dependent on the input of the team that's struggling, then you're not going to get very far. So, as a TPM, on the service level, you want to understand what the dependencies are, and where the levers for, not necessarily manipulating, but finding flexibility within the system to, you know, mitigate problems. Might be in, how you might identify them."
+ },
+ {
+  "speaker": "webs",
+  "at": 2211,
+  "text": "That's really interesting. Thank you for sharing."
+ },
+ {
+  "speaker": "Danielle",
+  "at": 2214,
+  "text": "You're welcome. I think that brings us to the end of our conversation today. Does anyone have anything to add? If not, I'm just gonna do a little plugging. Understory Collaborative is a collaborative of intelligent human beings who, Provide services that, span not only service design. But also, all of your technical needs. We are a collection of technical product managers. You can reach us or visit us at understorycollab.com, where you can, use our variety of our assessments. And we also offer office hours, where if you have any questions about this video or our previous video, we'd be happy, happy, happy to talk to you. So please reach out, understorycollab.com, and thank you again. Thank you, dr. webs. And thank you, Jess. We'll see you again the next time."
+ }
+]
