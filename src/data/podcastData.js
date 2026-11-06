@@ -19,7 +19,7 @@ export const show = {
   categories: [['Business', 'Management'], ['Technology']],
   description: [
     "Between the Seams is a podcast from Understory Collaborative about where software projects get stuck. Each episode brings together technical product managers and delivery leaders who've worked in the gaps between teams: the handoffs, the words two teams define differently, and the work everyone thought someone else owned. They talk through what they've seen and what helps.",
-    "It's for leaders whose dates keep sliding and for TPMs who want to get better at the job. Episodes come from Understory's live webinars.",
+    "It's for leaders whose dates keep sliding and for TPMs who want to get better at the job. Episodes come from Understory's webinars.",
   ],
   officeHours: 'https://understorycollab.com/office-hours',
 }
