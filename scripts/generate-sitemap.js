@@ -14,6 +14,7 @@ import { AUTHORS } from '../src/data/authors.js'
 import { offers } from '../src/data/offersData.js'
 import { blogCategories, findCategory } from '../src/data/blogCategories.js'
 import { ARCHETYPES, RENAISSANCE } from '../src/data/tpmSelfCheckData.js'
+import { show, episodes } from '../src/data/podcastData.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const ORIGIN = (process.env.SITE_ORIGIN || 'https://understorycollab.com').replace(/\/$/, '')
@@ -31,6 +32,7 @@ const STATIC_ROUTES = [
   '/tpm-self-check',
   '/tpm-types',
   '/office-hours',
+  '/podcast',
   '/questions',
   '/contact',
   '/accessibility',
@@ -84,6 +86,8 @@ const entries = [
   // One page per offer and per TPM type, from the same data the pages are built from.
   ...offers.map((offer) => urlEntry(`/offers/${offer.slug}`)),
   ...[...ARCHETYPES, RENAISSANCE].map((type) => urlEntry(`/tpm-types/${type.id}`)),
+  // One page per podcast episode, from the same data as the feed.
+  ...episodes.map((episode) => urlEntry(`/podcast/${episode.slug}`, episode.date.slice(0, 10))),
   // Author profiles, once they're out of draft.
   ...AUTHORS.filter((author) => !author.draft).map((author) => urlEntry(`/about/${author.slug}`)),
   ...publishedPosts().map((post) => urlEntry(`/blog/${post.slug}`, post.date)),
@@ -151,6 +155,11 @@ ${offers.map((offer) => `- [${offer.name}](${ORIGIN}/offers/${offer.slug}): ${of
 - [Questions](${ORIGIN}/questions): ask a question about what you're building, answered free
 - [TPM self-check](${ORIGIN}/tpm-self-check): a self-reflection for technical product managers
 - [TPM types](${ORIGIN}/tpm-types): the technical product manager archetypes
+
+## Podcast
+
+- [${show.title}](${ORIGIN}/podcast): ${show.description[0].split('. ')[0]}. Feed: ${ORIGIN}/podcast/feed.xml
+${episodes.map((episode) => `- [Episode ${episode.number}: ${episode.title}](${ORIGIN}/podcast/${episode.slug}): the audio, video, chapters, and full transcript`).join('\n')}
 
 ## Optional
 

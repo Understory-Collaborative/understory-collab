@@ -1,6 +1,6 @@
 ---
 // Between the Seams: every episode with a player, its notes, and its chapters. The same
-// data builds the RSS feed at /podcast/feed.xml. Noindexed until the team launches it.
+// data builds the RSS feed at /podcast/feed.xml.
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { show, episodes, audioUrl, episodePath } from '../../data/podcastData.js'
 import ListenBadges from '../../components/ListenBadges.astro'
@@ -14,7 +14,6 @@ const minutes = (seconds) => `${Math.round(seconds / 60)} minutes`
   title={show.title}
   description="A podcast from Understory Collaborative about where software projects get stuck, for leaders whose dates keep sliding and for TPMs who want to get better at the job."
   image={show.image}
-  noindex
 >
   <div class="podcast">
     <section class="page-hero" aria-labelledby="podcast-heading">
