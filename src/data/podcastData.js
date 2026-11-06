@@ -31,7 +31,7 @@ export const episodes = [
     number: 2,
     slug: 'where-projects-break-down',
     // The YouTube video's ID, the part after "v=" in its link. null shows a placeholder.
-    videoId: null,
+    videoId: 'udTbjc65WxA',
     image: '/podcast/episode-2.png',
     ctaLabel: 'Take the quiz',
     guid: 'understorycollab.com/podcast/between-the-seams/2',
@@ -59,7 +59,7 @@ export const episodes = [
   {
     number: 1,
     slug: 'what-is-a-tpm',
-    videoId: null,
+    videoId: 'WE3LUFLLkzc',
     image: '/podcast/episode-1.png',
     ctaLabel: 'Take the self-check',
     guid: 'understorycollab.com/podcast/between-the-seams/1',
