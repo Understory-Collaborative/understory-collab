@@ -3,6 +3,7 @@
 // data builds the RSS feed at /podcast/feed.xml. Noindexed until the team launches it.
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { show, episodes, audioUrl, episodePath } from '../../data/podcastData.js'
+import ListenBadges from '../../components/ListenBadges.astro'
 import '../../views/Podcast.css'
 
 const day = (iso) =>
@@ -22,8 +23,9 @@ const minutes = (seconds) => `${Math.round(seconds / 60)} minutes`
         <div>
           <h1 id="podcast-heading">{show.title}</h1>
           {show.description.map((paragraph) => <p class="page-hero-support">{paragraph}</p>)}
+          <ListenBadges />
           <p class="podcast-feed">
-            To listen in a podcast app, add the feed: <a href="/podcast/feed.xml">understorycollab.com/podcast/feed.xml</a>
+            Or add the feed to any podcast app: <a href="/podcast/feed.xml">understorycollab.com/podcast/feed.xml</a>
           </p>
         </div>
       </div>

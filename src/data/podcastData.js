@@ -22,6 +22,8 @@ export const show = {
     "It's for leaders whose dates keep sliding and for TPMs who want to get better at the job. Episodes come from Understory's webinars.",
   ],
   officeHours: 'https://understorycollab.com/office-hours',
+  apple: 'https://podcasts.apple.com/us/podcast/between-the-seams/id6831758681',
+  spotify: 'https://open.spotify.com/show/35hKlJLgJtfGVxATbdHVLL',
 }
 
 // Newest first. Chapter times are in the audio, which has no title or end card, so they run

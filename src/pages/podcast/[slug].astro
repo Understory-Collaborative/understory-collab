@@ -5,6 +5,7 @@
 // Noindexed until the team launches the podcast section.
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { show, episodes, audioUrl } from '../../data/podcastData.js'
+import ListenBadges from '../../components/ListenBadges.astro'
 import '../../views/Podcast.css'
 
 export function getStaticPaths() {
@@ -38,8 +39,9 @@ const ctaQuestion = episode.cta[0].slice(0, episode.cta[0].indexOf('?') + 1)
         <audio id="episode-audio" controls preload="none" src={audioUrl(episode)}>
           <a href={audioUrl(episode)}>Download the episode</a>
         </audio>
+        <ListenBadges />
         <p class="podcast-feed">
-          To listen in a podcast app, add the feed: <a href="/podcast/feed.xml">understorycollab.com/podcast/feed.xml</a>
+          Or add the feed to any podcast app: <a href="/podcast/feed.xml">understorycollab.com/podcast/feed.xml</a>
         </p>
       </div>
     </section>

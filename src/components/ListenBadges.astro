@@ -1,0 +1,40 @@
+---
+// The official "Listen on" badges for Between the Seams, as Apple and Spotify supply them,
+// unchanged (Apple Podcasts Identity Guidelines; Spotify's badge kit). Apple's text color
+// follows the site theme; Spotify's black-and-green badge reads on both.
+import { show } from '../data/podcastData.js'
+---
+<ul class="listen-badges" aria-label="Listen in a podcast app">
+  <li>
+    <a href={show.apple}>
+      <img class="listen-badge-light" src="/podcast/badges/apple-podcasts-black.svg" alt="Listen on Apple Podcasts" width="152" height="35" />
+      <img class="listen-badge-dark" src="/podcast/badges/apple-podcasts-white.svg" alt="Listen on Apple Podcasts" width="152" height="35" />
+    </a>
+  </li>
+  <li>
+    <a href={show.spotify}>
+      <img src="/podcast/badges/spotify.svg" alt="Listen on Spotify" width="165" height="40" />
+    </a>
+  </li>
+</ul>
+
+<style>
+  .listen-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-6);
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .listen-badges a {
+    display: flex;
+    border-radius: 8px;
+  }
+  /* The theme lives on <html>, outside this component's scope. */
+  :global([data-theme='light']) .listen-badge-dark,
+  :global(:root:not([data-theme='light'])) .listen-badge-light {
+    display: none;
+  }
+</style>
