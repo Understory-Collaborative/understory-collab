@@ -52,7 +52,7 @@
 
 .nav-links {
   display: flex;
-  /* Tight gap so the five links read as one right-aligned group. */
+  /* Tight gap so the links read as one right-aligned group. */
   gap: 0.125rem;
   list-style: none;
   margin: 0;
@@ -63,6 +63,8 @@
 
 .nav-link {
   display: block;
+  /* Two-word links stay on one line; narrower screens get the menu button instead. */
+  white-space: nowrap;
   padding: 0.5rem 0.65rem;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.85);
@@ -145,7 +147,7 @@
   outline-offset: 2px;
 }
 
-/* Assessments dropdown */
+/* Dropdowns */
 .nav-dropdown {
   position: relative;
   display: flex;
@@ -179,7 +181,7 @@
   margin: 0;
   margin-top: 0.35rem;
   padding: 0.35rem;
-  min-width: 210px;
+  min-width: 300px;
   list-style: none;
   background-color: var(--nav-bg);
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -218,6 +220,22 @@
   transition: color 0.2s, background-color 0.2s;
 }
 
+/* The line under each option that says what it does, in sentence case. */
+.nav-dropdown-label,
+.nav-dropdown-note {
+  display: block;
+}
+
+.nav-dropdown-note {
+  margin-top: 0.15rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  white-space: normal;
+}
+
 .nav-dropdown-link:hover {
   color: white;
   background-color: rgba(255, 255, 255, 0.15);
@@ -233,9 +251,10 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Mobile navigation: the links collapse behind the menu button and stack full width
-   when opened, so the header no longer fills the screen. */
-@media (max-width: 768px) {
+/* Narrow screens: the links collapse behind the menu button and stack full width when
+   opened. The full menu needs about 1065px, so anything narrower than 1100px gets the
+   button, tablets included. */
+@media (max-width: 1100px) {
   .nav-container {
     flex-wrap: wrap;
     row-gap: 0.5rem;
