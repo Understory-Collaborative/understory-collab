@@ -1,23 +1,46 @@
 ---
-// Main navigation. Static markup with a small plain script for the Assessments dropdown,
-// the mobile menu, and the theme toggle, so pages with nothing else interactive load no
-// React. It ports Navigation.jsx and keeps its look and behavior: hover opens the
-// dropdown with a grace period on leave, Escape and an outside click close it, and
-// ArrowDown on the button opens it.
+// Main navigation. Static markup with a small plain script for the dropdowns, the mobile
+// menu, and the theme toggle, so pages with nothing else interactive load no React. Hover
+// opens a dropdown with a grace period on leave, Escape and an outside click close it,
+// ArrowDown on the button opens it, and opening one closes the others.
 import treeMark from '../assets/noun-tree-with-leaves-6402273.svg'
 import './Navigation.css'
 
-// The two ways in are grouped under one "Assessments" dropdown.
-const ASSESSMENT_LINKS = [
-  { to: '/assessment', label: "What's on fire" },
-  { to: '/tpm-self-check', label: 'TPM self-check' },
+// The menu is built around what a visitor came for: an answer, help with the work, or
+// something to learn from. Free answers come first, the way the ladder in HANDOFF.md runs.
+// Each option's note says what it does, so a visitor can pick the one for their question.
+const GROUPS = [
+  {
+    id: 'answers',
+    label: 'Get answers',
+    links: [
+      { to: '/assessment', label: "What's On Fire?", note: 'Six questions, a report on where you stand' },
+      { to: '/questions', label: 'Ask a question', note: 'Send one question, get a written answer, free' },
+      { to: '/office-hours', label: 'Office hours', note: 'Talk it through live, free, Tuesdays' },
+      { to: '/tpm-self-check', label: 'TPM self-check', note: 'For TPMs: map your skills' },
+    ],
+  },
+  {
+    id: 'work',
+    label: 'Work with us',
+    links: [
+      { to: '/offers/design', label: 'Design', note: 'The scope keeps shifting' },
+      { to: '/offers/build', label: 'Build', note: 'My team keeps missing' },
+      { to: '/offers/ship', label: 'Ship', note: 'Too much is still done by hand' },
+      { to: '/our-work', label: 'Our work' },
+    ],
+  },
+  {
+    id: 'learn',
+    label: 'Learn',
+    links: [
+      { to: '/podcast', label: 'Podcast', note: 'Between the Seams' },
+      { to: '/blog', label: 'Blog' },
+    ],
+  },
 ]
 
-// The remaining flat links.
 const LINKS = [
-  { to: '/office-hours', label: 'Office hours' },
-  { to: '/our-work', label: 'Our work' },
-  { to: '/blog', label: 'Blog' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ]
@@ -26,8 +49,6 @@ const LINKS = [
 // under it, so /blog/some-post marks Blog.
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/'
 const isActive = (to: string) => pathname === to || pathname.startsWith(`${to}/`)
-const dropdownActive = ASSESSMENT_LINKS.some(({ to }) => isActive(to))
-const menuId = 'nav-dropdown-assessments'
 ---
 <header class="nav-header">
   <nav class="nav-container" aria-label="Main navigation">
@@ -37,43 +58,46 @@ const menuId = 'nav-dropdown-assessments'
     </a>
 
     <ul class="nav-links" id="primary-nav" role="list">
-      <li class="nav-dropdown" data-nav-dropdown>
-        <button
-          type="button"
-          class:list={['nav-link', 'nav-dropdown-toggle', { active: dropdownActive }]}
-          aria-expanded="false"
-          aria-controls={menuId}
-        >
-          Assessments
-          <svg
-            class="nav-dropdown-caret"
-            aria-hidden="true"
-            width="12"
-            height="12"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+      {GROUPS.map((group) => (
+        <li class="nav-dropdown" data-nav-dropdown>
+          <button
+            type="button"
+            class:list={['nav-link', 'nav-dropdown-toggle', { active: group.links.some(({ to }) => isActive(to)) }]}
+            aria-expanded="false"
+            aria-controls={`nav-dropdown-${group.id}`}
           >
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </button>
-        <ul id={menuId} class="nav-dropdown-menu" role="list">
-          {ASSESSMENT_LINKS.map(({ to, label }) => (
-            <li>
-              <a
-                href={to}
-                class:list={['nav-dropdown-link', { active: isActive(to) }]}
-                aria-current={isActive(to) ? 'page' : undefined}
-              >
-                {label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </li>
+            {group.label}
+            <svg
+              class="nav-dropdown-caret"
+              aria-hidden="true"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <ul id={`nav-dropdown-${group.id}`} class="nav-dropdown-menu" role="list">
+            {group.links.map(({ to, label, note }) => (
+              <li>
+                <a
+                  href={to}
+                  class:list={['nav-dropdown-link', { active: isActive(to) }]}
+                  aria-current={isActive(to) ? 'page' : undefined}
+                >
+                  <span class="nav-dropdown-label">{label}</span>
+                  {note && <span class="nav-dropdown-note">{note}</span>}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))}
       {LINKS.map(({ to, label }) => (
         <li>
           <a
@@ -180,13 +204,15 @@ const menuId = 'nav-dropdown-assessments'
     }
   })
 
-  // Assessments dropdown. On desktop it opens as a popover on hover or click; on mobile
-  // it expands inline within the stacked menu.
-  const dropdown = document.querySelector<HTMLLIElement>('[data-nav-dropdown]')
-  const button = dropdown?.querySelector<HTMLButtonElement>('.nav-dropdown-toggle')
-  const menu = dropdown?.querySelector<HTMLUListElement>('.nav-dropdown-menu')
+  // Dropdowns. On desktop each opens as a popover on hover or click; on mobile it expands
+  // inline within the stacked menu. Opening one closes the others.
+  const closers: ((next: boolean) => void)[] = []
 
-  if (dropdown && button && menu) {
+  document.querySelectorAll<HTMLLIElement>('[data-nav-dropdown]').forEach((dropdown) => {
+    const button = dropdown.querySelector<HTMLButtonElement>('.nav-dropdown-toggle')
+    const menu = dropdown.querySelector<HTMLUListElement>('.nav-dropdown-menu')
+    if (!button || !menu) return
+
     let open = false
     // Leaving the menu closes it after a short grace period, so a pointer moving
     // diagonally from the button to a link doesn't lose the menu.
@@ -212,6 +238,7 @@ const menuId = 'nav-dropdown-assessments'
 
     function setOpen(next: boolean) {
       if (next === open) return
+      if (next) closers.forEach((close) => close !== setOpen && close(false))
       open = next
       button!.setAttribute('aria-expanded', String(open))
       menu!.toggleAttribute('data-open', open)
@@ -223,6 +250,7 @@ const menuId = 'nav-dropdown-assessments'
         document.removeEventListener('keydown', onKeyDown)
       }
     }
+    closers.push(setOpen)
 
     dropdown.addEventListener('mouseenter', () => {
       cancelClose()
@@ -255,5 +283,5 @@ const menuId = 'nav-dropdown-assessments'
         setMenuOpen(false)
       }
     })
-  }
+  })
 </script>
