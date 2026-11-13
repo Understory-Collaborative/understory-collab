@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { track } from '@vercel/analytics'
 import ShareType from '../components/ShareType'
 import {
   SCALE,
@@ -98,7 +99,15 @@ function TpmSelfCheck() {
   const progress = (answeredCount / TOTAL_ITEMS) * 100
 
   function setAnswer(itemId, value) {
-    setResponses((prev) => ({ ...prev, [itemId]: value }))
+    const next = { ...responses, [itemId]: value }
+    setResponses(next)
+    // Counts each finish in Vercel Analytics when the last answer goes in, so saved answers
+    // that reload already complete don't count again.
+    const nextCount = PRESENTATION_ORDER.filter((id) => next[id] != null).length
+    if (!complete && nextCount === TOTAL_ITEMS) {
+      const archetype = assignArchetype(scoreResponses(next).profile).primary
+      track('Quiz finished', { quiz: 'tpm-self-check', result: archetype.id })
+    }
   }
 
   function handleReset() {

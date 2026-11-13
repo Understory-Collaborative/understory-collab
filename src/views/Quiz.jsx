@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { track } from '@vercel/analytics'
 import { quizQuestions, getCrisisType } from '../data/quizData'
 import { submitErrorMessage } from '../lib/formErrors'
 import './Quiz.css'
@@ -51,6 +52,9 @@ function Quiz() {
       setCurrentQuestion(currentQuestion + 1)
     } else {
       setQuizComplete(true)
+      // Counts each finish in Vercel Analytics, with the result the visitor got.
+      const finalScore = newAnswers.reduce((sum, a) => sum + a.points, 0)
+      track('Quiz finished', { quiz: 'whats-on-fire', result: getCrisisType(finalScore).id })
     }
   }
 
