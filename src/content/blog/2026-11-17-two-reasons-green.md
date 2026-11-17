@@ -16,7 +16,7 @@ _\[Paste your cover image here, at the very top. The first image in the doc beco
 
 
 
-When a project keeps reporting green and isn't, there are really only two reasons. Either the team is missing a skill they can learn, or they're missing a safety only the leader can build. Fix the right one, and people bring problems to you first, while there's still time to solve them.
+When a project keeps reporting green and isn't, there are really only two reasons. Either the team is missing a skill they can learn, or they're missing safety that only the leader can build. Fix the right one, and people bring problems to you first, while there's still time to solve them.
 
 In [The project is 90% done for six weeks in a row](/blog/90-percent-done), I wrote about the questions a leader can ask to get a straight answer. This post picks up where that one stops, with what we do once a leader hires Understory to help. I'll walk through the signs you can spot on your own, how we tell which gap you're dealing with, and what we do about each.
 
