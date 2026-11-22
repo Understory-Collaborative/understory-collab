@@ -5,6 +5,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { show, episodes, audioUrl } from '../../data/podcastData.js'
 import ListenBadges from '../../components/ListenBadges.astro'
+import SubscribeForm from '../../components/SubscribeForm.jsx'
 import '../../views/Podcast.css'
 
 export function getStaticPaths() {
@@ -86,7 +87,20 @@ const ctaQuestion = episode.cta[0].slice(0, episode.cta[0].indexOf('?') + 1)
         <p class="podcast-cta">
           <a class="btn btn-primary" href={episode.cta[1].replace('https://understorycollab.com', '')}>{episode.ctaLabel}</a>
           <a class="btn btn-secondary" href="/office-hours">Book free office hours</a>
+          <a class="btn btn-secondary" href="/contact">Ask about working with us</a>
         </p>
+      </div>
+    </section>
+
+    <section class="podcast-section">
+      <div class="section-container">
+        <SubscribeForm
+          client:visible
+          variant="podcast"
+          heading="Get the newsletter"
+          description="Join our mailing list to get the Understory newsletter by email."
+          source="podcast-episode"
+        />
       </div>
     </section>
 

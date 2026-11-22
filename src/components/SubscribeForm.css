@@ -28,11 +28,17 @@
   justify-content: center;
 }
 
-.subscribe-form--footer {
+.subscribe-form--footer,
+.subscribe-form--podcast {
   text-align: left;
 }
 
-.subscribe-form--footer .subscribe-form__row {
+.subscribe-form--podcast {
+  max-width: 40rem;
+}
+
+.subscribe-form--footer .subscribe-form__row,
+.subscribe-form--podcast .subscribe-form__row {
   justify-content: flex-start;
 }
 

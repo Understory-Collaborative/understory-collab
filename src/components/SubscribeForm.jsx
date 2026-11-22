@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import { track } from '@vercel/analytics'
 import { subscribe } from '../lib/subscribe'
 import { submitErrorMessage } from '../lib/formErrors'
 import './SubscribeForm.css'
 
-function SubscribeForm({ variant = 'default', heading, description }) {
+// source, when given, names the page the signup came from in a Vercel event, so we can see
+// which pages bring people to the list. MailerLite still gets the newsletter group only.
+function SubscribeForm({ variant = 'default', heading, description, source }) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState('idle')
   const [already, setAlready] = useState(false)
@@ -21,6 +24,7 @@ function SubscribeForm({ variant = 'default', heading, description }) {
       setAlready(Boolean(result?.already))
       setStatus('success')
       setEmail('')
+      if (source) track('Newsletter signup', { source })
     } catch (error) {
       setStatus('error')
       setErrorMessage(submitErrorMessage(error?.status, 'add you to the list'))
