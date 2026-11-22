@@ -4,6 +4,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { show, episodes, audioUrl, episodePath } from '../../data/podcastData.js'
 import ListenBadges from '../../components/ListenBadges.astro'
+import SubscribeForm from '../../components/SubscribeForm.jsx'
 import '../../views/Podcast.css'
 
 const day = (iso) =>
@@ -26,6 +27,15 @@ const minutes = (seconds) => `${Math.round(seconds / 60)} minutes`
           <p class="podcast-feed">
             Or add the feed to any podcast app: <a href="/podcast/feed.xml">understorycollab.com/podcast/feed.xml</a>
           </p>
+          <div class="podcast-subscribe">
+            <SubscribeForm
+              client:visible
+              variant="podcast"
+              heading="Get the newsletter"
+              description="Join our mailing list to get the Understory newsletter by email."
+              source="podcast"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -53,7 +63,7 @@ const minutes = (seconds) => `${Math.round(seconds / 60)} minutes`
           </article>
         ))}
         <p class="podcast-office-hours">
-          Want to talk something through? <a href="/office-hours">Book free office hours</a>.
+          Want to talk something through? <a href="/office-hours">Book free office hours</a>, or <a href="/contact">ask about working with us</a>.
         </p>
       </div>
     </section>
