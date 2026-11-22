@@ -36,7 +36,7 @@ const minutes = (seconds) => `${Math.round(seconds / 60)} minutes`
           <article class="podcast-episode" id={`episode-${episode.number}`} aria-labelledby={`episode-${episode.number}-title`}>
             <p class="podcast-meta">{`Episode ${episode.number} · ${day(episode.date)} · ${minutes(episode.seconds)}`}</p>
             <h2 id={`episode-${episode.number}-title`}><a href={episodePath(episode)}>{episode.title}</a></h2>
-            <audio controls preload="none" src={audioUrl(episode)}>
+            <audio controls preload="none" src={audioUrl(episode)} data-episode={episode.number}>
               <a href={audioUrl(episode)}>Download the episode</a>
             </audio>
             <p>{episode.description}</p>
@@ -59,3 +59,9 @@ const minutes = (seconds) => `${Math.round(seconds / 60)} minutes`
     </section>
   </div>
 </BaseLayout>
+
+<script>
+  import { countEpisodePlays } from '../../lib/episodePlays.js'
+
+  countEpisodePlays()
+</script>
