@@ -4,17 +4,14 @@ slug: "two-reasons-green"
 date: "2026-11-17"
 author: "webs"
 excerpt: "When a project keeps reporting green and isn't, the team is missing a skill or missing safety. Here's how we tell which, and what we do."
+cover: "/blog-assets/two-reasons-green/image-1.png"
 category: "BUILD, SHIP"
 tags: "status reporting, psychological safety, project delivery, leadership"
 draft: true
 source: "drive"
 driveId: "1_EPQVO3M-d2ebRB6JEVTKpvRNenI9EFEtYgSLkcK3Yk"
-updated: "2026-11-17"
+updated: "2026-11-22"
 ---
-
-_\[Paste your cover image here, at the very top. The first image in the doc becomes the post’s cover. Skip this if you don’t want a cover.\]_
-
-
 
 When a project keeps reporting green and isn't, there are really only two reasons. Either the team is missing a skill they can learn, or they're missing safety that only the leader can build. Fix the right one, and people bring problems to you first, while there's still time to solve them.
 
