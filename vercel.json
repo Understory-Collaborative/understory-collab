@@ -52,6 +52,12 @@
       "permanent": false
     }
   ],
+  "rewrites": [
+    {
+      "source": "/podcast/audio/:file",
+      "destination": "/api/episode-audio?file=:file"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

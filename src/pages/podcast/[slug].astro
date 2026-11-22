@@ -35,7 +35,7 @@ const ctaQuestion = episode.cta[0].slice(0, episode.cta[0].indexOf('?') + 1)
     <section class="podcast-section" aria-labelledby="listen-heading">
       <div class="section-container">
         <h2 id="listen-heading">Listen</h2>
-        <audio id="episode-audio" controls preload="none" src={audioUrl(episode)}>
+        <audio id="episode-audio" controls preload="none" src={audioUrl(episode)} data-episode={episode.number}>
           <a href={audioUrl(episode)}>Download the episode</a>
         </audio>
         <ListenBadges />
@@ -109,6 +109,10 @@ const ctaQuestion = episode.cta[0].slice(0, episode.cta[0].indexOf('?') + 1)
 </BaseLayout>
 
 <script>
+  import { countEpisodePlays } from '../../lib/episodePlays.js'
+
+  countEpisodePlays()
+
   // A chapter or transcript time plays the episode from that point.
   const audio = document.getElementById('episode-audio') as HTMLAudioElement | null
   document.querySelectorAll<HTMLButtonElement>('[data-seek]').forEach((button) => {

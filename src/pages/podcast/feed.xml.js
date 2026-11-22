@@ -1,6 +1,6 @@
 // The Between the Seams RSS feed, built at deploy time from src/data/podcastData.js. Apple
 // Podcasts, Spotify, and the other apps poll this URL for new episodes.
-import { show, episodes, audioUrl, episodePath, clock } from '../../data/podcastData.js'
+import { show, episodes, feedAudioUrl, episodePath, clock } from '../../data/podcastData.js'
 
 const escape = (text) =>
   String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
@@ -29,7 +29,7 @@ export function GET({ site }) {
       <pubDate>${new Date(episode.date).toUTCString()}</pubDate>
       <link>${new URL(episodePath(episode), site).href}</link>
       <description>${escape(notes(episode))}</description>
-      <enclosure url="${escape(audioUrl(episode))}" length="${episode.bytes}" type="audio/mpeg"/>
+      <enclosure url="${escape(feedAudioUrl(episode, site))}" length="${episode.bytes}" type="audio/mpeg"/>
       <itunes:episode>${episode.number}</itunes:episode>
       <itunes:episodeType>full</itunes:episodeType>
       <itunes:duration>${clock(episode.seconds)}</itunes:duration>

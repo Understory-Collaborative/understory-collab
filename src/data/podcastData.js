@@ -89,6 +89,10 @@ export const episodePath = (episode) => `/podcast/${episode.slug}`
 
 export const audioUrl = (episode) => `${AUDIO_BASE}/${episode.file}`
 
+// The feed's link to an episode's MP3. It goes through api/episode-audio.js, which counts the
+// download in Vercel Analytics and sends the app on to the file in the Blob store.
+export const feedAudioUrl = (episode, site) => new URL(`/podcast/audio/${episode.file}`, site).href
+
 // 2211 becomes 00:36:51, the form Apple's itunes:duration reads.
 export function clock(seconds) {
   const pad = (n) => String(n).padStart(2, '0')
