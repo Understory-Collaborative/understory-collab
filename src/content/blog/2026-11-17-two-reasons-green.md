@@ -33,11 +33,11 @@ In our fire stages, we call this a [smolder](/field-guides/smolder.pdf), where t
 
 ## How we tell which gap it is
 
-We start with what the leader who hired us tells us about the situation. From the patterns we've seen before, we know which problems to look for first. Those are our first informed guesses, and then we look for evidence that supports or disproves them. This ensures we're diagnosing your problem, not just falling back to what's most common. We check the numbers, and we watch and listen to people, because the numbers alone won't tell you why.
+We start with what the leader who hired us tells us. Patterns from past work point us to the likely problems, and we treat those as guesses to prove or disprove, so we diagnose your problem instead of the most common one. We check the numbers, and we watch and listen to people, because numbers alone won't tell you why.
 
-We talk to the full team first. We tell them why we're there and how things will go. We aim to disrupt as little as possible, and we don't play the blame game. We're looking for the underlying reason the project isn't delivering on time.
+Next, we talk to the full team. We tell them why we're there and how things will go. We keep disruption low, and we don't play the blame game. We're looking for the underlying reason the project isn't delivering on time.
 
-Then we interview a few people, chosen for the problem at hand, and we keep that list short. We listen to how the team talks about the project, look at how documents are structured and who they're shared with, and notice whether people feel free to share what they're working on. We also ask for examples of how people work with one another, including how leadership works with the team.
+Then we interview a few people chosen for the problem at hand. We listen to how the team talks about the project, look at how documents are structured and who sees them, and notice whether people feel free to share their work. We also ask for examples of how people work together, including how leadership works with the team.
 
 ## If it's a skill gap
 
