@@ -1,0 +1,287 @@
+[
+ {
+  "speaker": "Verena",
+  "at": 0,
+  "text": "Greetings, everyone! My name is Verena Bryan, and thank you for joining us for Between the Seams. This show is dedicated to all things technical product management, and on this episode, we're going to be talking about the spicy topic of AI. If you joined us last time, you missed a really great conversation about where technical product managers step in and how things can break down. Today we have our dear friends, dr. webs, Al, and Jess. So I'll hand it over to you guys to do a quick introduction before we get down to the nitty-gritty. Let's start with you, webs."
+ },
+ {
+  "speaker": "webs",
+  "at": 35,
+  "text": "Okay. Hi, I'm dr. webs, officially. I started as a classroom teacher, I taught myself to code, I worked as a developer at ThoughtWorks across full-stack security and infrastructure before moving into technical products management. I just defended my PhD dissertation at UNLV on how cross-functional software teams talk and collaborate, and I will pass it to Al."
+ },
+ {
+  "speaker": "Al",
+  "at": 61,
+  "text": "Hey, my name is Al Houletton, actually did the math this time. I've been in tech for 37 years, which is humbling, but And, and working in, in… typically startups and consultancies, more recently with bigger companies, and… but working with consultants and in this kind of group, this is… this is where I live, in DevOps and management and data engineering, spent a long time in sales and marketing. And, now I'm working, with my friends here at Understory and putting all that That, diverse use of talents and experience to… to work."
+ },
+ {
+  "speaker": "Jess",
+  "at": 100,
+  "text": "Hi, I'm Jess, I've spent my career, somewhere you can't fake results. First, as part of a BPO, ITO firm that handled everything from Department of Defense to, restaurant, bump bar systems for how you get your fast food. to, later on, leading an audit team on HIPAA-protected records for law firms, and then I've spent 13 years in EdTech, around integrations, and then owning the integrations roadmap, where either the student can log in or they can't. I'm still a TPM in EdTech today, and still deep in integrations work. The views here that I share here are my own, and as our team defines it, TPM is the person between the seams, and that's exactly where AI's promises get tested."
+ },
+ {
+  "speaker": "Verena",
+  "at": 146,
+  "text": "That's a great segue, Jess, because I'm going to give everyone here our understory-agreed-upon definition of what a TPM is. So, as Jess stated, a TPM is the person between the seams. They find the gaps between the teams, systems, and the business. They make sure every gap has an owner, and translates across those gaps so the work is connected, end to end. So, there's been a lot of news in the last few days, as if there hasn't been a lot of news on just about every day regarding AI, and we saw, probably all of us, our ears turned a little red and our shoulders went up when we had the, Flight downing this last week, because we probably could perceive that there was a gap That was not addressed. Some handoff got missed. So, I want to start out our conversation today with talking about how teams and corporations adopt AI systems. So, we kind of are narrowing things down to before adoption, what decisions do teams need to make in order for them to adopt AI products and tools and use them with fidelity. Then we're gonna look at what's happening in the between time, right? As people are getting acquainted, as projects are getting built out, and then we'll look at what happens when teams have been faithfully using their tokens over time. Are they producing better products? Are their returns better? Is their yield successful? So we'll find out from this team here what that really looks like. So I'm gonna start off with you, Al, if we could. I'm gonna read a little scenario to you."
+ },
+ {
+  "speaker": "Al",
+  "at": 247,
+  "text": "Okay."
+ },
+ {
+  "speaker": "Verena",
+  "at": 248,
+  "text": "If a TPM team has just started using AI, what are some things that they should consider setting up that could be easily missed? What's the first thing you'd want to check?"
+ },
+ {
+  "speaker": "Al",
+  "at": 261,
+  "text": "That can be easily missed. They're gonna… Let me think about this. They're gonna… if they're setting up AI, I would ask, why? There should be a reason for everything we do. Not just for the sake of using it. Because that's… that's silly. You know, we've got a new keyboard, everybody must… everybody must use the keyboard, but I like my keyboard. No, you must use the keyboard. And everyone is still typing the same, just on a different keyboard. So if there's… for me, I would think… they don't have met… if they have metrics, what are their metrics now? How are they measuring success now? Because if you're not measuring success now, and I'll dare say most of the organizations I've been into. Aren't measuring it in a meaningful way. Then how are you gonna know That AI is helping. I mean… you introduced a new system, but, you know, are tickets down, or are they up? Are people happy? Are they sad? Customer, you know, if you weren't merging in before, then… There's no way to know if you have any success. You can do this without AI. You should be doing this without AI right now. But, yeah, that's the first thing that comes to mind."
+ },
+ {
+  "speaker": "Verena",
+  "at": 340,
+  "text": "So what I hear you saying is sometimes teams look at AI adoption as a solution in search of a problem."
+ },
+ {
+  "speaker": "Al",
+  "at": 346,
+  "text": "Yeah, that's a good point. They're thinking, we've got the AI now, we can just point it, just connect to the… get that cable, and click it with that cable. Oh, look at it, everything's working great. Even in the most technical teams, that's not how it works. It's a big shift, and a lot of you have heard me talk about this, in how we work. The way we work with AI, just looking at coding, engineering. is totally different from last year. It's different from spring, you know, this is recorded in the fall. We've gone from token maxing. to, having this, and I was experimenting now with token maxing, because I thought that was nonsense, but then, orchestrated agents, like, oh, wow, we're gonna have an orchestrator, we're gonna do all these agents. Now, we're moving away from that, where a lot of, like, Claude handles the orchestration for you, In some way. Which, again, is kind of the whole deal where they don't want to sell you more tokens, and so, you know, they introduce all these new technologies. My point is, we weren't even thinking about this before. And now you gotta, okay, now plug it into your GitHub, now plug it into… you know, there's a whole bunch of stuff, but yeah, get your… get your fundamentals down, get your first principles down first before you go and start playing with the fancy, expensive stuff."
+ },
+ {
+  "speaker": "Verena",
+  "at": 425,
+  "text": "I liked your point. Oh, go ahead, Jess."
+ },
+ {
+  "speaker": "Jess",
+  "at": 428,
+  "text": "I was just gonna say, I liked your point, like, you're pointing at that whole change management piece, right? Don't treat it just like another software install. You've got to tell people, like, what's changing in their day-to-day work, what isn't. what are the updates to the review and the approval steps for this? Because everyone and their brother is trying something, and, like, where are the guardrails? Do we still care about those? The answer is yes. And then how to make it safe for teams, people, individuals to say, hey, this isn't helping in this particular… the way it's trying to be implemented, or the way it's trying to be used. Otherwise, you're only ever going to hear good news until it comes for renewal time, right? And so we're missing that change management piece, where we can actually really start to see a lot of return on that kind of investment, and Yeah, so I… and I agreed with the piece that you were talking about before, where you really have to go back to some of the basics where you're defining success before you're even really looking at the license, right?"
+ },
+ {
+  "speaker": "Verena",
+  "at": 490,
+  "text": "So I 100% agree there, and what I hear you saying a bit is there are some deep conversations that need to happen first. So I'm gonna actually pitch this over to dr. webs, since conversation seems to be a bit in your wheelhouse. So what are some of your thoughts about those early questions teams should ask?"
+ },
+ {
+  "speaker": "webs",
+  "at": 506,
+  "text": "I think… One of the ways to… take what both Jess and Al said and actually enact that is… Have a perspective. So, if you go into AI implementation with this sort of scattershot approach of. Hey, everybody! We have AI now! Go ham! It's probably going to be an inefficient use of your time, and also, people are gonna spend an awful lot of time just trying to figure out what they should be doing with it. So I think, as… especially as a leader, if you want your team to adopt using AI as a tool, Have a perspective on what you think success might look like. Leave room for improvisation. But really consider and talk to people. You don't… you also don't have to… it doesn't have to be an all or nothing. You can grab a few trusted folks, maybe one from each role, one from each team, a couple from each team, and say, hey, we want to roll out this AI initiative. We think that this could potentially be of benefit. Give me your thoughts on how you see it impacting your role if we chose to go this route. I think also having a framework for experimentation In my experience, quite often. Organizations will want to do experiments, but are missing some of the key pieces of how to do an experiment with some structure. So recognizing, hey, this is why we're doing it, this is what our hypothesis is, this is how long we're going to test it, this is how often we're going to check in, and this is how we're going to measure success for this experiment. And really having that something that anyone… as a framework anyone in your organization could pick up, means that you're doing… you're able to make that progress visible, because making information visible is one of my core tenets of, any sort of system implementation. And you're able to speak the same language about what it looks like to sort of test these things out, and then you have a natural, you have a natural next step to sharing successes and failures, and making it a natural part of that whole cycle. But before you start anything, you have to have a perspective, because if all you're doing is reacting to what comes out, then… going back to Al's point, like, how do you measure success? How do you know that this worked or that it didn't? So if you're just starting out, and you haven't done anything yet, and you still have the opportunity to set those Structures up, that's what I would recommend."
+ },
+ {
+  "speaker": "Al",
+  "at": 668,
+  "text": "Can I add something real quick? Because you unlocked something, webs. By the way, measuring things is not only hard things, but soft things, and… webs, knows very well qualitative versus quantitative analysis. Don't just look at, you know, how many times you reworked something. Look at how happy customers are, how happy your team is. maybe do a sentiment analysis on something, on a team meeting. If everyone's moping. because of the AI, that might be an issue, but you unlock something. That wasn't going to talk about. In this one, healthcare gig… that I'm, over watching. They don't know exact… they're so big, they don't know exactly where the AI thing goes. But they're like, we've got licenses, because it's the Microsoft Copilot, and… Okay, we're gonna set up… I kind of like what they're doing. They're going to set up the rules, obviously, before you use it, healthcare, HIPAA, make sure you don't put in everybody's address and docs, you know, all of Delaware into Copilot, or Claude, or whatever. So, before you kind of go through the training, okay, cool, cool, that's great, that's great, I love how they did that. And then just go. If you want to group up with… because we don't know… and their position is, we don't know either. But we'll give you, you know, you… go experiment, and you know the guidelines, you know the rules, you're smart enough to figure out. I just saw, just this afternoon, they rolled out a, workflow, architect, something, something, something. Open to everybody, and if you have an idea on how to, you know, it's a… it's a structured program, and there's a capstone, and… oh, I love that! And you figure it out. So don't be prescriptive, let your folks figure stuff out. And even if you were prescriptive, I guarantee you're wrong. Because, again, 3 months ago, we weren't doing it like this. It's gonna change fast. What we're doing now is not gonna be like what we do next year."
+ },
+ {
+  "speaker": "Verena",
+  "at": 785,
+  "text": "I really like that point, especially early on when people don't really have established processes or ways to interact with these tools, offering really some free time to be creative, to be thoughtful, to kind of get messy a little bit before you actually start dealing with the hardware and software within your network. I really like that. So, now let's picture this. AI adoption has taken place. Everybody has their access. They've been tooling around, whether individually, maybe with a partner, maybe here and there within their team. They don't necessarily have a framework. they kind of are doing the best they can. Some people are standing up all sorts of tools, some people haven't touched it yet, so here we are. Leadership is asking. Where's the business growth? Where am I seeing efficiencies? So, you have all the tools, AI's in place. Every team seems faster. Lots of stuff is being put out there. But projects for our clients are still coming in late. So, Jess, I'm gonna put this on your lap. Where did all that speed go?"
+ },
+ {
+  "speaker": "Jess",
+  "at": 858,
+  "text": "Al kind of alluded to this one earlier, right? AI speeds up the typing, but not necessarily the waiting, right? Writing code was rarely ever the completely slow part. It's when you get into the review, the testing, approvals, handoffs, all of that takes more time, and AI didn't touch those, necessarily, or comprehensively, right? Even if you have an agent that is designed to go through and test user workflows, let's say something like accessibility, right? There's going to have to be a real human who's going through, at a certain point. And verifying that. Or, at the beginning, to create those user workflows, you need a human. who understands how the product's supposed to work, what is that workflow supposed to be, how is that supposed to change, and where… where can it fail, right? Not just the happy path piece. all of that takes time, and so even if you use AI to speed up the typing and the code development piece of it, you're kind of the… The sandwich itself did not change, it's just the amount of bun, grew bigger, and the meat in the middle got much thinner, right? And that's awesome, love that. As long as we're not keto, right? Like, all of that is great. But that's kind of where… you have that friction that starts to happen, and you've got code output that is speeding up, but you, all of a sudden, your bottlenecks at QA that might have been kind of manageable before aren't manageable at all now. They are drowning, and they are weeks behind. And as you are kind of bailing water out in that system, you… you have to turn to the other one, and okay, great, we've got it, we think we're good, we think we've got this down faster. the… the actual human piece, the fun part, right, of product management, technical product management, but the messy humanness of it still takes time. It's conversations with people. That piece, AI still doesn't touch, and all of those pieces are still very necessary in this process. It's kind of, writing integrations, right, was never the bottleneck, but partner reviews, district setup, end-to-end testing, waiting for that… that time that was the… the right time of year, when the person had the availability, it's not the actual technical pieces or pushing the buttons, right? It's all of everything else that goes into it. So you said my…"
+ },
+ {
+  "speaker": "Verena",
+  "at": 1009,
+  "text": "Favorite word, Jess? The bottleneck."
+ },
+ {
+  "speaker": "Jess",
+  "at": 1012,
+  "text": "Mmm. Okay."
+ },
+ {
+  "speaker": "Verena",
+  "at": 1014,
+  "text": "So, webs, you've probably experienced a bottleneck here or there. What do you think about bottlenecking when it comes to AI and everybody being able to prototype?"
+ },
+ {
+  "speaker": "webs",
+  "at": 1025,
+  "text": "Yeah, I think… looking at I'm probably gonna be a broken record on this. Looking at your full product life cycle, I think, is an important… piece of trying to figure out where your bottlenecks are. So we talk about the software development lifecycle in terms of, like, starting from the code, but really, the whole product development lifecycle, I break it down into four phases. The discovery of what your problem is, the definition of what you actually want to build to solve that problem. the development, which is where usually the software development lifecycle fits in, and then the delivery, where it actually gets to customers, and you flip feature flags, and then you start the whole process over again, right? But following it through the whole product development lifecycle to see where you're running into your bottlenecks? Like, is it at the beginning, where maybe the folks who are defining what the problem is are creating these ridiculously lengthy documents with AI that then teams are trying to review and sort through. Is this actually what you meant? Is the bottleneck happening with teams? Maybe the product owner or whoever's responsible for producing user stories and, epics and features is now suddenly using AI and creating these very lengthy, in-depth. crazy detailed, and I was… I was guilty of that in the very beginning, too. However, I always caveated it with, hey, I've added things that I think might help. If they do not help. tell me, and we will nix them. We can get rid of them. Maybe that's where things are slowing down, so that when a team is reviewing those user stories in their, refinement sessions, it's taking a lot longer for things to get into the team. Maybe it's that, you know, once developers get it, for whatever reason, they're, well, you know, as long as I'm using AI, I can fit this feature, and that feature, and this little thing, and that little thing. Maybe it requires more rework, because the AI isn't quite responding, or the developers aren't are struggling to figure out, like, how to work with it. Maybe it gets to QA, and QA isn't using AI, because nobody thought about including them in the rollout. So it gets bottlenecked there. There are so many places along the way that have the potential, when you're injecting AI, depending on where you're injecting it, and who has access, and how you've scaffolded, which goes back to my answer at the beginning, you have to know what your expectations are as far as who's using it, and how does that change their day-to-day lives, and your whole product lifecycle when you're injecting AI into it."
+ },
+ {
+  "speaker": "Jess",
+  "at": 1182,
+  "text": "verification tax, I just remembered that. That is what, I was reading something, what you were talking about, where, like, they forgot QA, and or maybe QA isn't able to keep up, right? The… we just moved the risk that we used to have earlier in the cycle downstream, and I was reading an article, and Google's, DORA team has coined it, that's the verification tax."
+ },
+ {
+  "speaker": "webs",
+  "at": 1209,
+  "text": "That, too. So, code gets out. does it require rework? Are you suddenly, going back to Al's point about fundamentals, are you finding that you… a release goes out, but something's broken, and now you have to rework it? Is it taking longer for your releases to go out when you have to fix something? I think looking at, like, those particular fundamental things. haven't changed, I would argue, and maybe this is a whole separate episode, that a lot of companies and teams don't have those metrics in place in the first place, because they can be very daunting and require a lot of infrastructure and setup. In order to get them so that they're actually in a place where you can use them. Like I said, that's a whole different story, but going back to those same fundamental, metrics is going to be a big… Part of how to catch that."
+ },
+ {
+  "speaker": "Verena",
+  "at": 1260,
+  "text": "Al, I see you nodding your head."
+ },
+ {
+  "speaker": "Al",
+  "at": 1262,
+  "text": "No, I'm just so pleased. I'm just so pleased, and I just want to cry. I'm… that's how I know I'm with my people, because… webs use the word expectation. I'll throw out there something, expectations. You have an expectation, the developer has an expectation. The executives and the CEOs and the COOs and C-suite, when they signed the check to give everybody AI, they have an expectation, because they're all reading especially the executives, they're all reading these magazines about how much… they… look at this, this company laid off 90% of their… yeah, and then you go grab the issue, like. four months later, and they've… they rehired all of them back, because it doesn't work like that. so, you know, a lot of that is educating the… educating the execs to say, okay, you know, we sped up, the AI's really, really good at speeding up code. maybe, you know, cutting up an Excel, like, today I was watching a demo, this one gal, she had a thing where you got a huge data spreadsheet, and it's got an email, and cut it up, and email all these… took people, like, a team of 3 people to 3 days to… now the AI does it in 30 minutes. Oh, that's awesome! I can measure that! I… you know, that's great. But a lot of execs think that that's… everything is going to be like that, and it's not. Because, especially with TPMs, and you got a product, you got all these little interfaces with vendors and other teams, and all that, that the AI may help speed up a little bit? But in the end, we need human judgment, because we're smarter than it. Speaking of AI, just for fun, I asked Fable to help plan me a lunch, and I said, you know, I want to eat more… was it Fable one of them? Fable Opus, doesn't matter. The point is, I want to get more protein. I said, oh, hey, you know, instead of using 3 slices of turkey pastrami. This happened just yesterday. Use 6 slices of turkey pastrami on your… on your… on your sandwich. Like, okay, yeah, that's… that's the protein, but the sodium's gonna kill me. So, and then it's like, oh, you're right, we're bringing that up. Okay, but it doesn't have the judgment… I'm not even… I'm a nutritionist, but even I know that. So, yeah, you need that… these long, slow pauses for somebody to sit and think with a human… That knows the context to slow everything down, and say, yeah, yeah, this part is faster, but… Are we really pushing, you know, the right stuff out? And that's, again, expectations on every level."
+ },
+ {
+  "speaker": "Verena",
+  "at": 1420,
+  "text": "I could not agree more. Definitely, I'm a proponent of going slow to go fast. So now here we are. Adoption has been established, we're using the tools. We… we survived the token maxing. We have been, through several iterations of models and everything in between, we are considering ourselves as an established AI team. Right, we're using these tools to do everything under the sun. So what about leadership? What now? How fast can we get? How does this affect the TPM themselves? What are they managing at this point if AI is doing everything better and faster? And I'm gonna throw this over at you, webs. There's something missing here, isn't there?"
+ },
+ {
+  "speaker": "webs",
+  "at": 1474,
+  "text": "Yes. I mean, I think… so… if we're talking about, like, what… what is success, like, what… how do we know that we… yeah, we've made it. We… this is… we should re-sign this… this contract, or whatever. I can tell you what… isn't it. so we mentioned token maxing, and for folks who may not know, it's use as many tokens as possible. We quickly realized, as an industry, that's not sustainable. I think focusing on token spend, like having a leaderboard of who spent the most tokens, or who… But this harkens back to, like, who's written the most lines of code? So, to go back to the qualitative data piece. Like, lines of code, we know, is a quantitative measure, but more lines of code does not mean better quality code. And I think the same is true in the AI era, that, like, more lines of code or more tokens used does not mean that the code being written is quality code, that is going to have fewer errors and have better error handling. So I think that's one part of it. Also, looking at… going back to those fundamental metrics, what is your lead time? How long does it take from first commit all the way to getting out into production. What is the frequency of your releases? What does it look like for your ability to recover when something… when you put out bad code? How long does it take for you to recover? How many of the… releases that go… that do go out introduce bugs of some kind, or problems that have to have a hotfix? And how many… how many instances of rework do you have? How many releases does it take to fix that thing that went out, that was broken? And those aren't exclusive metrics to AI. Those are just foundational metrics. And I would say, too, like, it doesn't… have to be perfect data, you just have to be transparent about how that data is being collected, so that you can take that into account when you're trying to figure out, like, is this actually making us faster or not? Is this actually… causing more problems or fewer problems. Obviously, it's ideal if you already have data from pre-AI era, but even over… if you're talking about, hey, we've been using this for a year. Track it for a year, and see how things change and fluctuate, and revisit that often enough. That you can kind of make a judgment on, is this worth it? And again, ideally, you set this up at the very beginning, but if not, I mean, now is the next best time."
+ },
+ {
+  "speaker": "Jess",
+  "at": 1635,
+  "text": "measure outcomes, not activity. That's kind of what I hear you saying, right? Like, even… beyond the development life cycle, right? It's the product cycle, right? Like, what was the time from idea to customer, right? Like, that is a… you can measure that, not your lines of code generated, or, you know, measure customer outcomes, not necessarily how many hours did we save, right? How many engineers can we lay off? But we're going back to Al's example. It's the… It should always be something, like, your bottom line impact is going to… be positive when it… you can name a customer outcome that changed for… for the better, for the positive, that's tied to this. Those are the things that… that moving the needle piece that we should be measuring, instead of just the easy-to-measure, quantitative things that often get caught up, and then just encouraged that, like, well, am I on the leaderboard today?"
+ },
+ {
+  "speaker": "Verena",
+  "at": 1695,
+  "text": "So, Jess, I want to stick with you for one second, and I want to offer you the other A word. So, not AI itself, but accountability. So, I know that's something you had talked about in previous episodes, is where does that lie? So you're a company that's adopted AI fully, you are doing all the things. But who's accountable? How does that work?"
+ },
+ {
+  "speaker": "Jess",
+  "at": 1719,
+  "text": "So I think some of this goes back to what we talked about in the beginning, right? Like, you're… you're… stating up front, what does success look like? What are we trying to change? What is one outcome we are trying to change? And then you need to make a person responsible for driving towards that outcome. It doesn't mean that they are doing that alone. But they are responsible for trying to make sure that there is a framework, a scaffolding set up to move everyone, or for those interested, to that outcome. And that is often where TPMs come in, right? Like, that's that between-the-seams piece, the change management piece, sometimes it's the, you know, touchy-feely part of it. In the, like, being the approachable person that someone feels comfortable coming up to and saying, hey, I… I am hearing all about this, I've been doing this for 25 years, and I'm feeling really anxious about trying it, because I'm not sure, what I might break. I don't know what the guardrails are, and I don't want to mess something up. or the, hey, I'm feeling so underwater, and I can't ever tell what's an easy entry point for me to come in, to try to start learning this. all of those things are pieces that TPMs often, help cover."
+ },
+ {
+  "speaker": "webs",
+  "at": 1797,
+  "text": "I think the interesting thing about this, too, is if you listen to all of our answers so far, very little of it has to do with the actual technology itself. I think the closest we've really gotten is talking about metrics for measuring it, but when you really examine this problem, this is a people-driven problem. It's a people-driven solution, right? It's… One of those things where, when we think about accountability, part of that is building the culture of what accountability looks like. It's saying, hey, you are still responsible for this document or this code, even if you used AI as a tool to build it. And being able, like, modeling that feedback for people, too, to say, hey, thank you for sending this document, it was great in these respects, it was not helpful in these respects, like, could you tailor this a bit more so that it's a bit more concise, or so that it doesn't have long paragraphs, or… whatever feedback you need to give to someone, that culture has to exist in order to make sure that, like, slop doesn't persist throughout your organization. And that is a people problem."
+ },
+ {
+  "speaker": "Verena",
+  "at": 1863,
+  "text": "I really like how you figure out what…"
+ },
+ {
+  "speaker": "webs",
+  "at": 1865,
+  "text": "Al has to say, though."
+ },
+ {
+  "speaker": "Al",
+  "at": 1867,
+  "text": "Oh, no, you guys, you all said it so well. And it goes back to, if you got a flawed system, plugging AI into it is just gonna break it. It's just gonna break it quicker. You're gonna expose the glass, you know? You got this… you got this great water, I'm looking out in my backyard, and let's say I got this great, I got this irrigation system, it's kind of old, it's got some… And then I'm gonna… oh, I'm gonna hook up this fire hose. Somebody told me about this great fire hose. I can water my, you know, drip. It turns it into, you know, hook it up to the… and boom, everything blows up. Why? Because you got one part. And you didn't think about all the other stuff. And when it comes to accountability, I… believe in a blameless culture, although when you see it on TV and media, they talk about how, oh yeah, an intern pushed the thing to the… pushed the code thing, and then, you know, blew up everything. Don't blame the intern! The person just started! Blame the system! Who set up… maybe the intern has a piece of code, and they pushed it, and it was just god-awful, they tried their best, God bless them, but it was the most god-awful piece of code, and it just, you know, took out everything. Why did your system let it go through? Were there no code reviews? Were there no tests? What point You know, now, if you say, oh, well, that person gets to put… again, system. Sure, it might be that poor intern. Y'all set up the system."
+ },
+ {
+  "speaker": "webs",
+  "at": 1962,
+  "text": "Letting them push directly machine to production. That's on you."
+ },
+ {
+  "speaker": "Verena",
+  "at": 1966,
+  "text": "Yeah!"
+ },
+ {
+  "speaker": "Al",
+  "at": 1967,
+  "text": "You can blame the intern, but you're wrong. It's your system. Who created it? And that's what I mean by blameless, you know, in that blameless culture. Extend it to AI. Why… and you can't go blame AI, by the way. Oh, the AI did it. Come on. You know, it's like blaming the intern. You need systems to keep all these things in check. So yeah, yeah, sorry, along… as you can see, I feel very strong about this, because we… blame a lot of things on the wrong people when a lot of times it's a function of leadership and budgets, and these are choices that are made, not to invest in resilient… Systems. And the… the people pay for it."
+ },
+ {
+  "speaker": "Verena",
+  "at": 2012,
+  "text": "So Al, I wanted to stay with you one more time. Your phone rings. And it's someone in procurement. They've got a, end of contract coming up. And they want to know from you, Al, did we renew this license with Anthropic? All things, you've had the tough conversations, you've established some benchmarks, you have some guardrails, you've got some roadmaps, lots of documents, lots of internal and external between teams talking. What's your call?"
+ },
+ {
+  "speaker": "Al",
+  "at": 2050,
+  "text": "If, procurement is calling me, obviously, then I have approved it for, you know, my team, or for a group of whoever. And before I did even that, I would have made sure that we all knew what the What we're measuring, where our metrics are. How not to abuse it, and whatnot. I would go… I sound like a broken record, but, you know, what are the… what value can I show? Before I signed that contract, what was our… what was our metrics before? And again, not just quantitative, but qualitative. What was it after? So, do we see any difference? Are we pleasing our customers, you know, our customers more? Are they happier? We win more sales? Are we working with vendors better? Is the code quality better? Number of support tickets down, rework, all the… all the boring metrics that we've been talking about for years that people nod their head and go, and then you go, oh, could you show me that? No, we don't track that here. You know, when you actually start to ask the hard questions, people think they track it, but they're really not. It's very rare, and so if you are one of those listening that do Even if tracked two things. Bless you. At least you're doing it. I'm not even exaggerating. I'm not being facetious. Most companies don't even do that. So, if you're… if I got the call. then I know, you know, that my people are experiment… if they're experimenting, still, I don't know, depends on the size. I still want them to experiment, I just don't know. I got some promising experience… experiments, but there's some I have to throw away, which is fine. That's what experiments are for. Most of them are gonna fail. I know that. That's the price of doing business. But I would like to see some progress and some… some results, and it doesn't have to mean, like, you know, oh, I… And with some agent, companies, not agencies, some, what's the word? Executives, anyway, that they say, okay, I'll sign this off for you, but you better make sure it works, this AI thing works. No one can make that… we don't know. this is new! Can you? I don't… I can't. So I said, hey, we're gonna… we're gonna… you gotta be okay with failing. And we're gonna be judicious and use our wisdom in making sure the projects that we choose are low risk and high reward, you know? And if you don't know, build the matrix, the risk-reward matrix. When you're choosing those projects, make sure you map them out. I've been to some clients, they want to do, you know, we're gonna go for this exciting, high-risk. low reward. product. I'm like, why?"
+ },
+ {
+  "speaker": "Jess",
+  "at": 2208,
+  "text": "It's more shiny. Yeah, because it's shiny. That one is easy to talk about, okay? Like…"
+ },
+ {
+  "speaker": "Al",
+  "at": 2213,
+  "text": "Yeah."
+ },
+ {
+  "speaker": "Jess",
+  "at": 2214,
+  "text": "That's the reason why I like that one."
+ },
+ {
+  "speaker": "Verena",
+  "at": 2216,
+  "text": "vendor. Amazing."
+ },
+ {
+  "speaker": "Al",
+  "at": 2218,
+  "text": "They get, like, hypnotized by, you know, what they believe the truth is when they read magazines and what their friends tell them at the golf course. the… the truth is, is a lot, is a lot more nuanced. And even if it was, really. you know, it was… everyone was having a great time and getting… your company's different. Your culture is different. You gotta make it fit. You're not like everybody else. You are kind of special, so you gotta make it fit within, you know, the constraints of what you're working around."
+ },
+ {
+  "speaker": "Jess",
+  "at": 2251,
+  "text": "Yeah. AI tools for any company, right, are an ongoing operating cost. That's why procurement is calling Al, so it means that they come straight out of EBITDA every year, which is something your CFO cares about, right? And it's going to trickle down to you, even if you're all, like, EBITDA what? The only way that cost pays for itself, though, is something that everyone should understand, is through the customer. It needs to be faster onboardings, more renewals, fewer accounts lost. If no customer outcome is moved, the EBITDA hit is all you bought with that AI project."
+ },
+ {
+  "speaker": "Verena",
+  "at": 2285,
+  "text": "I'm really liking that."
+ },
+ {
+  "speaker": "Jess",
+  "at": 2287,
+  "text": "What's one metric you'd stop reporting? Like, we talk all the time about, let's measure stuff. I'm all about it, right? But what… and, like, what are the better things to measure? What is something that you're like, please, stop that? If you could speak directly to an executive and tell them. This is the metric that you just need to stop reporting."
+ },
+ {
+  "speaker": "Al",
+  "at": 2307,
+  "text": "I got one of… how many times a day someone's using AI. That's an actual dashboard. And… you can… I mean, it doesn't even take that much thought to say, just ask it what the weather is. Bam, you're on the dashboard. what kind of useless metric is that? And then every quarter, they go, hey, AI usage is up 78%. Yeah, because you got 5,000 people asking what the weather is. Is that valuable? Hmm."
+ },
+ {
+  "speaker": "Jess",
+  "at": 2341,
+  "text": "And do we really need a productivity signal, right? So, like, they're using AI more than they actually need to, just because they feel as expected, and that if they don't, it sends the wrong signal, right? So when we measure usage, all you're really buying with that is more usage, not better outcomes for your teams, for your customers. That goes micro to macro."
+ },
+ {
+  "speaker": "webs",
+  "at": 2362,
+  "text": "But to go back to, what you were just talking about, I think knowing who has used it is useful, because then you can reach out to the people who haven't and be like, hey, how can I help you? What's stopping you? But… I agree that, like, measuring usage beyond that is not… because I could be using it for picking out my lunch, or who knows what else, and if it's just… if you're just measuring, like, how much, it's akin to lines of code, or the whole token maxing thing. Like, you cannot tell what outcomes are actually being positively impacted just because someone is using it."
+ },
+ {
+  "speaker": "Verena",
+  "at": 2400,
+  "text": "Do we think we're ready for the lightning round? So these answers that you guys have given have been… Pretty much straight to the point that… The accountability, the utilization, the success criteria, the… Output to customers really always, always, always, and almost singularly depends on the people. the conversations that people are having, the discussions that are going on, the ways in which people are sharing, how they use different tools. Maybe they've built themselves a dashboard that they're measuring something that's pretty unique, that's really relative to a unique role. But maybe that dashboard configuration might be useful to someone else. So… Lots of thoughts about where we could go wrong. Excellent ideas on how to avoid those pitfalls. So… In one sentence, If AI did not fix your delivery problem, What will? And we'll start with dr. webs."
+ },
+ {
+  "speaker": "webs",
+  "at": 2465,
+  "text": "I feel like we're all gonna say something pretty similar, but the fundamentals? Measure outcomes, not output. Say what isn't helpful, and why, and own what you send out."
+ },
+ {
+  "speaker": "Verena",
+  "at": 2477,
+  "text": "Al, how about you?"
+ },
+ {
+  "speaker": "Al",
+  "at": 2480,
+  "text": "You. The person… if you're in a group, whatever your role is. You need to have a… honest look at, and transparent look about, at where you're using AI, how is it, you know, measuring… how does it affect things? Even if it's just, you know, an individual contributor, I'm sorry, not just. Even if it's an individual contributor. Look at how it affects their output. And, you know, when you move around in the organization, just… see how it, you know, affects different output, and be honest about it, be humble about where you are. There's a quiz, a couple quizzes, you know, on our… That you can take, and where you can figure out You know, where my… Strong points are, where my weak points are, where… what are the… the, low-risk, high-reward areas are. Yeah, just, just… Yeah, you gotta stop and think long and hard about it, and talk some of the executives out from thinking that because AI is fast for them to make PowerPoints and rearrange their calendars, it's a little different than the engineers that have far different workflows. So they're not gonna see the same results."
+ },
+ {
+  "speaker": "Verena",
+  "at": 2560,
+  "text": "And Jess…"
+ },
+ {
+  "speaker": "Jess",
+  "at": 2562,
+  "text": "Very much agree with what, webs and Al. parts… parts they were saying. The, I think for me, it would probably be measuring what the customer feels, not what the tool logs. Going back to that… that outcomes piece, like, where… Where is it actually making a difference? And did we get there? Versus, did we just polish something? Did we find a nice new way To try something 9,000 times, 9,000 different ways, that didn't work."
+ },
+ {
+  "speaker": "Verena",
+  "at": 2591,
+  "text": "All right, well, thank you so much, the three of you. This has been an excellent conversation. I know this is something that we're probably not going to finish here. We're going to talk about AI quite a bit more as, trends and lots of news emerges. So as Al mentioned, if you thought this was really interesting and you'd want to learn more, feel free to go to understorycollab.com and take our What's on Fire quiz. You might be surprised at your results. So again, that's Understory Collab. Take that What's on Fire quiz. And, if you want to really sit down and talk to a human the way we've been talking about today, feel free to go to Understory Collab and check out our office hours right there on the same site. Thank you so much for joining us today, we'll see you next time."
+ }
+]

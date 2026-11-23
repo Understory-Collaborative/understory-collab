@@ -30,6 +30,35 @@ export const show = {
 // a few seconds earlier than the YouTube replay's.
 export const episodes = [
   {
+    number: 3,
+    slug: 'is-ai-paying-off',
+    videoId: '-16WDDFeYJE',
+    image: '/podcast/episode-3.png',
+    ctaLabel: 'Take the quiz',
+    guid: 'understorycollab.com/podcast/between-the-seams/3',
+    title: 'AI Usage Is Up 78%. Is It Paying Off?',
+    date: '2026-11-20T00:12:00Z',
+    file: 'episode-3.mp3',
+    bytes: 42216713,
+    seconds: 2638,
+    description:
+      'This is Understory Collaborative\'s third webinar, and episode 3 of Between the Seams. Verena hosts Al, Jess Kern, and webs for a conversation about how leaders measure AI\'s impact on delivery, beyond "we\'re using it." The panel follows three stages of AI adoption: what to set up before you turn AI on, where the speed goes when every team seems faster and projects are still late, and how to tell whether the license is worth renewing. AI tools are an operating cost every year, and as Jess puts it, "If no customer outcome is moved, the EBITDA hit is all you bought."',
+    cta: ["Want to know the state of your engineering team? Take the What's On Fire? quiz.", 'https://understorycollab.com/assessment'],
+    chapters: [
+      ['0:00', 'Welcome'],
+      ['0:33', 'Meet the panel'],
+      ['2:25', 'What a TPM does, and three stages of AI adoption'],
+      ['3:59', 'Just starting: what to set up before you turn AI on'],
+      ['13:25', 'In the middle: where did all the speed go?'],
+      ['23:40', 'Far in: how do you know AI is paying off?'],
+      ['28:14', "Who's accountable when AI is everywhere?"],
+      ['33:32', 'Procurement calls: do we renew the license?'],
+      ['38:07', 'One metric to stop reporting'],
+      ['39:59', "Lightning round: if AI didn't fix delivery, what will?"],
+      ['43:11', "The What's On Fire? quiz and office hours"],
+    ],
+  },
+  {
     number: 2,
     slug: 'where-projects-break-down',
     // The YouTube video's ID, the part after "v=" in its link. null shows a placeholder.
